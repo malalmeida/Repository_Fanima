@@ -11,15 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Login.unity
     guid: 19735248e1f6e4c218dd3829f1c41859
-  - enabled: 1
-    path: Assets/Scenes/Frog.unity
-    guid: 74aafc4fd62e3a94bb44d5924b9a6b26
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Monkey.unity
     guid: ed2c3e37282b44d3887a0d3e1cd46eb5
-  - enabled: 1
-    path: Assets/Scenes/Owl.unity
-    guid: 594d45c4f8d756c43aea3c8b4d093b23
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Chameleon.unity
     guid: bb57dc6097c28a940b6cbd339d939deb

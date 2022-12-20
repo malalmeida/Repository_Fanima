@@ -9,7 +9,7 @@ using UnityEngine.Windows;
 
 public class WebRequests : MonoBehaviour
 {
-    readonly string baseURL = "http://193.137.46.11/play/";
+    readonly string baseURL = "http://193.137.46.11/api/";
 
     public GameInputController gameScript;
 
