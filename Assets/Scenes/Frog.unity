@@ -4044,7 +4044,6 @@ MonoBehaviour:
   - {fileID: 1187405562}
   - {fileID: 698075079}
   ObjectSpeed: 3
-  nextWord: {fileID: 0}
 --- !u!95 &1722962061
 Animator:
   serializedVersion: 4
