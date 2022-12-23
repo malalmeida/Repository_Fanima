@@ -9,40 +9,46 @@ using TMPro;
 public class FrogScript : MonoBehaviour
 {
     public GameInputController GameInputController;
-    List<string> words = new List<string>();
-    public Animator frogAnimator;
+    List<string> listOfWords = new List<string>();
+
+    public Animator animator;
     [SerializeField] private AudioSource userRecording;
 
-    [SerializeField] Transform[] Positions;
-    [SerializeField] float ObjectSpeed;
-    Transform NextPosition;
-    int NextPositionIndex;
+    bool jump;
+    //bool catch;
+
+
+    void Awake(){
+      listOfWords = GameInputController.repositoryOfWords;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-      words.Add("Pato");
-      words.Add("Bola");
-      words.Add("Cadeira");
-      words.Add("Mola");
-      words.Add("Dado");
-
+      //words.Add("Pato");
+      //words.Add("Bola");
+      //words.Add("Cadeira");
+      //words.Add("Mola");
+      //words.Add("Dado");
 
       //frogAnimator.SetBool("jump", false);
-      //frogAnimator.SetBool("lastWord", false);
+      //frogAnimator.SetBool("lastWord", false);  
 
-      //words = PrepWords(GameInputController.repositoryOfWords);
-      //foreach (string item in words)
-      //{
-         //Debug.Log("PALAVRA " + item);
-      //}
-
-      NextPosition = Positions[0];
+      Debug.Log(listOfWords[0]);
     }
 
     void Update()
     {
-      
+      if(Input.GetKeyDown(KeyCode.Space))
+      {
+        animator.SetBool("Jump", true);
+        jump = true;
+      }
+       
+
+      if(Input.GetKeyUp(KeyCode.Space))
+        jump = false;
+
     }
 
     void Jump()
@@ -50,22 +56,7 @@ public class FrogScript : MonoBehaviour
       
     }
 
-    void MoveObject()
-    {
-        if(transform.position == NextPosition.position)
-        {
-          NextPositionIndex ++;
-          if (NextPositionIndex >= Positions.Length)
-          {
-            NextPositionIndex = 0;
-          }
-          NextPosition = Positions[NextPositionIndex];
-        }
-        else
-        {
-          transform.position = Vector3.MoveTowards(transform.position, NextPosition.position, ObjectSpeed = Time.deltaTime);
-        }
-    }
+    
 
     void ShowWord()
     {
