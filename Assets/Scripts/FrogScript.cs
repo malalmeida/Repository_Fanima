@@ -12,6 +12,13 @@ public class FrogScript : MonoBehaviour
     List<string> listOfWords = new List<string>();
 
     public Animator animator;
+    
+    private float playerSpeed;
+    private float jumpSpeed;
+    private bool isJumping;
+    private float move;
+    private Rigidbody2D rb;
+
     [SerializeField] private AudioSource userRecording;
 
     bool jump;
@@ -34,22 +41,48 @@ public class FrogScript : MonoBehaviour
       //frogAnimator.SetBool("jump", false);
       //frogAnimator.SetBool("lastWord", false);  
 
+      rb = GetComponent<Rigidbody2D>();
+  
       Debug.Log(listOfWords[0]);
     }
 
     void Update()
     {
-      if(Input.GetKeyDown(KeyCode.Space))
+
+     // rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+      rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+
+    
+      if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
       {
         animator.SetBool("Jump", true);
         jump = true;
+        playerSpeed = 1.5f;
+
+        //rb.AddForce(new Vector2(rb.velocity.x, jumpSpeed));
+        rb.AddForce(new Vector2(rb.velocity.x, 500));
+
+        isJumping = true;
       }
-       
 
       if(Input.GetKeyUp(KeyCode.Space))
+      {
         jump = false;
-
+      }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+      if(other.gameObject.CompareTag("Leaf"))
+      {
+        //playerSpeed = -1.5f;
+        animator.SetBool("Jump", false);
+        animator.SetBool("Catch", false);
+        isJumping = false;
+      }
+    }
+    
+
 
     void Jump()
     {
