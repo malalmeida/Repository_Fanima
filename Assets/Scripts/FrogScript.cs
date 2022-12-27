@@ -21,10 +21,6 @@ public class FrogScript : MonoBehaviour
 
     [SerializeField] private AudioSource userRecording;
 
-    bool jump;
-    //bool catch;
-
-
     void Awake(){
       listOfWords = GameInputController.repositoryOfWords;
     }
@@ -36,27 +32,23 @@ public class FrogScript : MonoBehaviour
       //words.Add("Bola");
       //words.Add("Cadeira");
       //words.Add("Mola");
-      //words.Add("Dado");
-
-      //frogAnimator.SetBool("jump", false);
-      //frogAnimator.SetBool("lastWord", false);  
+      //words.Add("Dado"); 
 
       rb = GetComponent<Rigidbody2D>();
   
-      Debug.Log(listOfWords[0]);
     }
 
     void Update()
     {
-
-     // rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
       rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+      
+      animator.SetFloat("yVelocity", rb.velocity.y);
 
-    
       if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
       {
+        Debug.Log(listOfWords[0]);
+
         animator.SetBool("Jump", true);
-        jump = true;
         playerSpeed = 1.5f;
 
         //rb.AddForce(new Vector2(rb.velocity.x, jumpSpeed));
@@ -64,32 +56,28 @@ public class FrogScript : MonoBehaviour
 
         isJumping = true;
       }
-
-      if(Input.GetKeyUp(KeyCode.Space))
-      {
-        jump = false;
-      }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
       if(other.gameObject.CompareTag("Leaf"))
       {
-        //playerSpeed = -1.5f;
+        playerSpeed = 0;
         animator.SetBool("Jump", false);
         animator.SetBool("Catch", false);
         isJumping = false;
       }
+
+      if(other.gameObject.CompareTag("LastLeaf"))
+      {
+        playerSpeed = 0;
+        animator.SetBool("Jump", false);
+        animator.SetBool("Catch", true);
+        isJumping = false;
+      }
+
+
     }
-    
-
-
-    void Jump()
-    {
-      
-    }
-
-    
 
     void ShowWord()
     {

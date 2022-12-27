@@ -8,7 +8,7 @@ public class HomeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Sequence());
+       StartCoroutine(Sequence());
     }
 
     IEnumerator Sequence()
