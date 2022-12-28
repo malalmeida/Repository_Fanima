@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Leaf
-  - LastLeaf
+  - Leaf0
+  - Leaf1
+  - Leaf2
+  - Leaf3
+  - Leaf4
+  - Leaf5
   layers:
   - Default
   - TransparentFX

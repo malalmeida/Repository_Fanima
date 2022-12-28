@@ -49,6 +49,7 @@ public class GameInputController : MonoBehaviour
                 if(contentList[i].word == dataList[j].id)
                 {
                     repositoryOfWords.Add(dataList[j].name);
+                    PlayerPrefs.SetString("Frog" + i , dataList[j].name);
                 }
             }
         }
