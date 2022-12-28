@@ -163,6 +163,34 @@ public class WebRequests : MonoBehaviour
         }
     } 
 
+     public IEnumerator PostSampleRequest(string targetID, byte[] sound, string actionID, string gameExeID)
+    {
+        var url = baseURL + "gamesample";
+        string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+
+        Debug.Log("GAME SAMPLE SENT TIME: " + time);
+
+        List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
+        parameters.Add(new MultipartFormDataSection("data", "{\"id\":\"" + targetID + "\", \"time\":\""+ time +"\", \"base64\":\""+ sound +"\"}"));
+        parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
+        parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
+
+        UnityWebRequest www = UnityWebRequest.Post(url, parameters);
+
+        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        www.SetRequestHeader("Authorization", token);
+
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.Log("ERROR POST SAMPLE: " + www.error + " END");
+        }
+        else {
+            Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
+        }
+
+    }
+
 
 
 

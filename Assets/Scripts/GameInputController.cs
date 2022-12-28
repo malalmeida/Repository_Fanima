@@ -12,7 +12,6 @@ public class GameInputController : MonoBehaviour
     public List<actionClass> contentList;
     public List<dataSource> dataList;
     public List<string> repositoryOfWords; 
-    const int PLAYGAMEID = 29;
 
      void Awake()
     {
@@ -67,6 +66,7 @@ public class GameInputController : MonoBehaviour
         Debug.Log("Waiting for execution ID...");
         yield return new WaitUntil(() => gameexecutionid > 0);
         Debug.Log("Game Execution request completed! ID -> " + gameexecutionid);
+        PlayerPrefs.SetInt("GAMEEXID",gameexecutionid);
     }
   
 }

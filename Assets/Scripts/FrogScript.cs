@@ -8,7 +8,7 @@ using TMPro;
 
 public class FrogScript : MonoBehaviour
 {
-    public GameInputController GameInputController;
+    //public GameInputController GameInputController;
     //List<string> listOfWords;
 
     public Animator animator;
@@ -22,9 +22,9 @@ public class FrogScript : MonoBehaviour
     [SerializeField] private AudioSource userRecording;
     [SerializeField] private TextMeshProUGUI wordToSay;
 
-    void Awake(){
-     
-    }
+    private bool isOnline = false;
+    const int PLAYGAMEID = 29;
+    public WebRequests webRequests;
 
     // Start is called before the first frame update
     void Start()
@@ -54,12 +54,19 @@ public class FrogScript : MonoBehaviour
     {
       if(other.gameObject.CompareTag("Leaf0"))
       {
-        wordToSay.text = PlayerPrefs.GetString("Frog0");
-        RecordSound();      
+        wordToSay.text = PlayerPrefs.GetString("Frog0");     
+        RecordSound();
       }
     
       if(other.gameObject.CompareTag("Leaf1"))
       {
+        SaveSound(PlayerPrefs.GetString("Frog0"));
+        
+        //StartCoroutine(webRequests.PostSampleRequest(PLAYGAMEID.ToString(), , PlayerPrefs.GetString("GAMEEXID").ToString()));
+            
+
+      //string targetID, byte[] sound, stractionIDing , string gameExeID
+
 
         wordToSay.text = PlayerPrefs.GetString("Frog1");
 
@@ -67,68 +74,68 @@ public class FrogScript : MonoBehaviour
         animator.SetBool("Jump", false);
         animator.SetBool("Catch", false);
         isJumping = false;
-        SaveSound(PlayerPrefs.GetString("Frog0"));
+      
         RecordSound(); 
 
       }
 
       if(other.gameObject.CompareTag("Leaf2"))
       {
-
+        SaveSound(PlayerPrefs.GetString("Frog1"));
         wordToSay.text = PlayerPrefs.GetString("Frog2");
 
         playerSpeed = 0;
         animator.SetBool("Jump", false);
         animator.SetBool("Catch", false);
         isJumping = false;
-        SaveSound(PlayerPrefs.GetString("Frog1"));
+      
         RecordSound(); 
       }
 
       
       if(other.gameObject.CompareTag("Leaf3"))
       {
-
+        SaveSound(PlayerPrefs.GetString("Frog2"));
         wordToSay.text = PlayerPrefs.GetString("Frog3");
 
         playerSpeed = 0;
         animator.SetBool("Jump", false);
         animator.SetBool("Catch", false);
         isJumping = false;
-        SaveSound(PlayerPrefs.GetString("Frog2"));
+
         RecordSound();
       }
 
       if(other.gameObject.CompareTag("Leaf4"))
       {
-
+        SaveSound(PlayerPrefs.GetString("Frog3"));
         wordToSay.text = PlayerPrefs.GetString("Frog4");
 
         playerSpeed = 0;
         animator.SetBool("Jump", false);
         animator.SetBool("Catch", false);
         isJumping = false;
-        SaveSound(PlayerPrefs.GetString("Frog3"));
+
         RecordSound();
       }
       
       if(other.gameObject.CompareTag("Leaf5"))
       {
+        SaveSound(PlayerPrefs.GetString("Frog4"));
         wordToSay.text = "Boa!";
+
         playerSpeed = 0;
         animator.SetBool("Jump", false);
         animator.SetBool("Catch", true);
         isJumping = false;
-        SaveSound(PlayerPrefs.GetString("Frog4"));
       }
-
 
     }
     
     void RecordSound()
     {
       userRecording = GetComponent<AudioSource>();
-      userRecording.clip = Microphone.Start("", true, 2, 48000);
+      userRecording.clip = Microphone.Start("", true, 10, 48000);
     }
 
     void SaveSound(string fileName)

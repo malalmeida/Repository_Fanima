@@ -11,7 +11,7 @@ public class MenuController : MonoBehaviour
     int USERID;
     public WebRequests webRequests;
     public GameObject startMenuUI;
-    private bool isOnline = false;
+    //private bool isOnline = false;
     private string startTime;
     private string endTime;
    
@@ -32,7 +32,7 @@ public class MenuController : MonoBehaviour
 
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         Time.timeScale = 1f;
-        isOnline = true;
+        //isOnline = true;
         startMenuUI.SetActive(false); 
     }
 }
