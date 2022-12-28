@@ -9,7 +9,7 @@ using TMPro;
 public class FrogScript : MonoBehaviour
 {
     public GameInputController GameInputController;
-    List<string> listOfWords = new List<string>();
+    List<string> listOfWords;
 
     public Animator animator;
     
@@ -22,12 +22,14 @@ public class FrogScript : MonoBehaviour
     [SerializeField] private AudioSource userRecording;
 
     void Awake(){
-      listOfWords = GameInputController.repositoryOfWords;
+      
     }
 
     // Start is called before the first frame update
     void Start()
     {
+      //List<string> listOfWords = new List<string>();
+      //listOfWords = GameInputController.repositoryOfWords;
       //words.Add("Pato");
       //words.Add("Bola");
       //words.Add("Cadeira");
@@ -46,8 +48,6 @@ public class FrogScript : MonoBehaviour
 
       if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
       {
-        Debug.Log(listOfWords[0]);
-
         animator.SetBool("Jump", true);
         playerSpeed = 1.5f;
 

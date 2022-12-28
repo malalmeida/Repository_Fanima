@@ -29,7 +29,6 @@ public class GameInputController : MonoBehaviour
                 StartCoroutine(InitiateGame());
                 StartCoroutine(PreparedToStart());   
             } 
-        
     }
 
     IEnumerator InitiateGame()
