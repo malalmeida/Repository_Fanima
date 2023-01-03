@@ -5,9 +5,10 @@ using TMPro;
 
 public class Login : MonoBehaviour
 {
-    public WebRequests request;
+    public LoginRequest loginRequest;
     //public TMP_InputField userInput;
     //public TMP_InputField passInput;
+  
 
     public void ConfirmLogin()
     {
@@ -17,7 +18,7 @@ public class Login : MonoBehaviour
         const string user = "paciente da ines";
         const string pass = "123";
 
-        StartCoroutine(request.PostLoginRequest(user, pass));  
+        StartCoroutine(loginRequest.PostLoginRequest(user, pass));  
     }
 
     public void Quit()

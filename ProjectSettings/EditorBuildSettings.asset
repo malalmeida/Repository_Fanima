@@ -6,23 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Home.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/Login.unity
     guid: 19735248e1f6e4c218dd3829f1c41859
   - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Travel.unity
+    guid: f7320a67ab7ebda4cb43d2bfe25d0134
+  - enabled: 1
     path: Assets/Scenes/Frog.unity
     guid: bccc8374151f9354b81bdcefffddce1d
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Monkey.unity
     guid: ed2c3e37282b44d3887a0d3e1cd46eb5
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Owl.unity
+    guid: c9729b008287633438e0bb44319d7b59
   - enabled: 1
     path: Assets/Scenes/Chameleon.unity
     guid: bb57dc6097c28a940b6cbd339d939deb

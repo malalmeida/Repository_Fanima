@@ -10,6 +10,7 @@ TagManager:
   - Leaf3
   - Leaf4
   - Leaf5
+  - Rock
   layers:
   - Default
   - TransparentFX

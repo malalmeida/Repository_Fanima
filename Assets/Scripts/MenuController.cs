@@ -11,6 +11,7 @@ public class MenuController : MonoBehaviour
     int USERID;
     public WebRequests webRequests;
     public GameObject startMenuUI;
+    public GameObject pauseMenuUI;
     //private bool isOnline = false;
     private string startTime;
     private string endTime;
@@ -24,6 +25,8 @@ public class MenuController : MonoBehaviour
     void Start()
     {
         USERID = Int32.Parse(PlayerPrefs.GetString("PLAYERID", "52"));
+        pauseMenuUI.SetActive(false);
+
     }
 
     public void StartGame()

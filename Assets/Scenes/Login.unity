@@ -211,8 +211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 105}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 5, y: 101}
+  m_SizeDelta: {x: 398.2948, y: 83.247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &370375229
 MonoBehaviour:
@@ -261,10 +261,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 72
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 16
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 7.19751, w: 0}
+  m_margin: {x: 0, y: 0, z: -1.1141968, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1260,9 +1260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae453a966fa6404195ef4029139e3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  request: {fileID: 1958710564}
-  userInput: {fileID: 1488770009}
-  passInput: {fileID: 681261983}
+  loginRequest: {fileID: 1958710564}
 --- !u!1 &1379047687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,10 +2173,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1958710562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94cf2170777174c8999911d148b478e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5132a2f6180185849b279b95492b047c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScript: {fileID: 0}
 --- !u!1 &1980175609
 GameObject:
   m_ObjectHideFlags: 0

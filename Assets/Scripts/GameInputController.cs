@@ -12,10 +12,11 @@ public class GameInputController : MonoBehaviour
     public List<actionClass> contentList;
     public List<dataSource> dataList;
     public List<string> repositoryOfWords; 
+    public WebRequests webRequests;
 
      void Awake()
     {
-        //StartCoroutine(webRequests.GetStructureRequest(PLAYGAMEID)); 
+
     }
 
     // Start is called before the first frame update
@@ -58,7 +59,6 @@ public class GameInputController : MonoBehaviour
             Debug.Log("Words added to repository! Words -> " + w);
         }
         Debug.Log("Repository " + repositoryOfWords.Count);
-        
     }
 
     IEnumerator PreparedToStart()

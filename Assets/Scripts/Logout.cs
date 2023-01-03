@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Logout : MonoBehaviour
 {
-    public WebRequests request;
+    public LoginRequest request;
 
      public void EndSession()
     {
