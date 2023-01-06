@@ -4741,6 +4741,7 @@ MonoBehaviour:
   dataList: []
   repositoryOfWords: []
   webRequests: {fileID: 0}
+  userRecording: {fileID: 0}
 --- !u!1 &1501792639
 GameObject:
   m_ObjectHideFlags: 0

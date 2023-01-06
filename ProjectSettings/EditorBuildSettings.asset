@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chameleon.unity
     guid: bb57dc6097c28a940b6cbd339d939deb
+  - enabled: 1
+    path: Assets/Scenes/Dolphin.unity
+    guid: d929dac5ac58cb94b9949a3c9ab62532
   m_configObjects: {}

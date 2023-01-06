@@ -12,7 +12,7 @@ public class MenuController : MonoBehaviour
     public WebRequests webRequests;
     public GameObject startMenuUI;
     public GameObject pauseMenuUI;
-    //private bool isOnline = false;
+    private bool isOnline = false;
     private string startTime;
     private string endTime;
    
@@ -35,7 +35,10 @@ public class MenuController : MonoBehaviour
 
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         Time.timeScale = 1f;
-        //isOnline = true;
+        isOnline = true;
         startMenuUI.SetActive(false); 
+    
+        SceneManager.LoadScene("Frog");
+
     }
 }

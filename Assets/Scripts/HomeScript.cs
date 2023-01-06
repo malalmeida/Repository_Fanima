@@ -24,6 +24,7 @@ public class HomeScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            
             rb.velocity = Vector2.down * 10 * Time.deltaTime;
         }
     }
@@ -51,9 +52,4 @@ public class HomeScript : MonoBehaviour
         SceneManager.LoadScene("Travel");
 
     }
-
-
-
-    
-
 }

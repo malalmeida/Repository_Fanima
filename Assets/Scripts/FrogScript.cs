@@ -8,9 +8,6 @@ using TMPro;
 
 public class FrogScript : MonoBehaviour
 {
-    //public GameInputController GameInputController;
-    //List<string> listOfWords;
-
     public Animator animator;
     
     private float playerSpeed;
@@ -57,7 +54,6 @@ public class FrogScript : MonoBehaviour
       if(other.gameObject.CompareTag("Leaf0"))
       {
         wordToSay.text = PlayerPrefs.GetString("Frog0"); 
-        //RecordSound();
       }
     
       if(other.gameObject.CompareTag("Leaf1"))
@@ -69,15 +65,8 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-
-        //StartCoroutine(SaveSound(PlayerPrefs.GetString("Frog0")));
-        
-        //byte[] audiobyte = File.ReadAllBytes(SavWav.soundPath);
-        //StartCoroutine(webRequests.PostSampleRequest(audiobyte, "1", PlayerPrefs.GetString("GAMEEXID").ToString()));
-          
         wordToSay.text = PlayerPrefs.GetString("Frog1");
 
-        //RecordSound(); 
       }
 
       if(other.gameObject.CompareTag("Leaf2"))
@@ -89,10 +78,7 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        //SaveSound(PlayerPrefs.GetString("Frog1"));
         wordToSay.text = PlayerPrefs.GetString("Frog2");
-        
-        //RecordSound(); 
       }
 
       
@@ -105,10 +91,7 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        //SaveSound(PlayerPrefs.GetString("Frog2"));
         wordToSay.text = PlayerPrefs.GetString("Frog3");
-
-        //RecordSound();
       }
 
       if(other.gameObject.CompareTag("Leaf4"))
@@ -120,10 +103,8 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        //SaveSound(PlayerPrefs.GetString("Frog3"));
         wordToSay.text = PlayerPrefs.GetString("Frog4");
 
-        //RecordSound();
       }
       
       if(other.gameObject.CompareTag("Leaf5"))
@@ -135,23 +116,8 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        //SaveSound(PlayerPrefs.GetString("Frog4"));
         wordToSay.text = " ";
         confetti.Play();
-
-
       }
-
-    }
-    
-    void RecordSound()
-    {
-      userRecording = GetComponent<AudioSource>();
-      userRecording.clip = Microphone.Start("", true, 10, 48000);
-    }
-
-    void SaveSound(string fileName)
-    {
-      SavWav.Save(fileName + ".wav", userRecording.clip);
     }
 }

@@ -3904,7 +3904,6 @@ GameObject:
   - component: {fileID: 1349347082}
   - component: {fileID: 1349347084}
   - component: {fileID: 1349347085}
-  - component: {fileID: 1349347086}
   m_Layer: 0
   m_Name: ZookeeperFemale
   m_TagString: Untagged
@@ -4108,25 +4107,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1349347086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349347080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57d654dc44d684970b71d03d359a4216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  structReqDone: 0
-  respositoryReqDone: 0
-  gameexecutionid: -1
-  contentList: []
-  dataList: []
-  repositoryOfWords: []
-  webRequests: {fileID: 0}
 --- !u!1 &1408869674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,7 +4220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cf2170777174c8999911d148b478e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScript: {fileID: 1349347086}
+  gameScript: {fileID: 0}
 --- !u!4 &1419843775
 Transform:
   m_ObjectHideFlags: 0
@@ -5091,6 +5071,7 @@ GameObject:
   - component: {fileID: 1722962061}
   - component: {fileID: 1722962062}
   - component: {fileID: 1722962063}
+  - component: {fileID: 1722962064}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -5346,6 +5327,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.57790977, y: 0.2899738}
   m_EdgeRadius: 0
+--- !u!114 &1722962064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722962054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d654dc44d684970b71d03d359a4216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  structReqDone: 0
+  respositoryReqDone: 0
+  gameexecutionid: -1
+  contentList: []
+  dataList: []
+  repositoryOfWords: []
+  webRequests: {fileID: 1419843774}
+  userRecording: {fileID: 0}
 --- !u!1 &1773919398
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ using System.Collections.Generic;
 public static class SavWav {
 
 	const int HEADER_SIZE = 44;
-	//public static string soundPath;
+	public static byte[] audiobyte;
 
 	public static bool Save(string filename, AudioClip clip) {
 		if (!filename.ToLower().EndsWith(".wav")) {
@@ -42,7 +42,7 @@ public static class SavWav {
 		var filepath = Path.Combine(Application.persistentDataPath, filename);
 
 		Debug.Log(filepath);
-		//soundPath = filepath;
+		audiobyte = File.ReadAllBytes(filepath);
 
 		// Make sure directory exists if user is saving to sub dir.
 		Directory.CreateDirectory(Path.GetDirectoryName(filepath));

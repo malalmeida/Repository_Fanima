@@ -11,7 +11,7 @@ public class WebRequests : MonoBehaviour
 {
     readonly string baseURL = "http://193.137.46.11/api/";
 
-    public GameInputController gameScript;
+    public GameController gameScript;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +48,7 @@ public class WebRequests : MonoBehaviour
     {
         var url = baseURL + "datasource/" + repositoryID;
 
-        Debug.Log("GET REPOSITORY CALLED -> " + url);
+        //Debug.Log("GET REPOSITORY CALLED -> " + url);
 
         UnityWebRequest www = UnityWebRequest.Get(url);
 
@@ -98,15 +98,20 @@ public class WebRequests : MonoBehaviour
         }
     } 
 
-    public IEnumerator PostSampleRequest(byte[] sound, string actionID, string gameExeID)
+    public IEnumerator PostSampleRequest(byte[] byteArray, string actionID, string gameExeID)
     {
         var url = baseURL + "gamesample";
         string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
 
-        Debug.Log("GAME SAMPLE SENT TIME: " + time);
+        //Debug.Log("GAME SAMPLE SENT TIME: " + time);
+
+    
+        //Debug.Log(byteArray);
+        string base64String = System.Convert.ToBase64String(byteArray);
+        //Debug.Log(base64String);
 
         List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
-        parameters.Add(new MultipartFormDataSection("data", "{\"time\":\""+ time +"\", \"base64\":\""+ sound +"\"}"));
+        parameters.Add(new MultipartFormDataSection("data", "{\"time\":\""+ time +"\", \"base64\":\""+ base64String +"\"}"));
         parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
         parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
 
@@ -126,12 +131,83 @@ public class WebRequests : MonoBehaviour
 
     }
 
+    public IEnumerator PostGameResultRequest(string status, string actionID, string gameExeID, string startTime, string endTime)
+    {
+        var url = baseURL + "gameresult";
+        Debug.Log("POST GAME RESULT Start: " + startTime + " End: " + endTime);
 
+        List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
+        parameters.Add(new MultipartFormDataSection("status", status));
+        parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
+        parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
+        parameters.Add(new MultipartFormDataSection("start", startTime));
+        parameters.Add(new MultipartFormDataSection("end", endTime));
 
+        UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
+        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        www.SetRequestHeader("Authorization", token);
 
+        yield return www.SendWebRequest();
 
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.Log("ERROR POST GAME RESULT:" + www.error + " END");
+        }
+        else {
+            
+            Debug.Log("ANSWER POST GAME RESULT: " + www.downloadHandler.text + " END");
+        }
+    }
 
+    public IEnumerator PostGameRequest(string sampleID)
+    {
+        var url = baseURL + "gamerequest";
 
+        List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
+        parameters.Add(new MultipartFormDataSection("sampleID", sampleID));
+    
+
+        UnityWebRequest www = UnityWebRequest.Post(url, parameters);
+
+        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        www.SetRequestHeader("Authorization", token);
+
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.Log("ERROR POST GAME REQUEST:" + www.error + " END");
+        }
+        else {
+            
+            Debug.Log("ANSWER POST GAME REQUEST: " + www.downloadHandler.text + " END");
+        }
+
+    }
+/*
+    public IEnumerator PutGameSampleRequest(string sampleID, string label)
+    {
+        var url = baseURL + "gamesample";
+
+        List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
+        parameters.Add(new MultipartFormDataSection("sampleID", sampleID));
+        parameters.Add(new MultipartFormDataSection("label", label));
+
+        UnityWebRequest www = UnityWebRequest.Put(url, parameters);
+
+        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        www.SetRequestHeader("Authorization", token);
+
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.Log("ERROR PUT GAME SAMPLE REQUEST:" + www.error + " END");
+        }
+        else {
+            
+            Debug.Log("ANSWER PUT GAME SAMPLE REQUEST: " + www.downloadHandler.text + " END");
+        }
+
+    }
+*/
 
 }

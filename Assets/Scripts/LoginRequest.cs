@@ -33,7 +33,8 @@ public class LoginRequest : MonoBehaviour
             Debug.Log("ERROR POST SAMPLE: " + www.error + " END");
         }
         else {
-            Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
+            //Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
+            Debug.Log("LOGIN DONE! ANSWER: " + www.downloadHandler.text + " END");
 
             PlayerInfo playerInfo = JsonUtility.FromJson<PlayerInfo>(www.downloadHandler.text);
 
