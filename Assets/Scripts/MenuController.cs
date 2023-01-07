@@ -38,7 +38,7 @@ public class MenuController : MonoBehaviour
         isOnline = true;
         startMenuUI.SetActive(false); 
     
-        SceneManager.LoadScene("Frog");
+        //SceneManager.LoadScene("Frog");
 
     }
 }

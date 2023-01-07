@@ -98,7 +98,8 @@ public class WebRequests : MonoBehaviour
         }
     } 
 
-    public IEnumerator PostSampleRequest(byte[] byteArray, string actionID, string gameExeID)
+    //Envio sample do audio 
+    public IEnumerator PostSample(byte[] byteArray, string actionID, string gameExeID)
     {
         var url = baseURL + "gamesample";
         string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
@@ -131,34 +132,7 @@ public class WebRequests : MonoBehaviour
 
     }
 
-    public IEnumerator PostGameResultRequest(string status, string actionID, string gameExeID, string startTime, string endTime)
-    {
-        var url = baseURL + "gameresult";
-        Debug.Log("POST GAME RESULT Start: " + startTime + " End: " + endTime);
-
-        List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
-        parameters.Add(new MultipartFormDataSection("status", status));
-        parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
-        parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
-        parameters.Add(new MultipartFormDataSection("start", startTime));
-        parameters.Add(new MultipartFormDataSection("end", endTime));
-
-        UnityWebRequest www = UnityWebRequest.Post(url, parameters);
-
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
-        www.SetRequestHeader("Authorization", token);
-
-        yield return www.SendWebRequest();
-
-        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
-            Debug.Log("ERROR POST GAME RESULT:" + www.error + " END");
-        }
-        else {
-            
-            Debug.Log("ANSWER POST GAME RESULT: " + www.downloadHandler.text + " END");
-        }
-    }
-
+    //Envio do pedido da classificação da PLAY
     public IEnumerator PostGameRequest(string sampleID)
     {
         var url = baseURL + "gamerequest";
@@ -181,18 +155,25 @@ public class WebRequests : MonoBehaviour
             
             Debug.Log("ANSWER POST GAME REQUEST: " + www.downloadHandler.text + " END");
         }
-
     }
-/*
-    public IEnumerator PutGameSampleRequest(string sampleID, string label)
+
+    //Envio do resultado 
+    //status = 0 
+    //score = 0
+    public IEnumerator PostGameResult(string status, string score, string actionID, string gameExeID, string startTime, string endTime)
     {
-        var url = baseURL + "gamesample";
+        var url = baseURL + "gameresult";
+        Debug.Log("POST GAME RESULT Start: " + startTime + " End: " + endTime);
 
         List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
-        parameters.Add(new MultipartFormDataSection("sampleID", sampleID));
-        parameters.Add(new MultipartFormDataSection("label", label));
+        parameters.Add(new MultipartFormDataSection("status", status));
+         parameters.Add(new MultipartFormDataSection("score", score));
+        parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
+        parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
+        parameters.Add(new MultipartFormDataSection("start", startTime));
+        parameters.Add(new MultipartFormDataSection("end", endTime));
 
-        UnityWebRequest www = UnityWebRequest.Put(url, parameters);
+        UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
         string token = PlayerPrefs.GetString("TOKEN", "ERROR");
         www.SetRequestHeader("Authorization", token);
@@ -200,14 +181,12 @@ public class WebRequests : MonoBehaviour
         yield return www.SendWebRequest();
 
         if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
-            Debug.Log("ERROR PUT GAME SAMPLE REQUEST:" + www.error + " END");
+            Debug.Log("ERROR POST GAME RESULT:" + www.error + " END");
         }
         else {
             
-            Debug.Log("ANSWER PUT GAME SAMPLE REQUEST: " + www.downloadHandler.text + " END");
+            Debug.Log("ANSWER POST GAME RESULT: " + www.downloadHandler.text + " END");
         }
-
     }
-*/
 
 }

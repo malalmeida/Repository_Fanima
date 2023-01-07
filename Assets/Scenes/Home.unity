@@ -4234,6 +4234,7 @@ GameObject:
   - component: {fileID: 1451663371}
   - component: {fileID: 1451663372}
   - component: {fileID: 1451663373}
+  - component: {fileID: 1451663374}
   m_Layer: 0
   m_Name: AirBallon
   m_TagString: Untagged
@@ -4390,6 +4391,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.2, y: 5.6150117}
   m_EdgeRadius: 0
+--- !u!114 &1451663374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451663366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6120c271f9d214e84a04f0472e3f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1453638116
 GameObject:
   m_ObjectHideFlags: 0

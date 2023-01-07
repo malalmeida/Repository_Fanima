@@ -92,7 +92,7 @@ public class GameController : MonoBehaviour
         SaveSound(PlayerPrefs.GetString("Frog0"));
         byte[] byteArray = SavWav.audiobyte;
 
-        StartCoroutine(webRequests.PostSampleRequest(byteArray, "181", gameexecutionid.ToString()));
+        StartCoroutine(webRequests.PostSample(byteArray, "181", gameexecutionid.ToString()));
         
         RecordSound(); 
       }
