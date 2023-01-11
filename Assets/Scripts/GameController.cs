@@ -25,13 +25,13 @@ public class GameController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-  //Debug.Log("DATA E HORA: " + System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss") + " UTC");
-    List<string> repositoryOfWords = new List<string>();  
-    if(SceneManager.GetActiveScene().name == "Home")
-    {
-      StartCoroutine(InitiateGame());
-      StartCoroutine(PreparedToStart());   
-    } 
+    //Debug.Log("DATA E HORA: " + System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss") + " UTC");
+      List<string> repositoryOfWords = new List<string>();  
+      if(SceneManager.GetActiveScene().name == "Home")
+      {
+        StartCoroutine(PrepareGameStructure());
+        StartCoroutine(PreparedGameExecutionID());   
+      } 
   }
 
   void Update()
@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
 
   }
 
-  IEnumerator InitiateGame()
+  IEnumerator PrepareGameStructure()
   {
     Debug.Log("Waiting for structure...");
     yield return new WaitUntil(() => structReqDone);
@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour
     Debug.Log("Repository " + repositoryOfWords.Count);
     }
 
-    IEnumerator PreparedToStart()
+    IEnumerator PreparedGameExecutionID()
     {
       Debug.Log("Waiting for execution ID...");
       yield return new WaitUntil(() => gameexecutionid > 0);
