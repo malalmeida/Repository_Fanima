@@ -5341,12 +5341,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structReqDone: 0
   respositoryReqDone: 0
-  gameexecutionid: -1
+  gameExecutionID: -1
+  gameSampleID: -1
   contentList: []
   dataList: []
-  repositoryOfWords: []
+  listOfWordsToPlay: []
   webRequests: {fileID: 1419843774}
+  rb: {fileID: 1722962062}
+  listOfChapterActions: []
   userRecording: {fileID: 0}
+  listOfChaptersToPlay: []
+  wordToSay: {fileID: 753714741}
 --- !u!1 &1773919398
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,7 +53,7 @@ public class FrogScript : MonoBehaviour
     {
       if(other.gameObject.CompareTag("Leaf0"))
       {
-        wordToSay.text = PlayerPrefs.GetString("Frog0"); 
+        //wordToSay.text = PlayerPrefs.GetString("Frog0"); 
       }
     
       if(other.gameObject.CompareTag("Leaf1"))
@@ -65,7 +65,7 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        wordToSay.text = PlayerPrefs.GetString("Frog1");
+        //wordToSay.text = PlayerPrefs.GetString("Frog1");
 
       }
 
@@ -78,7 +78,6 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        wordToSay.text = PlayerPrefs.GetString("Frog2");
       }
 
       
@@ -91,7 +90,6 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        wordToSay.text = PlayerPrefs.GetString("Frog3");
       }
 
       if(other.gameObject.CompareTag("Leaf4"))
@@ -102,9 +100,6 @@ public class FrogScript : MonoBehaviour
         isJumping = false;
 
         waterSplashSound.Play();    
-
-        wordToSay.text = PlayerPrefs.GetString("Frog4");
-
       }
       
       if(other.gameObject.CompareTag("Leaf5"))

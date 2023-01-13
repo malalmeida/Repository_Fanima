@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class TravelScript : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class TravelScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("finish", true);
+
+            SceneManager.LoadScene("Frog");
+
         }
     }
 }

@@ -44,9 +44,9 @@ public class WebRequests : MonoBehaviour
         }
     }   
 
-     public IEnumerator GetRepository(int repositoryID)
+     public IEnumerator GetRepository()
     {
-        var url = baseURL + "datasource/" + repositoryID;
+        var url = baseURL + "datasource/speech";
 
         //Debug.Log("GET REPOSITORY CALLED -> " + url);
 
@@ -93,7 +93,7 @@ public class WebRequests : MonoBehaviour
             
             if(SceneManager.GetActiveScene().name == "Home")
             {
-                gameScript.gameexecutionid = int.Parse(www.downloadHandler.text);
+                gameScript.gameExecutionID = int.Parse(www.downloadHandler.text);
             }
         }
     } 
@@ -128,6 +128,8 @@ public class WebRequests : MonoBehaviour
         }
         else {
             Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
+
+            gameScript.gameSampleID = int.Parse(www.downloadHandler.text);
         }
 
     }

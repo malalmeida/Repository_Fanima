@@ -7,7 +7,6 @@ using System;
 public class MenuController : MonoBehaviour
 {
     const int PLAYGAMEID = 29;
-    const int REPOSITORYID = 2;
     int USERID;
     public WebRequests webRequests;
     public GameObject startMenuUI;
@@ -19,7 +18,7 @@ public class MenuController : MonoBehaviour
     void Awake()
     {
         StartCoroutine(webRequests.GetStructureRequest(PLAYGAMEID));
-        StartCoroutine(webRequests.GetRepository(REPOSITORYID));
+        StartCoroutine(webRequests.GetRepository());
     }
 
     void Start()
