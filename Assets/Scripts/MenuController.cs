@@ -17,8 +17,8 @@ public class MenuController : MonoBehaviour
    
     void Awake()
     {
-        StartCoroutine(webRequests.GetStructureRequest(PLAYGAMEID));
-        StartCoroutine(webRequests.GetRepository());
+       StartCoroutine(webRequests.GetStructureRequest(PLAYGAMEID));
+       StartCoroutine(webRequests.GetRepository());
     }
 
     void Start()

@@ -36,11 +36,11 @@ public class WebRequests : MonoBehaviour
             Debug.Log("ANSWER GET STRUCTURE: " + www.downloadHandler.text + " END");
             jsonDataLoader jsonData = JsonUtility.FromJson<jsonDataLoader>(www.downloadHandler.text);
             
-            if(SceneManager.GetActiveScene().name == "Home")
-            {
+            //if(SceneManager.GetActiveScene().name == "Home")
+            //{
                 gameScript.contentList = jsonData.content;
                 gameScript.structReqDone = true;
-            }            
+            //}            
         }
     }   
 
@@ -61,11 +61,11 @@ public class WebRequests : MonoBehaviour
             Debug.Log("ANSWER GET REPOSITORY: " + www.downloadHandler.text + " END");
             jsonDataRepository jsonDataRepository = JsonUtility.FromJson<jsonDataRepository>(www.downloadHandler.text);
             
-            if(SceneManager.GetActiveScene().name == "Home")
-            {
+            //if(SceneManager.GetActiveScene().name == "Home")
+            //{
                 gameScript.dataList = jsonDataRepository.content;
                 gameScript.respositoryReqDone = true;
-            }            
+            //}            
         }
     }
 

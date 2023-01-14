@@ -18,15 +18,16 @@ public class HomeScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        //StartCoroutine(Teste());
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
             
-            rb.velocity = Vector2.down * 10 * Time.deltaTime;
-        }
+            //rb.velocity = Vector2.down * 10 * Time.deltaTime;
+        //}
     }
 
      private void OnCollisionEnter2D(Collision2D other)
@@ -50,6 +51,13 @@ public class HomeScript : MonoBehaviour
         rb.velocity = Vector2.up * 4900 * Time.deltaTime;
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Travel");
+
+    }
+
+    IEnumerator Teste()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Frog");
 
     }
 }
