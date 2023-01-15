@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 //	Copyright (c) 2012 Calvin Rien
 //        http://the.darktable.com
 //
@@ -39,10 +43,10 @@ public static class SavWav {
 			filename += ".wav";
 		}
 
-		var filepath = Path.Combine(Application.persistentDataPath, filename);
+        var filepath = Path.Combine(Application.persistentDataPath, filename);
 
 		Debug.Log(filepath);
-		audiobyte = File.ReadAllBytes(filepath);
+		//audiobyte = File.ReadAllBytes(filepath);
 
 		// Make sure directory exists if user is saving to sub dir.
 		Directory.CreateDirectory(Path.GetDirectoryName(filepath));

@@ -11,14 +11,14 @@ public class WebRequests : MonoBehaviour
 {
     readonly string baseURL = "http://193.137.46.11/api/";
 
-    public GameController gameScript;
+    //public GameController gameScript;
 
     // Start is called before the first frame update
     void Start()
     {
         
     }
-    
+/*    
     public IEnumerator GetStructureRequest(int gameID)
     {
         var url = baseURL + "game/" + gameID + "/structure";
@@ -97,18 +97,24 @@ public class WebRequests : MonoBehaviour
             }
         }
     } 
-
+*/
     //Envio sample do audio 
-    public IEnumerator PostSample(byte[] byteArray, string actionID, string gameExeID)
+    //public IEnumerator PostSample(byte[] byteArray, string actionID, string gameExeID)
+    public IEnumerator PostSample(string fileName, string actionID, string gameExeID)
     {
         var url = baseURL + "gamesample";
         string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
 
         //Debug.Log("GAME SAMPLE SENT TIME: " + time);
 
+        string path = "C:/Users/gvgia/AppData/LocalLow/DefaultCompany/Fanima/" + fileName + ".wav";
+
+        byte[] audiobyte = File.ReadAllBytes(path);
+
+        string base64String = System.Convert.ToBase64String(audiobyte);
     
         //Debug.Log(byteArray);
-        string base64String = System.Convert.ToBase64String(byteArray);
+        //string base64String = System.Convert.ToBase64String(byteArray);
         //Debug.Log(base64String);
 
         List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
@@ -129,7 +135,8 @@ public class WebRequests : MonoBehaviour
         else {
             Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
 
-            gameScript.gameSampleID = int.Parse(www.downloadHandler.text);
+            //gameScript.gameSampleID = int.Parse(www.downloadHandler.text);
+            //PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
         }
 
     }
@@ -169,7 +176,7 @@ public class WebRequests : MonoBehaviour
 
         List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
         parameters.Add(new MultipartFormDataSection("status", status));
-         parameters.Add(new MultipartFormDataSection("score", score));
+        parameters.Add(new MultipartFormDataSection("score", score));
         parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
         parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
         parameters.Add(new MultipartFormDataSection("start", startTime));

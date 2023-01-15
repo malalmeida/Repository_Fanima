@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
   void Awake()
   {
     StartCoroutine(PrepareGameStructure());
-    StartCoroutine(PreparedgameExecutionID());
+    StartCoroutine(PreparedGameExecutionID());
   }
 
   // Start is called before the first frame update
@@ -111,12 +111,15 @@ public class GameController : MonoBehaviour
       if (Input.GetKeyUp("up"))
       {
         endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");          
-        SaveSound(listOfWordsToSay[0]);
-        byte[] byteArray = SavWav.audiobyte;
+        SavWav.Save(listOfWordsToSay[0] + ".wav", userRecording.clip);
+        //SaveSound(listOfWordsToSay[0]);
+        //byte[] byteArray = SavWav.audiobyte;
 
-        StartCoroutine(webRequests.PostSample(byteArray, listOfChapterActions[0].id.ToString(), gameExecutionID.ToString()));
-        StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
-        StartCoroutine(webRequests.PostGameResult("0", "0", listOfChapterActions[0].id.ToString(), gameExecutionID.ToString(), startTime, endTime));  
+        StartCoroutine(webRequests.PostSample(listOfWordsToSay[0], chapterHomeActionList[0].id.ToString(), gameExecutionID.ToString()));
+        //StartCoroutine(webRequests.PostSample(byteArray, listOfChapterActions[0].id.ToString(), gameExecutionID.ToString()));
+        gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+        //StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
+        StartCoroutine(webRequests.PostGameResult("0", "0", chapterHomeActionList[0].id.ToString(), gameExecutionID.ToString(), startTime, endTime));  
       }
     }
   }
@@ -236,7 +239,7 @@ public class GameController : MonoBehaviour
     }
     */
 
-  IEnumerator PreparedgameExecutionID()
+  IEnumerator PreparedGameExecutionID()
   {
     //Debug.Log("Waiting for execution ID...");
     yield return new WaitUntil(() => gameExecutionID > 0);

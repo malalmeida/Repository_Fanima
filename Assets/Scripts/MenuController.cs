@@ -8,17 +8,19 @@ public class MenuController : MonoBehaviour
 {
     const int PLAYGAMEID = 29;
     int USERID;
-    public WebRequests webRequests;
+    //public WebRequests webRequests;
     public GameObject startMenuUI;
     public GameObject pauseMenuUI;
     private bool isOnline = false;
     private string startTime;
     private string endTime;
+
+    public GameStructurRequest gameStructurRequest;
    
     void Awake()
     {
-       StartCoroutine(webRequests.GetStructureRequest(PLAYGAMEID));
-       StartCoroutine(webRequests.GetRepository());
+       StartCoroutine(gameStructurRequest.GetStructureRequest(PLAYGAMEID));
+       StartCoroutine(gameStructurRequest.GetRepository());
     }
 
     void Start()
@@ -30,7 +32,7 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(webRequests.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), USERID.ToString()));
+        StartCoroutine(gameStructurRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), USERID.ToString()));
 
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         Time.timeScale = 1f;
