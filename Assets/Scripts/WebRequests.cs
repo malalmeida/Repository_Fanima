@@ -103,7 +103,7 @@ public class WebRequests : MonoBehaviour
     public IEnumerator PostSample(string fileName, string actionID, string gameExeID)
     {
         var url = baseURL + "gamesample";
-        string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+        string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
 
         //Debug.Log("GAME SAMPLE SENT TIME: " + time);
 
@@ -136,7 +136,7 @@ public class WebRequests : MonoBehaviour
             Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
 
             //gameScript.gameSampleID = int.Parse(www.downloadHandler.text);
-            //PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
+            PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
         }
 
     }
@@ -172,7 +172,7 @@ public class WebRequests : MonoBehaviour
     public IEnumerator PostGameResult(string status, string score, string actionID, string gameExeID, string startTime, string endTime)
     {
         var url = baseURL + "gameresult";
-        Debug.Log("POST GAME RESULT Start: " + startTime + " End: " + endTime);
+        //Debug.Log("POST GAME RESULT Start: " + startTime + " End: " + endTime);
 
         List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
         parameters.Add(new MultipartFormDataSection("status", status));

@@ -2573,10 +2573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9fd98b4c1ab0d24e92dc27b4e457868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  webRequests: {fileID: 1128667947}
   startMenuUI: {fileID: 654202547}
   pauseMenuUI: {fileID: 526536395}
-  GameController: {fileID: 1349347084}
+  gameStructurRequest: {fileID: 1636333773}
 --- !u!1 &817480807
 GameObject:
   m_ObjectHideFlags: 0
@@ -2705,7 +2704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cf2170777174c8999911d148b478e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScript: {fileID: 1349347084}
 --- !u!1 &877108620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,7 +3555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cf2170777174c8999911d148b478e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScript: {fileID: 0}
 --- !u!1 &1168342957
 GameObject:
   m_ObjectHideFlags: 0
@@ -5281,6 +5278,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1283251459}
   m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1636333772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1636333774}
+  - component: {fileID: 1636333773}
+  m_Layer: 0
+  m_Name: GameStructureRequest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1636333773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636333772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c096022e1078284d99562d73fc5fe21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScript: {fileID: 1349347084}
+--- !u!4 &1636333774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636333772}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 517.8, y: 210.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1639839551
 GameObject:

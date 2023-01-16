@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
   const int PLAYGAMEID = 29;
   public bool structReqDone = false;
   public bool respositoryReqDone = false;
+  public bool sampleReqDone = false;
   public int gameExecutionID = -1;
   public int gameSampleID = -1;
   public List<actionClass> contentList;
@@ -41,13 +42,14 @@ public class GameController : MonoBehaviour
 
   void Awake()
   {
-    StartCoroutine(PrepareGameStructure());
     StartCoroutine(PreparedGameExecutionID());
+    StartCoroutine(PrepareGameStructure());
   }
 
   // Start is called before the first frame update
   void Start()
   {
+
     rb = GetComponent<Rigidbody2D>();
 
     List<actionClass> chapterHomeActionList = new List<actionClass>();
@@ -102,26 +104,36 @@ public class GameController : MonoBehaviour
 
       if (Input.GetKeyUp("down"))
       {
-        Debug.Log("COMEÇOU A GRAVAR");
-        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+        Debug.Log("COMECOU A GRAVAR");
+        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         Debug.Log("PALAVRA DA ACTION ->" + listOfWordsToSay[0]);
         RecordSound();
       }
 
       if (Input.GetKeyUp("up"))
       {
-        endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");          
+        endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
         SavWav.Save(listOfWordsToSay[0] + ".wav", userRecording.clip);
-        //SaveSound(listOfWordsToSay[0]);
-        //byte[] byteArray = SavWav.audiobyte;
 
-        StartCoroutine(webRequests.PostSample(listOfWordsToSay[0], chapterHomeActionList[0].id.ToString(), gameExecutionID.ToString()));
-        //StartCoroutine(webRequests.PostSample(byteArray, listOfChapterActions[0].id.ToString(), gameExecutionID.ToString()));
-        gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-        //StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
-        StartCoroutine(webRequests.PostGameResult("0", "0", chapterHomeActionList[0].id.ToString(), gameExecutionID.ToString(), startTime, endTime));  
+
+        Debug.Log("ACTION ID " + chapterHomeActionList[0].id);
+        Debug.Log("GAMEEXECUTIONID " + gameExecutionID);
+
+        StartCoroutine(PrepareGameResult());
       }
     }
+  }
+
+  IEnumerator PrepareGameResult()
+  {
+    yield return StartCoroutine(webRequests.PostSample(listOfWordsToSay[0], chapterHomeActionList[0].id.ToString(), gameExecutionID.ToString()));
+    
+    gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+    Debug.Log("GAMESAMPLEID " + gameSampleID);
+    yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
+
+    StartCoroutine(webRequests.PostGameResult("1", "0", chapterHomeActionList[0].id.ToString(), gameExecutionID.ToString(), startTime, endTime));     
+    PlayerPrefs.SetInt("GAMESAMPLEID", -1);
   }
 
   IEnumerator PrepareGameStructure()
@@ -241,13 +253,13 @@ public class GameController : MonoBehaviour
 
   IEnumerator PreparedGameExecutionID()
   {
-    //Debug.Log("Waiting for execution ID...");
+    Debug.Log("Waiting for execution ID...");
     yield return new WaitUntil(() => gameExecutionID > 0);
+        
     Debug.Log("Game Execution request completed! ID -> " + gameExecutionID);
   }
 
   //FROG GAME 
-  
   private void OnCollisionEnter2D(Collision2D other)
   {
     //foreach (actionClass action in listOfChapterActions)
@@ -307,7 +319,7 @@ public class GameController : MonoBehaviour
   void RecordSound()
   {
     userRecording = GetComponent<AudioSource>();
-    userRecording.clip = Microphone.Start("", true, 10, 48000);
+    userRecording.clip = Microphone.Start("", true, 1, 48000);
   }
 
   void SaveSound(string fileName)
