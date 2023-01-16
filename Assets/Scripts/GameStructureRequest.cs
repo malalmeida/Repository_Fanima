@@ -8,7 +8,7 @@ using System;
 using UnityEngine.Windows;
 
 
-public class GameStructurRequest : MonoBehaviour
+public class GameStructureRequest : MonoBehaviour
 {
    public GameController gameScript;
       

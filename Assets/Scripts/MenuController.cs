@@ -15,12 +15,12 @@ public class MenuController : MonoBehaviour
     private string startTime;
     private string endTime;
 
-    public GameStructurRequest gameStructurRequest;
+    public GameStructureRequest gameStructureRequest;
    
     void Awake()
     {
-       StartCoroutine(gameStructurRequest.GetStructureRequest(PLAYGAMEID));
-       StartCoroutine(gameStructurRequest.GetRepository());
+       StartCoroutine(gameStructureRequest.GetStructureRequest(PLAYGAMEID));
+       StartCoroutine(gameStructureRequest.GetRepository());
     }
 
     void Start()
@@ -32,7 +32,7 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(gameStructurRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), USERID.ToString()));
+        StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), USERID.ToString()));
 
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         Time.timeScale = 1f;

@@ -77,9 +77,6 @@ public class GameController : MonoBehaviour
     {
       
     }
-
-      //listOfChaptersToPlay.Add("Oclusivas");      
-      //listOfChaptersToPlay.Add("Vibrantes e Laterais");
   }
 
   void Update()
