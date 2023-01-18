@@ -19,11 +19,13 @@ public class WebSockets : MonoBehaviour{
     public event WebSocketOnProcessHandler onProcess;
     private int userId;
     private int gameId;
+    private int therapistID;
     private string appName;
 
 
     void Start()
     {
+        therapistID = 51;
         userId = 52;
         gameId = 29;
         appName = "Fanima";
@@ -89,6 +91,7 @@ public class WebSockets : MonoBehaviour{
     }
 
     #region Game Callbacks
+    //
     public void StartCallback(int game, string status, int order, int level, int sequence, int action, float percentage, int time) {
         PrepareMessage("status", "{\"game\": game, \"status\": status, \"order\": order, \"level\": level, \"sequence\": sequence, \"action\": action, \"percent\": percentage, \"time\": time}");
         return;
@@ -124,5 +127,16 @@ public class WebSockets : MonoBehaviour{
         PrepareMessage("status", "{\"game\": game, \"status\": status, \"order\": order, \"level\": level, \"sequence\": sequence, \"action\": action, \"percent\": percentage, \"time\": time}");
         return; 
     }
+
+    public void LevelsSelection(int therapist, int level) {
+       PrepareMessage("status", "{\"therapist\": therapist, \"level\": level}");
+       return;
+    }
+
+    public void ActionClassification(int therapist, int sampleID) {
+       PrepareMessage("status", "{\"therapist\": therapist, \"sample\": sampleID}");
+       return;
+    }
+
     #endregion
 }

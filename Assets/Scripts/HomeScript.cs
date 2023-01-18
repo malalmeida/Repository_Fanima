@@ -25,8 +25,7 @@ public class HomeScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyUp("left"))
-        {
-                
+        { 
             rb.velocity = Vector2.down * 10 * Time.deltaTime;
         }
     }

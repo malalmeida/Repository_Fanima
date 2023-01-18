@@ -96,18 +96,21 @@ public class WebRequests : MonoBehaviour
                 gameScript.gameExecutionID = int.Parse(www.downloadHandler.text);
             }
         }
+        
     } 
 */
     //Envio sample do audio 
     //public IEnumerator PostSample(byte[] byteArray, string actionID, string gameExeID)
-    public IEnumerator PostSample(string fileName, string actionID, string gameExeID)
+    public IEnumerator PostSample(string fileName, string actionID, string gameExeID, string wordID)
     {
         var url = baseURL + "gamesample";
         string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
 
         //Debug.Log("GAME SAMPLE SENT TIME: " + time);
 
-        string path = "C:/Users/gvgia/AppData/LocalLow/DefaultCompany/Fanima/" + fileName + ".wav";
+        //string path = "C:/Users/gvgia/AppData/LocalLow/DefaultCompany/Fanima/" + fileName + ".wav";
+        //MAC path
+        string path = "/Users/inesantunes/Library/Application Support/DefaultCompany/Fanima/" + fileName + ".wav";
 
         byte[] audiobyte = File.ReadAllBytes(path);
 
@@ -118,7 +121,7 @@ public class WebRequests : MonoBehaviour
         //Debug.Log(base64String);
 
         List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
-        parameters.Add(new MultipartFormDataSection("data", "{\"time\":\""+ time +"\", \"base64\":\""+ base64String +"\"}"));
+        parameters.Add(new MultipartFormDataSection("data", "{\"id\":\""+ wordID +"\", \"time\":\""+ time +"\", \"base64\":\""+ base64String +"\"}"));
         parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
         parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
 

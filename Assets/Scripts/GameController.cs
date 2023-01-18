@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
   public List<string> listOfChaptersToPlay;
 
   [SerializeField] private TextMeshProUGUI wordToSay;
+  
+  public GameObject startMenuUI;
 
   string startTime;
   string endTime;
@@ -39,6 +41,8 @@ public class GameController : MonoBehaviour
   public  List<actionClass> chapterFishActionList;
 
   public  List<string> listOfWordsToSay; 
+  public int currentAtionID = -1;
+  public bool validationDone = false;
 
   void Awake()
   {
@@ -49,7 +53,6 @@ public class GameController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-
     rb = GetComponent<Rigidbody2D>();
 
     List<actionClass> chapterHomeActionList = new List<actionClass>();
@@ -60,77 +63,97 @@ public class GameController : MonoBehaviour
 
     if(SceneManager.GetActiveScene().name == "Home")
     {        
-      
+      StartCoroutine(PrepareChapterActions());
+
+      StartCoroutine(WaitForAction());
+
     } 
 
     if(SceneManager.GetActiveScene().name == "Frog")
     {
-
     }
 
     if(SceneManager.GetActiveScene().name == "Chameleon")
     {
-      
     }
 
     if(SceneManager.GetActiveScene().name == "Fish")
-    {
-      
+    { 
     }
   }
 
   void Update()
   {
-    if(SceneManager.GetActiveScene().name == "Home")
+    if(SceneManager.GetActiveScene().name == "Home" && !startMenuUI.activeSelf)
     {
-      if(Input.GetKeyDown(KeyCode.Space))
-      {
-        for (int i = 0; i < chapterHomeActionList.Count; i++)
-        {
-          for (int j = 0; j < dataList.Count; j++)
-          {
-            if(chapterHomeActionList[i].word == dataList[j].id)
-            {
-              listOfWordsToSay.Add(dataList[j].name);
-              Debug.Log("Words -> " + dataList[j].name);
-            }
-          }
-        }
-        Debug.Log("Words -> " + listOfWordsToSay.Count);
-      }
+      //StartCoroutine(WaitForAction());
+    }
 
-      if (Input.GetKeyUp("down"))
-      {
-        Debug.Log("COMECOU A GRAVAR");
-        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-        Debug.Log("PALAVRA DA ACTION ->" + listOfWordsToSay[0]);
-        RecordSound();
-      }
+    if(SceneManager.GetActiveScene().name == "Frog")
+    {
+    }
 
-      if (Input.GetKeyUp("up"))
-      {
-        endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
-        SavWav.Save(listOfWordsToSay[0] + ".wav", userRecording.clip);
+    if(SceneManager.GetActiveScene().name == "Chameleon")
+    {
+    }
 
+    if(SceneManager.GetActiveScene().name == "Fish")
+    {
+    }
+  }
 
-        Debug.Log("ACTION ID " + chapterHomeActionList[0].id);
-        Debug.Log("GAMEEXECUTIONID " + gameExecutionID);
-
-        StartCoroutine(PrepareGameResult());
+  IEnumerator WaitForAction()
+  {
+    yield return StartCoroutine(PrepareGameStructure());
+    for (int i = 0; i < chapterHomeActionList.Count; i++)
+    {
+      currentAtionID = i;
+      startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+      Debug.Log("PALAVRA DA ACTION -> " + listOfWordsToSay[i]);
+      RecordSound();
+      if(i < chapterHomeActionList){
+        yield return StartCoroutine(WaitForValidation());
       }
     }
   }
 
+  IEnumerator WaitForValidation()
+  {
+    yield return new WaitForSeconds(5.0f);
+    endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
+    SavWav.Save(listOfWordsToSay[currentAtionID] + ".wav", userRecording.clip);
+    //Debug.Log("ACTION ID " + chapterHomeActionList[currentAtionID].id);
+    //Debug.Log("GAMEEXECUTIONID " + gameExecutionID);
+    yield return StartCoroutine(PrepareGameResult());
+  }
+
+
+  IEnumerator PrepareChapterActions()
+  {
+    yield return StartCoroutine(PrepareGameStructure());
+    for (int i = 0; i < chapterHomeActionList.Count; i++)
+    {
+      for (int j = 0; j < dataList.Count; j++)
+      {
+        if(chapterHomeActionList[i].word == dataList[j].id)
+        {
+          listOfWordsToSay.Add(dataList[j].name);
+          Debug.Log("Words -> " + dataList[j].name);
+        }
+      }
+    }
+    Debug.Log("Words -> " + listOfWordsToSay.Count);
+  }
+
   IEnumerator PrepareGameResult()
   {
-    yield return StartCoroutine(webRequests.PostSample(listOfWordsToSay[0], chapterHomeActionList[0].id.ToString(), gameExecutionID.ToString()));
+    yield return StartCoroutine(webRequests.PostSample(listOfWordsToSay[currentAtionID], chapterHomeActionList[currentAtionID].id.ToString(), gameExecutionID.ToString(), chapterHomeActionList[currentAtionID].word.ToString()));
     
     gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-    Debug.Log("GAMESAMPLEID " + gameSampleID);
+    //Debug.Log("GAMESAMPLEID " + gameSampleID);
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 
-    StartCoroutine(webRequests.PostGameResult("1", "0", chapterHomeActionList[0].id.ToString(), gameExecutionID.ToString(), startTime, endTime));     
-    PlayerPrefs.SetInt("GAMESAMPLEID", -1);
+    yield return StartCoroutine(webRequests.PostGameResult("1", "0", chapterHomeActionList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime));     
   }
 
   IEnumerator PrepareGameStructure()

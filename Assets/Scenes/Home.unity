@@ -1929,6 +1929,37 @@ Transform:
   m_Father: {fileID: 256215414}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &503211618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503211619}
+  m_Layer: 0
+  m_Name: WebSockets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503211619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503211618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3474616, y: -1.5891523, z: -0.008196889}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,7 +2606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMenuUI: {fileID: 654202547}
   pauseMenuUI: {fileID: 526536395}
-  gameStructurRequest: {fileID: 1636333773}
+  gameStructureRequest: {fileID: 1636333773}
 --- !u!1 &817480807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4195,6 +4226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structReqDone: 0
   respositoryReqDone: 0
+  sampleReqDone: 0
   gameExecutionID: -1
   gameSampleID: -1
   contentList: []
@@ -4204,11 +4236,14 @@ MonoBehaviour:
   userRecording: {fileID: 0}
   listOfChaptersToPlay: []
   wordToSay: {fileID: 0}
+  startMenuUI: {fileID: 654202547}
   chapterHomeActionList: []
   chapterFrogActionList: []
   chapterChameleonActionList: []
   chapterFishActionList: []
   listOfWordsToSay: []
+  currentAtionID: -1
+  validationDone: 0
 --- !u!82 &1349347085
 AudioSource:
   m_ObjectHideFlags: 0
