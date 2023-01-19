@@ -603,7 +603,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &55525813
 GameObject:
@@ -1938,6 +1938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 503211619}
+  - component: {fileID: 503211620}
   m_Layer: 0
   m_Name: WebSockets
   m_TagString: Untagged
@@ -1958,8 +1959,20 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &503211620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503211618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6120c271f9d214e84a04f0472e3f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2734,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &838026525
 MonoBehaviour:
@@ -3542,50 +3555,6 @@ Transform:
   m_Father: {fileID: 256215414}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1128667945
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1128667946}
-  - component: {fileID: 1128667947}
-  m_Layer: 0
-  m_Name: Request
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1128667946
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128667945}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17647871, y: -0.06562364, z: -0.00045497715}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1128667947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128667945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94cf2170777174c8999911d148b478e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1168342957
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,16 +4203,12 @@ MonoBehaviour:
   webRequests: {fileID: 838026525}
   listOfChapterActions: []
   userRecording: {fileID: 0}
-  listOfChaptersToPlay: []
+  listOfChaptersToPlay: 
   wordToSay: {fileID: 0}
   startMenuUI: {fileID: 654202547}
-  chapterHomeActionList: []
-  chapterFrogActionList: []
-  chapterChameleonActionList: []
-  chapterFishActionList: []
   listOfWordsToSay: []
+  currentWord: 
   currentAtionID: -1
-  validationDone: 0
 --- !u!82 &1349347085
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4438,7 +4403,6 @@ GameObject:
   - component: {fileID: 1451663371}
   - component: {fileID: 1451663372}
   - component: {fileID: 1451663373}
-  - component: {fileID: 1451663374}
   m_Layer: 0
   m_Name: AirBallon
   m_TagString: Untagged
@@ -4511,7 +4475,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1451663370
 Animator:
@@ -4595,18 +4559,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.2, y: 5.6150117}
   m_EdgeRadius: 0
---- !u!114 &1451663374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451663366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6120c271f9d214e84a04f0472e3f24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1453638116
 GameObject:
   m_ObjectHideFlags: 0
@@ -5357,7 +5309,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1639839551
 GameObject:
@@ -5392,7 +5344,7 @@ Transform:
   - {fileID: 1778814509}
   - {fileID: 543009039}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1657239591
 GameObject:
@@ -5683,7 +5635,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1752716031
 BoxCollider2D:

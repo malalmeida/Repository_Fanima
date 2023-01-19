@@ -128,13 +128,13 @@ public class WebSockets : MonoBehaviour{
         return; 
     }
 
-    public void LevelsSelection(int therapist, int level) {
-       PrepareMessage("status", "{\"therapist\": therapist, \"level\": level}");
+    public void LevelsSelection(int therapistID, int gameExecutionID) {
+       PrepareMessage("status", "{\"therapistID\": therapist, \"level\": gameExecutionID}");
        return;
     }
 
-    public void ActionClassification(int therapist, int sampleID) {
-       PrepareMessage("status", "{\"therapist\": therapist, \"sample\": sampleID}");
+    public void ActionClassification(int therapistID, int sampleID) {
+       PrepareMessage("status", "{\"therapistID\": therapist, \"sample\": sampleID}");
        return;
     }
 

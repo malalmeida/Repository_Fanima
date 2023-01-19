@@ -23,7 +23,7 @@ public class FrogScript : MonoBehaviour
 
     private bool isOnline = false;
     const int PLAYGAMEID = 29;
-    public WebRequests webRequests;
+    //public WebRequests webRequests;
 
     // Start is called before the first frame update
     void Start()

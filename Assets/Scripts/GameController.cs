@@ -7,6 +7,7 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
+  const int therapistID = 51;
   const int PLAYGAMEID = 29;
   public bool structReqDone = false;
   public bool respositoryReqDone = false;
@@ -17,6 +18,7 @@ public class GameController : MonoBehaviour
   public List<dataSource> dataList;
   
   public WebRequests webRequests;
+  public WebSockets webSockets;
   
   private Rigidbody2D rb;
 
@@ -24,7 +26,7 @@ public class GameController : MonoBehaviour
     
   [SerializeField] private AudioSource userRecording;
 
-  public List<string> listOfChaptersToPlay;
+  public List<int> listOfChaptersToPlay;
 
   [SerializeField] private TextMeshProUGUI wordToSay;
   
@@ -35,14 +37,14 @@ public class GameController : MonoBehaviour
 
   string activeChapter;
 
-  public  List<actionClass> chapterHomeActionList;
-  public  List<actionClass> chapterFrogActionList;
-  public  List<actionClass> chapterChameleonActionList;
-  public  List<actionClass> chapterFishActionList;
+  //public  List<actionClass> chapterHomeActionList;
+  //public  List<actionClass> chapterFrogActionList;
+  //public  List<actionClass> chapterChameleonActionList;
+  //public  List<actionClass> chapterFishActionList;
 
   public  List<string> listOfWordsToSay; 
+  public string currentWord;
   public int currentAtionID = -1;
-  public bool validationDone = false;
 
   void Awake()
   {
@@ -54,31 +56,40 @@ public class GameController : MonoBehaviour
   void Start()
   {
     rb = GetComponent<Rigidbody2D>();
-
+    
     List<actionClass> chapterHomeActionList = new List<actionClass>();
     List<actionClass> chapterFrogActionList = new List<actionClass>();
     List<actionClass> chapterChameleonActionList = new List<actionClass>();
     List<actionClass> chapterFishActionList = new List<actionClass>();
     List<string> listOfWordsToSay = new List<string>(); 
 
+    listOfChaptersToPlay.Add(0);
+    listOfChaptersToPlay.Add(2);
+
+
     if(SceneManager.GetActiveScene().name == "Home")
-    {        
-      StartCoroutine(PrepareChapterActions());
-
+    {
+      activeChapter = "Geral";      
+      //StartCoroutine(PrepareChapterActions());
       StartCoroutine(WaitForAction());
-
     } 
 
     if(SceneManager.GetActiveScene().name == "Frog")
     {
+      activeChapter = "Oclusivas";      
+
     }
 
     if(SceneManager.GetActiveScene().name == "Chameleon")
     {
+      activeChapter = "Fricativas";      
+
     }
 
     if(SceneManager.GetActiveScene().name == "Fish")
     { 
+      activeChapter = "Vibrantes e Laterais";      
+
     }
   }
 
@@ -86,7 +97,6 @@ public class GameController : MonoBehaviour
   {
     if(SceneManager.GetActiveScene().name == "Home" && !startMenuUI.activeSelf)
     {
-      //StartCoroutine(WaitForAction());
     }
 
     if(SceneManager.GetActiveScene().name == "Frog")
@@ -105,29 +115,46 @@ public class GameController : MonoBehaviour
   IEnumerator WaitForAction()
   {
     yield return StartCoroutine(PrepareGameStructure());
-    for (int i = 0; i < chapterHomeActionList.Count; i++)
+    yield return StartCoroutine(PreparedGameExecutionID());
+
+    for(int i = 0; i < contentList.Count; i++)
     {
-      currentAtionID = i;
-      startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-      Debug.Log("PALAVRA DA ACTION -> " + listOfWordsToSay[i]);
-      RecordSound();
-      if(i < chapterHomeActionList){
+      if(contentList[i].sequence == activeChapter)
+      {
+        currentAtionID = i;
+        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+        currentWord = dataList[contentList[i].word - 1].name;
+        Debug.Log("DIZ -> " + currentWord); 
+
+        RecordSound();
         yield return StartCoroutine(WaitForValidation());
+      }
+      else
+      {
+        Debug.Log("ACABOU A SEQUENCIA");
+        Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
+
+        webSockets.LevelsSelection(therapistID, gameExecutionID);
+        
+        SceneManager.LoadScene("Travel");
+
       }
     }
   }
 
   IEnumerator WaitForValidation()
   {
-    yield return new WaitForSeconds(5.0f);
+    Debug.Log("ESPERAR PELA VALIDAÇÂO DA TERAPEUTA");
+    yield return new WaitForSeconds(2.0f);
+    Debug.Log("VALIDAÇÃO FEITA");
     endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
-    SavWav.Save(listOfWordsToSay[currentAtionID] + ".wav", userRecording.clip);
-    //Debug.Log("ACTION ID " + chapterHomeActionList[currentAtionID].id);
+    SavWav.Save(currentWord + ".wav", userRecording.clip);
+    Debug.Log("ACTION ID " + contentList[currentAtionID].id);
     //Debug.Log("GAMEEXECUTIONID " + gameExecutionID);
     yield return StartCoroutine(PrepareGameResult());
   }
 
-
+/*
   IEnumerator PrepareChapterActions()
   {
     yield return StartCoroutine(PrepareGameStructure());
@@ -144,16 +171,16 @@ public class GameController : MonoBehaviour
     }
     Debug.Log("Words -> " + listOfWordsToSay.Count);
   }
-
+*/
   IEnumerator PrepareGameResult()
   {
-    yield return StartCoroutine(webRequests.PostSample(listOfWordsToSay[currentAtionID], chapterHomeActionList[currentAtionID].id.ToString(), gameExecutionID.ToString(), chapterHomeActionList[currentAtionID].word.ToString()));
+    yield return StartCoroutine(webRequests.PostSample(currentWord, contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), contentList[currentAtionID].word.ToString()));
     
     gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
     //Debug.Log("GAMESAMPLEID " + gameSampleID);
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 
-    yield return StartCoroutine(webRequests.PostGameResult("1", "0", chapterHomeActionList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime));     
+    StartCoroutine(webRequests.PostGameResult("1", "0", contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime));     
   }
 
   IEnumerator PrepareGameStructure()
@@ -165,7 +192,7 @@ public class GameController : MonoBehaviour
     //Debug.Log("Waiting for word repository...");
     yield return new WaitUntil(() => respositoryReqDone);
     Debug.Log("Repository request completed! Words: " + dataList.Count);
-
+/*
     for (int i = 0; i < contentList.Count; i++)
     {
       if(String.Compare(contentList[i].sequence, "Geral") == 0)
@@ -188,88 +215,8 @@ public class GameController : MonoBehaviour
         chapterFishActionList.Add(contentList[i]);
       }
     }
-
-    /*
-    //prep repository of strings
-    for (int i = 0; i < contentList.Count; i++)
-    {
-      for (int j = 0; j < dataList.Count; j++)
-      {
-        if(contentList[i].word == dataList[j].id)
-        {
-          listOfWordsToSay.Add(dataList[j].name);
-          // PARA APAGAR ?? PlayerPrefs.SetString("Frog" + i , dataList[j].name);
-        }
-      }
-    }
-        
-    /*foreach (string w in listOfWordsToSay)
-    {  
-      Debug.Log("Words -> " + w);
-    }
-    Debug.Log("TOTAL WORDS TO SAY " + listOfWordsToSay.Count);
     */
-    
   }
-
-
-/*
-  void PrepareChapterActions()
-  {
-    Debug.Log("CONTENT LIST " + contentList[0]);
-    for (int i = 0; i < contentList.Count; i++)
-    {
-      if(String.Compare(contentList[i].sequence, activeChapter) == 0)
-      {
-        listOfChapterActions.Add(contentList[i]);
-        Debug.Log("Action to play " + contentList[i]);
-      }
-    }
-    
-    
-      /*PRAPARAR AS PALAVRAS PARA PARA O CAPITULO
-    for (int i = 0; i < listOfChapterActions.Count; i++)
-    {
-      for (int j = 0; j < dataList.Count; j++)
-      { 
-        if(listOfChapterActions[i].word == dataList[j].id)
-        {
-          listOfWordsToSay.Add(dataList[j].name);
-        }
-      }
-    }
-   
-  }
-   */
-
-
-/*
-    void GetChapterToPlay()
-    {
-      //VER O CAPUTILO QUE SE PRETENDE JOGAR
-      foreach (string s in listOfChaptersToPlay)
-      {
-        if(String.Compare(s, "Oclusivas") == 0)
-        {
-          PrepareChapter(s);
-          //ESCOLHER A SCENE RESPETIVA A ESSE CAPITULO
-          SceneManager.LoadScene("Frog");
-        }
-
-        if(String.Compare(s, "Fricativas") == 0)
-        {
-          PrepareChapter(s);
-          SceneManager.LoadScene("Chameleon");
-        }
-
-        if(String.Compare(s, "Vibrnates e Laterais") == 0)
-        {
-          PrepareChapter(s);
-          SceneManager.LoadScene("Fish");
-        }
-      }
-    }
-    */
 
   IEnumerator PreparedGameExecutionID()
   {
@@ -306,13 +253,8 @@ public class GameController : MonoBehaviour
       
       if(other.gameObject.CompareTag("Leaf1"))
       {
-        Debug.Log("PALAVRA BOLAS = " + listOfWordsToSay.Count);
-        Debug.Log("ACTION NUMBER = " + chapterFrogActionList.Count);
-
-        foreach (actionClass ac in chapterFrogActionList)
-        {  
-          Debug.Log("ACTION -> " + ac);
-        }
+        
+      }
 
         //Debug.Log("MUDOU A ACTION? " + action.id);
         //endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");          
@@ -332,7 +274,6 @@ public class GameController : MonoBehaviour
          // }
           //RecordSound(); 
         //}
-      }
     //}
   }
 
