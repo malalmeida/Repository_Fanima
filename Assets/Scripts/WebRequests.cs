@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Text;
 using System;
 using UnityEngine.Windows;
+using System.IO;
 
 public class WebRequests : MonoBehaviour
 {
@@ -110,9 +111,11 @@ public class WebRequests : MonoBehaviour
 
         //string path = "C:/Users/gvgia/AppData/LocalLow/DefaultCompany/Fanima/" + fileName + ".wav";
         //MAC path
-        string path = "/Users/inesantunes/Library/Application Support/DefaultCompany/Fanima/" + fileName + ".wav";
+        //string path = "/Users/inesantunes/Library/Application Support/DefaultCompany/Fanima/" + fileName + ".wav";
+        string path = ".\\" + fileName + ".wav";
 
-        byte[] audiobyte = File.ReadAllBytes(path);
+        //byte[] audiobyte = File.ReadAllBytes(path);
+        byte[] audiobyte = System.IO.File.ReadAllBytes(path);
 
         string base64String = System.Convert.ToBase64String(audiobyte);
     
@@ -172,8 +175,10 @@ public class WebRequests : MonoBehaviour
     //Envio do resultado 
     //status = 0 
     //score = 0
-    public IEnumerator PostGameResult(string status, string score, string actionID, string gameExeID, string startTime, string endTime)
+    public IEnumerator PostGameResult(string status, string score, string actionID, string gameExeID, string startTime, string endTime, string fileName)
     {
+        System.IO.File.Delete(".\\" + fileName + ".wav");
+
         var url = baseURL + "gameresult";
         //Debug.Log("POST GAME RESULT Start: " + startTime + " End: " + endTime);
 

@@ -180,7 +180,7 @@ public class GameController : MonoBehaviour
     //Debug.Log("GAMESAMPLEID " + gameSampleID);
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 
-    StartCoroutine(webRequests.PostGameResult("1", "0", contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime));     
+    StartCoroutine(webRequests.PostGameResult("1", "0", contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime, currentWord));     
   }
 
   IEnumerator PrepareGameStructure()
