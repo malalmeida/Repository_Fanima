@@ -56,6 +56,8 @@ public class GameController : MonoBehaviour
   void Start()
   {
     rb = GetComponent<Rigidbody2D>();
+
+    webSockets = new WebSockets();
     
     List<actionClass> chapterHomeActionList = new List<actionClass>();
     List<actionClass> chapterFrogActionList = new List<actionClass>();
@@ -70,7 +72,6 @@ public class GameController : MonoBehaviour
     if(SceneManager.GetActiveScene().name == "Home")
     {
       activeChapter = "Geral";      
-      //StartCoroutine(PrepareChapterActions());
       StartCoroutine(WaitForAction());
     } 
 
@@ -83,7 +84,7 @@ public class GameController : MonoBehaviour
     if(SceneManager.GetActiveScene().name == "Chameleon")
     {
       activeChapter = "Fricativas";      
-
+      StartCoroutine(WaitForAction());
     }
 
     if(SceneManager.GetActiveScene().name == "Fish")
@@ -105,6 +106,7 @@ public class GameController : MonoBehaviour
 
     if(SceneManager.GetActiveScene().name == "Chameleon")
     {
+
     }
 
     if(SceneManager.GetActiveScene().name == "Fish")
@@ -123,6 +125,7 @@ public class GameController : MonoBehaviour
       {
         currentAtionID = i;
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+        // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
         currentWord = dataList[contentList[i].word - 1].name;
         Debug.Log("DIZ -> " + currentWord); 
 
@@ -134,9 +137,12 @@ public class GameController : MonoBehaviour
         Debug.Log("ACABOU A SEQUENCIA");
         Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
 
-        webSockets.LevelsSelection(therapistID, gameExecutionID);
+        webSockets.GetLevelsToPlay(therapistID, gameExecutionID);
         
-        SceneManager.LoadScene("Travel");
+        if(SceneManager.GetActiveScene().name == "Home")
+        {
+          SceneManager.LoadScene("Travel");
+        }
 
       }
     }
@@ -177,6 +183,9 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(webRequests.PostSample(currentWord, contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), contentList[currentAtionID].word.ToString()));
     
     gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+
+    webSockets.GetActionEvaluation(therapistID,gameSampleID);
+    
     //Debug.Log("GAMESAMPLEID " + gameSampleID);
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 

@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Text;
 using System;
-using UnityEngine.Windows;
-using System.IO;
 
 public class WebRequests : MonoBehaviour
 {
@@ -111,8 +109,8 @@ public class WebRequests : MonoBehaviour
 
         //string path = "C:/Users/gvgia/AppData/LocalLow/DefaultCompany/Fanima/" + fileName + ".wav";
         //MAC path
-        //string path = "/Users/inesantunes/Library/Application Support/DefaultCompany/Fanima/" + fileName + ".wav";
-        string path = ".\\" + fileName + ".wav";
+        string path = "/Users/inesantunes/Library/Application Support/DefaultCompany/Fanima/" + fileName + ".wav";
+        //string path = ".\\" + fileName + ".wav";
 
         //byte[] audiobyte = File.ReadAllBytes(path);
         byte[] audiobyte = System.IO.File.ReadAllBytes(path);

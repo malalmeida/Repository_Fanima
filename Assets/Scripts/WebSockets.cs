@@ -2,6 +2,9 @@ using UnityEngine;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 using System;
+using UnityEngine.Networking;
+using System.Collections;
+using System.Collections.Generic;
 
 public class WebSockets : MonoBehaviour{
 
@@ -17,17 +20,18 @@ public class WebSockets : MonoBehaviour{
     public event WebSocketOnMessageHandler onMessage;
     public delegate void WebSocketOnProcessHandler();
     public event WebSocketOnProcessHandler onProcess;
-    private int userId;
-    private int gameId;
+    private int userID;
+    private int gameID;
     private int therapistID;
     private string appName;
-
+    private bool socketIsReady = false;
+    private bool operationDone = false;
 
     void Start()
     {
         therapistID = 51;
-        userId = 52;
-        gameId = 29;
+        userID = 52;
+        gameID = 29;
         appName = "Fanima";
        
         StartClient();
@@ -36,7 +40,26 @@ public class WebSockets : MonoBehaviour{
     
     void Update()
     {
-            
+        if (ws == null)
+        {
+            Debug.Log("WS is null");
+            //_ws.ConnectAsync();
+        }
+        if (socketIsReady)
+        {
+            if (!operationDone)
+            {
+                string levelsRequest = "{\"therapist\":\"" + therapistID + "\",\"levels\":\"" + gameID + "\"}";
+                Debug.Log("Send WS levels request: " + levelsRequest);
+                PrepareMessage("request", levelsRequest);
+
+                string classificationRequest = "{\"therapist\":\"" + therapistID + "\",\"sample\":\"" + gameID + "\"}";
+                Debug.Log("Send WS classification request: " + classificationRequest);
+                PrepareMessage("request", classificationRequest);
+
+                operationDone = true;
+            }
+        }   
     }  
 
     public void StartClient()
@@ -44,12 +67,13 @@ public class WebSockets : MonoBehaviour{
         ws = new WebSocket(wsURL, null);
 
         ws.OnOpen += (sender, e) => {
-            //Debug.Log("ws open");
-            ws.Send("{\"id\":\"" + userId + "\",\"msg\":\"app\",\"value\":\"" + appName + "\"}");
+            Debug.Log("ws open");
+            ws.Send("{\"id\":\"" + userID + "\",\"msg\":\"app\",\"value\":\"" + appName + "\"}");
+            socketIsReady = true;
 
         }; 
         ws.OnClose += (sender, e) => {
-            //Debug.Log("ws close", e.Reason);
+            Debug.Log("ws close"); //, e.Reason);
             //ws.Send("{\"id\":\"666\",\"msg\":\"close\",\"value\":\"" + e.Reason + "\"}");
         };
         ws.OnError += (sender, e) => { 
@@ -64,8 +88,16 @@ public class WebSockets : MonoBehaviour{
             }
             if (msg == "{\"msg\":\"status\"}")
             {
-                string status = "{\"game\":\"" + gameId + "\"}";
-                ws.Send("{\"id\":\"" + userId + "\",\"msg\":\"status\",\"value\":" + status + "}");
+                string status = "{\"game\":" + gameID + "}";
+                //string request = "{\"therapist\":" + 51 + ",\"levels\":" + 51 + "}";
+
+                //ws.Send("{\"id\":\"" + userID + "\",\"msg\":\"status\",\"value\":" + status + "}");
+                PrepareMessage("status",status);
+
+                //PrepareMessage("request",request);
+
+
+                //ws.Send("{\"id\":\"" + userID + "\",\"msg\":\"request\",\"value\":" + request + "}");
             }
         };
 
@@ -85,57 +117,39 @@ public class WebSockets : MonoBehaviour{
     {
         try
         {
-            ws.Send("{\"id\":\"" + userId + "\",\"msg\":\"" + msg + "\",\"value\":\"" + value + "\"}");
+            string teste = "{\"id\":" + 52 + ",\"msg\":\"" + msg + "\",\"value\":" + value + "}";
+            Debug.Log("TESTEANTES" + teste);
+            ws.Send(teste);
+            //ws.Send("{\"id\":\"" + 52 + "\",\"msg\":\"request\",\"value\":" + value + "}");
+
+            
+            Debug.Log("TESTEDEPOIS" + teste);
+
         }
         catch (Exception) { }
     }
 
-    #region Game Callbacks
-    //
-    public void StartCallback(int game, string status, int order, int level, int sequence, int action, float percentage, int time) {
-        PrepareMessage("status", "{\"game\": game, \"status\": status, \"order\": order, \"level\": level, \"sequence\": sequence, \"action\": action, \"percent\": percentage, \"time\": time}");
-        return;
+    #region Game Messages
+    public  void GetLevelsToPlay(int therapistID, int gameExecutionID)
+    {
+        string request = "{\"therapist\":" + 51 + ",\"levels\":" + 0 + "}";
+        PrepareMessage("request", request);
     }
 
-    public void NextStartCallback(int game, string status, int order, int level, int sequence, int action, float percentage, int time) {
-        //let r = { 'status':data.status, 'score':1, 'gameactionid':ga.id,'gameexecutionid':ge.id, 'start':d1,'end':d2}
-        //gapi.sendResult(r)
-        return; 
-    }
+    //public void LevelSelection(int therapistID, int gameExecutionID) {
+       //PrepareMessage("request", "{\"therapist\":" + therapistID + ",\"levels\":" + gameExecutionID + "}");
 
-    public void NextEndCallback(int game, string status, int order, int level, int sequence, int action, float percentage, int time) {
-        PrepareMessage("status", "{\"game\": game, \"status\": status, \"order\": order, \"level\": level, \"sequence\": sequence, \"action\": action, \"percent\": percentage, \"time\": time}");
-        return;
-    }
+       //string request = "{\"therapist\":" + 51 + ",\"levels\":" + 0 + "}";
+       //PrepareMessage("request", request);
+       //return;
+    //}
 
-    public void NextLevelCallback(int game, string status, int order, int level, int sequence, int action, float percentage, int time) {
-        PrepareMessage("status", "{\"game\": game, \"status\": status, \"order\": order, \"level\": level, \"sequence\": sequence, \"action\": action, \"percent\": percentage, \"time\": time}");
-        return;
-    }
-
-    public void NextSequenceCallback(int game, string status, int order, int level, int sequence, int action, float percentage, int time) {
-        PrepareMessage("status", "{\"game\": game, \"status\": status, \"order\": order, \"level\": level, \"sequence\": sequence, \"action\": action, \"percent\": percentage, \"time\": time}");
-        return;
-    }
-
-    public void EndCallback(int game, string status, int order, int level, int sequence, int action, float percentage, int time) {
-        PrepareMessage("status", "{\"game\": game, \"status\": status, \"order\": order, \"level\": level, \"sequence\": sequence, \"action\": action, \"percent\": percentage, \"time\": time}");
-        return;
-    }
-
-    public void GameCycleCallback(int game, string status, int order, int level, int sequence, int action, float percentage, int time) {
-        PrepareMessage("status", "{\"game\": game, \"status\": status, \"order\": order, \"level\": level, \"sequence\": sequence, \"action\": action, \"percent\": percentage, \"time\": time}");
-        return; 
-    }
-
-    public void LevelsSelection(int therapistID, int gameExecutionID) {
-       PrepareMessage("status", "{\"therapistID\": therapist, \"level\": gameExecutionID}");
-       return;
-    }
-
-    public void ActionClassification(int therapistID, int sampleID) {
-       PrepareMessage("status", "{\"therapistID\": therapist, \"sample\": sampleID}");
-       return;
+    //public void ActionClassification(int therapistID, int sampleID) {
+    public void GetActionEvaluation(int therapistID, int sampleID)
+    {
+        string request = "{\"therapist\":" + 51 + ",\"sample\":" + sampleID + "}";
+        PrepareMessage("request", request);
+       //"{\"therapist\":" + therapistID + ",\"level\":" + sampleID + "}");
     }
 
     #endregion

@@ -20,8 +20,6 @@ public class FrogScript : MonoBehaviour
     [SerializeField] private ParticleSystem confetti;
     [SerializeField] private TextMeshProUGUI wordToSay;
 
-    private bool isOnline = false;
-    const int PLAYGAMEID = 29;
     //public WebRequests webRequests;
 
     // Start is called before the first frame update
