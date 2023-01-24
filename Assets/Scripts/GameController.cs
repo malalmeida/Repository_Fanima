@@ -7,8 +7,11 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
+  public string wsURL = "ws://193.137.46.11/";
+  public string appName = "Fanima"; 
   const int therapistID = 51;
   const int PLAYGAMEID = 29;
+  public int userID = 52;
   public bool structReqDone = false;
   public bool respositoryReqDone = false;
   public bool sampleReqDone = false;
@@ -58,6 +61,8 @@ public class GameController : MonoBehaviour
     rb = GetComponent<Rigidbody2D>();
 
     webSockets = new WebSockets();
+    webSockets.SetupClient(wsURL, userID, PLAYGAMEID, appName);
+    webSockets.StartClient();
     
     List<actionClass> chapterHomeActionList = new List<actionClass>();
     List<actionClass> chapterFrogActionList = new List<actionClass>();
@@ -136,9 +141,10 @@ public class GameController : MonoBehaviour
       {
         Debug.Log("ACABOU A SEQUENCIA");
         Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
-
+      
+        yield return new WaitUntil(() => webSockets.socketIsReady);
         webSockets.GetLevelsToPlay(therapistID, gameExecutionID);
-        
+
         if(SceneManager.GetActiveScene().name == "Home")
         {
           SceneManager.LoadScene("Travel");
@@ -183,9 +189,14 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(webRequests.PostSample(currentWord, contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), contentList[currentAtionID].word.ToString()));
     
     gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-
-    webSockets.GetActionEvaluation(therapistID,gameSampleID);
+    //webSockets.therapistID = therapistID;
+    //Debug.Log("WEBSOCKET-THERAPIST ID" + webSockets.therapistID);
+    //webSockets.sampleID = gameSampleID;
+    //Debug.Log("WEBSOCKET-SMAPLE ID" + webSockets.sampleID);
     
+    yield return new WaitUntil(() => webSockets.socketIsReady);
+    webSockets.GetActionEvaluation(therapistID, gameSampleID);
+
     //Debug.Log("GAMESAMPLEID " + gameSampleID);
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 
@@ -296,4 +307,11 @@ public class GameController : MonoBehaviour
   {
     SavWav.Save(fileName + ".wav", userRecording.clip);
   }
+
+  void OnApplicationQuit()
+  {
+    Debug.Log("Stop WS client and logut");
+    webSockets.StopClient();
+  }
+
 }

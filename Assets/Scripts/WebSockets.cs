@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class WebSockets : MonoBehaviour{
 
     private WebSocket ws;
-    readonly string wsURL = "ws://193.137.46.11/";
+    public string wsURL;
     public delegate void WebSocketOnOpenHandler(EventArgs e);
     public event WebSocketOnOpenHandler onOpen;
     public delegate void WebSocketOnCloseHandler(CloseEventArgs e);
@@ -20,47 +20,33 @@ public class WebSockets : MonoBehaviour{
     public event WebSocketOnMessageHandler onMessage;
     public delegate void WebSocketOnProcessHandler();
     public event WebSocketOnProcessHandler onProcess;
-    private int userID;
-    private int gameID;
-    private int therapistID;
-    private string appName;
-    private bool socketIsReady = false;
-    private bool operationDone = false;
+    public int userID;
+    public int gameID;
+    public string appName;
+    public bool socketIsReady = false;
+    public bool operationDone = false;
+    public int therapistID = -1;
+    public int sampleID = -1;
+    public int executionID = -1;
 
+    
     void Start()
     {
-        therapistID = 51;
-        userID = 52;
-        gameID = 29;
-        appName = "Fanima";
-       
-        StartClient();
-         
+
     }
     
     void Update()
     {
-        if (ws == null)
-        {
-            Debug.Log("WS is null");
-            //_ws.ConnectAsync();
-        }
-        if (socketIsReady)
-        {
-            if (!operationDone)
-            {
-                string levelsRequest = "{\"therapist\":\"" + therapistID + "\",\"levels\":\"" + gameID + "\"}";
-                Debug.Log("Send WS levels request: " + levelsRequest);
-                PrepareMessage("request", levelsRequest);
-
-                string classificationRequest = "{\"therapist\":\"" + therapistID + "\",\"sample\":\"" + gameID + "\"}";
-                Debug.Log("Send WS classification request: " + classificationRequest);
-                PrepareMessage("request", classificationRequest);
-
-                operationDone = true;
-            }
-        }   
+       
     }  
+    
+    public void SetupClient(string url, int userId, int gameId, string appName)
+    {
+        this.wsURL = url;
+        this.userID = userId;
+        this.gameID = gameId;
+        this.appName = appName;
+    }
 
     public void StartClient()
     {
@@ -70,7 +56,6 @@ public class WebSockets : MonoBehaviour{
             Debug.Log("ws open");
             ws.Send("{\"id\":\"" + userID + "\",\"msg\":\"app\",\"value\":\"" + appName + "\"}");
             socketIsReady = true;
-
         }; 
         ws.OnClose += (sender, e) => {
             Debug.Log("ws close"); //, e.Reason);
@@ -88,16 +73,8 @@ public class WebSockets : MonoBehaviour{
             }
             if (msg == "{\"msg\":\"status\"}")
             {
-                string status = "{\"game\":" + gameID + "}";
-                //string request = "{\"therapist\":" + 51 + ",\"levels\":" + 51 + "}";
-
-                //ws.Send("{\"id\":\"" + userID + "\",\"msg\":\"status\",\"value\":" + status + "}");
-                PrepareMessage("status",status);
-
-                //PrepareMessage("request",request);
-
-
-                //ws.Send("{\"id\":\"" + userID + "\",\"msg\":\"request\",\"value\":" + request + "}");
+                string status = "{\"game\":\"" + gameID + "\"}";
+                PrepareMessage("status", status);
             }
         };
 
@@ -117,40 +94,20 @@ public class WebSockets : MonoBehaviour{
     {
         try
         {
-            string teste = "{\"id\":" + 52 + ",\"msg\":\"" + msg + "\",\"value\":" + value + "}";
-            Debug.Log("TESTEANTES" + teste);
-            ws.Send(teste);
-            //ws.Send("{\"id\":\"" + 52 + "\",\"msg\":\"request\",\"value\":" + value + "}");
-
-            
-            Debug.Log("TESTEDEPOIS" + teste);
-
+            ws.Send("{\"id\":" + userID + ",\"msg\":\"" + msg + "\",\"value\":" + value + "}");
         }
         catch (Exception) { }
     }
 
-    #region Game Messages
-    public  void GetLevelsToPlay(int therapistID, int gameExecutionID)
+    public void GetLevelsToPlay(int therapistID, int gameExecutionID)
     {
-        string request = "{\"therapist\":" + 51 + ",\"levels\":" + 0 + "}";
+        string request = "{\"therapist\":" + therapistID + ",\"levels\":" + gameExecutionID + "}";
         PrepareMessage("request", request);
     }
 
-    //public void LevelSelection(int therapistID, int gameExecutionID) {
-       //PrepareMessage("request", "{\"therapist\":" + therapistID + ",\"levels\":" + gameExecutionID + "}");
-
-       //string request = "{\"therapist\":" + 51 + ",\"levels\":" + 0 + "}";
-       //PrepareMessage("request", request);
-       //return;
-    //}
-
-    //public void ActionClassification(int therapistID, int sampleID) {
     public void GetActionEvaluation(int therapistID, int sampleID)
     {
-        string request = "{\"therapist\":" + 51 + ",\"sample\":" + sampleID + "}";
+        string request = "{\"therapist\":" + therapistID + ",\"sample\":" + sampleID + "}";
         PrepareMessage("request", request);
-       //"{\"therapist\":" + therapistID + ",\"level\":" + sampleID + "}");
     }
-
-    #endregion
 }
