@@ -145,10 +145,10 @@ public class GameController : MonoBehaviour
         yield return new WaitUntil(() => webSockets.socketIsReady);
         webSockets.GetLevelsToPlay(therapistID, gameExecutionID);
 
-        if(SceneManager.GetActiveScene().name == "Home")
-        {
-          SceneManager.LoadScene("Travel");
-        }
+        //if(SceneManager.GetActiveScene().name == "Home")
+        //{
+          //SceneManager.LoadScene("Travel");
+        //}
       }
     }
   }
@@ -161,12 +161,11 @@ public class GameController : MonoBehaviour
     if (SceneManager.GetActiveScene().name == "Home")
     {
       homeScript.moveUp = true;
-      Debug.Log("MOVE? " + homeScript.moveUp);
-      Debug.Log("TIMES? " + homeScript.upTimes);
+      homeScript.upTimes ++;
     }
     endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
     SavWav.Save(currentWord + ".wav", userRecording.clip);
-    Debug.Log("ACTION ID " + contentList[currentAtionID].id);
+    //Debug.Log("ACTION ID " + contentList[currentAtionID].id);
     //Debug.Log("GAMEEXECUTIONID " + gameExecutionID);
     yield return StartCoroutine(PrepareGameResult());
   }
@@ -207,15 +206,6 @@ public class GameController : MonoBehaviour
   IEnumerator PrepareGameStructure()
   {
     //Debug.Log("Waiting for structure...");
-    IEnumerator WaitAndTakeOff()
-    {
-        yield return new WaitForSeconds(2f);
-
-        //rb.velocity = Vector2.up * 4900 * Time.deltaTime;
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Travel");
-
-    }
     Debug.Log("Structure request completed! Actions: " + contentList.Count);
     
     //Debug.Log("Waiting for word repository...");
