@@ -232,26 +232,6 @@ public class GameController : MonoBehaviour
       {
         
       }
-
-        //Debug.Log("MUDOU A ACTION? " + action.id);
-        //endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");          
-        //SaveSound(wordToSay.text);
-        //byte[] byteArray = SavWav.audiobyte;
-
-        //StartCoroutine(webRequests.PostSample(byteArray, listOfChapterActions[0].id.ToString(), gameExecutionID.ToString()));
-        //StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
-        //StartCoroutine(webRequests.PostGameResult("0", "0", listOfChapterActions[0].id.ToString(), gameExecutionID.ToString(), startTime, endTime));
-          
-        //foreach (dataSource w in dataList)
-        //{
-          //if(action.word == w.id)
-         // {
-        //    wordToSay.text = w.name;
-        //    Debug.Log("PALAVRA DA ACTION ->" + w.name);
-         // }
-          //RecordSound(); 
-        //}
-    //}
   }
 
   void RecordSound()

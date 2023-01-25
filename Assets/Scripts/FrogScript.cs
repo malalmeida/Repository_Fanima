@@ -15,6 +15,7 @@ public class FrogScript : MonoBehaviour
     private float move;
     private Rigidbody2D rb;
     public AudioSource waterSplashSound;
+    public int numberOfJumps = 0;
 
     [SerializeField] private AudioSource userRecording;
     [SerializeField] private ParticleSystem confetti;
@@ -48,7 +49,7 @@ public class FrogScript : MonoBehaviour
     {
       if(other.gameObject.CompareTag("Leaf0"))
       {
-        //wordToSay.text = PlayerPrefs.GetString("Frog0"); 
+        
       }
     
       if(other.gameObject.CompareTag("Leaf1"))
@@ -73,17 +74,19 @@ public class FrogScript : MonoBehaviour
 
       }
       
-      if(other.gameObject.CompareTag("Leaf5"))
+      if(other.gameObject.CompareTag("Leaf3"))
       {
         playerSpeed = 0;
         animator.SetBool("Jump", false);
         animator.SetBool("Catch", true);
         isJumping = false;
 
-        waterSplashSound.Play();    
+        waterSplashSound.Play();  
 
-        //wordToSay.text = " ";
-        confetti.Play();
+        if(numberOfJumps == 14)
+        {
+          confetti.Play();
+        }        
       }
     }
 }
