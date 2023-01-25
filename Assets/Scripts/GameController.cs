@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour
   
   public GameObject startMenuUI;
 
+  public HomeScript homeScript;
+
   string startTime;
   string endTime;
 
@@ -59,7 +61,7 @@ public class GameController : MonoBehaviour
   void Start()
   {
     rb = GetComponent<Rigidbody2D>();
-
+    //homeScript = new HomeScript();
     webSockets = new WebSockets();
     webSockets.SetupClient(wsURL, userID, PLAYGAMEID, appName);
     webSockets.StartClient();
@@ -73,7 +75,6 @@ public class GameController : MonoBehaviour
     listOfChaptersToPlay.Add(0);
     listOfChaptersToPlay.Add(2);
 
-
     if(SceneManager.GetActiveScene().name == "Home")
     {
       activeChapter = "Geral";      
@@ -83,7 +84,6 @@ public class GameController : MonoBehaviour
     if(SceneManager.GetActiveScene().name == "Frog")
     {
       activeChapter = "Oclusivas";      
-
     }
 
     if(SceneManager.GetActiveScene().name == "Chameleon")
@@ -95,7 +95,6 @@ public class GameController : MonoBehaviour
     if(SceneManager.GetActiveScene().name == "Fish")
     { 
       activeChapter = "Vibrantes e Laterais";      
-
     }
   }
 
@@ -133,6 +132,7 @@ public class GameController : MonoBehaviour
         // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
         currentWord = dataList[contentList[i].word - 1].name;
         Debug.Log("DIZ -> " + currentWord); 
+        wordToSay.text = currentWord;
 
         RecordSound();
         yield return StartCoroutine(WaitForValidation());
@@ -149,7 +149,6 @@ public class GameController : MonoBehaviour
         {
           SceneManager.LoadScene("Travel");
         }
-
       }
     }
   }
@@ -159,6 +158,12 @@ public class GameController : MonoBehaviour
     Debug.Log("ESPERAR PELA VALIDAÇÂO DA TERAPEUTA");
     yield return new WaitForSeconds(2.0f);
     Debug.Log("VALIDAÇÃO FEITA");
+    if (SceneManager.GetActiveScene().name == "Home")
+    {
+      homeScript.moveUp = true;
+      Debug.Log("MOVE? " + homeScript.moveUp);
+      Debug.Log("TIMES? " + homeScript.upTimes);
+    }
     endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
     SavWav.Save(currentWord + ".wav", userRecording.clip);
     Debug.Log("ACTION ID " + contentList[currentAtionID].id);
@@ -189,11 +194,7 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(webRequests.PostSample(currentWord, contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), contentList[currentAtionID].word.ToString()));
     
     gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-    //webSockets.therapistID = therapistID;
-    //Debug.Log("WEBSOCKET-THERAPIST ID" + webSockets.therapistID);
-    //webSockets.sampleID = gameSampleID;
-    //Debug.Log("WEBSOCKET-SMAPLE ID" + webSockets.sampleID);
-    
+  
     yield return new WaitUntil(() => webSockets.socketIsReady);
     webSockets.GetActionEvaluation(therapistID, gameSampleID);
 
@@ -206,70 +207,36 @@ public class GameController : MonoBehaviour
   IEnumerator PrepareGameStructure()
   {
     //Debug.Log("Waiting for structure...");
-    yield return new WaitUntil(() => structReqDone);
+    IEnumerator WaitAndTakeOff()
+    {
+        yield return new WaitForSeconds(2f);
+
+        //rb.velocity = Vector2.up * 4900 * Time.deltaTime;
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Travel");
+
+    }
     Debug.Log("Structure request completed! Actions: " + contentList.Count);
     
     //Debug.Log("Waiting for word repository...");
     yield return new WaitUntil(() => respositoryReqDone);
     Debug.Log("Repository request completed! Words: " + dataList.Count);
-/*
-    for (int i = 0; i < contentList.Count; i++)
-    {
-      if(String.Compare(contentList[i].sequence, "Geral") == 0)
-      {
-        chapterHomeActionList.Add(contentList[i]);
-      }
-
-      if(String.Compare(contentList[i].sequence, "Oclusivas") == 0)
-      {
-        chapterFrogActionList.Add(contentList[i]);
-      }
-
-      if(String.Compare(contentList[i].sequence, "Fricativas") == 0)
-      {
-        chapterChameleonActionList.Add(contentList[i]);
-      }
-
-      if(String.Compare(contentList[i].sequence, "Vibrantes e Laterais") == 0)
-      {
-        chapterFishActionList.Add(contentList[i]);
-      }
-    }
-    */
   }
 
   IEnumerator PreparedGameExecutionID()
   {
     Debug.Log("Waiting for execution ID...");
     yield return new WaitUntil(() => gameExecutionID > 0);
-        
     Debug.Log("Game Execution request completed! ID -> " + gameExecutionID);
   }
 
   //FROG GAME 
   private void OnCollisionEnter2D(Collision2D other)
   {
-    //foreach (actionClass action in listOfChapterActions)
-    //{
-      //Debug.Log("ENTROU NO LOOP DAS ACTION" + action.id);
-
       if(other.gameObject.CompareTag("Leaf0"))
       {
         
-        //startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
-
-        //foreach (dataSource w in dataList)
-        //{
-          //if(action.word == w.id)
-          //{            
-            //wordToSay.text = w.name;
-            //Debug.Log("PALAVRA DA ACTION ->" + w.name);
-          //}
-        //}  
-        
-        //RecordSound();
       }
-        //Debug.Log("MUDOU A ACTION? " + action.id);
       
       if(other.gameObject.CompareTag("Leaf1"))
       {

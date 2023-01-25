@@ -23,13 +23,12 @@ public class WebSockets : MonoBehaviour{
     public int userID;
     public int gameID;
     public string appName;
-    public bool socketIsReady = false;
-    public bool operationDone = false;
     public int therapistID = -1;
     public int sampleID = -1;
     public int executionID = -1;
-
-    
+    public bool socketIsReady = false;
+    public bool operationDone = false;
+   
     void Start()
     {
 
@@ -53,7 +52,7 @@ public class WebSockets : MonoBehaviour{
         ws = new WebSocket(wsURL, null);
 
         ws.OnOpen += (sender, e) => {
-            Debug.Log("ws open");
+            //Debug.Log("ws open");
             ws.Send("{\"id\":\"" + userID + "\",\"msg\":\"app\",\"value\":\"" + appName + "\"}");
             socketIsReady = true;
         }; 
@@ -90,6 +89,7 @@ public class WebSockets : MonoBehaviour{
     {
         return ws.IsAlive;
     }
+    
     public void PrepareMessage(string msg, string value)
     {
         try

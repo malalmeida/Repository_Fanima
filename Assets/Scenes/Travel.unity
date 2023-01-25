@@ -6942,6 +6942,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d654dc44d684970b71d03d359a4216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wsURL: ws://193.137.46.11/
+  appName: Fanima
+  userID: 52
   structReqDone: 0
   respositoryReqDone: 0
   sampleReqDone: 0
@@ -6950,15 +6953,15 @@ MonoBehaviour:
   contentList: []
   dataList: []
   webRequests: {fileID: 0}
+  webSockets: {fileID: 0}
   listOfChapterActions: []
   userRecording: {fileID: 0}
-  listOfChaptersToPlay: []
+  listOfChaptersToPlay: 
   wordToSay: {fileID: 0}
-  chapterHomeActionList: []
-  chapterFrogActionList: []
-  chapterChameleonActionList: []
-  chapterFishActionList: []
+  startMenuUI: {fileID: 0}
   listOfWordsToSay: []
+  currentWord: 
+  currentAtionID: -1
 --- !u!1 &1564799878
 GameObject:
   m_ObjectHideFlags: 0

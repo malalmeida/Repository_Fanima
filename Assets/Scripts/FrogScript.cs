@@ -18,9 +18,7 @@ public class FrogScript : MonoBehaviour
 
     [SerializeField] private AudioSource userRecording;
     [SerializeField] private ParticleSystem confetti;
-    [SerializeField] private TextMeshProUGUI wordToSay;
-
-    //public WebRequests webRequests;
+    //[SerializeField] private TextMeshProUGUI wordToSay;
 
     // Start is called before the first frame update
     void Start()
@@ -62,8 +60,6 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        //wordToSay.text = PlayerPrefs.GetString("Frog1");
-
       }
 
       if(other.gameObject.CompareTag("Leaf2"))
@@ -76,28 +72,6 @@ public class FrogScript : MonoBehaviour
         waterSplashSound.Play();    
 
       }
-
-      
-      if(other.gameObject.CompareTag("Leaf3"))
-      {
-        playerSpeed = 0;
-        animator.SetBool("Jump", false);
-        animator.SetBool("Catch", false);
-        isJumping = false;
-
-        waterSplashSound.Play();    
-
-      }
-
-      if(other.gameObject.CompareTag("Leaf4"))
-      {
-        playerSpeed = 0;
-        animator.SetBool("Jump", false);
-        animator.SetBool("Catch", false);
-        isJumping = false;
-
-        waterSplashSound.Play();    
-      }
       
       if(other.gameObject.CompareTag("Leaf5"))
       {
@@ -108,7 +82,7 @@ public class FrogScript : MonoBehaviour
 
         waterSplashSound.Play();    
 
-        wordToSay.text = " ";
+        //wordToSay.text = " ";
         confetti.Play();
       }
     }
