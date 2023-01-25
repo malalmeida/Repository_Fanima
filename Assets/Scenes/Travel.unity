@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269877516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6923218, y: -3.8512115, z: 0}
+  m_LocalPosition: {x: -1.6923218, y: -3.8511963, z: 0}
   m_LocalScale: {x: 1.3089312, y: 1.138345, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5595,7 +5595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627124041}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.8785095, y: -3.2118683, z: 0}
+  m_LocalPosition: {x: 4.87854, y: -3.211853, z: 0}
   m_LocalScale: {x: 1, y: 0.94960004, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7013,7 +7013,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2004800795}
   - component: {fileID: 2004800796}
-  - component: {fileID: 2004800797}
   m_Layer: 0
   m_Name: cloud1
   m_TagString: Cloud
@@ -7029,7 +7028,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004800794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.6160583, y: 1.8229523, z: 0}
+  m_LocalPosition: {x: 5.616089, y: 1.822937, z: 0}
   m_LocalScale: {x: 1.06144, y: 1.1027, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7076,7 +7075,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300068, guid: f6a737996a4a842e58ba28428e71d711, type: 3}
   m_Color: {r: 0.6509434, g: 0.635591, b: 0.635591, a: 1}
   m_FlipX: 0
@@ -7088,35 +7087,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2004800797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004800794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1075717226}
-          m_TargetAssemblyTypeName: TravelScript, Assembly-CSharp
-          m_MethodName: RemoveCloud1
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &2112256855
 GameObject:
   m_ObjectHideFlags: 0
@@ -7127,7 +7097,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2112256856}
   - component: {fileID: 2112256857}
-  - component: {fileID: 2112256858}
   m_Layer: 0
   m_Name: cloud3
   m_TagString: Cloud
@@ -7143,7 +7112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112256855}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0567017, y: -0.47068787, z: 0}
+  m_LocalPosition: {x: 1.0567017, y: -0.47070312, z: 0}
   m_LocalScale: {x: 1.04206, y: 1.0374, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7202,32 +7171,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2112256858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112256855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1075717226}
-          m_TargetAssemblyTypeName: TravelScript, Assembly-CSharp
-          m_MethodName: RemoveCloud1
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
