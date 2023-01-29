@@ -18,10 +18,6 @@ public class TravelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       cloud1.SetActive(true);
-       cloud2.SetActive(true);
-       cloud3.SetActive(true);
-       cloud4.SetActive(true);
     }
 
     // Update is called once per frame
@@ -31,27 +27,40 @@ public class TravelScript : MonoBehaviour
         {
             animator.SetBool("finish", true);
 
-            SceneManager.LoadScene("Frog");
+            SceneManager.LoadScene("Chameleon");
         }
-    }
 
-    public void RemoveCloud1(){
-        cloud1.SetActive(false);
-        cloudsRemoved ++;
-    }
+        if(Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
+            {
+                if(hit.collider != null)
+                {
+                    Color newColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                    //hit.collider.GetComponent<Rigidbody>().enabled = false;
+                    hit.collider.GetComponent<SpriteRenderer>().material.color = newColor;
+                    cloudsRemoved ++;
 
-    public void RemoveCloud2(){
-        cloud2.SetActive(false);
-        cloudsRemoved ++;
-    }
+                }
+            }
+        }
 
-    public void RemoveCloud3(){
-        cloud3.SetActive(false);
-        cloudsRemoved ++;
-    }
-
-    public void RemoveCloud4(){
-        cloud4.SetActive(false);
-        cloudsRemoved ++;
+/*
+        if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
+            {
+                if(hit.collider != null)
+                {
+                    Color newColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                    hit.collider.GetComponent<SpriteRenderer>().material.color = newColor;
+                }
+            }
+        }
+*/
     }
 }

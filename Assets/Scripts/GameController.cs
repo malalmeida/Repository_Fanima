@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
+//using System;
 using TMPro;
 
 public class GameController : MonoBehaviour
@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
   public GameObject startMenuUI;
 
   public HomeScript homeScript;
+  public ChameleonScript chameleonScript;
 
   string startTime;
   string endTime;
@@ -60,8 +61,13 @@ public class GameController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    if(SceneManager.GetActiveScene().name == "Home")
+    {
+      StartCoroutine(PreparedGameExecutionID());
+    }
+    StartCoroutine(PrepareGameStructure());
+
     rb = GetComponent<Rigidbody2D>();
-    //homeScript = new HomeScript();
     webSockets = new WebSockets();
     webSockets.SetupClient(wsURL, userID, PLAYGAMEID, appName);
     webSockets.StartClient();
@@ -98,76 +104,85 @@ public class GameController : MonoBehaviour
     }
   }
 
-  void Update()
-  {
-    if(SceneManager.GetActiveScene().name == "Home" && !startMenuUI.activeSelf)
-    {
-    }
-
-    if(SceneManager.GetActiveScene().name == "Frog")
-    {
-    }
-
-    if(SceneManager.GetActiveScene().name == "Chameleon")
-    {
-
-    }
-
-    if(SceneManager.GetActiveScene().name == "Fish")
-    {
-    }
-  }
-
   IEnumerator WaitForAction()
   {
+    if((SceneManager.GetActiveScene().name == "Home"))
+    {
+      yield return StartCoroutine(PreparedGameExecutionID());
+    }
+
     yield return StartCoroutine(PrepareGameStructure());
-    yield return StartCoroutine(PreparedGameExecutionID());
 
     for(int i = 0; i < contentList.Count; i++)
     {
       if(contentList[i].sequence == activeChapter)
       {
-        currentAtionID = i;
-        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-        // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
-        currentWord = dataList[contentList[i].word - 1].name;
-        Debug.Log("DIZ -> " + currentWord); 
-        wordToSay.text = currentWord;
+        //if(SceneManager.GetActiveScene().name == "Chameleon")
+        //{
+          //if(i > 0)
+          //{
+            //yield return new WaitUntil(() => chameleonScript.isCaught);
+            //currentAtionID = i;
+            //startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+            // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
+            //currentWord = dataList[contentList[i].word - 1].name;
+            //Debug.Log("DIZ -> " + currentWord); 
+            //wordToSay.text = currentWord;
+          //}
+          //else
+          //{
+            //currentAtionID = i;
+            //startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+            // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
+           // currentWord = dataList[contentList[i].word - 1].name;
+           // Debug.Log("DIZ -> " + currentWord); 
+          //  wordToSay.text = currentWord;
 
-        RecordSound();
-        yield return StartCoroutine(WaitForValidation());
-      }
+           // RecordSound();
+           // yield return StartCoroutine(WaitForValidation());
+        //  } 
+       //}
+       // else
+       // {
+          currentAtionID = i;
+          startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+          // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
+          currentWord = dataList[contentList[i].word - 1].name;
+          Debug.Log("DIZ -> " + currentWord); 
+          wordToSay.text = currentWord;
+          RecordSound();
+          yield return StartCoroutine(WaitForValidation());
+        } 
+     // }             
       else
       {
         Debug.Log("ACABOU A SEQUENCIA");
-        Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
+        //Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
       
         yield return new WaitUntil(() => webSockets.socketIsReady);
         webSockets.GetLevelsToPlay(therapistID, gameExecutionID);
-
-        //if(SceneManager.GetActiveScene().name == "Home")
-        //{
-          //SceneManager.LoadScene("Travel");
-        //}
       }
     }
   }
 
   IEnumerator WaitForValidation()
   {
-    Debug.Log("ESPERAR PELA VALIDAÇÂO DA TERAPEUTA");
+    //Debug.Log("ESPERAR PELA VALIDACAO DA TERAPEUTA");
     yield return new WaitForSeconds(2.0f);
-    Debug.Log("VALIDAÇÃO FEITA");
+    //Debug.Log("VALIDACAO FEITA");
     if (SceneManager.GetActiveScene().name == "Home")
     {
       homeScript.moveUp = true;
       homeScript.upTimes ++;
     }
+
+    if (SceneManager.GetActiveScene().name == "Chameleon")
+    {
+      chameleonScript.randomIndex = Random.Range(0, 12);
+    }
     endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
-    SavWav.Save(currentWord + ".wav", userRecording.clip);
-    //Debug.Log("ACTION ID " + contentList[currentAtionID].id);
-    //Debug.Log("GAMEEXECUTIONID " + gameExecutionID);
-    yield return StartCoroutine(PrepareGameResult());
+    //SavWav.Save(currentWord + ".wav", userRecording.clip);
+    //yield return StartCoroutine(PrepareGameResult());
   }
 
 /*
@@ -197,7 +212,6 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => webSockets.socketIsReady);
     webSockets.GetActionEvaluation(therapistID, gameSampleID);
 
-    //Debug.Log("GAMESAMPLEID " + gameSampleID);
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 
     StartCoroutine(webRequests.PostGameResult("1", "0", contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime, currentWord));     
@@ -215,9 +229,12 @@ public class GameController : MonoBehaviour
 
   IEnumerator PreparedGameExecutionID()
   {
-    Debug.Log("Waiting for execution ID...");
-    yield return new WaitUntil(() => gameExecutionID > 0);
-    Debug.Log("Game Execution request completed! ID -> " + gameExecutionID);
+    if (SceneManager.GetActiveScene().name == "Home")
+    {
+      Debug.Log("Waiting for execution ID...");
+      yield return new WaitUntil(() => gameExecutionID > 0);
+      Debug.Log("Game Execution request completed! ID -> " + gameExecutionID);
+    }
   }
 
   //FROG GAME 

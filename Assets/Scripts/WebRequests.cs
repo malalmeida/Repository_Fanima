@@ -17,7 +17,7 @@ public class WebRequests : MonoBehaviour
     {
         
     }
-/*    
+ /*   
     public IEnumerator GetStructureRequest(int gameID)
     {
         var url = baseURL + "game/" + gameID + "/structure";
@@ -110,7 +110,9 @@ public class WebRequests : MonoBehaviour
         //string path = "C:/Users/gvgia/AppData/LocalLow/DefaultCompany/Fanima/" + fileName + ".wav";
         //MAC path
         //string path = "/Users/inesantunes/Library/Application Support/DefaultCompany/Fanima/" + fileName + ".wav";
-        string path = ".\\" + fileName + ".wav";
+        
+        //string path = ".\\" + fileName + ".wav";
+        string path = PlayerPrefs.GetString("FILEPATH");
 
         //byte[] audiobyte = File.ReadAllBytes(path);
         byte[] audiobyte = System.IO.File.ReadAllBytes(path);
@@ -175,7 +177,10 @@ public class WebRequests : MonoBehaviour
     //score = 0
     public IEnumerator PostGameResult(string status, string score, string actionID, string gameExeID, string startTime, string endTime, string fileName)
     {
-        System.IO.File.Delete(".\\" + fileName + ".wav");
+        
+        //System.IO.File.Delete(".\\" + fileName + ".wav");
+        string path = PlayerPrefs.GetString("FILEPATH");
+        System.IO.File.Delete(path);
 
         var url = baseURL + "gameresult";
         //Debug.Log("POST GAME RESULT Start: " + startTime + " End: " + endTime);
