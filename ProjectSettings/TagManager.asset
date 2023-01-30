@@ -10,8 +10,19 @@ TagManager:
   - Leaf3
   - Leaf4
   - Leaf5
-  - Rock
-  - Cloud
+  - Chameleon1
+  - Chameleon2
+  - Chameleon3
+  - Chameleon4
+  - Chameleon5
+  - Chameleon6
+  - Chameleon7
+  - Chameleon8
+  - Chameleon9
+  - Chameleon10
+  - Chameleon11
+  - Chameleon12
+  - Chameleon13
   layers:
   - Default
   - TransparentFX

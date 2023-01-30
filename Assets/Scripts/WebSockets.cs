@@ -28,16 +28,8 @@ public class WebSockets : MonoBehaviour{
     public int executionID = -1;
     public bool socketIsReady = false;
     public bool operationDone = false;
-   
-    void Start()
-    {
 
-    }
-    
-    void Update()
-    {
-       
-    }  
+    public List<int> levelsList;
     
     public void SetupClient(string url, int userId, int gameId, string appName)
     {
@@ -72,8 +64,13 @@ public class WebSockets : MonoBehaviour{
             }
             if (msg == "{\"msg\":\"status\"}")
             {
-                string status = "{\"game\":\"" + gameID + "\"}";
+                string status = "{\"game\":\"" + gameID + "\"}";                
                 PrepareMessage("status", status);
+            }
+            
+            if (msg == "{\"msg\":\"response\"}")
+            {
+                Debug.Log("RECEBI" + msg);
             }
         };
 
@@ -99,15 +96,16 @@ public class WebSockets : MonoBehaviour{
         catch (Exception) { }
     }
 
-    public void GetLevelsToPlay(int therapistID, int gameExecutionID)
+    public void LevelsToPlayRequest(int therapistID, int gameExecutionID)
     {
         string request = "{\"therapist\":" + therapistID + ",\"levels\":" + gameExecutionID + "}";
         PrepareMessage("request", request);
     }
 
-    public void GetActionEvaluation(int therapistID, int sampleID)
+    public void ActionClassificationRequest(int therapistID, int wordID, int sampleID)
     {
-        string request = "{\"therapist\":" + therapistID + ",\"sample\":" + sampleID + "}";
+        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID + "}";
         PrepareMessage("request", request);
     }
+
 }
