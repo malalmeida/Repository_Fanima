@@ -7,9 +7,7 @@ TagManager:
   - Leaf0
   - Leaf1
   - Leaf2
-  - Leaf3
   - Leaf4
-  - Leaf5
   - Chameleon1
   - Chameleon2
   - Chameleon3
@@ -23,6 +21,19 @@ TagManager:
   - Chameleon11
   - Chameleon12
   - Chameleon13
+  - Monkey1
+  - Monkey2
+  - Monkey3
+  - Monkey4
+  - Monkey5
+  - Monkey6
+  - Monkey7
+  - Monkey8
+  - Monkey9
+  - Monkey10
+  - Monkey11
+  - Monkey12
+  - Cloud
   layers:
   - Default
   - TransparentFX

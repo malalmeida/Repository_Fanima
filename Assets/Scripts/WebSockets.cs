@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
+using System.Web;
+
 public class WebSockets : MonoBehaviour{
 
     private WebSocket ws;
@@ -29,6 +31,11 @@ public class WebSockets : MonoBehaviour{
     public bool socketIsReady = false;
     public bool operationDone = false;
 
+    public jsonDataValidation jsonDataValidation;
+    public bool validationDone = false;
+    public jsonDataLevels jsonDataLevels;
+    public bool getLevelsDone = false;
+
     public List<int> levelsList;
     
     public void SetupClient(string url, int userId, int gameId, string appName)
@@ -42,6 +49,8 @@ public class WebSockets : MonoBehaviour{
     public void StartClient()
     {
         ws = new WebSocket(wsURL, null);
+        jsonDataValidation jsonDataValidation = new jsonDataValidation();
+        jsonDataLevels jsonDataLevels = new jsonDataLevels();
 
         ws.OnOpen += (sender, e) => {
             //Debug.Log("ws open");
@@ -70,7 +79,10 @@ public class WebSockets : MonoBehaviour{
             
             if (msg == "{\"msg\":\"response\"}")
             {
-                Debug.Log("RECEBI" + msg);
+                 Debug.Log("RECBEU MSG");
+                jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(e.Data);
+                validationDone = true;
+                Debug.Log("52 = " + jsonDataValidation.patientid);
             }
         };
 

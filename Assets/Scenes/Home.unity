@@ -2461,6 +2461,7 @@ MonoBehaviour:
   executionID: -1
   socketIsReady: 0
   operationDone: 0
+  levelsList: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2560,7 +2561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1451663368}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 2, z: -10}
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &526536395
 GameObject:
   m_ObjectHideFlags: 0

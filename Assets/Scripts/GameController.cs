@@ -140,11 +140,21 @@ public class GameController : MonoBehaviour
 
   IEnumerator WaitForValidation()
   {
-    //Debug.Log("ESPERAR PELA VALIDACAO DA TERAPEUTA");
-    yield return new WaitForSeconds(2.0f);
+    //yield return new WaitForSeconds(2.0f);
+    endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
+    SavWav.Save(currentWord + ".wav", userRecording.clip);
+    yield return StartCoroutine(webRequests.PostSample(currentWord, contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), contentList[currentAtionID].word.ToString()));
+    
+    yield return new WaitUntil(() => webSockets.socketIsReady);
+    gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+    yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 
-    //yield return new WaitUntil(() => validationDone);
-    //Debug.Log("VALIDACAO FEITA");
+    webSockets.ActionClassificationRequest(therapistID, currentAtionID, gameSampleID);
+
+    yield return new WaitUntil(() => validationDone);
+
+    //if(ws.validationStatus == "ok")
+
     if (SceneManager.GetActiveScene().name == "Home")
     {
       homeScript.doAnimation = true;
@@ -154,25 +164,13 @@ public class GameController : MonoBehaviour
     {
       chameleonScript.randomIndex = Random.Range(0, 12);
     }
-    endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
-    //SavWav.Save(currentWord + ".wav", userRecording.clip);
-    //yield return StartCoroutine(PrepareGameResult());
-
-    //validationDone = false;
+    
+    StartCoroutine(PrepareGameResult());
   }
 
   IEnumerator PrepareGameResult()
   {
-    yield return StartCoroutine(webRequests.PostSample(currentWord, contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), contentList[currentAtionID].word.ToString()));
-    
-    gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-  
-    yield return new WaitUntil(() => webSockets.socketIsReady);
-    webSockets.ActionClassificationRequest(therapistID, currentAtionID, gameSampleID);
-
-    yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
-
-    StartCoroutine(webRequests.PostGameResult("1", "0", contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime, currentWord));     
+    yield return StartCoroutine(webRequests.PostGameResult("1", "0", contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime, currentWord));     
   }
 
   IEnumerator PrepareGameStructure()
