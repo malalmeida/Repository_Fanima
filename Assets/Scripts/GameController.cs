@@ -135,6 +135,10 @@ public class GameController : MonoBehaviour
         yield return new WaitUntil(() => webSockets.socketIsReady);
         webSockets.LevelsToPlayRequest(therapistID, gameExecutionID);
         yield return new WaitUntil(() => webSockets.getLevelsDone);
+        foreach (var level in webSockets.levelsList)
+        {
+            Debug.Log("LEVEL " + level);
+        }
       }
     }
   }

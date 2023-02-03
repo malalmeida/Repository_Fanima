@@ -36,7 +36,7 @@ public class WebSockets : MonoBehaviour{
     public jsonDataLevels jsonDataLevels;
     public bool getLevelsDone = false;
 
-    public List<int> levelsList;
+    public List<string> levelsList;
     
     public void SetupClient(string url, int userId, int gameId, string appName)
     {
@@ -50,7 +50,7 @@ public class WebSockets : MonoBehaviour{
     {
         ws = new WebSocket(wsURL, null);
         jsonDataValidation jsonDataValidation = new jsonDataValidation();
-        jsonDataLevels jsonDataLevels = new jsonDataLevels();
+        //jsonDataLevels jsonDataLevels = new jsonDataLevels();
 
         ws.OnOpen += (sender, e) => {
             //Debug.Log("ws open");
@@ -88,9 +88,22 @@ public class WebSockets : MonoBehaviour{
             else if(msg.Contains("levels"))
             {
                 Debug.Log("LEVELS " + msg);
-                jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
-                getLevelsDone = true;
-                Debug.Log("123 = " + jsonDataValidation.value[0]);
+                //jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
+                //getLevelsDone = true;
+                //Debug.Log("123 = " + jsonDataValidation.msg);
+                string levels0 = msg.Split(":")[2];
+                string levels1 = levels0.Replace("}", " ");
+                string levels2 = levels1.Replace("[", " ");
+                string levels = levels2.Replace("]", " ");
+                List<string> levelsList = levels.Split(",");
+                foreach (string level in levelsList)
+                {
+                    //Debug.Log(level.ToString());
+                    Debug.Log(level);
+                    levelsList.Add(level);
+                }
+
+                
             }
 
             else
