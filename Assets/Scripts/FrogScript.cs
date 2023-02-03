@@ -19,7 +19,6 @@ public class FrogScript : MonoBehaviour
 
     [SerializeField] private AudioSource userRecording;
     [SerializeField] private ParticleSystem confetti;
-    //[SerializeField] private TextMeshProUGUI wordToSay;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +77,7 @@ public class FrogScript : MonoBehaviour
       {
         playerSpeed = 0;
         animator.SetBool("Jump", false);
+        
         animator.SetBool("Catch", true);
         isJumping = false;
 

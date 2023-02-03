@@ -25,6 +25,8 @@ public class ChameleonScript : MonoBehaviour
     public bool canShow = false;
     public bool isCaught = false;
 
+    public GameObject currentChameleon;
+
     // Start is called before the first frame update
     void Start()
     {  
@@ -60,8 +62,11 @@ public class ChameleonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(randomIndex > -1)
+        {
+            WaitToShowChameleon();
+        }
         
-        StartCoroutine(WaitToShowChameleon());
 
         if(Input.GetMouseButtonDown(0))
         {
@@ -71,27 +76,101 @@ public class ChameleonScript : MonoBehaviour
             {
                 if(hit.collider != null)
                 {
-                    Color newColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                    hit.collider.GetComponent<SpriteRenderer>().material.color = newColor;
-                    removedChameleons ++;
-
-                    isCaught = true;
-
-
+                    //Color newColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+                    //hit.collider.GetComponent<SpriteRenderer>().material.color = newColor;
+                    if(hit.collider.CompareTag("Chameleon1"))
+                    {
+                        chameleon1.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon2"))
+                    {
+                        chameleon2.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon3"))
+                    {
+                        chameleon3.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon4"))
+                    {
+                        chameleon4.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon5"))
+                    {
+                        chameleon5.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon6"))
+                    {
+                        chameleon6.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon7"))
+                    {
+                        chameleon7.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon8"))
+                    {
+                        chameleon8.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon9"))
+                    {
+                        chameleon9.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon10"))
+                    {
+                        chameleon10.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon11"))
+                    {
+                        chameleon11.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon12"))
+                    {
+                        chameleon12.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    } 
+                    if(hit.collider.CompareTag("Chameleon13"))
+                    {
+                        chameleon13.SetActive(false);
+                        removedChameleons ++;
+                        isCaught = true;
+                    }   
                 }
             }
         }
 
         if(removedChameleons == 13)
         {   
-            SceneManager.LoadScene("Monkey");
+            //SceneManager.LoadScene("Monkey");
         }
     }
 
-    IEnumerator WaitToShowChameleon()
+    public void  WaitToShowChameleon()
     {
-        yield return new WaitUntil(() => randomIndex > -1);
         Debug.Log("CAMELEON NUMBER " + randomIndex);
         chameleonList[randomIndex].SetActive(true);
+        //currentChameleon = chameleonList[randomIndex];
+        randomIndex = -1;
     }
 }

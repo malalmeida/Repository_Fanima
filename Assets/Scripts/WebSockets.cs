@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
+using System.Web;
+
 public class WebSockets : MonoBehaviour{
 
     private WebSocket ws;
@@ -28,16 +30,13 @@ public class WebSockets : MonoBehaviour{
     public int executionID = -1;
     public bool socketIsReady = false;
     public bool operationDone = false;
-   
-    void Start()
-    {
 
-    }
-    
-    void Update()
-    {
-       
-    }  
+    public jsonDataValidation jsonDataValidation;
+    public bool validationDone = false;
+    public jsonDataLevels jsonDataLevels;
+    public bool getLevelsDone = false;
+
+    public List<int> levelsList;
     
     public void SetupClient(string url, int userId, int gameId, string appName)
     {
@@ -50,6 +49,8 @@ public class WebSockets : MonoBehaviour{
     public void StartClient()
     {
         ws = new WebSocket(wsURL, null);
+        jsonDataValidation jsonDataValidation = new jsonDataValidation();
+        jsonDataLevels jsonDataLevels = new jsonDataLevels();
 
         ws.OnOpen += (sender, e) => {
             //Debug.Log("ws open");
@@ -70,10 +71,31 @@ public class WebSockets : MonoBehaviour{
             {
                 ws.Send("{\"msg\":\"pong\"}");
             }
-            if (msg == "{\"msg\":\"status\"}")
+            else if (msg == "{\"msg\":\"status\"}")
             {
-                string status = "{\"game\":\"" + gameID + "\"}";
+                string status = "{\"game\":\"" + gameID + "\"}";                
                 PrepareMessage("status", status);
+            }
+            
+            else if(msg.Contains("action"))
+            {
+                Debug.Log("ACTION " + msg);
+                jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
+                validationDone = true;
+                Debug.Log("repeat = " + jsonDataValidation.value);
+            }
+
+            else if(msg.Contains("levels"))
+            {
+                Debug.Log("LEVELS " + msg);
+                jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
+                getLevelsDone = true;
+                Debug.Log("123 = " + jsonDataValidation.value[0]);
+            }
+
+            else
+            {
+                Debug.Log("MSG " + msg);
             }
         };
 
@@ -99,15 +121,16 @@ public class WebSockets : MonoBehaviour{
         catch (Exception) { }
     }
 
-    public void GetLevelsToPlay(int therapistID, int gameExecutionID)
+    public void LevelsToPlayRequest(int therapistID, int gameExecutionID)
     {
         string request = "{\"therapist\":" + therapistID + ",\"levels\":" + gameExecutionID + "}";
         PrepareMessage("request", request);
     }
 
-    public void GetActionEvaluation(int therapistID, int sampleID)
+    public void ActionClassificationRequest(int therapistID, int wordID, int sampleID)
     {
-        string request = "{\"therapist\":" + therapistID + ",\"sample\":" + sampleID + "}";
+        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID + "}";
         PrepareMessage("request", request);
     }
+
 }

@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 95876892}
   m_Layer: 0
   m_Name: Chameleon6
-  m_TagString: Untagged
+  m_TagString: Chameleon6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 116937015}
   m_Layer: 0
   m_Name: Chameleon2
-  m_TagString: Untagged
+  m_TagString: Chameleon2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -426,14 +426,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116937012}
-  m_LocalRotation: {x: -0, y: -0, z: -0.17106976, w: 0.98525894}
-  m_LocalPosition: {x: 3.76, y: 1.84, z: -0.05110389}
+  m_LocalRotation: {x: -0, y: -0, z: -0.011404401, w: 0.999935}
+  m_LocalPosition: {x: 3.24, y: 2.04, z: -0.05110389}
   m_LocalScale: {x: 0.65907025, y: 0.609103, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -19.7}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.307}
 --- !u!65 &116937015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 159727044}
   m_Layer: 0
   m_Name: Chameleon11
-  m_TagString: Untagged
+  m_TagString: Chameleon11
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -879,6 +879,7 @@ MonoBehaviour:
   chameleonList: []
   canShow: 0
   isCaught: 0
+  currentChameleon: {fileID: 0}
 --- !u!1 &177288017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1145,7 @@ MonoBehaviour:
   listOfWordsToSay: []
   currentWord: 
   currentAtionID: -1
+  validationDone: 0
 --- !u!1 &202645038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,6 +1722,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1291514541}
+  - {fileID: 1153528857}
   - {fileID: 1044202518}
   - {fileID: 2018892397}
   - {fileID: 1952463266}
@@ -2076,7 +2080,7 @@ GameObject:
   - component: {fileID: 366383819}
   m_Layer: 0
   m_Name: Chameleon8
-  m_TagString: Untagged
+  m_TagString: Chameleon8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2276,7 +2280,7 @@ GameObject:
   - component: {fileID: 424248164}
   m_Layer: 0
   m_Name: Chameleon5
-  m_TagString: Untagged
+  m_TagString: Chameleon5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3102,7 +3106,7 @@ Transform:
   - {fileID: 202645039}
   - {fileID: 338309681}
   m_Father: {fileID: 341216613}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &713584503
 GameObject:
@@ -3252,7 +3256,7 @@ GameObject:
   - component: {fileID: 716628402}
   m_Layer: 0
   m_Name: Chameleon13
-  m_TagString: Untagged
+  m_TagString: Chameleon13
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3264,14 +3268,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716628399}
-  m_LocalRotation: {x: -0, y: -0, z: -0.09883649, w: 0.9951037}
-  m_LocalPosition: {x: -3, y: 3.78, z: -0.05110389}
+  m_LocalRotation: {x: -0, y: -0, z: -0.18272315, w: 0.9831645}
+  m_LocalPosition: {x: -2.79, y: 2.56, z: -0.05110389}
   m_LocalScale: {x: 0.5494, y: 0.5816, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -11.344}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -21.057}
 --- !u!212 &716628401
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3434,7 +3438,7 @@ GameObject:
   - component: {fileID: 750219178}
   m_Layer: 0
   m_Name: Chameleon1
-  m_TagString: Untagged
+  m_TagString: Chameleon1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3759,7 +3763,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300092, guid: f6a737996a4a842e58ba28428e71d711, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4003,7 +4007,7 @@ GameObject:
   - component: {fileID: 899534473}
   m_Layer: 0
   m_Name: Chameleon7
-  m_TagString: Untagged
+  m_TagString: Chameleon7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4269,7 +4273,7 @@ GameObject:
   - component: {fileID: 950534741}
   m_Layer: 0
   m_Name: Chameleon4
-  m_TagString: Untagged
+  m_TagString: Chameleon4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4668,11 +4672,9 @@ Transform:
   m_LocalPosition: {x: -467.4809, y: -180.6698, z: -6.063989}
   m_LocalScale: {x: 12.444827, y: 0.78053534, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1291514541}
-  - {fileID: 1153528857}
+  m_Children: []
   m_Father: {fileID: 341216613}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1044202519
 Animator:
@@ -4902,11 +4904,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153528856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.956, y: -5.93, z: 0}
-  m_LocalScale: {x: 0.08035467, y: 1.2811719, z: 1}
+  m_LocalPosition: {x: -455.58365, y: -185.29837, z: -6.063989}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1044202518}
+  m_Father: {fileID: 341216613}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1153528858
@@ -5142,7 +5144,7 @@ GameObject:
   - component: {fileID: 1185949472}
   m_Layer: 0
   m_Name: Chameleon12
-  m_TagString: Untagged
+  m_TagString: Chameleon12
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5383,7 +5385,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300092, guid: f6a737996a4a842e58ba28428e71d711, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5672,11 +5674,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291514540}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.789, y: -5.04, z: 0}
-  m_LocalScale: {x: 0.08035467, y: 1.2811719, z: 1}
+  m_LocalPosition: {x: -457.66193, y: -184.6037, z: -6.063989}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1044202518}
+  m_Father: {fileID: 341216613}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1291514542
@@ -5744,7 +5746,7 @@ GameObject:
   - component: {fileID: 1337975947}
   m_Layer: 0
   m_Name: Chameleon10
-  m_TagString: Untagged
+  m_TagString: Chameleon10
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5926,7 +5928,7 @@ GameObject:
   - component: {fileID: 1385811788}
   m_Layer: 0
   m_Name: Chameleon9
-  m_TagString: Untagged
+  m_TagString: Chameleon9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6871,7 +6873,7 @@ GameObject:
   - component: {fileID: 1671041602}
   m_Layer: 0
   m_Name: Chameleon3
-  m_TagString: Untagged
+  m_TagString: Chameleon3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7065,8 +7067,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683251020}
   m_LocalRotation: {x: -0, y: 0.9999298, z: -0, w: -0.011849641}
-  m_LocalPosition: {x: -38.04, y: -25.47, z: -0.12}
-  m_LocalScale: {x: 1.7243984, y: 1.4431422, z: 1}
+  m_LocalPosition: {x: -38.0053, y: -25.47, z: -0.1208}
+  m_LocalScale: {x: 1.7578517, y: 1.4431422, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2018892397}
@@ -7284,6 +7286,7 @@ MonoBehaviour:
   executionID: -1
   socketIsReady: 0
   operationDone: 0
+  levelsList: 
 --- !u!4 &1710161259
 Transform:
   m_ObjectHideFlags: 0
@@ -7833,7 +7836,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 341216613}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1952463267
 SpriteRenderer:
@@ -8066,7 +8069,7 @@ Transform:
   - {fileID: 336016028}
   - {fileID: 523738454}
   m_Father: {fileID: 341216613}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2041564178
 GameObject:

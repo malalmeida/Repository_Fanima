@@ -20,9 +20,9 @@ public class HomeScript : MonoBehaviour
     public GameObject ninety;
     public GameObject ondeHundred;
     public Animator balloAnimator;
-    public bool moveUp = false; 
-    public int upTimes = 0;           
-    //private Rigidbody2D rb;
+    public bool doAnimation = false; 
+    public bool wordsDone = false; 
+    //public int upTimes = 0;           
 
 
     // Start is called before the first frame update
@@ -43,12 +43,15 @@ public class HomeScript : MonoBehaviour
 
         balloAnimator.SetBool("isFull", true);
         //rb = GetComponent<Rigidbody2D>();
+        //StartCoroutine(WaitToMoveUp());
 
     }
 
     void Update()
     {
-        StartCoroutine(WaitToMoveUp());
+        if(doAnimation){
+            WaitToMoveUp();
+        }
     }
 
 /*
@@ -67,85 +70,82 @@ public class HomeScript : MonoBehaviour
         
     }
 */
-    IEnumerator WaitToMoveUp()
+    //IEnumerator WaitToMoveUp()
+    void WaitToMoveUp()
     {
-        yield return new WaitUntil(() => moveUp);
-        //if(Input.GetKeyDown(KeyCode.Space))
-        if (upTimes == 1)
+        //yield return new WaitUntil(() => doAnimation);
+        if(wordsDone == true)
         {
-            ten.SetActive(true);
-            moveUp = false;
+            transform.position += new Vector3 (0, 1, 0);
+            doAnimation = false;
         }
+        if (ondeHundred.activeSelf)
+        {
+            ondeHundred.SetActive(false);
+            transform.position += new Vector3 (0, 1, 0);
+            doAnimation = false;
+            wordsDone = true;
 
-        if (upTimes == 2)
-        {
-            ten.SetActive(false);
-            twenty.SetActive(true);
-            moveUp = false;
         }
-        if (upTimes == 3)
-        {
-            twenty.SetActive(false);
-            thirty.SetActive(true);
-            moveUp = false;
-        }
-        if (upTimes == 4)
-        {
-            thirty.SetActive(false);
-            forty.SetActive(true);
-            moveUp = false;
-        }
-        if (upTimes == 5)
-        {
-            forty.SetActive(false);
-            fifty.SetActive(true);
-            moveUp = false;
-        }
-        if (upTimes == 6)
-        {
-            fifty.SetActive(false);
-            sixty.SetActive(true);
-            moveUp = false;
-        }
-        if (upTimes == 7)
-        {
-            sixty.SetActive(false);
-            seventy.SetActive(true);
-            moveUp = false;
-        }
-        if (upTimes == 8)
-        {
-            seventy.SetActive(false);
-            eighty.SetActive(true);
-            moveUp = false;
-        }
-        if (upTimes == 9)
-        {
-            eighty.SetActive(false);
-            ninety.SetActive(true);
-            moveUp = false;
-        }
-        if (upTimes == 10)
+        else if (ninety.activeSelf)
         {
             ninety.SetActive(false);
             ondeHundred.SetActive(true);
-            moveUp = false;
+            doAnimation = false;
         }
-        if (upTimes == 14)
+        else if (eighty.activeSelf)
         {
-            transform.position += new Vector3 (0, -4, 0); 
-            upTimes = 16;
-            moveUp = false;  
+            eighty.SetActive(false);
+            ninety.SetActive(true);
+            doAnimation = false;
         }
-        if(upTimes == 18)
+        else if (seventy.activeSelf)
         {
-            SceneManager.LoadScene("Travel");
+            seventy.SetActive(false);
+            eighty.SetActive(true);
+            doAnimation = false;
         }
-        if (upTimes > 10)
+        else if (sixty.activeSelf)
         {
-            transform.position += new Vector3 (0, 1, 0);
-            moveUp = false;
-            //rb.velocity = Vector2.down * 10 * Time.deltaTime;
+            sixty.SetActive(false);
+            seventy.SetActive(true);
+            doAnimation = false;
+        }
+        else if (fifty.activeSelf)
+        {
+            fifty.SetActive(false);
+            sixty.SetActive(true);
+            doAnimation = false;
+        }
+        else if (forty.activeSelf)
+        {
+            forty.SetActive(false);
+            fifty.SetActive(true);
+            doAnimation = false;
+        }
+        else if (thirty.activeSelf)
+        {
+            thirty.SetActive(false);
+            forty.SetActive(true);
+            doAnimation = false;
+        }
+        else if (twenty.activeSelf)
+        {
+            twenty.SetActive(false);
+            thirty.SetActive(true);
+            doAnimation = false;
+        }
+        else if(ten.activeSelf)
+        {
+            ten.SetActive(false);
+            twenty.SetActive(true);
+            doAnimation = false;
+        }
+        
+        else if(ten.activeSelf == false && twenty.activeSelf == false && thirty.activeSelf == false && forty.activeSelf == false && fifty.activeSelf == false && sixty.activeSelf == false && seventy.activeSelf == false && eighty.activeSelf == false && ninety.activeSelf == false && ondeHundred.activeSelf == false && wordsDone == false)
+        {  
+            ten.SetActive(true);
+            doAnimation = false;
         }
     }
 }
