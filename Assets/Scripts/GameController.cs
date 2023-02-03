@@ -134,6 +134,7 @@ public class GameController : MonoBehaviour
         //if array de niveis apra jogr = a vazio, fazer pepdido 
         yield return new WaitUntil(() => webSockets.socketIsReady);
         webSockets.LevelsToPlayRequest(therapistID, gameExecutionID);
+        yield return new WaitUntil(() => webSockets.getLevelsDone);
       }
     }
   }
@@ -149,9 +150,9 @@ public class GameController : MonoBehaviour
     gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 
-    webSockets.ActionClassificationRequest(therapistID, currentAtionID, gameSampleID);
+    webSockets.ActionClassificationRequest(therapistID, contentList[currentAtionID].word, gameSampleID);
 
-    yield return new WaitUntil(() => validationDone);
+    //yield return new WaitUntil(() => webSockets.validationDone);
 
     //if(ws.validationStatus == "ok")
 

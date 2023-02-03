@@ -71,18 +71,31 @@ public class WebSockets : MonoBehaviour{
             {
                 ws.Send("{\"msg\":\"pong\"}");
             }
-            if (msg == "{\"msg\":\"status\"}")
+            else if (msg == "{\"msg\":\"status\"}")
             {
                 string status = "{\"game\":\"" + gameID + "\"}";                
                 PrepareMessage("status", status);
             }
             
-            if (msg == "{\"msg\":\"response\"}")
+            else if(msg.Contains("action"))
             {
-                 Debug.Log("RECBEU MSG");
-                jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(e.Data);
+                Debug.Log("ACTION " + msg);
+                jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
                 validationDone = true;
-                Debug.Log("52 = " + jsonDataValidation.patientid);
+                Debug.Log("repeat = " + jsonDataValidation.value);
+            }
+
+            else if(msg.Contains("levels"))
+            {
+                Debug.Log("LEVELS " + msg);
+                jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
+                getLevelsDone = true;
+                Debug.Log("123 = " + jsonDataValidation.value[0]);
+            }
+
+            else
+            {
+                Debug.Log("MSG " + msg);
             }
         };
 
