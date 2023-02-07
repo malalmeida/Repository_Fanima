@@ -131,14 +131,21 @@ public class GameController : MonoBehaviour
       {
         Debug.Log("ACABOU A SEQUENCIA");
         //Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
-        //if array de niveis apra jogr = a vazio, fazer pepdido 
+        //if(webSockets.levelsList.Length == 0)
+        //{
+        
+        SceneManager.LoadScene("Chameleon");
+
+        /*
         yield return new WaitUntil(() => webSockets.socketIsReady);
         webSockets.LevelsToPlayRequest(therapistID, gameExecutionID);
         yield return new WaitUntil(() => webSockets.getLevelsDone);
         foreach (var level in webSockets.levelsList)
         {
-            Debug.Log("LEVEL " + level);
+          Debug.Log("LEVEL " + level);
         }
+        //}   
+        */    
       }
     }
   }
@@ -154,20 +161,43 @@ public class GameController : MonoBehaviour
     gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
 
-    webSockets.ActionClassificationRequest(therapistID, contentList[currentAtionID].word, gameSampleID);
-
-    //yield return new WaitUntil(() => webSockets.validationDone);
-
-    //if(ws.validationStatus == "ok")
-
     if (SceneManager.GetActiveScene().name == "Home")
     {
-      homeScript.doAnimation = true;
+      webSockets.ActionClassificationGeralRequest(therapistID, contentList[currentAtionID].word, gameSampleID);
+    }
+    else
+    {
+      webSockets.ActionClassificationRequest(therapistID, contentList[currentAtionID].word, gameSampleID);
     }
 
-    if (SceneManager.GetActiveScene().name == "Chameleon")
+    yield return new WaitUntil(() => webSockets.validationDone);
+    yield return new WaitUntil(() => webSockets.validationValue > -2);
+
+    Debug.Log("VALIDATION " + webSockets.validationValue);
+
+
+    if(webSockets.validationValue == -1)
     {
-      chameleonScript.randomIndex = Random.Range(0, 12);
+      startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+      Debug.Log("DIZ -> " + currentWord); 
+      RecordSound();
+      webSockets.validationValue = -2;
+      yield return StartCoroutine(WaitForValidation());
+    }
+
+    if(webSockets.validationValue == 0)
+    {
+      if (SceneManager.GetActiveScene().name == "Home")
+      {
+        homeScript.doAnimation = true;
+        webSockets.validationValue = -2;
+      }
+
+      else if (SceneManager.GetActiveScene().name == "Chameleon")
+      {
+        chameleonScript.randomIndex = Random.Range(0, 12);
+        webSockets.validationValue = -2;
+      }
     }
     
     StartCoroutine(PrepareGameResult());

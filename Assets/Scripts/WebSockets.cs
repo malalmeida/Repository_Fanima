@@ -35,8 +35,9 @@ public class WebSockets : MonoBehaviour{
     public bool validationDone = false;
     public jsonDataLevels jsonDataLevels;
     public bool getLevelsDone = false;
+    public int validationValue;
 
-    public List<string> levelsList;
+    public string[] levelsList;
     
     public void SetupClient(string url, int userId, int gameId, string appName)
     {
@@ -81,29 +82,26 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("ACTION " + msg);
                 jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
+                validationValue = int. Parse(jsonDataValidation.value);
                 validationDone = true;
-                Debug.Log("repeat = " + jsonDataValidation.value);
+                
+                ///Debug.Log("repeat = " + jsonDataValidation.value);
+
             }
 
             else if(msg.Contains("levels"))
             {
                 Debug.Log("LEVELS " + msg);
-                //jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
-                //getLevelsDone = true;
-                //Debug.Log("123 = " + jsonDataValidation.msg);
                 string levels0 = msg.Split(":")[2];
                 string levels1 = levels0.Replace("}", " ");
                 string levels2 = levels1.Replace("[", " ");
                 string levels = levels2.Replace("]", " ");
-                List<string> levelsList = levels.Split(",");
+                string[] levelsList = levels.Split(",");
                 foreach (string level in levelsList)
                 {
                     //Debug.Log(level.ToString());
                     Debug.Log(level);
-                    levelsList.Add(level);
-                }
-
-                
+                } 
             }
 
             else
@@ -142,7 +140,13 @@ public class WebSockets : MonoBehaviour{
 
     public void ActionClassificationRequest(int therapistID, int wordID, int sampleID)
     {
-        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID + "}";
+        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID + ",\"errors\":" + 1 + "}";
+        PrepareMessage("request", request);
+    }
+
+    public void ActionClassificationGeralRequest(int therapistID, int wordID, int sampleID)
+    {
+        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID +  ",\"errors\":" + 0 + "}";
         PrepareMessage("request", request);
     }
 

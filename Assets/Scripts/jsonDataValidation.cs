@@ -5,6 +5,6 @@ using System.Collections.Generic;
 public class jsonDataValidation
 {
     public string msg;
-    public List<int> value;
+    public string value;
 }
 
