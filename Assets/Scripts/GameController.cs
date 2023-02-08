@@ -53,6 +53,8 @@ public class GameController : MonoBehaviour
   public int currentAtionID = -1;
 
   public bool validationDone = false;
+  public bool alreadyRequestLevels = false;
+
 
   void Awake()
   {
@@ -131,21 +133,31 @@ public class GameController : MonoBehaviour
       {
         Debug.Log("ACABOU A SEQUENCIA");
         //Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
-        //if(webSockets.levelsList.Length == 0)
-        //{
-        
-        SceneManager.LoadScene("Chameleon");
-
-        /*
-        yield return new WaitUntil(() => webSockets.socketIsReady);
-        webSockets.LevelsToPlayRequest(therapistID, gameExecutionID);
-        yield return new WaitUntil(() => webSockets.getLevelsDone);
-        foreach (var level in webSockets.levelsList)
+        if(alreadyRequestLevels == false)
         {
-          Debug.Log("LEVEL " + level);
+          yield return new WaitUntil(() => webSockets.socketIsReady);
+          webSockets.LevelsToPlayRequest(therapistID);
+
+          yield return new WaitUntil(() => webSockets.getLevelsDone);
+          Debug.Log(webSockets.getLevelsDone);
+
+          alreadyRequestLevels = true;
         }
-        //}   
-        */    
+        else
+        {
+          if(webSockets.levelsList[0] == "1")
+          {
+            SceneManager.LoadScene("Frog");
+          }
+          else if(webSockets.levelsList[0] == "2")
+          {
+            SceneManager.LoadScene("Chameleon");
+          }
+          else  if(webSockets.levelsList[0] == "3")
+          {
+            SceneManager.LoadScene("Octopus");
+          }
+        }   
       }
     }
   }
@@ -173,9 +185,6 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => webSockets.validationDone);
     yield return new WaitUntil(() => webSockets.validationValue > -2);
 
-    Debug.Log("VALIDATION " + webSockets.validationValue);
-
-
     if(webSockets.validationValue == -1)
     {
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -199,14 +208,9 @@ public class GameController : MonoBehaviour
         webSockets.validationValue = -2;
       }
     }
-    
-    StartCoroutine(PrepareGameResult());
-  }
-
-  IEnumerator PrepareGameResult()
-  {
     yield return StartCoroutine(webRequests.PostGameResult("1", "0", contentList[currentAtionID].id.ToString(), gameExecutionID.ToString(), startTime, endTime, currentWord));     
   }
+
 
   IEnumerator PrepareGameStructure()
   {

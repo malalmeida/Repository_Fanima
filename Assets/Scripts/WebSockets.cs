@@ -84,9 +84,6 @@ public class WebSockets : MonoBehaviour{
                 jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
                 validationValue = int. Parse(jsonDataValidation.value);
                 validationDone = true;
-                
-                ///Debug.Log("repeat = " + jsonDataValidation.value);
-
             }
 
             else if(msg.Contains("levels"))
@@ -96,12 +93,8 @@ public class WebSockets : MonoBehaviour{
                 string levels1 = levels0.Replace("}", " ");
                 string levels2 = levels1.Replace("[", " ");
                 string levels = levels2.Replace("]", " ");
-                string[] levelsList = levels.Split(",");
-                foreach (string level in levelsList)
-                {
-                    //Debug.Log(level.ToString());
-                    Debug.Log(level);
-                } 
+                levelsList = levels.Split(",");
+                getLevelsDone = true; 
             }
 
             else
@@ -132,9 +125,9 @@ public class WebSockets : MonoBehaviour{
         catch (Exception) { }
     }
 
-    public void LevelsToPlayRequest(int therapistID, int gameExecutionID)
+    public void LevelsToPlayRequest(int therapistID)
     {
-        string request = "{\"therapist\":" + therapistID + ",\"levels\":" + gameExecutionID + "}";
+        string request = "{\"therapist\":" + therapistID + ",\"levels\":" + gameID + "}";
         PrepareMessage("request", request);
     }
 
