@@ -159,11 +159,6 @@ public class ChameleonScript : MonoBehaviour
                 }
             }
         }
-
-        if(removedChameleons == 13)
-        {   
-            //SceneManager.LoadScene("Monkey");
-        }
     }
 
     public void  WaitToShowChameleon()

@@ -133,18 +133,19 @@ public class GameController : MonoBehaviour
       {
         Debug.Log("ACABOU A SEQUENCIA");
         //Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
+    
         if(alreadyRequestLevels == false)
         {
           yield return new WaitUntil(() => webSockets.socketIsReady);
           webSockets.LevelsToPlayRequest(therapistID);
 
           yield return new WaitUntil(() => webSockets.getLevelsDone);
-          Debug.Log(webSockets.getLevelsDone);
-
           alreadyRequestLevels = true;
-        }
-        else
-        {
+
+          Debug.Log("1º CHAP " + webSockets.chapList[0]);
+          
+
+          
           if(webSockets.levelsList[0] == "1")
           {
             SceneManager.LoadScene("Frog");
@@ -157,7 +158,8 @@ public class GameController : MonoBehaviour
           {
             SceneManager.LoadScene("Octopus");
           }
-        }   
+
+        } 
       }
     }
   }
