@@ -43,11 +43,6 @@ public class GameController : MonoBehaviour
 
   string activeChapter;
 
-  //public  List<actionClass> chapterHomeActionList;
-  //public  List<actionClass> chapterFrogActionList;
-  //public  List<actionClass> chapterChameleonActionList;
-  //public  List<actionClass> chapterFishActionList;
-
   public  List<string> listOfWordsToSay; 
   public string currentWord;
   public int currentAtionID = -1;
@@ -132,7 +127,6 @@ public class GameController : MonoBehaviour
       else
       {
         Debug.Log("ACABOU A SEQUENCIA");
-        //Debug.Log("FAZER O PEDIDO DOS NIVEIS A JOGAR");
     
         if(alreadyRequestLevels == false)
         {
@@ -140,21 +134,18 @@ public class GameController : MonoBehaviour
           webSockets.LevelsToPlayRequest(therapistID);
 
           yield return new WaitUntil(() => webSockets.getLevelsDone);
-          alreadyRequestLevels = true;
 
-          Debug.Log("1º CHAP " + webSockets.chapList[0]);
+          Debug.Log("CHAP " + webSockets.chapList[0]);
           
-
-          
-          if(webSockets.levelsList[0] == "1")
+          if(webSockets.chapList[0] == "1")
           {
             SceneManager.LoadScene("Frog");
           }
-          else if(webSockets.levelsList[0] == "2")
+          else if(webSockets.chapList[0] == "2")
           {
             SceneManager.LoadScene("Chameleon");
           }
-          else  if(webSockets.levelsList[0] == "3")
+          else  if(webSockets.chapList[0] == "3")
           {
             SceneManager.LoadScene("Octopus");
           }

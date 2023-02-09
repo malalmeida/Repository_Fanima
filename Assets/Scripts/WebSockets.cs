@@ -38,7 +38,7 @@ public class WebSockets : MonoBehaviour{
     public int validationValue;
 
     public string[] levelsList;
-    public List<int> chapList;
+    public List<string> chapList;
     
     public void SetupClient(string url, int userId, int gameId, string appName)
     {
@@ -89,42 +89,37 @@ public class WebSockets : MonoBehaviour{
 
             else if(msg.Contains("levels"))
             {
-                List <int> chapList = new List<int>();
+                List <string> chapList = new List<string>();
                 Debug.Log("LEVELS " + msg);
                 string levels0 = msg.Split(":")[2];
                 string levels1 = levels0.Replace("}", " ");
                 string levels2 = levels1.Replace("[", " ");
                 string levels = levels2.Replace("]", " ");
                 levelsList = levels.Split(",");
-                Debug.Log("numeor de options " + levelsList.Length);
+                Debug.Log("options " + levelsList.Length);
 
                 if(levelsList.Length == 1)
                 {
-                    int option1 = int.Parse(levelsList[0]);
-                    chapList.Add(option1);
+                    Debug.Log("1º option " + levelsList[0]);
+                    chapList.Add(levelsList[0]);
+                    Debug.Log("1º option " + chapList[0]);
+
+                    getLevelsDone = true; 
                 }
                 else if(levelsList.Length == 2)
                 {
-                    int option1 = int.Parse(levelsList[0]);
-                    int option2 = int.Parse(levelsList[1]);
-                    chapList.Add(option1);
-                    chapList.Add(option2);
-                    Debug.Log("1º CHAP " + webSockets.chapList[0]);
-
-
+                    chapList.Add(levelsList[0]);
+                    chapList.Add(levelsList[1]);
+                    Debug.Log("1º CHAP " + chapList[0]);
+                    getLevelsDone = true; 
                 }  
                 else if(levelsList.Length == 3)
                 {
-                    int option1 = int.Parse(levelsList[0]);
-                    int option2 = int.Parse(levelsList[1]);
-                    int option3 = int.Parse(levelsList[2]);
-                    chapList.Add(option1);
-                    chapList.Add(option2);
-                    chapList.Add(option3);
-                }  
-                getLevelsDone = true; 
-
-                
+                    chapList.Add(levelsList[0]);
+                    chapList.Add(levelsList[1]);
+                    chapList.Add(levelsList[2]);
+                    getLevelsDone = true; 
+                }          
             }
 
             else
