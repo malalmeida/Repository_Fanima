@@ -34,7 +34,7 @@ public class FrogScript : MonoBehaviour
   void Update()
   {
     Vector3 v3;
-
+/*
     if(Input.touchCount != 1)
     {
       dragging = false;
@@ -74,7 +74,7 @@ public class FrogScript : MonoBehaviour
     {
       dragging = false;
     }
-
+*/
     rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
       
     animator.SetFloat("yVelocity", rb.velocity.y);

@@ -632,7 +632,16 @@ MonoBehaviour:
   executionID: -1
   socketIsReady: 0
   operationDone: 0
-  levelsList: 
+  jsonDataValidation:
+    msg: 
+    value: 
+  validationDone: 0
+  jsonDataLevels:
+    msg: 
+    value: []
+  getLevelsDone: 0
+  validationValue: 0
+  levelsList: []
 --- !u!4 &516158542
 Transform:
   m_ObjectHideFlags: 0
@@ -2609,7 +2618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c096022e1078284d99562d73fc5fe21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScript: {fileID: 1849421718}
+  gameController: {fileID: 1849421718}
 --- !u!4 &1521720508
 Transform:
   m_ObjectHideFlags: 0
@@ -3734,15 +3743,16 @@ MonoBehaviour:
   webSockets: {fileID: 516158541}
   listOfChapterActions: []
   userRecording: {fileID: 0}
-  listOfChaptersToPlay: 
   wordToSay: {fileID: 1521620292}
   startMenuUI: {fileID: 0}
   homeScript: {fileID: 0}
   chameleonScript: {fileID: 0}
+  sequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 
   currentAtionID: -1
   validationDone: 0
+  alreadyRequestLevels: 0
 --- !u!4 &1849421719
 Transform:
   m_ObjectHideFlags: 0

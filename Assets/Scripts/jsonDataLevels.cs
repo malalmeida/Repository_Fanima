@@ -5,5 +5,6 @@ using System.Collections.Generic;
 public class jsonDataLevels
 {
     public string msg;
-    public string value;
+    public List<string> value;
 }
+

@@ -43,7 +43,6 @@ public static class SavWav {
 			filename += ".wav";
 		}
 
-		//var filepath = ".\\" + filename;
         var filepath = Path.Combine(Application.persistentDataPath, filename);
 		PlayerPrefs.SetString("FILEPATH", filepath);
 

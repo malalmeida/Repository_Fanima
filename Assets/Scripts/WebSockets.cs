@@ -36,9 +36,7 @@ public class WebSockets : MonoBehaviour{
     public jsonDataLevels jsonDataLevels;
     public bool getLevelsDone = false;
     public int validationValue;
-
-    public string[] levelsList;
-    public List<string> chapList;
+    public List<string> levelsList; 
     
     public void SetupClient(string url, int userId, int gameId, string appName)
     {
@@ -75,53 +73,27 @@ public class WebSockets : MonoBehaviour{
             }
             else if (msg == "{\"msg\":\"status\"}")
             {
-                string status = "{\"game\":\"" + gameID + "\"}";                
-                PrepareMessage("status", status);
+                //string status = "{\"game\":\"" + gameID + "\"}";                
+                //PrepareMessage("status", status);
+                string status = "{\"therapist\":" + therapistID + ",\"game\":\"" + gameID + "\"}";
+                Debug.Log("STATUS " + status);
+                PrepareMessage("status", status);
             }
             
             else if(msg.Contains("action"))
             {
                 Debug.Log("ACTION " + msg);
                 jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
-                validationValue = int. Parse(jsonDataValidation.value);
+                validationValue = int.Parse(jsonDataValidation.value);
                 validationDone = true;
             }
-
             else if(msg.Contains("levels"))
             {
-                List <string> chapList = new List<string>();
                 Debug.Log("LEVELS " + msg);
-                string levels0 = msg.Split(":")[2];
-                string levels1 = levels0.Replace("}", " ");
-                string levels2 = levels1.Replace("[", " ");
-                string levels = levels2.Replace("]", " ");
-                levelsList = levels.Split(",");
-                Debug.Log("options " + levelsList.Length);
-
-                if(levelsList.Length == 1)
-                {
-                    Debug.Log("1º option " + levelsList[0]);
-                    chapList.Add(levelsList[0]);
-                    Debug.Log("1º option " + chapList[0]);
-
-                    getLevelsDone = true; 
-                }
-                else if(levelsList.Length == 2)
-                {
-                    chapList.Add(levelsList[0]);
-                    chapList.Add(levelsList[1]);
-                    Debug.Log("1º CHAP " + chapList[0]);
-                    getLevelsDone = true; 
-                }  
-                else if(levelsList.Length == 3)
-                {
-                    chapList.Add(levelsList[0]);
-                    chapList.Add(levelsList[1]);
-                    chapList.Add(levelsList[2]);
-                    getLevelsDone = true; 
-                }          
+                jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
+                levelsList = jsonDataLevels.value;
+                getLevelsDone = true;         
             }
-
             else
             {
                 Debug.Log("MSG " + msg);

@@ -10,7 +10,7 @@ using UnityEngine.Windows;
 
 public class GameStructureRequest : MonoBehaviour
 {
-   public GameController gameScript;
+   public GameController gameController;
       
    readonly string baseURL = "http://193.137.46.11/api/";
 
@@ -33,15 +33,13 @@ public class GameStructureRequest : MonoBehaviour
             Debug.Log("ANSWER GET STRUCTURE: " + www.downloadHandler.text + " END");
             jsonDataLoader jsonData = JsonUtility.FromJson<jsonDataLoader>(www.downloadHandler.text);
             
-            //if(SceneManager.GetActiveScene().name == "Home")
-            //{
-                gameScript.contentList = jsonData.content;
-                gameScript.structReqDone = true;
-            //}            
+            gameController.contentList = jsonData.content;
+            gameController.structReqDone = true;
+             
         }
     }   
 
-     public IEnumerator GetRepository()
+    public IEnumerator GetRepository()
     {
         var url = baseURL + "datasource/speech";
 
@@ -60,8 +58,8 @@ public class GameStructureRequest : MonoBehaviour
             
             //if(SceneManager.GetActiveScene().name == "Home")
             //{
-                gameScript.dataList = jsonDataRepository.content;
-                gameScript.respositoryReqDone = true;
+                gameController.dataList = jsonDataRepository.content;
+                gameController.respositoryReqDone = true;
             //}            
         }
     }
@@ -90,7 +88,7 @@ public class GameStructureRequest : MonoBehaviour
             
             if(SceneManager.GetActiveScene().name == "Home")
             {
-                gameScript.gameExecutionID = int.Parse(www.downloadHandler.text);
+                gameController.gameExecutionID = int.Parse(www.downloadHandler.text);
                 //PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
             }
         }

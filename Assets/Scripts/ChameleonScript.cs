@@ -165,7 +165,6 @@ public class ChameleonScript : MonoBehaviour
     {
         Debug.Log("CAMELEON NUMBER " + randomIndex);
         chameleonList[randomIndex].SetActive(true);
-        //currentChameleon = chameleonList[randomIndex];
         randomIndex = -1;
     }
 }

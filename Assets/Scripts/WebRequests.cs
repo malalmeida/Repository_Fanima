@@ -105,23 +105,11 @@ public class WebRequests : MonoBehaviour
         var url = baseURL + "gamesample";
         string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
 
-        //Debug.Log("GAME SAMPLE SENT TIME: " + time);
-
-        //string path = "C:/Users/gvgia/AppData/LocalLow/DefaultCompany/Fanima/" + fileName + ".wav";
-        //MAC path
-        //string path = "/Users/inesantunes/Library/Application Support/DefaultCompany/Fanima/" + fileName + ".wav";
-        
-        //string path = ".\\" + fileName + ".wav";
         string path = PlayerPrefs.GetString("FILEPATH");
 
-        //byte[] audiobyte = File.ReadAllBytes(path);
         byte[] audiobyte = System.IO.File.ReadAllBytes(path);
 
         string base64String = System.Convert.ToBase64String(audiobyte);
-    
-        //Debug.Log(byteArray);
-        //string base64String = System.Convert.ToBase64String(byteArray);
-        //Debug.Log(base64String);
 
         List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
         parameters.Add(new MultipartFormDataSection("data", "{\"id\":\""+ wordID +"\", \"time\":\""+ time +"\", \"base64\":\""+ base64String +"\"}"));
@@ -177,8 +165,6 @@ public class WebRequests : MonoBehaviour
     //score = 0
     public IEnumerator PostGameResult(string status, string score, string actionID, string gameExeID, string startTime, string endTime, string fileName)
     {
-        
-        //System.IO.File.Delete(".\\" + fileName + ".wav");
         string path = PlayerPrefs.GetString("FILEPATH");
         System.IO.File.Delete(path);
 
