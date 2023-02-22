@@ -26,8 +26,8 @@ public class TravelScript : MonoBehaviour
         if(cloudsRemoved == 4)
         {
             animator.SetBool("finish", true);
-
-            SceneManager.LoadScene("Chameleon");
+            Debug.Log("NEXT SCENE " + PlayerPrefs.GetString("next scene"));
+            SceneManager.LoadScene(PlayerPrefs.GetString("next scene"));
         }
 
         if(Input.GetMouseButtonDown(0))

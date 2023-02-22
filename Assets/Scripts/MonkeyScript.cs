@@ -148,11 +148,6 @@ public class MonkeyScript : MonoBehaviour
                 }
             }
         }
-
-        if(removedMonkeys == 13)
-        {   
-            //SceneManager.LoadScene("Monkey");
-        }
     }
 
     public void  WaitToShowMonkey()

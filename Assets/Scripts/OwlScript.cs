@@ -8,7 +8,6 @@ public class OwlScript : MonoBehaviour
 {
     public Animator animator;
     
-    [SerializeField] private AudioSource userRecording;
 
     // Start is called before the first frame update
     void Start()
@@ -17,15 +16,5 @@ public class OwlScript : MonoBehaviour
     }
 
 
-    void RecordSound()
-    {
-        userRecording = GetComponent<AudioSource>();
-        userRecording.clip = Microphone.Start("", true, 2, 48000);
-    }
-
-     void SaveSound(string fileName)
-    {
-        SavWav.Save(fileName + ".wav", userRecording.clip);
-    }
 
 }

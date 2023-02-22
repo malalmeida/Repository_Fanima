@@ -22,8 +22,6 @@ public class HomeScript : MonoBehaviour
     public Animator balloAnimator;
     public bool doAnimation = false; 
     public bool wordsDone = false; 
-    //public int upTimes = 0;           
-
 
     // Start is called before the first frame update
     void Start()
@@ -42,38 +40,18 @@ public class HomeScript : MonoBehaviour
         ondeHundred.SetActive(false);
 
         balloAnimator.SetBool("isFull", true);
-        //rb = GetComponent<Rigidbody2D>();
-        //StartCoroutine(WaitToMoveUp());
-
     }
 
     void Update()
     {
-        if(doAnimation){
+        if(doAnimation)
+        {
             WaitToMoveUp();
         }
     }
 
-/*
-   private void OnCollisionEnter2D(Collision2D other)
-    {
-        /*
-        if(other.gameObject.CompareTag("Rock"))
-        {
-            maleGuide.SetActive(false);
-            femaleGuide.SetActive(false);
-
-            balloAnimator.SetBool("isFull", true);
-
-            StartCoroutine(WaitAndTakeOff());
-        }
-        
-    }
-*/
-    //IEnumerator WaitToMoveUp()
     void WaitToMoveUp()
     {
-        //yield return new WaitUntil(() => doAnimation);
         if(wordsDone == true)
         {
             transform.position += new Vector3 (0, 1, 0);

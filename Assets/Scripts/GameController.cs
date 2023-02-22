@@ -24,17 +24,15 @@ public class GameController : MonoBehaviour
   public WebSockets webSockets;
   
   private Rigidbody2D rb;
-
-  public List<actionClass> listOfChapterActions;
     
   [SerializeField] private AudioSource userRecording;
-
   [SerializeField] private TextMeshProUGUI wordToSay;
   
   public GameObject startMenuUI;
 
   public HomeScript homeScript;
   public ChameleonScript chameleonScript;
+  public FrogScript frogScript;
 
   string startTime;
   string endTime;
@@ -48,24 +46,9 @@ public class GameController : MonoBehaviour
   public bool validationDone = false;
   public bool alreadyRequestLevels = false;
 
-  /*void Awake()
-  {
-    StartCoroutine(PreparedGameExecutionID());
-    StartCoroutine(PrepareGameStructure());
-  }
-*/
   // Start is called before the first frame update
   void Start()
   {
-    if(SceneManager.GetActiveScene().name == "Home")
-    {
-      //StartCoroutine(PreparedGameExecutionID());
-      activeChapter = "Geral";      
-      StartCoroutine(GameLoop());    
-    }
-    
-    //StartCoroutine(PrepareGameStructure());
-
     rb = GetComponent<Rigidbody2D>();
     webSockets = new WebSockets();
     webSockets.therapistID = therapistID;
@@ -75,20 +58,108 @@ public class GameController : MonoBehaviour
     List<string> listOfWordsToSay = new List<string>(); 
     List<actionClass> sequenceToPlayList = new List<actionClass>(); 
 
- 
-    if(SceneManager.GetActiveScene().name == "Frog")
+    if(SceneManager.GetActiveScene().name == "Home")
+    {
+      activeChapter = "Geral";      
+      StartCoroutine(GameLoop());    
+    }
+
+    else if(SceneManager.GetActiveScene().name == "Travel")
+    {
+      if(alreadyRequestLevels == false)
+      {
+        StartCoroutine(PrepareLevels());
+      }
+      
+      if(webSockets.levelsList[0].Equals("DONE"))
+      {
+        if(webSockets.levelsList[1].Equals("DONE"))
+        {
+          if(webSockets.levelsList[2].Equals("DONE"))
+          {
+            Debug.Log("TERMINOU O JOGO");
+          }
+          else
+          {
+            if(webSockets.levelsList[2].Equals("1"))
+            {
+              webSockets.levelsList[2] = "DONE";
+              PlayerPrefs.SetString("next scene","Frog");
+              SceneManager.LoadScene("Frog");
+            }
+            else if(webSockets.levelsList[2].Equals("2"))
+            {
+              webSockets.levelsList[2] = "DONE";
+              PlayerPrefs.SetString("next scene","Chameleon");
+              SceneManager.LoadScene("Chameleon");
+            }
+            else if(webSockets.levelsList[2].Equals("3"))
+            {
+              webSockets.levelsList[2] = "DONE";
+              PlayerPrefs.SetString("next scene","Octopus");
+              SceneManager.LoadScene("Octopus");
+            }  
+          }
+        }
+        else
+        {
+          if(webSockets.levelsList[1].Equals("1"))
+          {
+            webSockets.levelsList[1] = "DONE";
+            PlayerPrefs.SetString("next sceneo","Frog");
+            SceneManager.LoadScene("Frog");
+          }
+          else if(webSockets.levelsList[1].Equals("2"))
+          {
+            webSockets.levelsList[1] = "DONE";
+            PlayerPrefs.SetString("next scene","Chameleon");
+            SceneManager.LoadScene("Chameleon");
+          }
+          else if(webSockets.levelsList[1].Equals("3"))
+          {
+            webSockets.levelsList[1] = "DONE";
+            PlayerPrefs.SetString("next scene","Octopus");
+            SceneManager.LoadScene("Octopus");
+          }      
+        }            
+      }
+      else
+      {
+        if(webSockets.levelsList[0].Equals("1"))
+        {
+          webSockets.levelsList[0] = "DONE";
+          PlayerPrefs.SetString("next scene","Frog");
+          SceneManager.LoadScene("Frog");
+        }
+        else if(webSockets.levelsList[0].Equals("2"))
+        {
+          webSockets.levelsList[0] = "DONE";
+          PlayerPrefs.SetString("next scene", "Chameleon");
+          PlayerPrefs.Save();
+          Debug.Log("NEXT SCENE " + PlayerPrefs.GetString("next scene"));
+          SceneManager.LoadScene("Chameleon");
+        }
+        else if(webSockets.levelsList[0].Equals("3"))
+        {
+          webSockets.levelsList[0] = "DONE";
+          PlayerPrefs.SetString("next scene","Octopus");
+          SceneManager.LoadScene("Octopus");
+        }  
+      }
+    }
+    else if(SceneManager.GetActiveScene().name == "Frog")
     {
       activeChapter = "Oclusivas";     
       StartCoroutine(GameLoop()); 
     }
 
-    if(SceneManager.GetActiveScene().name == "Chameleon")
+    else if(SceneManager.GetActiveScene().name == "Chameleon")
     {
       activeChapter = "Fricativas";      
       StartCoroutine(GameLoop());
     }
 
-    if(SceneManager.GetActiveScene().name == "Fish")
+    else if(SceneManager.GetActiveScene().name == "Fish")
     { 
       activeChapter = "Vibrantes e Laterais";
       StartCoroutine(GameLoop());      
@@ -109,7 +180,7 @@ public class GameController : MonoBehaviour
       currentAtionID = i;
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
-      currentWord = dataList[contentList[i].word - 1].name;
+      currentWord = dataList[sequenceToPlayList[i].word - 1].name;
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + contentList[i].level + "\", \"sequence\": \"" + contentList[i].sequence + "\", \"action\": \"" + contentList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
       Debug.Log("DIZ -> " + currentWord); 
@@ -117,81 +188,10 @@ public class GameController : MonoBehaviour
       RecordSound();
       yield return StartCoroutine(WaitForValidation());
     }
- 
-    Debug.Log("ACABOU O SEQUENCIA");
-    
-    if(alreadyRequestLevels == false)
-    {
-      yield return new WaitUntil(() => webSockets.socketIsReady);
-      webSockets.LevelsToPlayRequest(therapistID);
 
-      yield return new WaitUntil(() => webSockets.getLevelsDone);
-      if(webSockets.levelsList[0].Equals("DONE"))
-      {
-        if(webSockets.levelsList[1].Equals("DONE"))
-        {
-          if(webSockets.levelsList[2].Equals("DONE"))
-          {
-            Debug.Log("TERMINOU O JOGO");
-          }
-          else
-          {
-            if(webSockets.levelsList[2].Equals("1"))
-            {
-              webSockets.levelsList[2] = "DONE";
-              SceneManager.LoadScene("Frog");
-            }
-            else if(webSockets.levelsList[2].Equals("2"))
-            {
-              webSockets.levelsList[2] = "DONE";
-              SceneManager.LoadScene("Chameleon");
-            }
-            else if(webSockets.levelsList[2].Equals("3"))
-            {
-              webSockets.levelsList[2] = "DONE";
-              SceneManager.LoadScene("Octopus");
-            }  
-          }
-        }
-        else
-        {
-          if(webSockets.levelsList[1].Equals("1"))
-          {
-            webSockets.levelsList[1] = "DONE";
-            SceneManager.LoadScene("Frog");
-          }
-          else if(webSockets.levelsList[1].Equals("2"))
-          {
-            webSockets.levelsList[1] = "DONE";
-            SceneManager.LoadScene("Chameleon");
-          }
-          else if(webSockets.levelsList[1].Equals("3"))
-          {
-            webSockets.levelsList[1] = "DONE";
-            SceneManager.LoadScene("Octopus");
-          }      
-        }            
-      }
-      else
-      {
-        if(webSockets.levelsList[0].Equals("1"))
-        {
-          webSockets.levelsList[0] = "DONE";
-          SceneManager.LoadScene("Frog");
-        }
-        else if(webSockets.levelsList[0].Equals("2"))
-        {
-          Debug.Log("ENTRA NA OPÇAO 2");
-          webSockets.levelsList[0] = "DONE";
-          SceneManager.LoadScene("Chameleon");
-        }
-        else if(webSockets.levelsList[0].Equals("3"))
-        {
-          webSockets.levelsList[0] = "DONE";
-          SceneManager.LoadScene("Octopus");
-        }  
-      }
-    } 
+    Debug.Log("ACABOU O SEQUENCIA");
+    //NEXT SCENE
+    SceneManager.LoadScene("Travel"); 
   }
 
   IEnumerator PrepareSequence()
@@ -202,9 +202,15 @@ public class GameController : MonoBehaviour
       if(contentList[i].sequence == activeChapter)
         {
           sequenceToPlayList.Add(contentList[i]);
-          Debug.Log("SEQUENCE ADDED: " + contentList[i].sequence);
         } 
     }     
+  }
+
+  IEnumerator PrepareLevels()
+  {
+    yield return new WaitUntil(() => webSockets.socketIsReady);
+    webSockets.LevelsToPlayRequest(therapistID);
+    yield return new WaitUntil(() => webSockets.getLevelsDone);
   }
 
   IEnumerator WaitForValidation()
@@ -247,7 +253,11 @@ public class GameController : MonoBehaviour
         homeScript.doAnimation = true;
         webSockets.validationValue = -2;
       }
-
+      else if (SceneManager.GetActiveScene().name == "Frog")
+      {
+        frogScript.randomIndex = Random.Range(0, 14);
+        webSockets.validationValue = -2;
+      }
       else if (SceneManager.GetActiveScene().name == "Chameleon")
       {
         chameleonScript.randomIndex = Random.Range(0, 12);
@@ -295,7 +305,7 @@ public class GameController : MonoBehaviour
   void RecordSound()
   {
     userRecording = GetComponent<AudioSource>();
-    userRecording.clip = Microphone.Start("", true, 3, 48000);
+    userRecording.clip = Microphone.Start("", true, 5, 48000);
   }
 
   void SaveSound(string fileName)
