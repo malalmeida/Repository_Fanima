@@ -13,6 +13,7 @@ public class TravelScript : MonoBehaviour
     public GameObject cloud3;
     public GameObject cloud4;
     public int cloudsRemoved = 0;
+    public bool patientInteractionDone = false;
 
 
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class TravelScript : MonoBehaviour
             animator.SetBool("finish", true);
             Debug.Log("NEXT SCENE " + PlayerPrefs.GetString("NEXTSCENE"));
             SceneManager.LoadScene(PlayerPrefs.GetString("NEXTSCENE"));
+            patientInteractionDone = true;
         }
 
         if(Input.GetMouseButtonDown(0))

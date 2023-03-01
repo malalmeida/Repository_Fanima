@@ -5988,16 +5988,17 @@ MonoBehaviour:
   dataList: []
   webRequests: {fileID: 1128667947}
   webSockets: {fileID: 1267418208}
-  listOfChapterActions: []
   userRecording: {fileID: 0}
   wordToSay: {fileID: 0}
   startMenuUI: {fileID: 0}
   homeScript: {fileID: 0}
   chameleonScript: {fileID: 0}
+  frogScript: {fileID: 0}
+  travelScript: {fileID: 1075717226}
   sequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 
-  currentAtionID: -1
+  currentActionID: -1
   validationDone: 0
   alreadyRequestLevels: 0
 --- !u!4 &936934637
@@ -6223,6 +6224,7 @@ MonoBehaviour:
   cloud3: {fileID: 2112256855}
   cloud4: {fileID: 269877516}
   cloudsRemoved: 0
+  patientInteractionDone: 0
 --- !u!1 &1128667945
 GameObject:
   m_ObjectHideFlags: 0

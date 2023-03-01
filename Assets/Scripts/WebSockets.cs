@@ -76,8 +76,8 @@ public class WebSockets : MonoBehaviour{
                 //string status = "{\"game\":\"" + gameID + "\"}";                
                 //PrepareMessage("status", status);
                 string status = "{\"therapist\":" + therapistID + ",\"game\":\"" + gameID + "\"}";
-                Debug.Log("STATUS " + status);
-                PrepareMessage("status", status);
+                Debug.Log("STATUS " + status);
+                PrepareMessage("status", status);
             }
             
             else if(msg.Contains("action"))
@@ -92,7 +92,6 @@ public class WebSockets : MonoBehaviour{
                 Debug.Log("LEVELS " + msg);
                 jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
                 levelsList = jsonDataLevels.value;
-                PlayerPrefs.SetString("NEXTCHAPTHER", levelsList[0]);
                 getLevelsDone = true;         
             }
             else
