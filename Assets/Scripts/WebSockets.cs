@@ -92,7 +92,8 @@ public class WebSockets : MonoBehaviour{
                 Debug.Log("LEVELS " + msg);
                 jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
                 levelsList = jsonDataLevels.value;
-                PlayerPrefs.SetSring("LEVELSELECTION", "DONE");
+                //PlayerPrefs.SetString("LEVELSELECTION", "DONE");
+                //Debug.Log("WS " + PlayerPrefs.GetString("LEVELSELECTION"));
                 getLevelsDone = true;    
             }
             else

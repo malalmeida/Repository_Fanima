@@ -47,6 +47,8 @@ public class GameController : MonoBehaviour
   public int currentWordID = -1;
 
   public bool validationDone = false;
+
+  public bool selectionDone;
   //public bool alreadyRequestLevels = false;
 
   // Start is called before the first frame update
@@ -64,14 +66,14 @@ public class GameController : MonoBehaviour
     if(SceneManager.GetActiveScene().name == "Home")
     {
       activeChapter = "Geral"; 
-      PlayerPrefs.SetSring("LEVELSELECTION", "NOTDONE");   
+      PlayerPrefs.SetString("LEVELSELECTION", "NOTDONE");   
       PlayerPrefs.SetInt("NumberOfChaptersPlayed", 1);  
       StartCoroutine(GameLoop());    
     }
 
     else if(SceneManager.GetActiveScene().name == "Travel")
     {      
-      if(PlayerPrefs.GetSring("LEVELSELECTION").Equals("NOTDONE"));
+      if(PlayerPrefs.GetString("LEVELSELECTION").Equals("NOTDONE"))
       {
         StartCoroutine(PrepareLevels());
       }
@@ -94,6 +96,20 @@ public class GameController : MonoBehaviour
     { 
       activeChapter = "Vibrantes e Laterais";
       StartCoroutine(GameLoop());      
+    }
+  }
+
+  void Update()
+  {
+    if(PlayerPrefs.GetString("LEVELSELECTION").Equals("DONE"))
+    {
+      selectionDone = true;
+      Debug.Log("UPDATE " + selectionDone);
+    }
+    else
+    {
+      selectionDone = false;
+      Debug.Log("UPDATE " + selectionDone);
     }
   }
 
@@ -128,6 +144,12 @@ public class GameController : MonoBehaviour
 
   IEnumerator PrepareNextLevel()
   {
+    Debug.Log("PREPARE NXT LVL " + selectionDone);
+    
+    yield return new WaitUntil(() => selectionDone);
+    
+    Debug.Log("PREPARE NXT LVL AFTER SELECTION " + selectionDone);
+
     if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
     {
       PlayerPrefs.SetInt("NumberOfChaptersPlayed", 2);
@@ -160,6 +182,8 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => webSockets.socketIsReady);
     webSockets.LevelsToPlayRequest(therapistID);
     yield return new WaitUntil(() => webSockets.getLevelsDone);
+    PlayerPrefs.SetString("LEVELSELECTION", "DONE");
+    Debug.Log("PREPARE LVLS " + PlayerPrefs.GetString("LEVELSELECTION"));
 
     if(webSockets.levelsList.Count == 1)
     {
