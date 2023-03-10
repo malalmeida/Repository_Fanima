@@ -15,10 +15,10 @@ public class TravelScript : MonoBehaviour
     public int cloudsRemoved = 0;
     public bool patientInteractionDone = false;
 
-
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -27,9 +27,8 @@ public class TravelScript : MonoBehaviour
         if(cloudsRemoved == 4)
         {
             animator.SetBool("finish", true);
-            Debug.Log("NEXT SCENE " + PlayerPrefs.GetString("NEXTSCENE"));
-            SceneManager.LoadScene(PlayerPrefs.GetString("NEXTSCENE"));
             patientInteractionDone = true;
+            PlayerPrefs.SetInt("ChapterNumber", 0);
         }
 
         if(Input.GetMouseButtonDown(0))

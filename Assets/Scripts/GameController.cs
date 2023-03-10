@@ -46,9 +46,8 @@ public class GameController : MonoBehaviour
   public int currentActionID = -1;
   public int currentWordID = -1;
 
-
   public bool validationDone = false;
-  public bool alreadyRequestLevels = false;
+  //public bool alreadyRequestLevels = false;
 
   // Start is called before the first frame update
   void Start()
@@ -64,21 +63,19 @@ public class GameController : MonoBehaviour
 
     if(SceneManager.GetActiveScene().name == "Home")
     {
-      activeChapter = "Geral";      
+      activeChapter = "Geral"; 
+      PlayerPrefs.SetSring("LEVELSELECTION", "NOTDONE");   
+      PlayerPrefs.SetInt("NumberOfChaptersPlayed", 1);  
       StartCoroutine(GameLoop());    
     }
 
     else if(SceneManager.GetActiveScene().name == "Travel")
-    {
-      if(alreadyRequestLevels == false)
+    {      
+      if(PlayerPrefs.GetSring("LEVELSELECTION").Equals("NOTDONE"));
       {
         StartCoroutine(PrepareLevels());
-        alreadyRequestLevels = true;
       }
-      //else
-      //{
-      StartCoroutine(PrepareNextLevel()); 
-      //}
+      StartCoroutine(PrepareNextLevel());
     }
       
     else if(SceneManager.GetActiveScene().name == "Frog")
@@ -93,7 +90,7 @@ public class GameController : MonoBehaviour
       StartCoroutine(GameLoop());
     }
 
-    else if(SceneManager.GetActiveScene().name == "Fish")
+    else if(SceneManager.GetActiveScene().name == "Octopus")
     { 
       activeChapter = "Vibrantes e Laterais";
       StartCoroutine(GameLoop());      
@@ -125,87 +122,24 @@ public class GameController : MonoBehaviour
     }
 
     Debug.Log("ACABOU O SEQUENCIA");
-    //NEXT SCENE
+
     SceneManager.LoadScene("Travel"); 
   }
 
   IEnumerator PrepareNextLevel()
   {
-    yield return new WaitUntil(() => webSockets.getLevelsDone);
-    yield return new WaitUntil(() => travelScript.patientInteractionDone);
-
-    if(webSockets.levelsList[0].Equals("DONE"))
+    if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
     {
-      if(webSockets.levelsList[1].Equals("DONE"))
-      {
-        if(webSockets.levelsList[2].Equals("DONE"))
-        {
-          Debug.Log("TERMINOU O JOGO");
-        }
-        else
-        { 
-          if(webSockets.levelsList[2].Equals("1"))
-          {
-            webSockets.levelsList[2] = "DONE";
-            PlayerPrefs.SetString("NEXTSCENE", "Frog");
-            SceneManager.LoadScene("Frog");
-          }
-          else if(webSockets.levelsList[2].Equals("2"))
-          { 
-            webSockets.levelsList[2] = "DONE";
-            PlayerPrefs.SetString("NEXTSCENE", "Chameleon");
-            SceneManager.LoadScene("Chameleon");
-          }
-          else if(webSockets.levelsList[2].Equals("3"))
-          {
-            webSockets.levelsList[2] = "DONE";
-            PlayerPrefs.SetString("NEXTSCENE", "Octopus");
-            SceneManager.LoadScene("Octopus");
-          }  
-        }
-      }
-      else
-      {
-        if(webSockets.levelsList[1].Equals("1"))
-        {
-          webSockets.levelsList[1] = "DONE";
-          PlayerPrefs.SetString("NEXTSCENE", "Frog");
-          SceneManager.LoadScene("Frog");
-        }
-        else if(webSockets.levelsList[1].Equals("2"))
-        {
-          webSockets.levelsList[1] = "DONE";
-          PlayerPrefs.SetString("NEXTSCENE", "Chameleon");
-          SceneManager.LoadScene("Chameleon");
-        }
-        else if(webSockets.levelsList[1].Equals("3"))
-        {
-          webSockets.levelsList[1] = "DONE";
-          PlayerPrefs.SetString("NEXTSCENE", "Octopus");
-          SceneManager.LoadScene("Octopus");
-        }      
-      }            
-    } 
-    else
+      PlayerPrefs.SetInt("NumberOfChaptersPlayed", 2);
+      SceneManager.LoadScene(PlayerPrefs.GetString("ChapterOne")); 
+    }
+    else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 2)
     {
-      if(webSockets.levelsList[0].Equals("1"))
-      {
-        webSockets.levelsList[0] = "DONE";
-        PlayerPrefs.SetString("NEXTSCENE", "Frog");
-        SceneManager.LoadScene("Frog");
-      }
-      else if(webSockets.levelsList[0].Equals("2"))
-      {
-        webSockets.levelsList[0] = "DONE";
-        PlayerPrefs.SetString("NEXTSCENE", "Chameleon");
-        SceneManager.LoadScene("Chameleon");
-      }
-      else if(webSockets.levelsList[0].Equals("3"))
-      {
-        webSockets.levelsList[0] = "DONE";
-        PlayerPrefs.SetString("NEXTSCENE", "Octopus");
-        SceneManager.LoadScene("Octopus");
-      }  
+       PlayerPrefs.SetInt("NumberOfChaptersPlayed", 3);
+      SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
+    }
+    else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 3){
+      SceneManager.LoadScene(PlayerPrefs.GetString("ChapterThree")); 
     }
   }
 
@@ -226,6 +160,56 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => webSockets.socketIsReady);
     webSockets.LevelsToPlayRequest(therapistID);
     yield return new WaitUntil(() => webSockets.getLevelsDone);
+
+    if(webSockets.levelsList.Count == 1)
+    {
+      PlayerPrefs.SetInt("NumberOfChaptersToPlay", 1);
+
+      if(webSockets.levelsList[0].Equals("1"))
+      {
+        PlayerPrefs.SetString("ChapterOne", "Chameleon");
+      }
+      else if(webSockets.levelsList[0].Equals("2"))
+      {
+        PlayerPrefs.SetString("ChapterOne", "Frog");
+      }
+      else if(webSockets.levelsList[0].Equals("3"))
+      {
+        PlayerPrefs.SetString("ChapterOne", "Octopus");
+      }
+    }
+    else if(webSockets.levelsList.Count == 2)
+    {
+      PlayerPrefs.SetInt("NumberOfChaptersToPlay", 2);
+      if(webSockets.levelsList[0].Equals("1"))
+      {
+        PlayerPrefs.SetString("ChapterOne", "Chameleon");
+        if(webSockets.levelsList[1].Equals("2"))
+        {
+          PlayerPrefs.SetString("ChapterTwo", "Frog");
+        }
+        else if(webSockets.levelsList[1].Equals("3"))
+        {
+          PlayerPrefs.SetString("ChapterTwo", "Octopus");
+        }
+      }
+      if(webSockets.levelsList[0].Equals("2"))
+      {
+        PlayerPrefs.SetString("ChapterOne", "Frog");
+        if(webSockets.levelsList[1].Equals("3"))
+        {
+          PlayerPrefs.SetString("ChapterTwo", "Octopus");
+        }
+      }
+    }
+    else if(webSockets.levelsList.Count == 3)
+    {
+      PlayerPrefs.SetInt("NumberOfChaptersToPlay", 3);
+      PlayerPrefs.SetString("ChapterOne", "Chameleon");
+      PlayerPrefs.SetString("ChapterTwo", "Frog");
+      PlayerPrefs.SetString("ChapterThree", "Octopus");
+    }
+    PlayerPrefs.SetString("LEVELSELECTION", "DONE");
   }
 
   IEnumerator WaitForValidation()
