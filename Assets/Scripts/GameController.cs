@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
   public bool validationDone = false;
 
   public bool selectionDone;
-  //public bool alreadyRequestLevels = false;
+  public bool postGameResultDone = false;
 
   // Start is called before the first frame update
   void Start()
@@ -104,12 +104,10 @@ public class GameController : MonoBehaviour
     if(PlayerPrefs.GetString("LEVELSELECTION").Equals("DONE"))
     {
       selectionDone = true;
-      Debug.Log("UPDATE " + selectionDone);
     }
     else
     {
       selectionDone = false;
-      Debug.Log("UPDATE " + selectionDone);
     }
   }
 
@@ -124,6 +122,7 @@ public class GameController : MonoBehaviour
 
     for(int i = 0; i < sequenceToPlayList.Count; i++)
     {
+      postGameResultDone = false;
       currentActionID = sequenceToPlayList[i].id;
       currentWordID = sequenceToPlayList[i].word;
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -136,10 +135,11 @@ public class GameController : MonoBehaviour
       RecordSound();
       yield return StartCoroutine(WaitForValidation());
     }
-
+    //Debug.Log("ANTESpostGameResultDone " + postGameResultDone);
     Debug.Log("ACABOU O SEQUENCIA");
-
-    SceneManager.LoadScene("Travel"); 
+    //yield return new WaitUntil(() => postGameResultDone);
+    //Debug.Log("DEPOISpostGameResultDone " + postGameResultDone);
+    //SceneManager.LoadScene("Travel"); 
   }
 
   IEnumerator PrepareNextLevel()
@@ -179,6 +179,19 @@ public class GameController : MonoBehaviour
 
   IEnumerator PrepareLevels()
   {
+    if (PlayerPrefs.HasKey("ChapterOne"))
+    {
+      PlayerPrefs.DeleteKey("ChapterOne");
+    }
+    if (PlayerPrefs.HasKey("ChapterTwo"))
+    {
+      PlayerPrefs.DeleteKey("ChapterTwo");
+    }
+    if (PlayerPrefs.HasKey("ChapterThree"))
+    {
+      PlayerPrefs.DeleteKey("ChapterThree");
+    }
+   
     yield return new WaitUntil(() => webSockets.socketIsReady);
     webSockets.LevelsToPlayRequest(therapistID);
     yield return new WaitUntil(() => webSockets.getLevelsDone);
@@ -258,7 +271,6 @@ public class GameController : MonoBehaviour
     SavWav.Save(currentWord + ".wav", userRecording.clip);
 
     gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
-    //yield return StartCoroutine(webRequests.PostSample(currentWord, contentList[currentActionID].id.ToString(), gameExecutionDone.ToString(), contentList[currentActionID].word.ToString()));
     yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
     
     Debug.Log("LOG POST SAMPLE");
@@ -298,7 +310,8 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(webRequests.PostGameResult("1", "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
     Debug.Log("LOG POST GAMERESULT");
     Debug.Log("ACTIONID: " +  currentActionID.ToString() + "GAMEEXECUTIONID: " +  gameExecutionID.ToString() + "WORD: " + currentWord);
-    //yield return StartCoroutine(webRequests.PostGameResult("1", "0", [currentActionID].id.ToString(), gameExecutionDone.ToString(), startTime, endTime, currentWord));     
+    Debug.Log("SCR " + postGameResultDone);
+    postGameResultDone = true;
   }
 
 
