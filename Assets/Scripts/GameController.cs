@@ -253,15 +253,33 @@ public class GameController : MonoBehaviour
   {
     yield return new WaitUntil(() => webSockets.socketIsReady);
     
-
     if (SceneManager.GetActiveScene().name == "Home")
     {
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
+    
+      Debug.Log("LOG POST SAMPLE");
+      Debug.Log("WORD: " + currentWord + " |  ACTIONID: " +  currentActionID.ToString() + " | GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " | WORDID: " + currentWordID.ToString());
+   
+      gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+      yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
+      Debug.Log("GAMESAMPLEID: " + gameSampleID.ToString());
+
       webSockets.ActionClassificationGeralRequest(therapistID, currentWordID, gameSampleID);
     }
     else
     {
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
+    
+      Debug.Log("LOG POST SAMPLE");
+      Debug.Log("WORD: " + currentWord + " |  ACTIONID: " +  currentActionID.ToString() + " | GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " | WORDID: " + currentWordID.ToString());
+   
+      gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+      yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
+      Debug.Log("GAMESAMPLEID: " + gameSampleID.ToString());
+
       webSockets.ActionClassificationRequest(therapistID, currentWordID, gameSampleID);
-      Debug.Log("ACTION ID " + currentActionID);
     }
 
     yield return new WaitUntil(() => webSockets.validationDone);
@@ -269,17 +287,17 @@ public class GameController : MonoBehaviour
 
     endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
     SavWav.Save(currentWord + ".wav", userRecording.clip);
-
+/*
     gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
     yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
     
     Debug.Log("LOG POST SAMPLE");
-    Debug.Log("WORD: " + currentWord + " ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORDID: " + currentWordID.ToString());
+    Debug.Log("WORD: " + currentWord + " |  ACTIONID: " +  currentActionID.ToString() + " | GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " | WORDID: " + currentWordID.ToString());
    
     gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
     yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
     Debug.Log("GAMESAMPLEID: " + gameSampleID.ToString());
-
+*/
     if(webSockets.validationValue == -1)
     {
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
