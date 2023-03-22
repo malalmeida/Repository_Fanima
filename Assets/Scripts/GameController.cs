@@ -136,7 +136,24 @@ public class GameController : MonoBehaviour
     }
     Debug.Log("ACABOU O SEQUENCIA");
     //yield return new WaitUntil(() => postGameResultDone);
-    //SceneManager.LoadScene("Travel"); 
+   if((SceneManager.GetActiveScene().name == "Home"))
+   {
+    //VAI DIRETAMENTE PARA A SCENE TRAVEL NO HA NIVEL BONUS
+    SceneManager.LoadScene("Travel"); 
+   }
+   else if((SceneManager.GetActiveScene().name == "Frog"))
+   {
+
+   }
+   else if((SceneManager.GetActiveScene().name == "Chameleon"))
+   {
+
+   }
+   else if((SceneManager.GetActiveScene().name == "Octopus"))
+   {
+
+   }
+   
   }
 
   IEnumerator PrepareNextLevel()
@@ -311,8 +328,7 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(webRequests.PostGameResult("1", "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
     Debug.Log("LOG POST GAMERESULT");
     Debug.Log("ACTIONID: " +  currentActionID.ToString() + "GAMEEXECUTIONID: " +  gameExecutionID.ToString() + "WORD: " + currentWord);
-    Debug.Log("SCR " + postGameResultDone);
-    postGameResultDone = true;
+    //postGameResultDone = true;
   }
 
 
