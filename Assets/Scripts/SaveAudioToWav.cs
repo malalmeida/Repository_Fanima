@@ -43,7 +43,11 @@ public static class SavWav {
 			filename += ".wav";
 		}
 
-        var filepath = Path.Combine(Application.persistentDataPath, filename);
+		var filepath = Path.Combine(Application.persistentDataPath, filename);
+		if (PlayerPrefs.HasKey("FILEPATH"))
+    	{
+      		PlayerPrefs.DeleteKey("FILEPATH");
+    	}
 		PlayerPrefs.SetString("FILEPATH", filepath);
 
 

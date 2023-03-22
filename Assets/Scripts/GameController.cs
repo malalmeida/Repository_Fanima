@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using System;
 using TMPro;
 
 public class GameController : MonoBehaviour
@@ -135,21 +134,15 @@ public class GameController : MonoBehaviour
       RecordSound();
       yield return StartCoroutine(WaitForValidation());
     }
-    //Debug.Log("ANTESpostGameResultDone " + postGameResultDone);
     Debug.Log("ACABOU O SEQUENCIA");
     //yield return new WaitUntil(() => postGameResultDone);
-    //Debug.Log("DEPOISpostGameResultDone " + postGameResultDone);
     //SceneManager.LoadScene("Travel"); 
   }
 
   IEnumerator PrepareNextLevel()
-  {
-    Debug.Log("PREPARE NXT LVL " + selectionDone);
-    
+  {    
     yield return new WaitUntil(() => selectionDone);
     
-    Debug.Log("PREPARE NXT LVL AFTER SELECTION " + selectionDone);
-
     if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
     {
       PlayerPrefs.SetInt("NumberOfChaptersPlayed", 2);
@@ -171,9 +164,9 @@ public class GameController : MonoBehaviour
     for(int i = 0; i < contentList.Count; i++)
     {
       if(contentList[i].sequence == activeChapter)
-        {
-          sequenceToPlayList.Add(contentList[i]);
-        } 
+      {
+        sequenceToPlayList.Add(contentList[i]);
+      } 
     }     
   }
 
@@ -196,7 +189,6 @@ public class GameController : MonoBehaviour
     webSockets.LevelsToPlayRequest(therapistID);
     yield return new WaitUntil(() => webSockets.getLevelsDone);
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
-    Debug.Log("PREPARE LVLS " + PlayerPrefs.GetString("LEVELSELECTION"));
 
     if(webSockets.levelsList.Count == 1)
     {
@@ -255,39 +247,30 @@ public class GameController : MonoBehaviour
     
     if (SceneManager.GetActiveScene().name == "Home")
     {
+      yield return new WaitForSeconds(5);
+      endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
+      SavWav.Save(currentWord + ".wav", userRecording.clip);
+
       gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
       yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
     
-      Debug.Log("LOG POST SAMPLE");
-      Debug.Log("WORD: " + currentWord + " |  ACTIONID: " +  currentActionID.ToString() + " | GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " | WORDID: " + currentWordID.ToString());
-   
       gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
       yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
-      Debug.Log("GAMESAMPLEID: " + gameSampleID.ToString());
 
       webSockets.ActionClassificationGeralRequest(therapistID, currentWordID, gameSampleID);
     }
     else
     {
-      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
-      yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
-    
-      Debug.Log("LOG POST SAMPLE");
-      Debug.Log("WORD: " + currentWord + " |  ACTIONID: " +  currentActionID.ToString() + " | GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " | WORDID: " + currentWordID.ToString());
-   
-      gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-      yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
-      Debug.Log("GAMESAMPLEID: " + gameSampleID.ToString());
-
+      yield return new WaitForSeconds(5);
       webSockets.ActionClassificationRequest(therapistID, currentWordID, gameSampleID);
     }
 
     yield return new WaitUntil(() => webSockets.validationDone);
     yield return new WaitUntil(() => webSockets.validationValue > -2);
-
+/*
     endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
     SavWav.Save(currentWord + ".wav", userRecording.clip);
-/*
+
     gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
     yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
     
