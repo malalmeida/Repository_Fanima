@@ -2003,6 +2003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cf2170777174c8999911d148b478e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chapterErrorList: []
+  chapterErrorListDone: 0
 --- !u!1 &1283251458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2915,6 +2917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cf2170777174c8999911d148b478e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chapterErrorList: []
+  chapterErrorListDone: 0
 --- !u!4 &1585997747
 Transform:
   m_ObjectHideFlags: 0
@@ -3735,24 +3739,32 @@ MonoBehaviour:
   structReqDone: 0
   respositoryReqDone: 0
   sampleReqDone: 0
+  gameExecutionDone: 0
+  errorDone: 0
   gameExecutionID: -1
   gameSampleID: -1
   contentList: []
   dataList: []
   webRequests: {fileID: 1585997746}
   webSockets: {fileID: 516158541}
-  listOfChapterActions: []
   userRecording: {fileID: 0}
   wordToSay: {fileID: 1521620292}
   startMenuUI: {fileID: 0}
   homeScript: {fileID: 0}
   chameleonScript: {fileID: 0}
+  frogScript: {fileID: 0}
+  travelScript: {fileID: 0}
   sequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 
-  currentAtionID: -1
+  currentActionID: -1
+  currentWordID: -1
+  sequenceID: -1
   validationDone: 0
-  alreadyRequestLevels: 0
+  selectionDone: 0
+  postGameResultDone: 0
+  errorDetected: 0
+  readyForNextWord: 0
 --- !u!4 &1849421719
 Transform:
   m_ObjectHideFlags: 0
@@ -3877,7 +3889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004800794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.579, y: -2.85, z: 0}
+  m_LocalPosition: {x: 0.515, y: -4.6, z: 0}
   m_LocalScale: {x: 0.08948645, y: 1.2512841, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

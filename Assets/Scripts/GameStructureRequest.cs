@@ -14,8 +14,6 @@ public class GameStructureRequest : MonoBehaviour
       
    readonly string baseURL = "http://193.137.46.11/api/";
 
-
-
    public IEnumerator GetStructureRequest(int gameID)
     {
         var url = baseURL + "game/" + gameID + "/structure";
@@ -35,7 +33,6 @@ public class GameStructureRequest : MonoBehaviour
             
             gameController.contentList = jsonData.content;
             gameController.structReqDone = true;
-             
         }
     }   
 
@@ -93,5 +90,5 @@ public class GameStructureRequest : MonoBehaviour
 
             }
         }
-    } 
+    }   
 }

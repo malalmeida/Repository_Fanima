@@ -14,6 +14,7 @@ public class actionClass
 {
     public int id;
     public string level;
+    public int sequenceid;
     public string sequence;
     public int time; 
     public int repository;

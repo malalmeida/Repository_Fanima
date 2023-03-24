@@ -76,9 +76,7 @@ public class ChameleonScript : MonoBehaviour
             {
                 if(hit.collider != null)
                 {
-                    //Color newColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                    //hit.collider.GetComponent<SpriteRenderer>().material.color = newColor;
-                    if(hit.collider.CompareTag("Chameleon1"))
+                     if(hit.collider.CompareTag("Chameleon1"))
                     {
                         chameleon1.SetActive(false);
                         removedChameleons ++;
