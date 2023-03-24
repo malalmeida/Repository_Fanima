@@ -141,21 +141,17 @@ public class GameController : MonoBehaviour
 
     for( int i = 0; i < webRequests.chapterErrorList.Count; i ++)
     {
-      Debug.Log("LISTA DE ERROS: " + webRequests.chapterErrorList[i].phoneme);
+      //Debug.Log("LISTA DE ERROS: " + webRequests.chapterErrorList[i].phoneme);
 
-      activeChapter = "Fonema/" + webRequests.chapterErrorList[i].phoneme + "/";
+      activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
       
-      Debug.Log("ACTIVE CHAPTER" + activeChapter);
-
       yield return StartCoroutine(PrepareSequence());
 
       for(int j = 0; j < sequenceToPlayList.Count; j++)
       {
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
-        //PlayerPrefs.SetInt("SEQUENCEID", sequenceToPlayList[i].sequenceid);
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-        // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
         currentWord = dataList[sequenceToPlayList[j].word - 1].name;
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
