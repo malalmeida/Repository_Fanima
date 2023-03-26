@@ -90,5 +90,24 @@ public class GameStructureRequest : MonoBehaviour
 
             }
         }
-    }   
+    } 
+
+    public IEnumerator GetTherapist(string patientID)
+    {
+        var url = baseURL + "patient/" + patientID + "/therapist";
+        UnityWebRequest www = UnityWebRequest.Get(url); 
+
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.Log("ERROR GET THERAPIST ID: " + www.error + " END");
+        }
+        else {
+            Debug.Log("ANSWER GET THERAPIST ID: " + www.downloadHandler.text + " END");
+            TherapistInfo therapistInfo = JsonUtility.FromJson<TherapistInfo>(www.downloadHandler.text);            
+            
+            PlayerPrefs.SetInt("THERAPISTID", therapistInfo.content[0].id);
+        }
+    }
+      
 }

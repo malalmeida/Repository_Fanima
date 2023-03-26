@@ -7,11 +7,9 @@ using System;
 public class MenuController : MonoBehaviour
 {
     const int PLAYGAMEID = 29;
-    int USERID;
-    //public WebRequests webRequests;
+    int patientID;
     public GameObject startMenuUI;
     public GameObject pauseMenuUI;
-    //private bool isOnline = false;
     private string startTime;
     private string endTime;
 
@@ -21,25 +19,24 @@ public class MenuController : MonoBehaviour
     {
        StartCoroutine(gameStructureRequest.GetStructureRequest(PLAYGAMEID));
        StartCoroutine(gameStructureRequest.GetRepository());
+       
     }
 
     void Start()
     {
-        USERID = Int32.Parse(PlayerPrefs.GetString("PLAYERID", "52"));
+        //patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID", "52"));
+        patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
+        PlayerPrefs.SetInt("PATIENTID", patientID);
         pauseMenuUI.SetActive(false);
-
+        StartCoroutine(gameStructureRequest.GetTherapist(patientID.ToString()));
     }
 
     public void StartGame()
     {
-        StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), USERID.ToString()));
+        StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
 
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         Time.timeScale = 1f;
-        //isOnline = true;
         startMenuUI.SetActive(false); 
-    
-        //SceneManager.LoadScene("Frog");
-
     }
 }

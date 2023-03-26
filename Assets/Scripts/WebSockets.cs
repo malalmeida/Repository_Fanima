@@ -5,6 +5,8 @@ using System;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 using System.Web;
 
@@ -22,7 +24,7 @@ public class WebSockets : MonoBehaviour{
     public event WebSocketOnMessageHandler onMessage;
     public delegate void WebSocketOnProcessHandler();
     public event WebSocketOnProcessHandler onProcess;
-    public int userID;
+    public int patientID = -1;
     public int gameID;
     public string appName;
     public int therapistID = -1;
@@ -38,10 +40,10 @@ public class WebSockets : MonoBehaviour{
     public int validationValue;
     public List<string> levelsList; 
     
-    public void SetupClient(string url, int userId, int gameId, string appName)
+    public void SetupClient(string url, int patientID, int gameId, string appName)
     {
         this.wsURL = url;
-        this.userID = userId;
+        this.patientID = patientID;
         this.gameID = gameId;
         this.appName = appName;
     }
@@ -54,7 +56,8 @@ public class WebSockets : MonoBehaviour{
 
         ws.OnOpen += (sender, e) => {
             //Debug.Log("ws open");
-            ws.Send("{\"id\":\"" + userID + "\",\"msg\":\"app\",\"value\":\"" + appName + "\"}");
+            ws.Send("{\"id\":\"" + patientID + "\",\"msg\":\"app\",\"value\":\"" + appName + "\"}");
+            
             socketIsReady = true;
         }; 
         ws.OnClose += (sender, e) => {
@@ -115,7 +118,7 @@ public class WebSockets : MonoBehaviour{
     {
         try
         {
-            ws.Send("{\"id\":" + userID + ",\"msg\":\"" + msg + "\",\"value\":" + value + "}");
+            ws.Send("{\"id\":" + patientID + ",\"msg\":\"" + msg + "\",\"value\":" + value + "}");
         }
         catch (Exception) { }
     }
