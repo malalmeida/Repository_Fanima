@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Linq;
+
 
 public class GameController : MonoBehaviour
 {
@@ -142,31 +144,25 @@ public class GameController : MonoBehaviour
     
     for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
     { 
-      if(activeChapter == "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/")
-      {
-        Debug.Log("PROXIMO FONEMA");
-      }
-      else
-      {
-        activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
-        Debug.Log("FONEMA: " + webRequests.chapterErrorList[i].phoneme);
+      activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
+      Debug.Log("FONEMA: " + webRequests.chapterErrorList[i].phoneme);
       
-        yield return StartCoroutine(PrepareSequence());
+      yield return StartCoroutine(PrepareSequence());
 
-        for(int j = 0; j < sequenceToPlayList.Count; j++)
-        {
-          currentActionID = sequenceToPlayList[j].id;
-          currentWordID = sequenceToPlayList[j].word;
-          startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-          currentWord = dataList[sequenceToPlayList[j].word - 1].name;
-          string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
-          webSockets.PrepareMessage("game", payload); 
-          Debug.Log("DIZ -> " + currentWord); 
-          wordToSay.text = currentWord;
-          RecordSound();
-          yield return StartCoroutine(WaitForValidation());
-        }
-      }    
+      for(int j = 0; j < sequenceToPlayList.Count; j++)
+      {      
+        Debug.Log("ENTROU NO FOR j");
+        currentActionID = sequenceToPlayList[j].id;
+        currentWordID = sequenceToPlayList[j].word;
+        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+        currentWord = dataList[sequenceToPlayList[j].word - 1].name;
+        string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
+        webSockets.PrepareMessage("game", payload); 
+        Debug.Log("DIZ -> " + currentWord); 
+        wordToSay.text = currentWord;
+        RecordSound();
+        yield return StartCoroutine(WaitForValidation());
+      }   
     }
     Debug.Log("ACABOU CAPITULO BONUS");
     SceneManager.LoadScene("Travel");      
@@ -219,7 +215,6 @@ public class GameController : MonoBehaviour
     {
       if(errorDetected == true)
       {
-        Debug.Log("DETETOU ERROS? " + errorDetected);
         SceneManager.LoadScene("Owl"); 
       }
       else
@@ -244,6 +239,7 @@ public class GameController : MonoBehaviour
   IEnumerator PrepareNextLevel()
   {    
     yield return new WaitUntil(() => selectionDone);
+    yield return new WaitUntil(() => travelScript.patientInteractionDone);
     
     if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
     {
@@ -268,7 +264,7 @@ public class GameController : MonoBehaviour
       if(contentList[i].sequence == activeChapter)
       {
         sequenceToPlayList.Add(contentList[i]);
-        Debug.Log("PHONEME ADD: " + dataList[contentList[i].word].name);
+        Debug.Log("PHONEME ADD: " + dataList[contentList[i].word - 1].name);
       } 
     }     
   }
@@ -414,7 +410,7 @@ public class GameController : MonoBehaviour
       {
         //chameleonScript.randomIndex = Random.Range(0, 12);
         //yield return new WaitUntil(() => chameleonScript.isCaught);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         webSockets.validationValue = -2;
         //chameleonScript.isCaught = false;
       }
@@ -427,7 +423,7 @@ public class GameController : MonoBehaviour
 
     }
     yield return StartCoroutine(webRequests.PostGameResult("1", "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
-    Debug.Log("LOG POST GAMERESULT");
+    Debug.Log("LOG POST GAME RESULT");
     Debug.Log("ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORD: " + currentWord);
   }
 

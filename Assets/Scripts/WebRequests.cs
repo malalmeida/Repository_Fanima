@@ -120,7 +120,7 @@ public class WebRequests : MonoBehaviour
 
      public IEnumerator GetChapterErrors(string gameExeID, string sequenceID)
     {
-        var url = baseURL + "gameexecution/" + gameExeID + "/sequence/" + sequenceID + "/error" ;
+        var url = baseURL + "gameexecution/" + gameExeID + "/sequence/" + sequenceID + "/error/phoneme" ;
         Debug.Log("GAMEEXEID " + gameExeID + " SEQUENCEID " + sequenceID);
         UnityWebRequest www = UnityWebRequest.Get(url);
 

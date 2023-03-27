@@ -27,8 +27,8 @@ public class TravelScript : MonoBehaviour
         if(cloudsRemoved == 4)
         {
             animator.SetBool("finish", true);
+            //PlayerPrefs.SetInt("ChapterNumber", 0);
             patientInteractionDone = true;
-            PlayerPrefs.SetInt("ChapterNumber", 0);
         }
 
         if(Input.GetMouseButtonDown(0))
