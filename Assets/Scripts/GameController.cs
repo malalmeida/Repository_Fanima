@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
   public bool postGameResultDone = false;
   public bool errorDetected = false;
   public bool readyForNextWord = false;
+  public bool prepareLevelsDone = false;
 
   public List<errorClass> phonemeList;
 
@@ -145,13 +146,12 @@ public class GameController : MonoBehaviour
     for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
     { 
       activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
-      Debug.Log("FONEMA: " + webRequests.chapterErrorList[i].phoneme);
+      Debug.Log("FONEMA: " + activeChapter);
       
       yield return StartCoroutine(PrepareSequence());
 
       for(int j = 0; j < sequenceToPlayList.Count; j++)
       {      
-        Debug.Log("ENTROU NO FOR j");
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -239,7 +239,8 @@ public class GameController : MonoBehaviour
   IEnumerator PrepareNextLevel()
   {    
     yield return new WaitUntil(() => selectionDone);
-    yield return new WaitUntil(() => travelScript.patientInteractionDone);
+    yield return new WaitUntil(() => prepareLevelsDone);
+   // yield return new WaitUntil(() => travelScript.patientInteractionDone);
     
     if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
     {
@@ -258,6 +259,11 @@ public class GameController : MonoBehaviour
 
   IEnumerator PrepareSequence()
   {
+    if(sequenceToPlayList.Count > 0 )
+    {
+      sequenceToPlayList.Clear();
+    }
+
     yield return StartCoroutine(PrepareGameStructure());
     for(int i = 0; i < contentList.Count; i++)
     {
@@ -287,7 +293,7 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => webSockets.socketIsReady);
     webSockets.LevelsToPlayRequest(therapistID);
     yield return new WaitUntil(() => webSockets.getLevelsDone);
-    yield return new WaitUntil(() => travelScript.patientInteractionDone);
+    //yield return new WaitUntil(() => travelScript.patientInteractionDone);
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
 
     if(webSockets.levelsList.Count == 1)
@@ -341,6 +347,7 @@ public class GameController : MonoBehaviour
       PlayerPrefs.SetString("ChapterThree", "Octopus");
     }
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
+  prepareLevelsDone = true;
   }
 
   IEnumerator WaitForValidation()

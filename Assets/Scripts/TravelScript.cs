@@ -24,6 +24,7 @@ public class TravelScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if(cloudsRemoved == 4)
         {
             animator.SetBool("finish", true);
@@ -47,6 +48,7 @@ public class TravelScript : MonoBehaviour
                 }
             }
         }
+        */
 
 /*
         if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
