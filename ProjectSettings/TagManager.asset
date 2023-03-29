@@ -48,6 +48,15 @@ TagManager:
   - Bug12
   - Bug13
   - Bug14
+  - Circle
+  - Square
+  - Triangle
+  - Rock
+  - Menu
+  - WS
+  - WR
+  - GS
+  - GC
   layers:
   - Default
   - TransparentFX

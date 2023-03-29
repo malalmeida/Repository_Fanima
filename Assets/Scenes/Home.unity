@@ -2420,7 +2420,7 @@ GameObject:
   - component: {fileID: 503211620}
   m_Layer: 0
   m_Name: WebSockets
-  m_TagString: Untagged
+  m_TagString: WS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2453,7 +2453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wsURL: 
-  userID: 0
+  patientID: -1
   gameID: 0
   appName: 
   therapistID: -1
@@ -3295,7 +3295,7 @@ GameObject:
   - component: {fileID: 754679393}
   m_Layer: 5
   m_Name: Menus
-  m_TagString: Untagged
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3662,7 +3662,7 @@ GameObject:
   - component: {fileID: 838026525}
   m_Layer: 0
   m_Name: WebRequests
-  m_TagString: Untagged
+  m_TagString: WR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3694,6 +3694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94cf2170777174c8999911d148b478e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chapterErrorList: []
+  chapterErrorListDone: 0
 --- !u!1 &877108620
 GameObject:
   m_ObjectHideFlags: 0
@@ -5698,7 +5700,7 @@ GameObject:
   - component: {fileID: 1403301865}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5813,28 +5815,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wsURL: ws://193.137.46.11/
   appName: Fanima
-  userID: 52
+  therapistID: 0
+  patientID: 0
   structReqDone: 0
   respositoryReqDone: 0
   sampleReqDone: 0
+  gameExecutionDone: 0
+  errorDone: 0
   gameExecutionID: -1
   gameSampleID: -1
   contentList: []
   dataList: []
   webRequests: {fileID: 838026525}
   webSockets: {fileID: 503211620}
-  listOfChapterActions: []
   userRecording: {fileID: 0}
   wordToSay: {fileID: 1217541145}
   startMenuUI: {fileID: 654202547}
   homeScript: {fileID: 1451663371}
   chameleonScript: {fileID: 0}
+  frogScript: {fileID: 0}
+  travelScript: {fileID: 0}
   sequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 
-  currentAtionID: -1
+  currentActionID: -1
+  currentWordID: -1
+  sequenceID: -1
   validationDone: 0
-  alreadyRequestLevels: 0
+  selectionDone: 0
+  postGameResultDone: 0
+  errorDetected: 0
+  readyForNextWord: 0
+  prepareLevelsDone: 0
+  phonemeList: []
 --- !u!4 &1403301867
 Transform:
   m_ObjectHideFlags: 0
@@ -7149,7 +7162,7 @@ GameObject:
   - component: {fileID: 1636333773}
   m_Layer: 0
   m_Name: GameStructureRequest
-  m_TagString: Untagged
+  m_TagString: GS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

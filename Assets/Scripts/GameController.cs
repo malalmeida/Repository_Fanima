@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
   public int currentActionID = -1;
   public int currentWordID = -1;
   public int sequenceID = -1;
+  public int timer = -1;
 
   public bool validationDone = false;
 
@@ -62,6 +63,13 @@ public class GameController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    
+    DontDestroyOnLoad(GameObject.FindWithTag("GC"));
+    DontDestroyOnLoad(GameObject.FindWithTag("WR"));
+    DontDestroyOnLoad(GameObject.FindWithTag("WS"));
+    DontDestroyOnLoad(GameObject.FindWithTag("GS"));
+    DontDestroyOnLoad(GameObject.FindWithTag("Menu"));
+
     rb = GetComponent<Rigidbody2D>();
     webSockets = new WebSockets();
     therapistID = PlayerPrefs.GetInt("THERAPISTID");
@@ -160,7 +168,7 @@ public class GameController : MonoBehaviour
         webSockets.PrepareMessage("game", payload); 
         Debug.Log("DIZ -> " + currentWord); 
         wordToSay.text = currentWord;
-        RecordSound();
+        RecordSound(timer);
         yield return StartCoroutine(WaitForValidation());
       }   
     }
@@ -189,7 +197,8 @@ public class GameController : MonoBehaviour
       webSockets.PrepareMessage("game", payload); 
       Debug.Log("DIZ -> " + currentWord); 
       wordToSay.text = currentWord;
-      RecordSound();
+      timer = sequenceToPlayList[i].time;
+      RecordSound(timer);
       yield return StartCoroutine(WaitForValidation());
     }
     Debug.Log("ACABOU O SEQUENCIA");
@@ -356,7 +365,7 @@ public class GameController : MonoBehaviour
     
     if (SceneManager.GetActiveScene().name == "Home")
     {
-      yield return new WaitForSeconds(2);
+      yield return new WaitForSeconds(timer);
       endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
       SavWav.Save(currentWord + ".wav", userRecording.clip);
 
@@ -370,7 +379,7 @@ public class GameController : MonoBehaviour
     }
     else
     {
-      yield return new WaitForSeconds(2);
+      yield return new WaitForSeconds(timer);     
       endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
       SavWav.Save(currentWord + ".wav", userRecording.clip);
 
@@ -391,7 +400,7 @@ public class GameController : MonoBehaviour
     {
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       Debug.Log("DIZ -> " + currentWord); 
-      RecordSound();
+      RecordSound(timer);
       webSockets.validationValue = -2;
       yield return StartCoroutine(WaitForValidation());
     }
@@ -415,19 +424,27 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Chameleon")
       {
-        //chameleonScript.randomIndex = Random.Range(0, 12);
-        //yield return new WaitUntil(() => chameleonScript.isCaught);
-        yield return new WaitForSeconds(1);
+        chameleonScript.randomIndex = Random.Range(0, 12);
+        yield return new WaitUntil(() => chameleonScript.isCaught);
         webSockets.validationValue = -2;
-        //chameleonScript.isCaught = false;
+        chameleonScript.isCaught = false;
+      }
+      else if (SceneManager.GetActiveScene().name == "Octopus")
+      {
+        webSockets.validationValue = -2;
+      }
+      else if (SceneManager.GetActiveScene().name == "Monkey")
+      {
+        webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
-        yield return new WaitForSeconds(1);
         webSockets.validationValue = -2;
       }
-
-
+      else if (SceneManager.GetActiveScene().name == "Fish")
+      {
+        webSockets.validationValue = -2;
+      }
     }
     yield return StartCoroutine(webRequests.PostGameResult("1", "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
     Debug.Log("LOG POST GAME RESULT");
@@ -469,10 +486,10 @@ public class GameController : MonoBehaviour
       }
   }
 
-  void RecordSound()
+  void RecordSound(int timer)
   {
     userRecording = GetComponent<AudioSource>();
-    userRecording.clip = Microphone.Start("", true, 2, 48000);
+    userRecording.clip = Microphone.Start("", true, timer, 48000);
   }
 
   void SaveSound(string fileName)
