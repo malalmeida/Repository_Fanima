@@ -152,7 +152,7 @@ public class MonkeyScript : MonoBehaviour
 
     public void  WaitToShowMonkey()
     {
-        Debug.Log("CAMELEON NUMBER " + randomIndex);
+        Debug.Log("MONKEY NUMBER " + randomIndex);
         monkeyList[randomIndex].SetActive(true);
         randomIndex = -1;
     }

@@ -37,6 +37,12 @@ public class GameController : MonoBehaviour
   public ChameleonScript chameleonScript;
   public FrogScript frogScript;
   public TravelScript travelScript;
+  public MonkeyScript monkeyScript;
+  public OwlScript owlScript;
+  public OctopusScript octopusScript;
+  public FishScript fishScript;
+
+
 
   string startTime;
   string endTime;
@@ -169,6 +175,7 @@ public class GameController : MonoBehaviour
         webSockets.PrepareMessage("game", payload); 
         Debug.Log("DIZ -> " + currentWord); 
         wordToSay.text = currentWord;
+        timer = sequenceToPlayList[i].time;
         RecordSound(timer);
         yield return StartCoroutine(WaitForValidation());
       }   
@@ -424,7 +431,7 @@ public class GameController : MonoBehaviour
       {
         frogScript.randomIndex = Random.Range(0, 14);
         yield return new WaitUntil(() => frogScript.isCaught);
-        chameleonScript.isCaught = false;
+        frogScript.isCaught = false;
         webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Chameleon")
@@ -436,19 +443,31 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Octopus")
       {
+        //octopusScript.randomIndex = Random.Range(0, 13);
+        //yield return new WaitUntil(() => octopusScript.isCaught);
+        //octopusScript.isCaught = false;
         webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Monkey")
       {
+        monkeyScript.randomIndex = Random.Range(0, 11);
+        yield return new WaitUntil(() => monkeyScript.isCaught);
+        monkeyScript.isCaught = false;
         webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
+        owlScript.randomIndex = Random.Range(0, 28);
+        yield return new WaitUntil(() => owlScript.isMatch);
+        owlScript.isMatch = false;
         webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Fish")
       {
-        webSockets.validationValue = -2;
+        //fishScript.randomIndex = Random.Range(0, 13);
+        //yield return new WaitUntil(() => fishScript.isCaught);
+        //fishScript.isCaught = false;
+        //webSockets.validationValue = -2;
       }
     }
     yield return StartCoroutine(webRequests.PostGameResult("1", "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
@@ -475,20 +494,6 @@ public class GameController : MonoBehaviour
       yield return new WaitUntil(() => gameExecutionDone);
       Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
     }
-  }
-
-  //FROG GAME 
-  private void OnCollisionEnter2D(Collision2D other)
-  {
-      if(other.gameObject.CompareTag("Leaf0"))
-      {
-        
-      }
-      
-      if(other.gameObject.CompareTag("Leaf1"))
-      {
-        
-      }
   }
 
   void RecordSound(int timer)

@@ -118,7 +118,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 0)
             {
-              bugTouch1.SetActive(false);
+              //bugTouch1.SetActive(false);
               bug1.SetActive(false);
               bugsFound ++;
               isCaught = true; 
@@ -128,7 +128,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 1)
             {
-              bugTouch2.SetActive(false);
+              //bugTouch2.SetActive(false);
               bug2.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -138,7 +138,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 2)
             {
-              bugTouch3.SetActive(false);
+              //bugTouch3.SetActive(false);
               bug3.SetActive(false);     
               bugsFound ++;
               isCaught = true;
@@ -148,7 +148,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 3)
             {
-              bugTouch4.SetActive(false);
+              //bugTouch4.SetActive(false);
               bug4.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -159,7 +159,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 4)
             {
-              bugTouch5.SetActive(false);
+              //bugTouch5.SetActive(false);
               bug5.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -169,7 +169,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 5)
             {
-              bugTouch6.SetActive(false);
+              //bugTouch6.SetActive(false);
               bug6.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -179,7 +179,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 6)
             {
-              bugTouch7.SetActive(false);
+              //bugTouch7.SetActive(false);
               bug7.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -189,7 +189,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 7)
             {
-              bugTouch8.SetActive(false);
+              //bugTouch8.SetActive(false);
               bug8.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -199,7 +199,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 8)
             {
-              bugTouch9.SetActive(false);
+              //bugTouch9.SetActive(false);
               bug9.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -209,7 +209,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 9)
             {
-              bugTouch10.SetActive(false);
+              //bugTouch10.SetActive(false);
               bug10.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -219,7 +219,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 10)
             {
-              bugTouch11.SetActive(false);
+              //bugTouch11.SetActive(false);
               bug11.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -229,7 +229,7 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 11)
             {
-              bugTouch12.SetActive(false);
+              //bugTouch12.SetActive(false);
               bug12.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -239,11 +239,10 @@ public class FrogScript : MonoBehaviour
           {
             if(randomIndex == 12)
             {
-              bugTouch13.SetActive(false);
+              //bugTouch13.SetActive(false);
               bug13.SetActive(false);
               bugsFound ++;
               isCaught = true;
-
             }
           }  
           if(hit.collider.CompareTag("Bug14"))
@@ -254,7 +253,6 @@ public class FrogScript : MonoBehaviour
               bug14.SetActive(false);
               bugsFound ++;
               isCaught = true;
-
             }
           }   
         }
