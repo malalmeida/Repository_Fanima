@@ -420,14 +420,16 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
         frogScript.randomIndex = Random.Range(0, 14);
+        yield return new WaitUntil(() => frogScript.isCaught);
+        chameleonScript.isCaught = false;
         webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Chameleon")
       {
         chameleonScript.randomIndex = Random.Range(0, 12);
         yield return new WaitUntil(() => chameleonScript.isCaught);
-        webSockets.validationValue = -2;
         chameleonScript.isCaught = false;
+        webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Octopus")
       {

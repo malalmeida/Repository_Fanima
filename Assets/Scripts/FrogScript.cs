@@ -116,7 +116,7 @@ public class FrogScript : MonoBehaviour
           
           if(hit.collider.CompareTag("Bug1"))
           {
-            if(randomIndex == 1)
+            if(randomIndex == 0)
             {
               bugTouch1.SetActive(false);
               bug1.SetActive(false);
@@ -124,9 +124,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true; 
             }
           } 
-          else if(hit.collider.CompareTag("Bug2"))
+          if(hit.collider.CompareTag("Bug2"))
           {
-            if(randomIndex == 2)
+            if(randomIndex == 1)
             {
               bugTouch2.SetActive(false);
               bug2.SetActive(false);
@@ -134,9 +134,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug3"))
+          if(hit.collider.CompareTag("Bug3"))
           {
-            if(randomIndex == 3)
+            if(randomIndex == 2)
             {
               bugTouch3.SetActive(false);
               bug3.SetActive(false);     
@@ -144,9 +144,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug4"))
+          if(hit.collider.CompareTag("Bug4"))
           {
-            if(randomIndex == 4)
+            if(randomIndex == 3)
             {
               bugTouch4.SetActive(false);
               bug4.SetActive(false);
@@ -155,9 +155,9 @@ public class FrogScript : MonoBehaviour
             }
             
           } 
-          else if(hit.collider.CompareTag("Bug5"))
+          if(hit.collider.CompareTag("Bug5"))
           {
-            if(randomIndex == 5)
+            if(randomIndex == 4)
             {
               bugTouch5.SetActive(false);
               bug5.SetActive(false);
@@ -165,9 +165,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug6"))
+          if(hit.collider.CompareTag("Bug6"))
           {
-            if(randomIndex == 6)
+            if(randomIndex == 5)
             {
               bugTouch6.SetActive(false);
               bug6.SetActive(false);
@@ -175,9 +175,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug7"))
+          if(hit.collider.CompareTag("Bug7"))
           {
-            if(randomIndex == 7)
+            if(randomIndex == 6)
             {
               bugTouch7.SetActive(false);
               bug7.SetActive(false);
@@ -185,9 +185,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug8"))
+          if(hit.collider.CompareTag("Bug8"))
           {
-            if(randomIndex == 8)
+            if(randomIndex == 7)
             {
               bugTouch8.SetActive(false);
               bug8.SetActive(false);
@@ -195,9 +195,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug9"))
+          if(hit.collider.CompareTag("Bug9"))
           {
-            if(randomIndex == 9)
+            if(randomIndex == 8)
             {
               bugTouch9.SetActive(false);
               bug9.SetActive(false);
@@ -205,9 +205,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug10"))
+          if(hit.collider.CompareTag("Bug10"))
           {
-            if(randomIndex == 10)
+            if(randomIndex == 9)
             {
               bugTouch10.SetActive(false);
               bug10.SetActive(false);
@@ -215,9 +215,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug11"))
+          if(hit.collider.CompareTag("Bug11"))
           {
-            if(randomIndex == 11)
+            if(randomIndex == 10)
             {
               bugTouch11.SetActive(false);
               bug11.SetActive(false);
@@ -225,9 +225,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug12"))
+          if(hit.collider.CompareTag("Bug12"))
           {
-            if(randomIndex == 12)
+            if(randomIndex == 11)
             {
               bugTouch12.SetActive(false);
               bug12.SetActive(false);
@@ -235,9 +235,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           } 
-          else if(hit.collider.CompareTag("Bug13"))
+          if(hit.collider.CompareTag("Bug13"))
           {
-            if(randomIndex == 13)
+            if(randomIndex == 12)
             {
               bugTouch13.SetActive(false);
               bug13.SetActive(false);
@@ -245,9 +245,9 @@ public class FrogScript : MonoBehaviour
               isCaught = true;
             }
           }  
-          else if(hit.collider.CompareTag("Bug14"))
+          if(hit.collider.CompareTag("Bug14"))
           {
-            if(randomIndex == 14)
+            if(randomIndex == 13)
             {
               bugTouch14.SetActive(false);
               bug14.SetActive(false);
@@ -305,6 +305,19 @@ public class FrogScript : MonoBehaviour
       
     animator.SetFloat("yVelocity", rb.velocity.y);
 
+    for (int i =0; i<2 ; i++)
+    {
+      if(bugsFound == 14 && !isJumping)
+      {
+        animator.SetBool("Jump", true);
+        playerSpeed = 1.8f;
+
+        rb.AddForce(new Vector2(rb.velocity.x, 500));
+
+        isJumping = true;
+      }
+    }
+   /*
     if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
     {
       animator.SetBool("Jump", true);
@@ -314,6 +327,7 @@ public class FrogScript : MonoBehaviour
 
       isJumping = true;
     }
+    */
   }
 
   public void  WaitToPickBug()
@@ -357,10 +371,10 @@ public class FrogScript : MonoBehaviour
 
       waterSplashSound.Play();  
 
-      if(bugsFound == 14)
-      {
+      //if(bugsFound == 13)
+      //{
         confetti.Play();
-      }     
+      //}     
     }
   }
 }

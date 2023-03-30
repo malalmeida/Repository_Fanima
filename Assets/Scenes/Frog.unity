@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 52912778}
   - component: {fileID: 52912779}
+  - component: {fileID: 52912780}
   m_Layer: 0
   m_Name: bug3
   m_TagString: Bug3
@@ -207,6 +208,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &52912780
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52912777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.78, y: 3, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &57118413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 165410351}
   - component: {fileID: 165410352}
+  - component: {fileID: 165410353}
   m_Layer: 0
   m_Name: bug11
   m_TagString: Bug11
@@ -1205,6 +1220,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &165410353
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165410350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2599998, y: 3.32, z: 0.2}
+  m_Center: {x: 0, y: 0.00000011920929, z: 0}
 --- !u!1 &243388989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243388990}
   - component: {fileID: 243388991}
+  - component: {fileID: 243388992}
   m_Layer: 0
   m_Name: bug12
   m_TagString: Bug12
@@ -1289,6 +1318,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &243388992
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243388989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.55, y: 5.48, z: 0.2}
+  m_Center: {x: 0.00000047683716, y: 0, z: 0}
 --- !u!1 &256215413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 468164583}
   - component: {fileID: 468164584}
+  - component: {fileID: 468164585}
   m_Layer: 0
   m_Name: bug13
   m_TagString: Bug13
@@ -2674,6 +2717,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &468164585
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468164582}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.2, y: 4.02, z: 0.2}
+  m_Center: {x: 0.0000009536743, y: -0.00000047683716, z: 0}
 --- !u!1 &480941524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,6 +2824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 492812000}
   - component: {fileID: 492812001}
+  - component: {fileID: 492812002}
   m_Layer: 0
   m_Name: bug8
   m_TagString: Bug8
@@ -2842,6 +2899,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &492812002
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492811999}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.12, y: 5.34, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,6 +3042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543180996}
   - component: {fileID: 543180995}
+  - component: {fileID: 543180997}
   m_Layer: 0
   m_Name: bug1
   m_TagString: Bug1
@@ -3046,6 +3117,19 @@ Transform:
   m_Father: {fileID: 264628283}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &543180997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543180994}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.7999997, y: 3.48, z: 0.2}
+  m_Center: {x: 0.00000047683716, y: -0.00000047683716, z: 0}
 --- !u!1 &567431301
 GameObject:
   m_ObjectHideFlags: 0
@@ -3905,6 +3989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852675965}
   - component: {fileID: 852675966}
+  - component: {fileID: 852675967}
   m_Layer: 0
   m_Name: bug5
   m_TagString: Bug5
@@ -3979,6 +4064,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &852675967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852675964}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.62, y: 2.96, z: 0.2}
+  m_Center: {x: -0.0000009536743, y: -0.00000047683716, z: 0}
 --- !u!1 &911394219
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,6 +4339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003128633}
   - component: {fileID: 1003128634}
+  - component: {fileID: 1003128635}
   m_Layer: 0
   m_Name: bug14
   m_TagString: Bug14
@@ -4315,6 +4414,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1003128635
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003128632}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.6599998, y: 4.1200004, z: 0.2}
+  m_Center: {x: 0.0000009536743, y: 0, z: 0}
 --- !u!1 &1007046496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4453,6 +4565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1039863139}
   - component: {fileID: 1039863140}
+  - component: {fileID: 1039863141}
   m_Layer: 0
   m_Name: bug9
   m_TagString: Bug9
@@ -4527,6 +4640,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1039863141
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039863138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.9799995, y: 2.7599998, z: 0.2}
+  m_Center: {x: 0, y: 0.00000047683716, z: 0}
 --- !u!1 &1085860173
 GameObject:
   m_ObjectHideFlags: 0
@@ -5135,6 +5261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1264802269}
   - component: {fileID: 1264802270}
+  - component: {fileID: 1264802271}
   m_Layer: 0
   m_Name: bug7
   m_TagString: Bug7
@@ -5209,6 +5336,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1264802271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264802268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.14, y: 3.2199998, z: 0.2}
+  m_Center: {x: 0, y: -0.00000047683716, z: 0}
 --- !u!1 &1283251458
 GameObject:
   m_ObjectHideFlags: 0
@@ -5751,6 +5891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1390116024}
   - component: {fileID: 1390116025}
+  - component: {fileID: 1390116026}
   m_Layer: 0
   m_Name: bug4
   m_TagString: Bug4
@@ -5825,6 +5966,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1390116026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390116023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.7199993, y: 2.3, z: 0.2}
+  m_Center: {x: 0.0000009536743, y: -0.00000047683716, z: 0}
 --- !u!1 &1419843773
 GameObject:
   m_ObjectHideFlags: 0
@@ -5965,6 +6119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1470581496}
   - component: {fileID: 1470581497}
+  - component: {fileID: 1470581498}
   m_Layer: 0
   m_Name: bug6
   m_TagString: Bug6
@@ -6039,6 +6194,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1470581498
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470581495}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.9399996, y: 3.1800005, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1478747543
 GameObject:
   m_ObjectHideFlags: 0
@@ -8170,6 +8338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1857708265}
   - component: {fileID: 1857708266}
+  - component: {fileID: 1857708267}
   m_Layer: 0
   m_Name: bug2
   m_TagString: Bug2
@@ -8244,6 +8413,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1857708267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857708264}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1800003, y: 3.8400004, z: 0.2}
+  m_Center: {x: 0, y: -0.0000009536743, z: 0}
 --- !u!1 &1865117211
 GameObject:
   m_ObjectHideFlags: 0
@@ -13532,6 +13714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2072832646}
   - component: {fileID: 2072832647}
+  - component: {fileID: 2072832648}
   m_Layer: 0
   m_Name: bug10
   m_TagString: Bug10
@@ -13606,3 +13789,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &2072832648
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072832645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.3, y: 4.0399995, z: 0.2}
+  m_Center: {x: 0, y: -0.00000047683716, z: 0}
