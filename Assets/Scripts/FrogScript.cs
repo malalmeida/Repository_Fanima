@@ -243,21 +243,25 @@ public class FrogScript : MonoBehaviour
               bug13.SetActive(false);
               bugsFound ++;
               isCaught = true;
+
             }
           }  
           if(hit.collider.CompareTag("Bug14"))
           {
             if(randomIndex == 13)
             {
-              bugTouch14.SetActive(false);
+              //bugTouch14.SetActive(false);
               bug14.SetActive(false);
               bugsFound ++;
               isCaught = true;
+
             }
           }   
         }
       }
       Debug.Log("bugsFound " + bugsFound);
+      randomIndex = -1;
+
     }
     Vector3 v3;
 /*
@@ -334,8 +338,6 @@ public class FrogScript : MonoBehaviour
   {
     Debug.Log("BUG NUMBER " + randomIndex);
     bugList[randomIndex].SetActive(true);
-
-    randomIndex = -1;
   }
 
   private void OnCollisionEnter2D(Collision2D other)

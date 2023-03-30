@@ -63,12 +63,13 @@ public class GameController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    
+    /*
     DontDestroyOnLoad(GameObject.FindWithTag("GC"));
     DontDestroyOnLoad(GameObject.FindWithTag("WR"));
     DontDestroyOnLoad(GameObject.FindWithTag("WS"));
     DontDestroyOnLoad(GameObject.FindWithTag("GS"));
     DontDestroyOnLoad(GameObject.FindWithTag("Menu"));
+    */
 
     rb = GetComponent<Rigidbody2D>();
     webSockets = new WebSockets();
@@ -184,9 +185,12 @@ public class GameController : MonoBehaviour
     }
 
     yield return StartCoroutine(PrepareSequence());
-
+    yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
+    Debug.Log("CHECK 1 " + sequenceToPlayList.Count);
     for(int i = 0; i < sequenceToPlayList.Count; i++)
     {
+      Debug.Log("CHECK 2 " + sequenceToPlayList.Count);
+
       currentActionID = sequenceToPlayList[i].id;
       currentWordID = sequenceToPlayList[i].word;
       PlayerPrefs.SetInt("SEQUENCEID", sequenceToPlayList[i].sequenceid);
@@ -279,7 +283,6 @@ public class GameController : MonoBehaviour
       if(contentList[i].sequence == activeChapter)
       {
         sequenceToPlayList.Add(contentList[i]);
-        Debug.Log("PHONEME ADD: " + dataList[contentList[i].word - 1].name);
       } 
     }     
   }
