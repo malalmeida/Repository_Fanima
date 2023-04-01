@@ -46,6 +46,9 @@ public class OwlScript : MonoBehaviour
 
     public int randomIndex = -1;
 
+    private Transform dragging = null;
+    private Vector3 offset;
+    [SerializeField] private LayerMask movableLayers;
 
     public GameObject currentObj;
 
@@ -124,14 +127,43 @@ public class OwlScript : MonoBehaviour
         {
             WaitToShowObj();
         }
-        
+         
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            // Cast our own ray.
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.PositiveInfinity, movableLayers);
+            if (hit) 
+            {
+                // If we hit, record the transform of the object we hit.
+                dragging = hit.transform;
+                // And record the offset.
+                offset = dragging.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+        }
+        else if (Input.GetMouseButtonUp(0)) 
+        {
+            // Stop dragging.
+            dragging = null;
+        }
+
+        if (dragging != null) {
+        // Move object, taking into account original offset.
+        dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+        }
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Square")
+        {
+            Debug.Log("ACERTOU!");
+        }
+    }
+    
     public void  WaitToShowObj()
     {
         Debug.Log("OBJ NUMBER " + randomIndex);
         objList[randomIndex].SetActive(true);
         randomIndex = -1;
     }
-
 }

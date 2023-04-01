@@ -57,6 +57,9 @@ TagManager:
   - WR
   - GS
   - GC
+  - BoxTriangle
+  - BoaxSquare
+  - BoxCircle
   layers:
   - Default
   - TransparentFX
@@ -68,7 +71,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Movable
   - 
   - 
   - 
