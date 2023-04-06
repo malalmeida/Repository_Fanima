@@ -39,6 +39,7 @@ public class WebSockets : MonoBehaviour{
     public bool getLevelsDone = false;
     public int validationValue;
     public List<string> levelsList; 
+    public int statusValue = -3;
     
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -86,6 +87,7 @@ public class WebSockets : MonoBehaviour{
                 Debug.Log("ACTION " + msg);
                 jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
                 validationValue = int.Parse(jsonDataValidation.value);
+                statusValue = int.Parse(jsonDataValidation.value);
                 validationDone = true;
             }
             else if(msg.Contains("levels"))

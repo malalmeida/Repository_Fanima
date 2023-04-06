@@ -2075,6 +2075,7 @@ GameObject:
   - component: {fileID: 767190729}
   - component: {fileID: 767190728}
   - component: {fileID: 767190730}
+  - component: {fileID: 767190731}
   m_Layer: 0
   m_Name: CircleBox
   m_TagString: BoxCircle
@@ -2160,7 +2161,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.29449248, y: 0.009203076}
@@ -2176,6 +2177,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9907246, y: 2.2094195}
   m_EdgeRadius: 0
+--- !u!114 &767190731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767190727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b626a5ccfeaae46c2be374b977d0853e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &798547032
 GameObject:
   m_ObjectHideFlags: 0
@@ -5229,6 +5242,7 @@ GameObject:
   - component: {fileID: 1569685135}
   - component: {fileID: 1569685134}
   - component: {fileID: 1569685136}
+  - component: {fileID: 1569685137}
   m_Layer: 0
   m_Name: TriangleBox
   m_TagString: BoxTriangle
@@ -5314,7 +5328,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.2987138, y: -0.018669486}
@@ -5330,6 +5344,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9317505, y: 2.145233}
   m_EdgeRadius: 0
+--- !u!114 &1569685137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569685133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea7f91e7f08f43faa320273d81fc720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1573898722
 GameObject:
   m_ObjectHideFlags: 0
@@ -6662,6 +6688,7 @@ GameObject:
   - component: {fileID: 1829441248}
   - component: {fileID: 1829441247}
   - component: {fileID: 1829441249}
+  - component: {fileID: 1829441250}
   m_Layer: 0
   m_Name: SquareBox
   m_TagString: BoaxSquare
@@ -6747,7 +6774,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.27608728, y: -0.03681183}
@@ -6763,6 +6790,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9539113, y: 2.1173906}
   m_EdgeRadius: 0
+--- !u!114 &1829441250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829441246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9973d333b5d448f8892734addb46aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1849340233
 GameObject:
   m_ObjectHideFlags: 0
@@ -6954,6 +6993,9 @@ MonoBehaviour:
   owlScript: {fileID: 2126515106}
   octopusScript: {fileID: 0}
   fishScript: {fileID: 0}
+  collisionCircleScript: {fileID: 767190731}
+  collisionSquareScript: {fileID: 1829441250}
+  collisionTriangleScript: {fileID: 1569685137}
   sequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 

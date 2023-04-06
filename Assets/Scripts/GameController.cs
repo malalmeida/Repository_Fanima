@@ -42,7 +42,9 @@ public class GameController : MonoBehaviour
   public OctopusScript octopusScript;
   public FishScript fishScript;
 
-
+  public CollisionCircleScript collisionCircleScript;
+  public CollisionSquareScript collisionSquareScript;
+  public CollisionTriangleScript collisionTriangleScript;
 
   string startTime;
   string endTime;
@@ -63,7 +65,8 @@ public class GameController : MonoBehaviour
   public bool postGameResultDone = false;
   public bool errorDetected = false;
   public bool readyForNextWord = false;
-  public bool prepareLevelsDone = false;
+  public bool prepareLevelsDone = false; 
+  public bool isRepetition = false;
 
   public List<errorClass> phonemeList;
 
@@ -267,7 +270,7 @@ public class GameController : MonoBehaviour
     }
     else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 2)
     {
-       PlayerPrefs.SetInt("NumberOfChaptersPlayed", 3);
+      PlayerPrefs.SetInt("NumberOfChaptersPlayed", 3);
       SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
     }
     else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 3){
@@ -378,10 +381,20 @@ public class GameController : MonoBehaviour
       SavWav.Save(currentWord + ".wav", userRecording.clip);
 
       gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
-      yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
-    
-      gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-      yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
+       
+      if(isRepetition == true)
+      {
+        gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+        Debug.Log("SAMPLE ID " + gameSampleID);
+        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), gameSampleID.ToString()));
+      }
+      else
+      {
+        yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
+        gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+        Debug.Log("SAMPLE ID " + gameSampleID);
+        yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
+      }
 
       webSockets.ActionClassificationGeralRequest(therapistID, currentWordID, gameSampleID);
     }
@@ -401,16 +414,15 @@ public class GameController : MonoBehaviour
     }
     //ESPERAR ATE QUE A VALIDACAO SEJA FEITA
     yield return new WaitUntil(() => webSockets.validationDone);
-    PlayerPrefs.SetInt("ERRORSTATUS", webSockets.validationValue);
     yield return new WaitUntil(() => webSockets.validationValue > -2);
 
-    
     if(webSockets.validationValue == -1)
     {
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       Debug.Log("DIZ -> " + currentWord); 
       RecordSound(timer);
       webSockets.validationValue = -2;
+      isRepetition = true;;
       yield return StartCoroutine(WaitForValidation());
     }
 
@@ -423,21 +435,20 @@ public class GameController : MonoBehaviour
 
       if (SceneManager.GetActiveScene().name == "Home")
       {
-        homeScript.doAnimation = true;
-        webSockets.validationValue = -2;
-      }
+        //homeScript.doAnimation = true;
+        webSockets.validationValue = -2;      }
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
-        frogScript.randomIndex = Random.Range(0, 14);
-        yield return new WaitUntil(() => frogScript.isCaught);
-        frogScript.isCaught = false;
-        webSockets.validationValue = -2;
+        //frogScript.randomIndex = Random.Range(0, 14);
+        //yield return new WaitUntil(() => frogScript.isCaught);
+        //frogScript.isCaught = false;
+        webSockets.validationValue = -2;      
       }
       else if (SceneManager.GetActiveScene().name == "Chameleon")
       {
-        chameleonScript.randomIndex = Random.Range(0, 12);
-        yield return new WaitUntil(() => chameleonScript.isCaught);
-        chameleonScript.isCaught = false;
+        //chameleonScript.randomIndex = Random.Range(0, 12);
+        //yield return new WaitUntil(() => chameleonScript.isCaught);
+        //chameleonScript.isCaught = false;
         webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Octopus")
@@ -446,34 +457,35 @@ public class GameController : MonoBehaviour
         //yield return new WaitUntil(() => octopusScript.isCaught);
         //octopusScript.isCaught = false;
         webSockets.validationValue = -2;
+
       }
       else if (SceneManager.GetActiveScene().name == "Monkey")
       {
-        monkeyScript.randomIndex = Random.Range(0, 11);
-        yield return new WaitUntil(() => monkeyScript.isCaught);
-        monkeyScript.isCaught = false;
-        webSockets.validationValue = -2;
-      }
+        //monkeyScript.randomIndex = Random.Range(0, 11);
+        //yield return new WaitUntil(() => monkeyScript.isCaught);
+        //monkeyScript.isCaught = false;
+        webSockets.validationValue = -2;      
+        }
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
-        owlScript.randomIndex = Random.Range(0, 28);
-        yield return new WaitUntil(() => owlScript.isMatch);
-        owlScript.isMatch = false;
-        webSockets.validationValue = -2;
+        //owlScript.randomIndex = Random.Range(0, 28);
+        //yield return new WaitUntil(() => owlScript.isMatch);
+        //owlScript.isMatch = false;
+        webSockets.validationValue = -2;      
       }
       else if (SceneManager.GetActiveScene().name == "Fish")
       {
         //fishScript.randomIndex = Random.Range(0, 13);
         //yield return new WaitUntil(() => fishScript.isCaught);
         //fishScript.isCaught = false;
-        //webSockets.validationValue = -2;
+        webSockets.validationValue = -2;      
       }
     }
     //1 nao tem erro
     //0 tem erro 
-    if(PlayerPrefs.GetInt("ERRORSTATUS") > 0)
+    if(webSockets.statusValue > 0)
     {
-      Debug.Log("ERRORSTATUS" + PlayerPrefs.GetInt("ERRORSTATUS"));
+      Debug.Log("ERRORSTATUS" + webSockets.statusValue);
       errorStatus = 0;
     }
     else
@@ -488,10 +500,11 @@ public class GameController : MonoBehaviour
 
   IEnumerator PrepareGameStructure()
   {
-    //Debug.Log("Waiting for structure...");
+    yield return new WaitUntil(() => structReqDone);
+    Debug.Log("Waiting for structure...");
     Debug.Log("Structure request completed! Actions: " + contentList.Count);
     
-    //Debug.Log("Waiting for word repository...");
+    Debug.Log("Waiting for word repository...");
     yield return new WaitUntil(() => respositoryReqDone);
     Debug.Log("Repository request completed! Words: " + dataList.Count);
   }

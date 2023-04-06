@@ -122,6 +122,12 @@ public class FrogScript : MonoBehaviour
               bug1.SetActive(false);
               bugsFound ++;
               isCaught = true; 
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug2"))
@@ -132,6 +138,12 @@ public class FrogScript : MonoBehaviour
               bug2.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug3"))
@@ -142,6 +154,12 @@ public class FrogScript : MonoBehaviour
               bug3.SetActive(false);     
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug4"))
@@ -152,6 +170,12 @@ public class FrogScript : MonoBehaviour
               bug4.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
             
           } 
@@ -163,6 +187,12 @@ public class FrogScript : MonoBehaviour
               bug5.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug6"))
@@ -173,6 +203,12 @@ public class FrogScript : MonoBehaviour
               bug6.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug7"))
@@ -193,6 +229,12 @@ public class FrogScript : MonoBehaviour
               bug8.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug9"))
@@ -203,6 +245,12 @@ public class FrogScript : MonoBehaviour
               bug9.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug10"))
@@ -213,6 +261,12 @@ public class FrogScript : MonoBehaviour
               bug10.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug11"))
@@ -223,6 +277,12 @@ public class FrogScript : MonoBehaviour
               bug11.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           } 
           if(hit.collider.CompareTag("Bug12"))
@@ -233,6 +293,8 @@ public class FrogScript : MonoBehaviour
               bug12.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
             }
           } 
           if(hit.collider.CompareTag("Bug13"))
@@ -243,6 +305,12 @@ public class FrogScript : MonoBehaviour
               bug13.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           }  
           if(hit.collider.CompareTag("Bug14"))
@@ -253,12 +321,16 @@ public class FrogScript : MonoBehaviour
               bug14.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              Debug.Log("bugsFound " + bugsFound);
+              randomIndex = -1;
+            }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
             }
           }   
         }
       }
-      Debug.Log("bugsFound " + bugsFound);
-      randomIndex = -1;
 
     }
     Vector3 v3;
