@@ -53,7 +53,7 @@ public class WebRequests : MonoBehaviour
             Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
 
             //gameScript.gameSampleID = int.Parse(www.downloadHandler.text);
-            PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
+             PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
         }
 
     }
@@ -73,6 +73,8 @@ public class WebRequests : MonoBehaviour
         parameters.Add(new MultipartFormDataSection("data", "{\"id\":\""+ wordID +"\", \"time\":\""+ time +"\", \"base64\":\""+ base64String +"\"}"));
         parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
         parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
+        parameters.Add(new MultipartFormDataSection("sampleid", sampleID));
+
 
         UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
@@ -88,7 +90,7 @@ public class WebRequests : MonoBehaviour
             Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
 
             //gameScript.gameSampleID = int.Parse(www.downloadHandler.text);
-            PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
+            //PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
         }
 
     }

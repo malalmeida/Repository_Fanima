@@ -58,6 +58,7 @@ public class GameController : MonoBehaviour
   public int sequenceID = -1;
   public int timer = -1;
   public int errorStatus = -1;
+  public int repSampleID = -1;
 
   public bool validationDone = false;
 
@@ -66,7 +67,8 @@ public class GameController : MonoBehaviour
   public bool errorDetected = false;
   public bool readyForNextWord = false;
   public bool prepareLevelsDone = false; 
-  public bool isRepetition = false;
+  public bool repetition = false;
+  public bool actionValidated = false;
 
   public List<errorClass> phonemeList;
 
@@ -382,11 +384,14 @@ public class GameController : MonoBehaviour
 
       gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
        
-      if(isRepetition == true)
+      if(repetition == true)
       {
-        gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-        Debug.Log("SAMPLE ID " + gameSampleID);
-        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), gameSampleID.ToString()));
+        //if(actionValidated == true)
+        //{
+          yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString()));
+          //repetition = false;
+          //Debug.Log("DEIXOU DE SER REPETIDA!");
+        //}
       }
       else
       {
@@ -422,12 +427,21 @@ public class GameController : MonoBehaviour
       Debug.Log("DIZ -> " + currentWord); 
       RecordSound(timer);
       webSockets.validationValue = -2;
-      isRepetition = true;;
+      repetition = true;
+      repSampleID = gameSampleID;
+      Debug.Log("REP SAMPLE ID" + repSampleID);
       yield return StartCoroutine(WaitForValidation());
     }
 
     else if(webSockets.validationValue >= 0)
     {
+      if(repetition == true)
+      {     
+        repetition = false;
+      }
+
+      //actionValidated = true;
+
       if(webSockets.validationValue > 0)
       {
         errorDetected = true;
@@ -436,7 +450,8 @@ public class GameController : MonoBehaviour
       if (SceneManager.GetActiveScene().name == "Home")
       {
         //homeScript.doAnimation = true;
-        webSockets.validationValue = -2;      }
+        webSockets.validationValue = -2;      
+      }
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
         //frogScript.randomIndex = Random.Range(0, 14);
@@ -457,7 +472,6 @@ public class GameController : MonoBehaviour
         //yield return new WaitUntil(() => octopusScript.isCaught);
         //octopusScript.isCaught = false;
         webSockets.validationValue = -2;
-
       }
       else if (SceneManager.GetActiveScene().name == "Monkey")
       {
@@ -492,11 +506,14 @@ public class GameController : MonoBehaviour
     {
       errorStatus = 1;
     }
-    yield return StartCoroutine(webRequests.PostGameResult(errorStatus.ToString(), "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
-    Debug.Log("LOG POST GAME RESULT");
-    Debug.Log("STATUS: " + errorStatus.ToString() + " ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORD: " + currentWord);
+    Debug.Log("REP " + repetition);
+    if(repetition == false)
+    {
+      yield return StartCoroutine(webRequests.PostGameResult(errorStatus.ToString(), "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
+      Debug.Log("LOG POST GAME RESULT");
+      Debug.Log("STATUS: " + errorStatus.ToString() + " ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORD: " + currentWord);
+    }
   }
-
 
   IEnumerator PrepareGameStructure()
   {
