@@ -386,12 +386,7 @@ public class GameController : MonoBehaviour
        
       if(repetition == true)
       {
-        //if(actionValidated == true)
-        //{
-          yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString()));
-          //repetition = false;
-          //Debug.Log("DEIXOU DE SER REPETIDA!");
-        //}
+        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString()));   
       }
       else
       {
@@ -494,24 +489,7 @@ public class GameController : MonoBehaviour
         //fishScript.isCaught = false;
         webSockets.validationValue = -2;      
       }
-    }
-    //1 nao tem erro
-    //0 tem erro 
-    if(webSockets.statusValue > 0)
-    {
-      Debug.Log("ERRORSTATUS" + webSockets.statusValue);
-      errorStatus = 0;
-    }
-    else
-    {
-      errorStatus = 1;
-    }
-    Debug.Log("REP " + repetition);
-    if(repetition == false)
-    {
-      yield return StartCoroutine(webRequests.PostGameResult(errorStatus.ToString(), "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
-      Debug.Log("LOG POST GAME RESULT");
-      Debug.Log("STATUS: " + errorStatus.ToString() + " ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORD: " + currentWord);
+      yield return StartCoroutine(PreparedGameResult());
     }
   }
 
@@ -535,6 +513,28 @@ public class GameController : MonoBehaviour
       Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
     }
   }
+
+  IEnumerator PreparedGameResult()
+  {
+    Debug.Log("REP " + repetition);
+
+    if(repetition == false)
+    {
+      if(webSockets.statusValue > 0)
+      {
+        Debug.Log("ERRORSTATUS" + webSockets.statusValue);
+        errorStatus = 0;
+      }
+      else
+      {
+        errorStatus = 1;
+      }
+      yield return StartCoroutine(webRequests.PostGameResult(errorStatus.ToString(), "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
+      Debug.Log("LOG POST GAME RESULT");
+      Debug.Log("STATUS: " + errorStatus.ToString() + " ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORD: " + currentWord);
+    }
+  }
+
 
   void RecordSound(int timer)
   {
