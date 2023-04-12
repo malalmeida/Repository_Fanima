@@ -15,7 +15,9 @@ public class Login : MonoBehaviour
         //string user = userInput.text;
         //string pass = passInput.text;
 
-        const string user = "speech1@play.pt";
+        //const string user = "speech1@play.pt";
+        //const string pass = "123";
+        const string user = "cresce1@play.pt";
         const string pass = "123";
 
         StartCoroutine(loginRequest.PostLoginRequest(user, pass));  

@@ -58,7 +58,6 @@ public class WebSockets : MonoBehaviour{
         ws.OnOpen += (sender, e) => {
             //Debug.Log("ws open");
             ws.Send("{\"id\":\"" + patientID + "\",\"msg\":\"app\",\"value\":\"" + appName + "\"}");
-            
             socketIsReady = true;
         }; 
         ws.OnClose += (sender, e) => {
