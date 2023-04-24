@@ -170,7 +170,9 @@ public class GameController : MonoBehaviour
       Debug.Log("FONEMA: " + activeChapter);
       
       yield return StartCoroutine(PrepareSequence());
-
+      Debug.Log("PALAVRAS" + sequenceToPlayList.Count);
+      yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
+      Debug.Log("PALAVRAS" + sequenceToPlayList.Count);
       for(int j = 0; j < sequenceToPlayList.Count; j++)
       {      
         currentActionID = sequenceToPlayList[j].id;
@@ -477,9 +479,9 @@ public class GameController : MonoBehaviour
         }
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
-        //owlScript.randomIndex = Random.Range(0, 28);
-        //yield return new WaitUntil(() => owlScript.isMatch);
-        //owlScript.isMatch = false;
+        owlScript.randomIndex = Random.Range(0, 28);
+        yield return new WaitUntil(() => owlScript.isMatch);
+        owlScript.isMatch = false;
         webSockets.validationValue = -2;      
       }
       else if (SceneManager.GetActiveScene().name == "Fish")

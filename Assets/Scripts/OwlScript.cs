@@ -49,12 +49,15 @@ public class OwlScript : MonoBehaviour
     private Transform dragging = null;
     private Vector3 offset;
     [SerializeField] private LayerMask movableLayers;
+    public Vector3 startPosition;
+
 
     public GameObject currentObj;
 
     // Start is called before the first frame update
     void Start()
     {
+        startPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         square.SetActive(true);
         triangle.SetActive(true);
         circle.SetActive(true);
@@ -146,16 +149,18 @@ public class OwlScript : MonoBehaviour
             dragging = null;
         }
 
-        if (dragging != null) {
-        // Move object, taking into account original offset.
-        dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+        if (dragging != null) 
+        {
+            // Move object, taking into account original offset.
+            dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
     }
 
-    public void  WaitToShowObj()
+    public void WaitToShowObj()
     {
         Debug.Log("OBJ NUMBER " + randomIndex);
         objList[randomIndex].SetActive(true);
+        currentObj = objList[randomIndex];
         randomIndex = -1;
     }
 }

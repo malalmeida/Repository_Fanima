@@ -904,7 +904,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: 1e27ea9d6de994092bcf24f90ce413db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e7c3c4112f654be58cc086fe7de42ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -923,8 +923,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411217068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.32999998, y: -0.16999984, z: 0}
-  m_LocalScale: {x: 0.29530516, y: 0.2896191, z: 1}
+  m_LocalPosition: {x: -0.28, y: -0.21, z: 0}
+  m_LocalScale: {x: 0.2837135, y: 0.265603, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1829441248}
@@ -1257,6 +1257,7 @@ MonoBehaviour:
   getLevelsDone: 0
   validationValue: 0
   levelsList: []
+  statusValue: -3
 --- !u!4 &516158542
 Transform:
   m_ObjectHideFlags: 0
@@ -2076,6 +2077,7 @@ GameObject:
   - component: {fileID: 767190728}
   - component: {fileID: 767190730}
   - component: {fileID: 767190731}
+  - component: {fileID: 767190732}
   m_Layer: 0
   m_Name: CircleBox
   m_TagString: BoxCircle
@@ -2189,6 +2191,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b626a5ccfeaae46c2be374b977d0853e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owlScript: {fileID: 2126515106}
+--- !u!50 &767190732
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767190727}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &798547032
 GameObject:
   m_ObjectHideFlags: 0
@@ -4204,7 +4228,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: 41dbdcda6462a496495d6f1c31e0bb24, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 293e2b793fcf84455a35c59ad2af3b26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4223,8 +4247,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365595120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3000002, y: -0.16000009, z: 0}
-  m_LocalScale: {x: 0.28826284, y: 0.28393057, z: 1}
+  m_LocalPosition: {x: -0.3, y: -0.173, z: 0}
+  m_LocalScale: {x: 0.32305044, y: 0.29701102, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 767190729}
@@ -5243,6 +5267,7 @@ GameObject:
   - component: {fileID: 1569685134}
   - component: {fileID: 1569685136}
   - component: {fileID: 1569685137}
+  - component: {fileID: 1569685138}
   m_Layer: 0
   m_Name: TriangleBox
   m_TagString: BoxTriangle
@@ -5356,6 +5381,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea7f91e7f08f43faa320273d81fc720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owlScript: {fileID: 2126515106}
+--- !u!50 &1569685138
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569685133}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1573898722
 GameObject:
   m_ObjectHideFlags: 0
@@ -6182,7 +6229,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: b081b6ed71b714e1796ca4ebba5b1435, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22db7e4412b014268be2f8d4abeeab24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6201,9 +6248,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709147293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.33000016, y: -0.13000011, z: 0}
-  m_LocalScale: {x: 0.2990288, y: 0.3047741, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.29, y: -0.21, z: 0}
+  m_LocalScale: {x: 0.29422662, y: 0.283961, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1569685135}
   m_RootOrder: 0
@@ -6689,6 +6736,7 @@ GameObject:
   - component: {fileID: 1829441247}
   - component: {fileID: 1829441249}
   - component: {fileID: 1829441250}
+  - component: {fileID: 1829441251}
   m_Layer: 0
   m_Name: SquareBox
   m_TagString: BoaxSquare
@@ -6802,6 +6850,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9973d333b5d448f8892734addb46aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owlScript: {fileID: 2126515106}
+--- !u!50 &1829441251
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829441246}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1849340233
 GameObject:
   m_ObjectHideFlags: 0
@@ -7004,12 +7074,15 @@ MonoBehaviour:
   sequenceID: -1
   timer: -1
   errorStatus: -1
+  repSampleID: -1
   validationDone: 0
   selectionDone: 0
   postGameResultDone: 0
   errorDetected: 0
   readyForNextWord: 0
   prepareLevelsDone: 0
+  repetition: 0
+  actionValidated: 0
   phonemeList: []
 --- !u!4 &1849421719
 Transform:
@@ -7913,6 +7986,7 @@ MonoBehaviour:
   movableLayers:
     serializedVersion: 2
     m_Bits: 1024
+  startPosition: {x: 0, y: 0, z: 0}
   currentObj: {fileID: 0}
 --- !u!4 &2126515107
 Transform:
