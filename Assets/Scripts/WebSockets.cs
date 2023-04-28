@@ -105,9 +105,9 @@ public class WebSockets : MonoBehaviour{
         ws.ConnectAsync();
     }
 
-    public void StopClient()
+    public void StopClient(string payload)
     {
-        PrepareMessage("close", "1");
+        PrepareMessage("close", payload);
         ws.CloseAsync();
     }
     public bool IsClientAvailable()

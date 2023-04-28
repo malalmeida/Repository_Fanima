@@ -32,7 +32,7 @@ public class Dragging : MonoBehaviour
             {
                 if(hit.collider != null)
                 {
-                    if(hit.collider.CompareTag("Triangle") || hit.collider.CompareTag("Square") || hit.collider.CompareTag("Circle"))
+                    if(hit.collider.CompareTag("Yellow") || hit.collider.CompareTag("Green") || hit.collider.CompareTag("Red") || hit.collider.CompareTag("Triangle") || hit.collider.CompareTag("Square") || hit.collider.CompareTag("Circle"))
                     {
                         toDrag = hit.transform;
                         dist = hit.transform.position.z - Camera.main.transform.position.z;

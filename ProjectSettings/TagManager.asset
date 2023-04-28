@@ -60,6 +60,10 @@ TagManager:
   - BoxTriangle
   - BoaxSquare
   - BoxCircle
+  - Blue
+  - Yellow
+  - Red
+  - Green
   layers:
   - Default
   - TransparentFX

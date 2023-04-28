@@ -42,9 +42,9 @@ public class GameController : MonoBehaviour
   public OctopusScript octopusScript;
   public FishScript fishScript;
 
-  public CollisionCircleScript collisionCircleScript;
-  public CollisionSquareScript collisionSquareScript;
-  public CollisionTriangleScript collisionTriangleScript;
+  //public CollisionCircleScript collisionCircleScript;
+  //public CollisionSquareScript collisionSquareScript;
+  //public CollisionTriangleScript collisionTriangleScript;
 
   string startTime;
   string endTime;
@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour
       StartCoroutine(GameLoop());
     }
 
-    else if(SceneManager.GetActiveScene().name == "Octopus")
+    else if(SceneManager.GetActiveScene().name == "Fish")
     { 
       activeChapter = "Vibrantes e Laterais";
       StartCoroutine(GameLoop());      
@@ -139,7 +139,7 @@ public class GameController : MonoBehaviour
       StartCoroutine(BonusGameLoop());
     }
 
-    else if(SceneManager.GetActiveScene().name == "Fish")
+    else if(SceneManager.GetActiveScene().name == "Octopus") 
     {
       StartCoroutine(BonusGameLoop());
     }
@@ -451,30 +451,30 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
-        //frogScript.randomIndex = Random.Range(0, 14);
-        //yield return new WaitUntil(() => frogScript.isCaught);
-        //frogScript.isCaught = false;
+        frogScript.randomIndex = Random.Range(0, 14);
+        yield return new WaitUntil(() => frogScript.isCaught);
+        frogScript.isCaught = false;
         webSockets.validationValue = -2;      
       }
       else if (SceneManager.GetActiveScene().name == "Chameleon")
       {
-        //chameleonScript.randomIndex = Random.Range(0, 12);
-        //yield return new WaitUntil(() => chameleonScript.isCaught);
-        //chameleonScript.isCaught = false;
+        chameleonScript.randomIndex = Random.Range(0, 12);
+        yield return new WaitUntil(() => chameleonScript.isCaught);
+        chameleonScript.isCaught = false;
         webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Octopus")
       {
-        //octopusScript.randomIndex = Random.Range(0, 13);
-        //yield return new WaitUntil(() => octopusScript.isCaught);
-        //octopusScript.isCaught = false;
+        octopusScript.randomIndex = Random.Range(0, 21);
+        yield return new WaitUntil(() => octopusScript.isMatch);
+        octopusScript.isMatch = false;
         webSockets.validationValue = -2;
       }
       else if (SceneManager.GetActiveScene().name == "Monkey")
       {
-        //monkeyScript.randomIndex = Random.Range(0, 11);
-        //yield return new WaitUntil(() => monkeyScript.isCaught);
-        //monkeyScript.isCaught = false;
+        monkeyScript.randomIndex = Random.Range(0, 11);
+        yield return new WaitUntil(() => monkeyScript.isCaught);
+        monkeyScript.isCaught = false;
         webSockets.validationValue = -2;      
         }
       else if (SceneManager.GetActiveScene().name == "Owl")
@@ -554,6 +554,6 @@ public class GameController : MonoBehaviour
     Debug.Log("Stop WS client and logut");
     string payload = "{\"therapist\": " + therapistID + "}";
     webSockets.PrepareMessage("status", payload);
-    webSockets.StopClient();
+    webSockets.StopClient(payload);
   }
 }
