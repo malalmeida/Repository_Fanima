@@ -150,7 +150,7 @@ public class MonkeyScript : MonoBehaviour
         }
     }
 
-    public void  WaitToShowMonkey()
+    public void WaitToShowMonkey()
     {
         Debug.Log("MONKEY NUMBER " + randomIndex);
         monkeyList[randomIndex].SetActive(true);
