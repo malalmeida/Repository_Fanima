@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FishScript : MonoBehaviour
 {
-    public int removedFoods = 0;
+    public int removedFishFoods = 0;
     public int foodNumber = 1;
     public GameObject food1;
     public GameObject food2;
@@ -22,6 +22,7 @@ public class FishScript : MonoBehaviour
     public List<GameObject> foodList;
     public bool canShow = false;
     public bool isCaught = false;
+    public bool canShowFood = false;
 
     public GameObject currentFood;
     // Start is called before the first frame update
@@ -60,10 +61,9 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isCaught == true)
+        if(canShowFood)
         {
             WaitToShowFood();
-            isCaught == false;
         }
         
 
@@ -77,78 +77,84 @@ public class FishScript : MonoBehaviour
                 {
                     //Color newColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
                     //hit.collider.GetComponent<SpriteRenderer>().material.color = newColor;
-                    if(hit.collider.CompareTag("Monkey1"))
+                    if(hit.collider.CompareTag("FishFood1"))
                     {
-                        monkey1.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood1.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey2"))
+                    if(hit.collider.CompareTag("FishFood2"))
                     {
-                        monkey2.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood2.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey3"))
+                    if(hit.collider.CompareTag("FishFood3"))
                     {
-                        monkey3.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood3.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey4"))
+                    if(hit.collider.CompareTag("FishFood4"))
                     {
-                        monkey4.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood4.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey5"))
+                    if(hit.collider.CompareTag("FishFood5"))
                     {
-                        monkey5.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood5.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey6"))
+                    if(hit.collider.CompareTag("FishFood6"))
                     {
-                        monkey6.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood6.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey7"))
+                    if(hit.collider.CompareTag("FishFood7"))
                     {
-                        monkey7.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood7.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey8"))
+                    if(hit.collider.CompareTag("FishFood8"))
                     {
-                        monkey8.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood8.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey9"))
+                    if(hit.collider.CompareTag("FishFood9"))
                     {
-                        monkey9.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood9.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey10"))
+                    if(hit.collider.CompareTag("FishFood10"))
                     {
-                        monkey10.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood10.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey11"))
+                    if(hit.collider.CompareTag("FishFood11"))
                     {
-                        monkey11.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood11.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     } 
-                    if(hit.collider.CompareTag("Monkey12"))
+                    if(hit.collider.CompareTag("FishFood12"))
                     {
-                        monkey12.SetActive(false);
-                        removedMonkeys ++;
+                        FishFood12.SetActive(false);
+                        removedFishFoods ++;
                         isCaught = true;
                     }   
+                    if(hit.collider.CompareTag("FishFood13"))
+                    {
+                        FishFood12.SetActive(false);
+                        removedFishFoods ++;
+                        isCaught = true;
+                    } 
                 }
             }
         }
