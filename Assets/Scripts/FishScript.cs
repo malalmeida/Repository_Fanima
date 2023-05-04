@@ -79,79 +79,79 @@ public class FishScript : MonoBehaviour
                     //hit.collider.GetComponent<SpriteRenderer>().material.color = newColor;
                     if(hit.collider.CompareTag("FishFood1"))
                     {
-                        FishFood1.SetActive(false);
+                        food1.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood2"))
                     {
-                        FishFood2.SetActive(false);
+                        food2.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood3"))
                     {
-                        FishFood3.SetActive(false);
+                        food3.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood4"))
                     {
-                        FishFood4.SetActive(false);
+                        food4.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood5"))
                     {
-                        FishFood5.SetActive(false);
+                        food5.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood6"))
                     {
-                        FishFood6.SetActive(false);
+                        food6.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood7"))
                     {
-                        FishFood7.SetActive(false);
+                        food7.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood8"))
                     {
-                        FishFood8.SetActive(false);
+                        food8.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood9"))
                     {
-                        FishFood9.SetActive(false);
+                        food9.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood10"))
                     {
-                        FishFood10.SetActive(false);
+                        food10.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood11"))
                     {
-                        FishFood11.SetActive(false);
+                        food11.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
                     if(hit.collider.CompareTag("FishFood12"))
                     {
-                        FishFood12.SetActive(false);
+                        food12.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     }   
                     if(hit.collider.CompareTag("FishFood13"))
                     {
-                        FishFood12.SetActive(false);
+                        food13.SetActive(false);
                         removedFishFoods ++;
                         isCaught = true;
                     } 
