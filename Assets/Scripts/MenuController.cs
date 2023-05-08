@@ -17,9 +17,10 @@ public class MenuController : MonoBehaviour
    
     void Awake()
     {
-       StartCoroutine(gameStructureRequest.GetStructureRequest(PLAYGAMEID));
-       StartCoroutine(gameStructureRequest.GetRepository());
-       
+        StartCoroutine(gameStructureRequest.GetStructureRequest(PLAYGAMEID));
+        StartCoroutine(gameStructureRequest.GetRepository());
+        PlayerPrefs.SetInt("GAMESTARTED", 0);
+
     }
 
     void Start()
@@ -37,6 +38,8 @@ public class MenuController : MonoBehaviour
 
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         Time.timeScale = 1f;
-        startMenuUI.SetActive(false); 
+        startMenuUI.SetActive(false);
+        PlayerPrefs.SetInt("GAMESTARTED", 1);
+ 
     }
 }

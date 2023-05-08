@@ -352,9 +352,10 @@ GameObject:
   m_Component:
   - component: {fileID: 89995496}
   - component: {fileID: 89995497}
+  - component: {fileID: 89995498}
   m_Layer: 0
   m_Name: FishFood1
-  m_TagString: Untagged
+  m_TagString: Food1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +415,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -426,6 +427,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &89995498
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89995495}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &103565223
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,9 +450,10 @@ GameObject:
   m_Component:
   - component: {fileID: 103565224}
   - component: {fileID: 103565225}
+  - component: {fileID: 103565226}
   m_Layer: 0
   m_Name: FishFood13
-  m_TagString: Untagged
+  m_TagString: Food13
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -498,7 +513,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -510,6 +525,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &103565226
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103565223}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: 0.00000047683716, z: 0}
 --- !u!1 &115725392
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,9 +548,10 @@ GameObject:
   m_Component:
   - component: {fileID: 115725393}
   - component: {fileID: 115725394}
+  - component: {fileID: 115725395}
   m_Layer: 0
   m_Name: FishFood9
-  m_TagString: Untagged
+  m_TagString: Food9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,7 +611,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -594,6 +623,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &115725395
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115725392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: -0.00000011920929, z: 0}
 --- !u!1 &121141324
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,9 +781,10 @@ GameObject:
   m_Component:
   - component: {fileID: 294649553}
   - component: {fileID: 294649554}
+  - component: {fileID: 294649555}
   m_Layer: 0
   m_Name: FishFood6
-  m_TagString: Untagged
+  m_TagString: Food6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -801,7 +844,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -813,6 +856,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &294649555
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294649552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &439188010
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,9 +879,10 @@ GameObject:
   m_Component:
   - component: {fileID: 439188011}
   - component: {fileID: 439188012}
+  - component: {fileID: 439188013}
   m_Layer: 0
   m_Name: FishFood8
-  m_TagString: Untagged
+  m_TagString: Food8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -885,7 +942,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -897,6 +954,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &439188013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439188010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: -0.0000009536743, z: 0}
 --- !u!1 &491704138
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +978,7 @@ GameObject:
   - component: {fileID: 491704141}
   - component: {fileID: 491704140}
   - component: {fileID: 491704139}
+  - component: {fileID: 491704142}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -932,7 +1003,7 @@ Camera:
   m_GameObject: {fileID: 491704138}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -963,7 +1034,7 @@ Camera:
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &491704141
@@ -974,13 +1045,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491704138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &491704142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491704138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310ede02fdefcab4793343e14b89fc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1129421068}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &605102695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,9 +1505,10 @@ GameObject:
   m_Component:
   - component: {fileID: 776164455}
   - component: {fileID: 776164456}
+  - component: {fileID: 776164457}
   m_Layer: 0
   m_Name: FishFood4
-  m_TagString: Untagged
+  m_TagString: Food4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1481,7 +1568,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1493,6 +1580,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &776164457
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776164454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &789934434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,9 +1821,10 @@ GameObject:
   m_Component:
   - component: {fileID: 836340730}
   - component: {fileID: 836340731}
+  - component: {fileID: 836340732}
   m_Layer: 0
   m_Name: FishFood7
-  m_TagString: Untagged
+  m_TagString: Food7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1783,7 +1884,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1795,6 +1896,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &836340732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836340729}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: -0.0000076293945, y: 0, z: 0}
 --- !u!1 &913584942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,7 +1939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   removedFishFoods: 0
-  foodNumber: 1
+  foodNumber: 0
   food1: {fileID: 89995495}
   food2: {fileID: 937142581}
   food3: {fileID: 1607370670}
@@ -1840,10 +1954,9 @@ MonoBehaviour:
   food12: {fileID: 1437393690}
   food13: {fileID: 103565223}
   foodList: []
-  canShow: 0
   isCaught: 0
   canShowFood: 0
-  currentFood: {fileID: 0}
+  fish: {fileID: 1129421069}
 --- !u!4 &913584944
 Transform:
   m_ObjectHideFlags: 0
@@ -1869,9 +1982,10 @@ GameObject:
   m_Component:
   - component: {fileID: 937142582}
   - component: {fileID: 937142583}
+  - component: {fileID: 937142584}
   m_Layer: 0
   m_Name: FishFood2
-  m_TagString: Untagged
+  m_TagString: Food2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1931,7 +2045,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1943,6 +2057,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &937142584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937142581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: -0.0000019073486, y: 0, z: 0}
 --- !u!1 &1129421066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1953,6 +2080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1129421068}
   - component: {fileID: 1129421067}
+  - component: {fileID: 1129421069}
   m_Layer: 0
   m_Name: FatherNemo
   m_TagString: Untagged
@@ -2029,6 +2157,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1129421069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129421066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f300021cecc4538861118dde66530e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {fileID: 89995496}
+  - {fileID: 937142582}
+  - {fileID: 1607370671}
+  - {fileID: 776164455}
+  - {fileID: 1252025820}
+  - {fileID: 294649553}
+  - {fileID: 836340730}
+  - {fileID: 439188011}
+  - {fileID: 115725393}
+  - {fileID: 1703823178}
+  - {fileID: 1635282350}
+  - {fileID: 1437393691}
+  - {fileID: 103565224}
+  objectSpeed: 3
+  starAnimation: 0
+  animationDone: 0
 --- !u!1 &1252025819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,9 +2196,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1252025820}
   - component: {fileID: 1252025821}
+  - component: {fileID: 1252025822}
   m_Layer: 0
   m_Name: FishFood5
-  m_TagString: Untagged
+  m_TagString: Food5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2101,7 +2259,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2113,6 +2271,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1252025822
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252025819}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: -0.0000076293945, y: 0, z: 0}
 --- !u!1 &1437393690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,9 +2294,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1437393691}
   - component: {fileID: 1437393692}
+  - component: {fileID: 1437393693}
   m_Layer: 0
   m_Name: FishFood12
-  m_TagString: Untagged
+  m_TagString: Food12
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2185,7 +2357,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2197,6 +2369,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1437393693
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437393690}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: -0.0000009536743, z: 0}
 --- !u!1 &1480060755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,9 +2706,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1607370671}
   - component: {fileID: 1607370672}
+  - component: {fileID: 1607370673}
   m_Layer: 0
   m_Name: FishFood3
-  m_TagString: Untagged
+  m_TagString: Food3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2583,7 +2769,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2595,6 +2781,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1607370673
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607370670}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: -0.0000038146973, y: -0.00000047683716, z: 0}
 --- !u!1 &1635282349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,9 +2804,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1635282350}
   - component: {fileID: 1635282351}
+  - component: {fileID: 1635282352}
   m_Layer: 0
   m_Name: FishFood11
-  m_TagString: Untagged
+  m_TagString: Food11
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2667,7 +2867,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2679,6 +2879,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1635282352
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635282349}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: -0.0000009536743, z: 0}
 --- !u!1 &1667436669
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,9 +2989,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1703823178}
   - component: {fileID: 1703823179}
+  - component: {fileID: 1703823180}
   m_Layer: 0
   m_Name: FishFood10
-  m_TagString: Untagged
+  m_TagString: Food10
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2838,7 +3052,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2850,6 +3064,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1703823180
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703823177}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1721607825
 GameObject:
   m_ObjectHideFlags: 0
