@@ -220,6 +220,10 @@ public class FrogScript : MonoBehaviour
               bugsFound ++;
               isCaught = true;
             }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
+            }
           } 
           if(hit.collider.CompareTag("Bug8"))
           {

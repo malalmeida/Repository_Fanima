@@ -3722,7 +3722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1451663368}
-  smoothSpeed: 0.5
+  smoothSpeed: 0.05
   offset: {x: 0, y: 0, z: -10}
 --- !u!1 &526536395
 GameObject:
@@ -7507,6 +7507,24 @@ MonoBehaviour:
   repetition: 0
   actionValidated: 0
   phonemeList: []
+  aud: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: 62096ae59a3d645f39f791b794f65eac, type: 3}
+  - {fileID: 8300000, guid: 7f212543c8a384d389d503ba0735f3fe, type: 3}
+  - {fileID: 8300000, guid: 4d5454aed5e2c4366a6358897afd8722, type: 3}
+  - {fileID: 8300000, guid: ec2edfedaa3a34ca4ade956030adfeda, type: 3}
+  - {fileID: 8300000, guid: 2d91075d4dce549a2be9bed65d803f1c, type: 3}
+  - {fileID: 8300000, guid: 618a35d04da5e40b29e1e49ed906532d, type: 3}
+  - {fileID: 8300000, guid: 7bc58f5a12261415ba75c57c80f1929a, type: 3}
+  - {fileID: 8300000, guid: 44c71f37457f84e5a8aa6535bc864930, type: 3}
+  - {fileID: 8300000, guid: 0408c69d01d534d53863e6c92644a07b, type: 3}
+  - {fileID: 8300000, guid: 67660525fb07346ee81043acd2888a5c, type: 3}
+  - {fileID: 8300000, guid: 7ef357725ba264581bf2b9ff3c8c4476, type: 3}
+  - {fileID: 8300000, guid: 5e1d439b4a65d4c7bb4b4d5709d362c7, type: 3}
+  - {fileID: 8300000, guid: a2134ccd82dc74a629131588a1c076a0, type: 3}
+  - {fileID: 8300000, guid: 1308b5e72e0fc4b19ac5819610d7f475, type: 3}
+  - {fileID: 8300000, guid: 1d676e06643e24a50b03ca89eb3d4b47, type: 3}
+  - {fileID: 8300000, guid: 93b3c987e518647aeb1c44f394ab04e1, type: 3}
   HomeWords:
   - {fileID: 1817973251}
   - {fileID: 1767567512}

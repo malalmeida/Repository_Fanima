@@ -72,7 +72,9 @@ public class GameController : MonoBehaviour
 
   public List<errorClass> phonemeList;
 
-  public List<AudioSource> HomeWords; 
+  public AudioSource aud;
+  public List<AudioClip> clips; 
+    public List<AudioSource> HomeWords; 
   public List<AudioSource> FrogWords; 
   public List<AudioSource> ChameleonWords;
   public List<AudioSource> FishWords;
@@ -115,6 +117,7 @@ public class GameController : MonoBehaviour
     DontDestroyOnLoad(GameObject.FindWithTag("GS"));
     DontDestroyOnLoad(GameObject.FindWithTag("Menu"));
     */
+    aud = GetComponent<AudioSource>();
 
     rb = GetComponent<Rigidbody2D>();
     webSockets = new WebSockets();
@@ -204,9 +207,8 @@ public class GameController : MonoBehaviour
       Debug.Log("FONEMA: " + activeChapter);
       
       yield return StartCoroutine(PrepareSequence());
-      Debug.Log("PALAVRAS" + sequenceToPlayList.Count);
       yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
-      Debug.Log("PALAVRAS" + sequenceToPlayList.Count);
+      Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
       for(int j = 0; j < sequenceToPlayList.Count; j++)
       {      
         currentActionID = sequenceToPlayList[j].id;
@@ -216,7 +218,7 @@ public class GameController : MonoBehaviour
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
         Debug.Log("DIZ -> " + currentWord); 
-
+        PlayAudioClip(currentWord);
         wordToSay.text = currentWord;
         timer = sequenceToPlayList[i].time;
         RecordSound(timer);
@@ -247,8 +249,18 @@ public class GameController : MonoBehaviour
       currentWord = dataList[sequenceToPlayList[i].word - 1].name;
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
-      Debug.Log("DIZ -> " + currentWord); 
-      //currentWord.Play();
+      Debug.Log("DIZ -> " + currentWord);
+      StartCoroutine(PlayGuideVoice(currentWord));
+      PlayAudioClip(currentWord); 
+      if(sequenceToPlayList[i].time == 2)
+      {
+        yield return new WaitForSeconds(2.0f);
+      }
+      else
+      {
+        yield return new WaitForSeconds(3.0f);
+      }
+      
       wordToSay.text = currentWord;
       timer = sequenceToPlayList[i].time;
       RecordSound(timer);
@@ -307,15 +319,26 @@ public class GameController : MonoBehaviour
     home2.Play();
     yield return new WaitForSeconds(3.1f);
   }
-/*
-  public void PlayThisClip(string incomeingClip){
-     foreach(AudioClip clip in HomeWords)
-     {
-       GetComponent<AudioSource>().PlayOneShot(clip.name);
-     }
-  
- }
- */
+
+  IEnumerator PlayGuideVoice(string currentWord)
+  {
+    if(currentWord == "O sapato da menina tem bolas amarelas.")
+    {
+      home3.Play();
+      yield return new WaitForSeconds(4.9f);
+    }
+  }
+
+  public void PlayAudioClip(string clipToPlay)
+  {
+    foreach (AudioClip clip in clips)
+    {
+      if(clip.name == clipToPlay)
+      {
+      aud.PlayOneShot(clip);
+      }
+    }
+  }
 
   IEnumerator PrepareNextLevel()
   {    
