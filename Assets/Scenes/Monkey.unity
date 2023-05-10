@@ -11780,29 +11780,31 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff5562862e7d888459944aea055ef1fc, type: 3}
   - {fileID: 8300000, guid: c90dc0b39ff0c7648894a05e0b7ba5fd, type: 3}
   - {fileID: 8300000, guid: e2f90a3afa583e9408cb8e15f79737fb, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: f1ce1efda20853849a07a87cd4ec8fcc, type: 3}
+  - {fileID: 8300000, guid: 7928daeccb102f940a247c6e291427da, type: 3}
+  - {fileID: 8300000, guid: 8578d63780124944d8b4b94fd1e483f3, type: 3}
+  - {fileID: 8300000, guid: 87990f0d6f529de4099f5a4aa31ac86c, type: 3}
+  - {fileID: 8300000, guid: 75f15513974781148a84d2110a1f2329, type: 3}
+  - {fileID: 8300000, guid: 1460b6e3b1c1b0a488666e2335e9a67d, type: 3}
+  - {fileID: 8300000, guid: 3e7f47a2e13ebca459b0f8ba31d7a6be, type: 3}
+  - {fileID: 8300000, guid: 149949d4fe97302459a7ddee4f867850, type: 3}
+  - {fileID: 8300000, guid: cdc0a4685f10e304ebfa13eba32fb979, type: 3}
+  - {fileID: 8300000, guid: af05b3b5a7c7c2846973758640e20aa2, type: 3}
+  - {fileID: 8300000, guid: ebfa5c078f0102045b9d7c1f58e305d8, type: 3}
+  - {fileID: 8300000, guid: 543fdaa90ceab544eb121bb6f21ab16b, type: 3}
+  - {fileID: 8300000, guid: 6a6f620cfce8f254e9c28880a4f98899, type: 3}
+  - {fileID: 8300000, guid: 173d2c32c977d794e9ce6b7099bcf0b7, type: 3}
+  - {fileID: 8300000, guid: 6dbc2567aecfbea42abb4d232f98c071, type: 3}
+  - {fileID: 8300000, guid: 9fd3c7fa3fec3ec41b4b390d107744b4, type: 3}
+  - {fileID: 8300000, guid: 48f44d59f42e5c549ab557fe6e503b21, type: 3}
+  - {fileID: 8300000, guid: bc4c66d7d7d2fb24db56d2e68710e109, type: 3}
   home1: {fileID: 0}
   home2: {fileID: 0}
   introChapVoice: {fileID: 714755807}
   finalChapVoice: {fileID: 0}
   askToRepeatF: {fileID: 1600745753}
+  travelTrip: {fileID: 0}
+  travelFinal: {fileID: 0}
 --- !u!4 &1793338316
 Transform:
   m_ObjectHideFlags: 0

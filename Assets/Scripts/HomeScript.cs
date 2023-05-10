@@ -47,15 +47,16 @@ public class HomeScript : MonoBehaviour
     {
         if(doAnimation)
         {
-            WaitToMoveUp();
+            StartCoroutine(WaitToMoveUp());
         }
     }
 
-    void WaitToMoveUp()
+    IEnumerator WaitToMoveUp()
     {
         if(wordsDone == true)
         {
             //transform.position += new Vector3 (0, 1, 0);
+            yield return new WaitForSeconds(1.0f);
             ballon.starAnimation = true;
             doAnimation = false;
         }
@@ -63,6 +64,7 @@ public class HomeScript : MonoBehaviour
         {
             oneHundred.SetActive(false);
             //transform.position += new Vector3 (0, 1, 0);
+            yield return new WaitForSeconds(1.0f);
             ballon.starAnimation = true;
             doAnimation = false;
             wordsDone = true;
@@ -135,5 +137,6 @@ public class HomeScript : MonoBehaviour
     {
         ballon.animationDone = false;
         yield return new WaitUntil(() => ballon.animationDone);
+        doAnimation = false;
     }
 }

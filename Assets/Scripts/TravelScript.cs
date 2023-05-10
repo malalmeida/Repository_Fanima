@@ -8,6 +8,8 @@ public class TravelScript : MonoBehaviour
 {
     public Animator animator;
     private bool finish;
+    public bool doAnimation = false; 
+
     //public GameObject cloud1;
     //public GameObject cloud2;
     //public GameObject cloud3;
@@ -19,6 +21,7 @@ public class TravelScript : MonoBehaviour
     void Start()
     {
 
+        //doAnimation = true;
     }
 
     // Update is called once per frame

@@ -68,6 +68,7 @@ public class FrogScript : MonoBehaviour
   {
     rb = GetComponent<Rigidbody2D>();
     bugList = new List<GameObject>();
+    removedBugs = new List<int>();
     bugList.Add(bug1);
     bugList.Add(bug2);
     bugList.Add(bug3);
@@ -302,6 +303,10 @@ public class FrogScript : MonoBehaviour
               Debug.Log("bugsFound " + bugsFound);
               randomIndex = -1;
             }
+            else
+            {
+              Debug.Log("PROCURA MELHOR");
+            }
           } 
           if(hit.collider.CompareTag("Bug13"))
           {
@@ -415,6 +420,10 @@ public class FrogScript : MonoBehaviour
     Debug.Log("BUG NUMBER " + randomIndex);
     bugList[randomIndex].SetActive(true);
     removedBugs.Add(randomIndex);
+    foreach (int randomIndex in removedBugs)
+    {
+      Debug.Log("NUMERO: " + randomIndex);
+    }
   }
 
   private void OnCollisionEnter2D(Collision2D other)
