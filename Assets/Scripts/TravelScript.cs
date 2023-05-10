@@ -8,12 +8,12 @@ public class TravelScript : MonoBehaviour
 {
     public Animator animator;
     private bool finish;
-    public GameObject cloud1;
-    public GameObject cloud2;
-    public GameObject cloud3;
-    public GameObject cloud4;
-    public int cloudsRemoved = 0;
-    public bool patientInteractionDone = false;
+    //public GameObject cloud1;
+    //public GameObject cloud2;
+    //public GameObject cloud3;
+    //public GameObject cloud4;
+    //public int cloudsRemoved = 0;
+    //public bool patientInteractionDone = false;
 
     // Start is called before the first frame update
     void Start()

@@ -18,10 +18,11 @@ public class HomeScript : MonoBehaviour
     public GameObject seventy;
     public GameObject eighty;
     public GameObject ninety;
-    public GameObject ondeHundred;
+    public GameObject oneHundred;
     public Animator balloAnimator;
     public bool doAnimation = false; 
     public bool wordsDone = false; 
+    public MoveObject ballon;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,7 @@ public class HomeScript : MonoBehaviour
         seventy.SetActive(false);
         eighty.SetActive(false);
         ninety.SetActive(false);
-        ondeHundred.SetActive(false);
+        oneHundred.SetActive(false);
 
         balloAnimator.SetBool("isFull", true);
     }
@@ -54,13 +55,15 @@ public class HomeScript : MonoBehaviour
     {
         if(wordsDone == true)
         {
-            transform.position += new Vector3 (0, 1, 0);
+            //transform.position += new Vector3 (0, 1, 0);
+            ballon.starAnimation = true;
             doAnimation = false;
         }
-        if (ondeHundred.activeSelf)
+        if (oneHundred.activeSelf)
         {
-            ondeHundred.SetActive(false);
-            transform.position += new Vector3 (0, 1, 0);
+            oneHundred.SetActive(false);
+            //transform.position += new Vector3 (0, 1, 0);
+            ballon.starAnimation = true;
             doAnimation = false;
             wordsDone = true;
 
@@ -68,7 +71,7 @@ public class HomeScript : MonoBehaviour
         else if (ninety.activeSelf)
         {
             ninety.SetActive(false);
-            ondeHundred.SetActive(true);
+            oneHundred.SetActive(true);
             doAnimation = false;
         }
         else if (eighty.activeSelf)
@@ -120,10 +123,17 @@ public class HomeScript : MonoBehaviour
             doAnimation = false;
         }
         
-        else if(ten.activeSelf == false && twenty.activeSelf == false && thirty.activeSelf == false && forty.activeSelf == false && fifty.activeSelf == false && sixty.activeSelf == false && seventy.activeSelf == false && eighty.activeSelf == false && ninety.activeSelf == false && ondeHundred.activeSelf == false && wordsDone == false)
+        else if(ten.activeSelf == false && twenty.activeSelf == false && thirty.activeSelf == false && forty.activeSelf == false && fifty.activeSelf == false && sixty.activeSelf == false && seventy.activeSelf == false && eighty.activeSelf == false && ninety.activeSelf == false && oneHundred.activeSelf == false && wordsDone == false)
         {  
             ten.SetActive(true);
             doAnimation = false;
         }
+        StartCoroutine(WaitForAnimationDone());
+    }
+
+    IEnumerator WaitForAnimationDone()
+    {
+        ballon.animationDone = false;
+        yield return new WaitUntil(() => ballon.animationDone);
     }
 }

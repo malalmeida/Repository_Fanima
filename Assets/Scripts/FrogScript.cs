@@ -18,6 +18,8 @@ public class FrogScript : MonoBehaviour
   public int numberOfJumps = 0;
   public int randomIndex = -1;
   public bool isCaught = false;
+  public List<int> removedBugs;
+  public bool chapterFinished = false;
 
   public GameObject bug1;
   public GameObject bug2;
@@ -412,6 +414,7 @@ public class FrogScript : MonoBehaviour
   {
     Debug.Log("BUG NUMBER " + randomIndex);
     bugList[randomIndex].SetActive(true);
+    removedBugs.Add(randomIndex);
   }
 
   private void OnCollisionEnter2D(Collision2D other)
@@ -423,11 +426,12 @@ public class FrogScript : MonoBehaviour
       animator.SetBool("Catch", false);
       isJumping = false;
 
-      waterSplashSound.Play();    
+      //waterSplashSound.Play();    
     }
     
     if(other.gameObject.CompareTag("Leaf1"))
     {
+      confetti.Play();
       playerSpeed = 0;
       animator.SetBool("Jump", false);
       animator.SetBool("Catch", false);
@@ -449,7 +453,9 @@ public class FrogScript : MonoBehaviour
 
       //if(bugsFound == 13)
       //{
-        confetti.Play();
+        //confetti.Play();
+        //yield return new WaitForSeconds(2.0f);
+        chapterFinished = true;
       //}     
     }
   }
