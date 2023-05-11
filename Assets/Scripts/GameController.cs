@@ -565,9 +565,10 @@ public class GameController : MonoBehaviour
       {
         //do 
         //{
-          frogScript.randomIndex = Random.Range(0, 13);
+          //frogScript.randomIndex = Random.Range(0, 13);
         //}while(!frogScript.removedBugs.Contains(frogScript.randomIndex));
-        Debug.Log("ESTA NA LISTA? " + frogScript.removedBugs.Contains(frogScript.randomIndex));
+        frogScript.canShow = true;
+        frogScript.bugNumber ++;
         yield return new WaitUntil(() => frogScript.isCaught);
         frogScript.isCaught = false;
         webSockets.validationValue = -2;      

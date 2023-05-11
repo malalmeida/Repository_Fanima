@@ -16,10 +16,11 @@ public class FrogScript : MonoBehaviour
   private Rigidbody2D rb;
   public AudioSource waterSplashSound;
   public int numberOfJumps = 0;
-  public int randomIndex = -1;
+  public int bugNumber = -1;
   public bool isCaught = false;
   public List<int> removedBugs;
   public bool chapterFinished = false;
+  public bool canShow = false;
 
   public GameObject bug1;
   public GameObject bug2;
@@ -103,7 +104,7 @@ public class FrogScript : MonoBehaviour
 
   void Update()
   {
-    if(randomIndex > -1)
+    if(canShow)
     {
         WaitToPickBug();
     }
@@ -119,14 +120,14 @@ public class FrogScript : MonoBehaviour
           
           if(hit.collider.CompareTag("Bug1"))
           {
-            if(randomIndex == 0)
+            if(bugNumber == 0)
             {
-              //bugTouch1.SetActive(false);
+              bugTouch1.SetActive(false);
               bug1.SetActive(false);
               bugsFound ++;
               isCaught = true; 
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
+              //Debug.Log("bugsFound " + bugsFound);
+              //randomIndex = -1;
             }
             else
             {
@@ -135,14 +136,14 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug2"))
           {
-            if(randomIndex == 1)
+            if(bugNumber == 1)
             {
-              //bugTouch2.SetActive(false);
+              bugTouch2.SetActive(false);
               bug2.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
+              //Debug.Log("bugsFound " + bugsFound);
+              //randomIndex = -1;
             }
             else
             {
@@ -151,14 +152,14 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug3"))
           {
-            if(randomIndex == 2)
+            if(bugNumber == 2)
             {
-              //bugTouch3.SetActive(false);
+              bugTouch3.SetActive(false);
               bug3.SetActive(false);     
               bugsFound ++;
               isCaught = true;
               Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
+              //randomIndex = -1;
             }
             else
             {
@@ -167,14 +168,14 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug4"))
           {
-            if(randomIndex == 3)
+            if(bugNumber == 3)
             {
-              //bugTouch4.SetActive(false);
+              bugTouch4.SetActive(false);
               bug4.SetActive(false);
               bugsFound ++;
               isCaught = true;
               Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
+              //randomIndex = -1;
             }
             else
             {
@@ -184,14 +185,14 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug5"))
           {
-            if(randomIndex == 4)
+            if(bugNumber == 4)
             {
-              //bugTouch5.SetActive(false);
+              bugTouch5.SetActive(false);
               bug5.SetActive(false);
               bugsFound ++;
               isCaught = true;
               Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
+              //randomIndex = -1;
             }
             else
             {
@@ -200,14 +201,12 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug6"))
           {
-            if(randomIndex == 5)
+            if(bugNumber == 5)
             {
-              //bugTouch6.SetActive(false);
+              bugTouch6.SetActive(false);
               bug6.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
             }
             else
             {
@@ -216,9 +215,9 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug7"))
           {
-            if(randomIndex == 6)
+            if(bugNumber == 6)
             {
-              //bugTouch7.SetActive(false);
+              bugTouch7.SetActive(false);
               bug7.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -230,14 +229,12 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug8"))
           {
-            if(randomIndex == 7)
+            if(bugNumber == 7)
             {
-              //bugTouch8.SetActive(false);
+              bugTouch8.SetActive(false);
               bug8.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
             }
             else
             {
@@ -246,14 +243,12 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug9"))
           {
-            if(randomIndex == 8)
+            if(bugNumber == 8)
             {
-              //bugTouch9.SetActive(false);
+              bugTouch9.SetActive(false);
               bug9.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
             }
             else
             {
@@ -262,14 +257,12 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug10"))
           {
-            if(randomIndex == 9)
+            if(bugNumber == 9)
             {
-              //bugTouch10.SetActive(false);
+              bugTouch10.SetActive(false);
               bug10.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
             }
             else
             {
@@ -278,14 +271,12 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug11"))
           {
-            if(randomIndex == 10)
+            if(bugNumber == 10)
             {
-              //bugTouch11.SetActive(false);
+              bugTouch11.SetActive(false);
               bug11.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
             }
             else
             {
@@ -294,14 +285,12 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug12"))
           {
-            if(randomIndex == 11)
+            if(bugNumber == 11)
             {
-              //bugTouch12.SetActive(false);
+              bugTouch12.SetActive(false);
               bug12.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
             }
             else
             {
@@ -310,14 +299,12 @@ public class FrogScript : MonoBehaviour
           } 
           if(hit.collider.CompareTag("Bug13"))
           {
-            if(randomIndex == 12)
+            if(bugNumber == 12)
             {
-              //bugTouch13.SetActive(false);
+              bugTouch13.SetActive(false);
               bug13.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
             }
             else
             {
@@ -326,14 +313,12 @@ public class FrogScript : MonoBehaviour
           }  
           if(hit.collider.CompareTag("Bug14"))
           {
-            if(randomIndex == 13)
+            if(bugNumber == 13)
             {
-              //bugTouch14.SetActive(false);
+              bugTouch14.SetActive(false);
               bug14.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
-              randomIndex = -1;
             }
             else
             {
@@ -415,15 +400,12 @@ public class FrogScript : MonoBehaviour
     */
   }
 
-  public void  WaitToPickBug()
+  public void WaitToPickBug()
   {
-    Debug.Log("BUG NUMBER " + randomIndex);
-    bugList[randomIndex].SetActive(true);
-    removedBugs.Add(randomIndex);
-    foreach (int randomIndex in removedBugs)
-    {
-      Debug.Log("NUMERO: " + randomIndex);
-    }
+    //Debug.Log("BUG NUMBER " + randomIndex);
+    //bugList[randomIndex].SetActive(true);
+    //bugNumber ++;
+    bugList[bugNumber].SetActive(true);
   }
 
   private void OnCollisionEnter2D(Collision2D other)
