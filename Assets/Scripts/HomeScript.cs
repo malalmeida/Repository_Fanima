@@ -23,6 +23,7 @@ public class HomeScript : MonoBehaviour
     public bool doAnimation = false; 
     public bool wordsDone = false; 
     public MoveObject ballon;
+    public bool animationDone = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,8 @@ public class HomeScript : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             ballon.starAnimation = true;
             doAnimation = false;
+            animationDone = true;
+
         }
         if (oneHundred.activeSelf)
         {
@@ -137,6 +140,7 @@ public class HomeScript : MonoBehaviour
     {
         ballon.animationDone = false;
         yield return new WaitUntil(() => ballon.animationDone);
+        animationDone = true;
         doAnimation = false;
     }
 }

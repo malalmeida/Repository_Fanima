@@ -84,7 +84,7 @@ public class FrogScript : MonoBehaviour
     bugList.Add(bug12);
     bugList.Add(bug13);
     bugList.Add(bug14);
-    
+    /*
     bug1.SetActive(false);
     bug2.SetActive(false);
     bug3.SetActive(false);
@@ -99,7 +99,7 @@ public class FrogScript : MonoBehaviour
     bug12.SetActive(false);
     bug13.SetActive(false);
     bug14.SetActive(false);
-    
+    */
   }
 
   void Update()
@@ -158,7 +158,7 @@ public class FrogScript : MonoBehaviour
               bug3.SetActive(false);     
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
+              //Debug.Log("bugsFound " + bugsFound);
               //randomIndex = -1;
             }
             else
@@ -174,7 +174,7 @@ public class FrogScript : MonoBehaviour
               bug4.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
+              //Debug.Log("bugsFound " + bugsFound);
               //randomIndex = -1;
             }
             else
@@ -324,7 +324,8 @@ public class FrogScript : MonoBehaviour
             {
               Debug.Log("PROCURA MELHOR");
             }
-          }   
+          } 
+          Debug.Log("removedBugs " + removedBugs);  
         }
       }
 

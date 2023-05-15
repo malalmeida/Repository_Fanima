@@ -559,6 +559,12 @@ public class GameController : MonoBehaviour
       if (SceneManager.GetActiveScene().name == "Home")
       {
         homeScript.doAnimation = true;
+        if(homeScript.wordsDone)
+        {
+          yield return new WaitUntil(() => homeScript.animationDone);
+          homeScript.animationDone = false;
+        }
+        homeScript.animationDone = false;
         webSockets.validationValue = -2;      
       }
       else if (SceneManager.GetActiveScene().name == "Frog")

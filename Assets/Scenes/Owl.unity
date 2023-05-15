@@ -7754,9 +7754,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7fc89a39677d9264da4892cf13f47af2, type: 3}
   home1: {fileID: 0}
   home2: {fileID: 0}
-  introChapVoice: {fileID: 0}
+  introChapVoice: {fileID: 523171815}
   finalChapVoice: {fileID: 0}
-  askToRepeatF: {fileID: 0}
+  askToRepeatF: {fileID: 73306470}
+  travelTrip: {fileID: 0}
+  travelFinal: {fileID: 0}
 --- !u!4 &1849421719
 Transform:
   m_ObjectHideFlags: 0
