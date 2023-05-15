@@ -54,6 +54,8 @@ public class FrogScript : MonoBehaviour
   public List<GameObject> bugList;
   public int bugsFound = 0;
 
+  public GameObject dialogCloud;
+
   public GameObject currentBug;
 
 
@@ -84,7 +86,7 @@ public class FrogScript : MonoBehaviour
     bugList.Add(bug12);
     bugList.Add(bug13);
     bugList.Add(bug14);
-    /*
+   
     bug1.SetActive(false);
     bug2.SetActive(false);
     bug3.SetActive(false);
@@ -99,7 +101,7 @@ public class FrogScript : MonoBehaviour
     bug12.SetActive(false);
     bug13.SetActive(false);
     bug14.SetActive(false);
-    */
+    
   }
 
   void Update()
@@ -123,7 +125,9 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 0)
             {
               bugTouch1.SetActive(false);
+              canShow = false;
               bug1.SetActive(false);
+              //bug1.SetActive(false);
               bugsFound ++;
               isCaught = true; 
               //Debug.Log("bugsFound " + bugsFound);
@@ -139,6 +143,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 1)
             {
               bugTouch2.SetActive(false);
+              canShow = false;
               bug2.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -155,6 +160,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 2)
             {
               bugTouch3.SetActive(false);
+              canShow = false;
               bug3.SetActive(false);     
               bugsFound ++;
               isCaught = true;
@@ -171,6 +177,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 3)
             {
               bugTouch4.SetActive(false);
+              canShow = false;
               bug4.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -188,10 +195,10 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 4)
             {
               bugTouch5.SetActive(false);
+              canShow = false;
               bug5.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              Debug.Log("bugsFound " + bugsFound);
               //randomIndex = -1;
             }
             else
@@ -204,6 +211,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 5)
             {
               bugTouch6.SetActive(false);
+              canShow = false;
               bug6.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -218,8 +226,9 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 6)
             {
               bugTouch7.SetActive(false);
+              canShow = false;
               bug7.SetActive(false);
-              bugsFound ++;
+             bugsFound ++;
               isCaught = true;
             }
             else
@@ -232,6 +241,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 7)
             {
               bugTouch8.SetActive(false);
+              canShow = false;
               bug8.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -246,6 +256,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 8)
             {
               bugTouch9.SetActive(false);
+              canShow = false;
               bug9.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -260,6 +271,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 9)
             {
               bugTouch10.SetActive(false);
+              canShow = false;
               bug10.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -274,6 +286,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 10)
             {
               bugTouch11.SetActive(false);
+              canShow = false;
               bug11.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -288,6 +301,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 11)
             {
               bugTouch12.SetActive(false);
+              canShow = false;
               bug12.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -302,6 +316,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 12)
             {
               bugTouch13.SetActive(false);
+              canShow = false;
               bug13.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -316,16 +331,18 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 13)
             {
               bugTouch14.SetActive(false);
+              canShow = false;
               bug14.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              dialogCloud.SetActive(false);
             }
             else
             {
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          Debug.Log("removedBugs " + removedBugs);  
+          Debug.Log("removedBugs " + bugsFound);  
         }
       }
 
@@ -406,7 +423,8 @@ public class FrogScript : MonoBehaviour
     //Debug.Log("BUG NUMBER " + randomIndex);
     //bugList[randomIndex].SetActive(true);
     //bugNumber ++;
-    bugList[bugNumber].SetActive(true);
+
+    bugList[bugNumber].SetActive(true); 
   }
 
   private void OnCollisionEnter2D(Collision2D other)
@@ -417,8 +435,6 @@ public class FrogScript : MonoBehaviour
       animator.SetBool("Jump", false);
       animator.SetBool("Catch", false);
       isJumping = false;
-
-      //waterSplashSound.Play();    
     }
     
     if(other.gameObject.CompareTag("Leaf1"))
@@ -430,7 +446,6 @@ public class FrogScript : MonoBehaviour
       isJumping = false;
 
       waterSplashSound.Play();
-
     }
 
     if(other.gameObject.CompareTag("Leaf2"))
@@ -438,17 +453,11 @@ public class FrogScript : MonoBehaviour
       playerSpeed = 0;
       animator.SetBool("Jump", false);
         
-      //animator.SetBool("Catch", true);
       isJumping = false;
 
       waterSplashSound.Play();  
-
-      //if(bugsFound == 13)
-      //{
-        //confetti.Play();
-        //yield return new WaitForSeconds(2.0f);
-        chapterFinished = true;
-      //}     
+      chapterFinished = true;
+      
     }
   }
 }

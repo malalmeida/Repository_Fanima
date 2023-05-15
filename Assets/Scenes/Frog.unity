@@ -2213,6 +2213,8 @@ MonoBehaviour:
   introChapVoice: {fileID: 1247360789}
   finalChapVoice: {fileID: 0}
   askToRepeatF: {fileID: 1784836877}
+  travelTrip: {fileID: 0}
+  travelFinal: {fileID: 0}
 --- !u!4 &406911282
 Transform:
   m_ObjectHideFlags: 0
@@ -7726,10 +7728,11 @@ MonoBehaviour:
   animator: {fileID: 1722962061}
   waterSplashSound: {fileID: 1188958795}
   numberOfJumps: 0
-  randomIndex: -1
+  bugNumber: -1
   isCaught: 0
   removedBugs: 
   chapterFinished: 0
+  canShow: 0
   bug1: {fileID: 1118390979}
   bug2: {fileID: 1794623107}
   bug3: {fileID: 1936328154}
@@ -7760,6 +7763,7 @@ MonoBehaviour:
   bugTouch14: {fileID: 1003128632}
   bugList: []
   bugsFound: 0
+  dialogCloud: {fileID: 456892751}
   currentBug: {fileID: 0}
   confetti: {fileID: 2051302950}
 --- !u!95 &1722962061

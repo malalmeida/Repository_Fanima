@@ -21,7 +21,7 @@ public class TravelScript : MonoBehaviour
     void Start()
     {
 
-        //doAnimation = true;
+
     }
 
     // Update is called once per frame

@@ -186,7 +186,6 @@ public class GameController : MonoBehaviour
         PlayAudioClip(currentWord);
 
         wordToSay.text = currentWord;
-        Debug.Log("I " + i);
         timer = sequenceToPlayList[i].time;
         RecordSound(timer);
         yield return StartCoroutine(WaitForValidation());
@@ -222,13 +221,14 @@ public class GameController : MonoBehaviour
       yield return StartCoroutine(PlayGuideVoiceToInitSentences(currentWord));
       PlayAudioClip(currentWord); 
       //ALTERAR MEDIANTE O TEMPO QUE SE DA A UMAPALAVRA NA PLAY
-      if(sequenceToPlayList[i].time == 2)
+      //if(sequenceToPlayList[i].time == 2)
+      if(currentWord.Contains(" "))
       {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.7f);
       }
       else
       {
-        yield return new WaitForSeconds(2.7f);
+        yield return new WaitForSeconds(2.0f);
       }
       
       wordToSay.text = currentWord;
@@ -237,7 +237,6 @@ public class GameController : MonoBehaviour
       yield return StartCoroutine(WaitForValidation());
     }
     Debug.Log("ACABOU O SEQUENCIA");
-
 
     if((SceneManager.GetActiveScene().name == "Home"))
     {
@@ -270,11 +269,11 @@ public class GameController : MonoBehaviour
       }
     }
 
-    else if((SceneManager.GetActiveScene().name == "Octopus"))
+    else if((SceneManager.GetActiveScene().name == "Fish"))
     {
       if(errorDetected == true)
       {
-        SceneManager.LoadScene("Fish"); 
+        SceneManager.LoadScene("Octopus"); 
       }
       else
       {
@@ -373,8 +372,42 @@ public class GameController : MonoBehaviour
   {    
     yield return new WaitUntil(() => selectionDone);
     //yield return new WaitUntil(() => prepareLevelsDone);
-    //yield return new WaitUntil(() => travelScript.patientInteractionDone);
-    
+    //yield return new WaitUntil(() => travelScript.animationDone);
+  /*  
+    if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
+    {
+      if(PlayerPrefs.GetInt("NumberOfChaptersToPlay") == 1)
+      {
+        PlayerPrefs.SetInt("NumberOfChaptersPlayed", 2);
+        SceneManager.LoadScene(PlayerPrefs.GetString("ChapterOne")); 
+      }      
+    }
+    else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 2)
+    {
+      if(PlayerPrefs.GetInt("NumberOfChaptersToPlay") == 2)
+      {
+        Debug.Log("ACABUO O JOGO");
+        OnApplicationQuit();
+      }
+      else
+      {
+        PlayerPrefs.SetInt("NumberOfChaptersPlayed", 3);
+        SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
+      }
+    }
+    else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 3)
+    {
+      if(PlayerPrefs.GetInt("NumberOfChaptersToPlay") == 3)
+      {
+        Debug.Log("ACABUO O JOGO");
+        OnApplicationQuit();
+      }
+      else
+      {
+        SceneManager.LoadScene(PlayerPrefs.GetString("ChapterThree")); 
+      }
+    }
+ */  
     if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
     {
       PlayerPrefs.SetInt("NumberOfChaptersPlayed", 2);
@@ -388,6 +421,7 @@ public class GameController : MonoBehaviour
     else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 3){
       SceneManager.LoadScene(PlayerPrefs.GetString("ChapterThree")); 
     }
+   
   }
 
   IEnumerator PrepareSequence()
