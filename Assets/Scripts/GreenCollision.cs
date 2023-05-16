@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueCollision : MonoBehaviour
+public class GreenCollision : MonoBehaviour
 {
     private Rigidbody2D rb;
     public OctopusScript octopusScript;
@@ -14,7 +14,7 @@ public class BlueCollision : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Blue")
+        if (collision.gameObject.tag == "Green")
         {
             octopusScript.isMatch = true;
             octopusScript.currentObj.SetActive(false);

@@ -14,10 +14,8 @@ public class CollisionCircleScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TOU!");
         if (collision.gameObject.tag == "Circle")
         {
-            Debug.Log("ACERTOU!");
             owlScript.isMatch = true;
             owlScript.currentObj.SetActive(false);
             owlScript.currentObj.transform.position = owlScript.startPosition;

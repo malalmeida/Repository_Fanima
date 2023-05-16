@@ -6,7 +6,7 @@ public class OctopusScript : MonoBehaviour
 {
     public GameObject red;
     public GameObject yellow;
-    public GameObject blue;
+    public GameObject green;
     
     public GameObject obj1;
     public GameObject obj2;
@@ -51,7 +51,7 @@ public class OctopusScript : MonoBehaviour
         startPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         red.SetActive(true);
         yellow.SetActive(true);
-        blue.SetActive(true);
+        green.SetActive(true);
         
         objList = new List<GameObject>();
         objList.Add(obj1);
@@ -103,7 +103,8 @@ public class OctopusScript : MonoBehaviour
 
     void Update()
     {
-        if(randomIndex > -1)
+        //if(randomIndex > -1)
+        if(canShow)
         {
             WaitToShowObj();
         }
@@ -135,9 +136,11 @@ public class OctopusScript : MonoBehaviour
 
     public void WaitToShowObj()
     {
+        canShow = false;
         Debug.Log("OBJ NUMBER " + randomIndex);
+        Debug.Log("objs " +  objList.Count);
         objList[randomIndex].SetActive(true);
         currentObj = objList[randomIndex];
-        randomIndex = -1;
+        //randomIndex = -1;
     }
 }

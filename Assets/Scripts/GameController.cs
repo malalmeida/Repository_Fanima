@@ -75,7 +75,9 @@ public class GameController : MonoBehaviour
   public AudioSource introChapVoice;
   public AudioSource finalChapVoice;
   public AudioSource askToRepeatF;
-  public AudioSource travelTrip;
+  public AudioSource travelTrip1;
+  public AudioSource travelTrip2;
+  public AudioSource travelTrip3;
   public AudioSource travelFinal;
 
   // Start is called before the first frame update
@@ -99,7 +101,7 @@ public class GameController : MonoBehaviour
     {
       activeChapter = "Geral"; 
       PlayerPrefs.SetString("LEVELSELECTION", "NOTDONE");   
-      PlayerPrefs.SetInt("NumberOfChaptersPlayed", 1);  
+      PlayerPrefs.SetInt("ChapterPlayed", 0);  
       StartCoroutine(GameLoop());    
     }
 
@@ -160,6 +162,8 @@ public class GameController : MonoBehaviour
 
   IEnumerator BonusGameLoop()
   {
+    yield return StartCoroutine(ChapIntro());
+
     gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
     sequenceID = PlayerPrefs.GetInt("SEQUENCEID");
     yield return StartCoroutine(webRequests.GetChapterErrors(gameExecutionID.ToString(), sequenceID.ToString()));
@@ -184,6 +188,7 @@ public class GameController : MonoBehaviour
         Debug.Log("DIZ -> " + currentWord); 
 
         PlayAudioClip(currentWord);
+        yield return new WaitForSeconds(1.0f);
 
         wordToSay.text = currentWord;
         timer = sequenceToPlayList[i].time;
@@ -192,6 +197,7 @@ public class GameController : MonoBehaviour
       }   
     }
     Debug.Log("ACABOU CAPITULO BONUS");
+    yield return StartCoroutine(ChapFinal());
     SceneManager.LoadScene("Travel");      
   }
 
@@ -220,15 +226,13 @@ public class GameController : MonoBehaviour
       Debug.Log("DIZ -> " + currentWord);
       yield return StartCoroutine(PlayGuideVoiceToInitSentences(currentWord));
       PlayAudioClip(currentWord); 
-      //ALTERAR MEDIANTE O TEMPO QUE SE DA A UMAPALAVRA NA PLAY
-      //if(sequenceToPlayList[i].time == 2)
       if(currentWord.Contains(" "))
       {
-        yield return new WaitForSeconds(2.7f);
+        yield return new WaitForSeconds(1.7f);
       }
       else
       {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
       }
       
       wordToSay.text = currentWord;
@@ -236,6 +240,7 @@ public class GameController : MonoBehaviour
       RecordSound(timer);
       yield return StartCoroutine(WaitForValidation());
     }
+    yield return StartCoroutine(ChapFinal());
     Debug.Log("ACABOU O SEQUENCIA");
 
     if((SceneManager.GetActiveScene().name == "Home"))
@@ -317,36 +322,35 @@ public class GameController : MonoBehaviour
       yield return new WaitForSeconds(10.0f);
     }
   }
-/*
+
   IEnumerator ChapFinal()
   {
-    //finalChapVoice.Play();
+    finalChapVoice.Play();
     if(SceneManager.GetActiveScene().name == "Frog")
     {
-     //yield return new WaitForSeconds(14.0f);
+     yield return new WaitForSeconds(4.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Monkey")
     {
-      //yield return new WaitForSeconds(9.0f);
+      yield return new WaitForSeconds(5.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Chameleon")
     {
-      //yield return new WaitForSeconds(13.0f);
+      yield return new WaitForSeconds(6.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Owl")
     {
-     // yield return new WaitForSeconds(13.0f);
+      yield return new WaitForSeconds(5.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Fish")
     {
-      //yield return new WaitForSeconds(8.0f);
+      yield return new WaitForSeconds(5.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Octopus")
     {
-     // yield return new WaitForSeconds(9.0f);
+      yield return new WaitForSeconds(5.0f);
     }
   }
-  */
 
   IEnumerator PlayGuideVoiceToInitSentences(string currentWord)
   {
@@ -373,55 +377,55 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => selectionDone);
     //yield return new WaitUntil(() => prepareLevelsDone);
     //yield return new WaitUntil(() => travelScript.animationDone);
-  /*  
-    if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
+    if(PlayerPrefs.GetInt("ChapterPlayed") == 0)
     {
-      if(PlayerPrefs.GetInt("NumberOfChaptersToPlay") == 1)
-      {
-        PlayerPrefs.SetInt("NumberOfChaptersPlayed", 2);
-        SceneManager.LoadScene(PlayerPrefs.GetString("ChapterOne")); 
-      }      
+      PlayerPrefs.SetInt("ChapterPlayed", 1);
+      travelTrip1.Play();
+      yield return new WaitForSeconds(4.0f);
+      SceneManager.LoadScene(PlayerPrefs.GetString("ChapterOne"));
     }
-    else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 2)
+    else if(PlayerPrefs.GetInt("ChapterPlayed") == 1)
     {
-      if(PlayerPrefs.GetInt("NumberOfChaptersToPlay") == 2)
+      PlayerPrefs.SetInt("ChapterPlayed", 2);
+      if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 1)
       {
-        Debug.Log("ACABUO O JOGO");
+        travelFinal.Play();
+        yield return new WaitForSeconds(5.0f);
         OnApplicationQuit();
       }
       else
       {
-        PlayerPrefs.SetInt("NumberOfChaptersPlayed", 3);
+        travelTrip2.Play();
+        yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
       }
     }
-    else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 3)
+    else if(PlayerPrefs.GetInt("ChapterPlayed") == 2)
     {
-      if(PlayerPrefs.GetInt("NumberOfChaptersToPlay") == 3)
+      if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 2)
       {
-        Debug.Log("ACABUO O JOGO");
+        travelFinal.Play();
+        yield return new WaitForSeconds(5.0f);
         OnApplicationQuit();
       }
       else
       {
+        PlayerPrefs.SetInt("ChapterPlayed", 3);
+        travelTrip3.Play();
+        yield return new WaitForSeconds(3.0f);
         SceneManager.LoadScene(PlayerPrefs.GetString("ChapterThree")); 
       }
     }
- */  
-    if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 1)
+    else if(PlayerPrefs.GetInt("ChapterPlayed") == 3)
     {
-      PlayerPrefs.SetInt("NumberOfChaptersPlayed", 2);
-      SceneManager.LoadScene(PlayerPrefs.GetString("ChapterOne")); 
+       if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 3)
+      {
+        travelFinal.Play();
+        yield return new WaitForSeconds(5.0f);
+        OnApplicationQuit();
+      }
     }
-    else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 2)
-    {
-      PlayerPrefs.SetInt("NumberOfChaptersPlayed", 3);
-      SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
-    }
-    else if(PlayerPrefs.GetInt("NumberOfChaptersPlayed") == 3){
-      SceneManager.LoadScene(PlayerPrefs.GetString("ChapterThree")); 
-    }
-   
+
   }
 
   IEnumerator PrepareSequence()
@@ -464,11 +468,13 @@ public class GameController : MonoBehaviour
 
     if(webSockets.levelsList.Count == 1)
     {
+      PlayerPrefs.SetInt("ChaptersToQuitGame", 1);
       PlayerPrefs.SetInt("NumberOfChaptersToPlay", 1);
 
       if(webSockets.levelsList[0].Equals("1"))
       {
         PlayerPrefs.SetString("ChapterOne", "Frog");
+
       }
       else if(webSockets.levelsList[0].Equals("2"))
       {
@@ -476,11 +482,13 @@ public class GameController : MonoBehaviour
       }
       else if(webSockets.levelsList[0].Equals("3"))
       {
-        PlayerPrefs.SetString("ChapterOne", "Octopus");
+        PlayerPrefs.SetString("ChapterOne", "Fish");
+        
       }
     }
     else if(webSockets.levelsList.Count == 2)
     {
+      PlayerPrefs.SetInt("ChaptersToQuitGame", 2);
       PlayerPrefs.SetInt("NumberOfChaptersToPlay", 2);
       if(webSockets.levelsList[0].Equals("1"))
       {
@@ -492,7 +500,7 @@ public class GameController : MonoBehaviour
         }
         else if(webSockets.levelsList[1].Equals("3"))
         {
-          PlayerPrefs.SetString("ChapterTwo", "Octopus");
+          PlayerPrefs.SetString("ChapterTwo", "Fish");
         }
       }
       else if(webSockets.levelsList[0].Equals("2"))
@@ -501,16 +509,17 @@ public class GameController : MonoBehaviour
 
         //if(webSockets.levelsList[1].Equals("3"))
         //{
-          PlayerPrefs.SetString("ChapterTwo", "Octopus");
+          PlayerPrefs.SetString("ChapterTwo", "Fish");
         //}
       }
     }
     else if(webSockets.levelsList.Count == 3)
     {
+      PlayerPrefs.SetInt("ChaptersToQuitGame", 3);
       PlayerPrefs.SetInt("NumberOfChaptersToPlay", 3);
       PlayerPrefs.SetString("ChapterOne", "Frog");
       PlayerPrefs.SetString("ChapterTwo", "Chameleon");
-      PlayerPrefs.SetString("ChapterThree", "Octopus");
+      PlayerPrefs.SetString("ChapterThree", "Fish");
     }
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
   prepareLevelsDone = true;
@@ -567,7 +576,7 @@ public class GameController : MonoBehaviour
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       Debug.Log("DIZ -> " + currentWord); 
       PlayAudioClip(currentWord);
-      yield return new WaitForSeconds(1.5f);
+      yield return new WaitForSeconds(1.0f);
       RecordSound(timer);
       webSockets.validationValue = -2;
       repetition = true;
@@ -603,10 +612,6 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
-        //do 
-        //{
-          //frogScript.randomIndex = Random.Range(0, 13);
-        //}while(!frogScript.removedBugs.Contains(frogScript.randomIndex));
         frogScript.canShow = true;
         frogScript.bugNumber ++;
         yield return new WaitUntil(() => frogScript.isCaught);
@@ -623,6 +628,7 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Octopus")
       {
         octopusScript.randomIndex = Random.Range(0, 21);
+        octopusScript.canShow = true;
         yield return new WaitUntil(() => octopusScript.isMatch);
         octopusScript.isMatch = false;
         webSockets.validationValue = -2;
@@ -637,6 +643,7 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
         owlScript.randomIndex = Random.Range(0, 28);
+        owlScript.canShow = true;
         yield return new WaitUntil(() => owlScript.isMatch);
         owlScript.isMatch = false;
         webSockets.validationValue = -2;      

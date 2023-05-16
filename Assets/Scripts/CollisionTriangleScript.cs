@@ -14,10 +14,8 @@ public class CollisionTriangleScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TOU!");
         if (collision.gameObject.tag == "Triangle")
         {
-            Debug.Log("HOO HOO!");
             owlScript.isMatch = true;
             owlScript.currentObj.SetActive(false);
             owlScript.currentObj.transform.position = owlScript.startPosition;

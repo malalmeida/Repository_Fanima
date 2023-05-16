@@ -7824,7 +7824,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6e59f5e6ffdaafb4697965de17b8725e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -8634,8 +8634,10 @@ MonoBehaviour:
   home1: {fileID: 0}
   home2: {fileID: 0}
   introChapVoice: {fileID: 1878418238}
-  finalChapVoice: {fileID: 0}
+  finalChapVoice: {fileID: 1755284542}
   askToRepeatF: {fileID: 697555778}
+  travelTrip: {fileID: 0}
+  travelFinal: {fileID: 0}
 --- !u!82 &1943259856
 AudioSource:
   m_ObjectHideFlags: 0

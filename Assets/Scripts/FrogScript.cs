@@ -138,7 +138,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug2"))
+          else if(hit.collider.CompareTag("Bug2"))
           {
             if(bugNumber == 1)
             {
@@ -155,7 +155,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug3"))
+          else if(hit.collider.CompareTag("Bug3"))
           {
             if(bugNumber == 2)
             {
@@ -172,7 +172,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug4"))
+          else if(hit.collider.CompareTag("Bug4"))
           {
             if(bugNumber == 3)
             {
@@ -190,7 +190,7 @@ public class FrogScript : MonoBehaviour
             }
             
           } 
-          if(hit.collider.CompareTag("Bug5"))
+          else if(hit.collider.CompareTag("Bug5"))
           {
             if(bugNumber == 4)
             {
@@ -206,7 +206,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug6"))
+          else if(hit.collider.CompareTag("Bug6"))
           {
             if(bugNumber == 5)
             {
@@ -221,7 +221,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug7"))
+          else if(hit.collider.CompareTag("Bug7"))
           {
             if(bugNumber == 6)
             {
@@ -236,7 +236,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug8"))
+          else if(hit.collider.CompareTag("Bug8"))
           {
             if(bugNumber == 7)
             {
@@ -251,7 +251,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug9"))
+          else if(hit.collider.CompareTag("Bug9"))
           {
             if(bugNumber == 8)
             {
@@ -266,7 +266,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug10"))
+          else if(hit.collider.CompareTag("Bug10"))
           {
             if(bugNumber == 9)
             {
@@ -281,7 +281,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug11"))
+          else if(hit.collider.CompareTag("Bug11"))
           {
             if(bugNumber == 10)
             {
@@ -296,7 +296,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug12"))
+          else if(hit.collider.CompareTag("Bug12"))
           {
             if(bugNumber == 11)
             {
@@ -311,7 +311,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          if(hit.collider.CompareTag("Bug13"))
+          else if(hit.collider.CompareTag("Bug13"))
           {
             if(bugNumber == 12)
             {
@@ -326,7 +326,7 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           }  
-          if(hit.collider.CompareTag("Bug14"))
+          else if(hit.collider.CompareTag("Bug14"))
           {
             if(bugNumber == 13)
             {
@@ -420,10 +420,6 @@ public class FrogScript : MonoBehaviour
 
   public void WaitToPickBug()
   {
-    //Debug.Log("BUG NUMBER " + randomIndex);
-    //bugList[randomIndex].SetActive(true);
-    //bugNumber ++;
-
     bugList[bugNumber].SetActive(true); 
   }
 

@@ -2211,7 +2211,7 @@ MonoBehaviour:
   home1: {fileID: 0}
   home2: {fileID: 0}
   introChapVoice: {fileID: 1247360789}
-  finalChapVoice: {fileID: 0}
+  finalChapVoice: {fileID: 1725297925}
   askToRepeatF: {fileID: 1784836877}
   travelTrip: {fileID: 0}
   travelFinal: {fileID: 0}
@@ -7875,7 +7875,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9cb154478b8affa46af4a89dcd153609, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

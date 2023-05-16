@@ -77,83 +77,92 @@ public class FishScript : MonoBehaviour
                 {
                     if(hit.collider.CompareTag("Food1"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food1;
                         StartCoroutine(WaitForAnimationDone());
-                       // food1.SetActive(false);
-                        //removedFishFoods ++;
-                        //isCaught = true;
-                    } 
-                    if(hit.collider.CompareTag("Food2"))
+                    }
+                    else if(hit.collider.CompareTag("Food2"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food2;
                         StartCoroutine(WaitForAnimationDone());
-                        
-                    } 
-                    if(hit.collider.CompareTag("Food3"))
+                    }
+                    else if(hit.collider.CompareTag("Food3"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food3;
                         StartCoroutine(WaitForAnimationDone());
                         
-                    } 
-                    if(hit.collider.CompareTag("Food4"))
+                    }
+                    else if(hit.collider.CompareTag("Food4"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food4;
                         StartCoroutine(WaitForAnimationDone());
-                    } 
-                    if(hit.collider.CompareTag("Food5"))
+                    }               
+                    else if(hit.collider.CompareTag("Food5"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food5;
                         StartCoroutine(WaitForAnimationDone());
                     } 
-                    if(hit.collider.CompareTag("Food6"))
+                    else if(hit.collider.CompareTag("Food6"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food6;
                         StartCoroutine(WaitForAnimationDone());
-                    } 
-                    if(hit.collider.CompareTag("Food7"))
+                    }
+                    else if(hit.collider.CompareTag("Food7"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food7;
                         StartCoroutine(WaitForAnimationDone());
                     } 
-                    if(hit.collider.CompareTag("Food8"))
+                    else if(hit.collider.CompareTag("Food8"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food8;
                         StartCoroutine(WaitForAnimationDone());
-                    } 
-                    if(hit.collider.CompareTag("Food9"))
+                    }               
+                    else if(hit.collider.CompareTag("Food9"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food9;
                         StartCoroutine(WaitForAnimationDone());
-                    } 
-                    if(hit.collider.CompareTag("Food10"))
+                    }
+                    else if(hit.collider.CompareTag("Food10"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food10;
                         StartCoroutine(WaitForAnimationDone());
-                    } 
-                    if(hit.collider.CompareTag("Food11"))
+                    }
+                    else if(hit.collider.CompareTag("Food11"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food11;
                         StartCoroutine(WaitForAnimationDone());
-                    } 
-                    if(hit.collider.CompareTag("Food12"))
+                    }
+                    else if(hit.collider.CompareTag("Food12"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food12;
                         StartCoroutine(WaitForAnimationDone());
                     }   
-                    if(hit.collider.CompareTag("Food13"))
+                    else if(hit.collider.CompareTag("Food13"))
                     {
+                        canShowFood = false;
                         fish.starAnimation = true;
                         currentFood = food13;
                         StartCoroutine(WaitForAnimationDone());

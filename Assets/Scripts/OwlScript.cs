@@ -126,7 +126,8 @@ public class OwlScript : MonoBehaviour
 
     void Update()
     {
-        if(randomIndex > -1)
+        //if(randomIndex > -1)
+        if(canShow)
         {
             WaitToShowObj();
         }
@@ -161,6 +162,7 @@ public class OwlScript : MonoBehaviour
         Debug.Log("OBJ NUMBER " + randomIndex);
         objList[randomIndex].SetActive(true);
         currentObj = objList[randomIndex];
-        randomIndex = -1;
+        //randomIndex = -1;
+        canShow = false;
     }
 }
