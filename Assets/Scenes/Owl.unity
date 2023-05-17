@@ -2903,7 +2903,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767190727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.43, y: -3.6, z: 0}
+  m_LocalPosition: {x: -0.7, y: -3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6321,7 +6321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569685133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.82, y: -3.61, z: 0}
+  m_LocalPosition: {x: 2.79, y: -3.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7578,7 +7578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829441246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.69, y: -3.6, z: 0}
+  m_LocalPosition: {x: -4.28, y: -3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7757,7 +7757,9 @@ MonoBehaviour:
   introChapVoice: {fileID: 523171815}
   finalChapVoice: {fileID: 363229022}
   askToRepeatF: {fileID: 73306470}
-  travelTrip: {fileID: 0}
+  travelTrip1: {fileID: 0}
+  travelTrip2: {fileID: 0}
+  travelTrip3: {fileID: 0}
   travelFinal: {fileID: 0}
 --- !u!4 &1849421719
 Transform:

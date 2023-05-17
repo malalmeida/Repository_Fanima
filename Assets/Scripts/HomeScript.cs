@@ -57,7 +57,7 @@ public class HomeScript : MonoBehaviour
         if(wordsDone == true)
         {
             //transform.position += new Vector3 (0, 1, 0);
-            yield return new WaitForSeconds(1.0f);
+            //yield return new WaitForSeconds(1.0f);
             ballon.starAnimation = true;
             doAnimation = false;
             animationDone = true;

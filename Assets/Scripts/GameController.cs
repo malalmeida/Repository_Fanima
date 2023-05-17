@@ -182,7 +182,7 @@ public class GameController : MonoBehaviour
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-        currentWord = dataList[sequenceToPlayList[j].word - 1].name;
+        FindWordNameByWordId(currentWordID);
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
         Debug.Log("DIZ -> " + currentWord); 
@@ -191,7 +191,7 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         wordToSay.text = currentWord;
-        timer = sequenceToPlayList[i].time;
+        timer = sequenceToPlayList[j].time;
         RecordSound(timer);
         yield return StartCoroutine(WaitForValidation());
       }   
@@ -219,8 +219,7 @@ public class GameController : MonoBehaviour
       currentWordID = sequenceToPlayList[i].word;
       PlayerPrefs.SetInt("SEQUENCEID", sequenceToPlayList[i].sequenceid);
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-      // O REPOSITORIO DE PALAVRAS COMEÇA COM O ID 1, POR ISSO O -1
-      currentWord = dataList[sequenceToPlayList[i].word - 1].name;
+      FindWordNameByWordId(currentWordID);
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
       Debug.Log("DIZ -> " + currentWord);
@@ -283,6 +282,17 @@ public class GameController : MonoBehaviour
       else
       {
         SceneManager.LoadScene("Travel"); 
+      }
+    }
+  }
+
+  public void FindWordNameByWordId(int wordID)
+  {
+    for(int i = 0; i < dataList.Count; i ++)
+    {
+      if(dataList[i].id == wordID)
+      {
+        currentWord = dataList[i].name;
       }
     }
   }
