@@ -60,7 +60,9 @@ public class HomeScript : MonoBehaviour
             //yield return new WaitForSeconds(1.0f);
             ballon.starAnimation = true;
             doAnimation = false;
-            animationDone = true;
+            animationDone = false;
+            yield return StartCoroutine(WaitForAnimationDone());
+
 
         }
         if (oneHundred.activeSelf)
@@ -133,7 +135,6 @@ public class HomeScript : MonoBehaviour
             ten.SetActive(true);
             doAnimation = false;
         }
-        StartCoroutine(WaitForAnimationDone());
     }
 
     IEnumerator WaitForAnimationDone()

@@ -48,7 +48,6 @@ public class OctopusScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         red.SetActive(true);
         yellow.SetActive(true);
         green.SetActive(true);
@@ -141,6 +140,6 @@ public class OctopusScript : MonoBehaviour
         Debug.Log("objs " +  objList.Count);
         objList[randomIndex].SetActive(true);
         currentObj = objList[randomIndex];
-        //randomIndex = -1;
+        startPosition = new Vector3(currentObj.transform.position.x, currentObj.transform.position.y, currentObj.transform.position.z);
     }
 }

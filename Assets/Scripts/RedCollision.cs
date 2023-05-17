@@ -17,8 +17,8 @@ public class RedCollision : MonoBehaviour
         if (collision.gameObject.tag == "Red")
         {
             octopusScript.isMatch = true;
-            octopusScript.currentObj.SetActive(false);
             octopusScript.currentObj.transform.position = octopusScript.startPosition;
+            octopusScript.currentObj.SetActive(false);
         }
     }
 }
