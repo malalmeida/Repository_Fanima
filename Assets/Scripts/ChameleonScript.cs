@@ -67,7 +67,6 @@ public class ChameleonScript : MonoBehaviour
             WaitToShowChameleon();
         }
         
-
         if(Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

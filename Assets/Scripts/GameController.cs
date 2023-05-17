@@ -27,6 +27,9 @@ public class GameController : MonoBehaviour
   public WebSockets webSockets;
   
   private Rigidbody2D rb;
+
+  [SerializeField] private ParticleSystem confetti;
+  public GameObject finalMenu;
     
   [SerializeField] private AudioSource userRecording;
   [SerializeField] private TextMeshProUGUI wordToSay;
@@ -83,6 +86,11 @@ public class GameController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    if(SceneManager.GetActiveScene().name == "Travel")
+    {
+      finalMenu.SetActive(false);
+    }
+    
     aud = GetComponent<AudioSource>();
 
     rb = GetComponent<Rigidbody2D>();
@@ -164,6 +172,7 @@ public class GameController : MonoBehaviour
   {
     yield return StartCoroutine(ChapIntro());
 
+
     gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
     sequenceID = PlayerPrefs.GetInt("SEQUENCEID");
     yield return StartCoroutine(webRequests.GetChapterErrors(gameExecutionID.ToString(), sequenceID.ToString()));
@@ -186,7 +195,6 @@ public class GameController : MonoBehaviour
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
         Debug.Log("DIZ -> " + currentWord); 
-
         PlayAudioClip(currentWord);
         yield return new WaitForSeconds(1.0f);
 
@@ -196,7 +204,6 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(WaitForValidation());
       }   
     }
-    Debug.Log("ACABOU CAPITULO BONUS");
     yield return StartCoroutine(ChapFinal());
     SceneManager.LoadScene("Travel");      
   }
@@ -231,7 +238,7 @@ public class GameController : MonoBehaviour
       }
       else
       {
-        yield return new WaitForSeconds(1.0f);
+       yield return new WaitForSeconds(1.0f);
       }
       
       wordToSay.text = currentWord;
@@ -399,14 +406,16 @@ public class GameController : MonoBehaviour
       PlayerPrefs.SetInt("ChapterPlayed", 2);
       if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 1)
       {
+        confetti.Play();
         travelFinal.Play();
         yield return new WaitForSeconds(5.0f);
-        OnApplicationQuit();
+        finalMenu.SetActive(true);
+        //OnApplicationQuit();
       }
       else
       {
-        travelTrip2.Play();
-        yield return new WaitForSeconds(5.0f);
+       travelTrip2.Play();
+       yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
       }
     }
@@ -414,9 +423,11 @@ public class GameController : MonoBehaviour
     {
       if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 2)
       {
+        confetti.Play();
         travelFinal.Play();
         yield return new WaitForSeconds(5.0f);
-        OnApplicationQuit();
+        finalMenu.SetActive(true);
+        //OnApplicationQuit();
       }
       else
       {
@@ -430,9 +441,11 @@ public class GameController : MonoBehaviour
     {
        if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 3)
       {
+        confetti.Play();
         travelFinal.Play();
         yield return new WaitForSeconds(5.0f);
-        OnApplicationQuit();
+        finalMenu.SetActive(true);
+        //OnApplicationQuit();
       }
     }
 
@@ -516,11 +529,7 @@ public class GameController : MonoBehaviour
       else if(webSockets.levelsList[0].Equals("2"))
       {
         PlayerPrefs.SetString("ChapterOne", "Chameleon");
-
-        //if(webSockets.levelsList[1].Equals("3"))
-        //{
-          PlayerPrefs.SetString("ChapterTwo", "Fish");
-        //}
+        PlayerPrefs.SetString("ChapterTwo", "Fish");
       }
     }
     else if(webSockets.levelsList.Count == 3)
@@ -724,11 +733,13 @@ public class GameController : MonoBehaviour
     SavWav.Save(fileName + ".wav", userRecording.clip);
   }
 
-  void OnApplicationQuit()
+  public void OnApplicationQuit()
   {
     Debug.Log("Stop WS client and logut");
     string payload = "{\"therapist\": " + therapistID + "}";
     webSockets.PrepareMessage("status", payload);
     webSockets.StopClient(payload);
+    Application.Quit();       
+
   }
 }

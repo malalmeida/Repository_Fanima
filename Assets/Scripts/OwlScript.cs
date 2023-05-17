@@ -162,7 +162,6 @@ public class OwlScript : MonoBehaviour
         Debug.Log("OBJ NUMBER " + randomIndex);
         objList[randomIndex].SetActive(true);
         currentObj = objList[randomIndex];
-        //randomIndex = -1;
         canShow = false;
     }
 }

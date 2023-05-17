@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1200}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -4918,7 +4918,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1200}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -8425,7 +8425,9 @@ MonoBehaviour:
   introChapVoice: {fileID: 0}
   finalChapVoice: {fileID: 0}
   askToRepeatF: {fileID: 1127600195}
-  travelTrip: {fileID: 0}
+  travelTrip1: {fileID: 0}
+  travelTrip2: {fileID: 0}
+  travelTrip3: {fileID: 0}
   travelFinal: {fileID: 0}
 --- !u!4 &1403301867
 Transform:
@@ -12873,6 +12875,7 @@ MonoBehaviour:
   doAnimation: 0
   wordsDone: 0
   ballon: {fileID: 1451663374}
+  animationDone: 0
 --- !u!4 &2080066537
 Transform:
   m_ObjectHideFlags: 0

@@ -110,7 +110,7 @@ public class FrogScript : MonoBehaviour
     {
         WaitToPickBug();
     }
-        
+
     if(Input.GetMouseButtonDown(0))
     {
       Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -119,7 +119,6 @@ public class FrogScript : MonoBehaviour
       {
         if(hit.collider != null)
         {                  
-          
           if(hit.collider.CompareTag("Bug1"))
           {
             if(bugNumber == 0)
@@ -127,11 +126,8 @@ public class FrogScript : MonoBehaviour
               bugTouch1.SetActive(false);
               canShow = false;
               bug1.SetActive(false);
-              //bug1.SetActive(false);
               bugsFound ++;
               isCaught = true; 
-              //Debug.Log("bugsFound " + bugsFound);
-              //randomIndex = -1;
             }
             else
             {
@@ -147,8 +143,6 @@ public class FrogScript : MonoBehaviour
               bug2.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              //Debug.Log("bugsFound " + bugsFound);
-              //randomIndex = -1;
             }
             else
             {
@@ -164,8 +158,6 @@ public class FrogScript : MonoBehaviour
               bug3.SetActive(false);     
               bugsFound ++;
               isCaught = true;
-              //Debug.Log("bugsFound " + bugsFound);
-              //randomIndex = -1;
             }
             else
             {
@@ -181,8 +173,6 @@ public class FrogScript : MonoBehaviour
               bug4.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              //Debug.Log("bugsFound " + bugsFound);
-              //randomIndex = -1;
             }
             else
             {
@@ -199,7 +189,6 @@ public class FrogScript : MonoBehaviour
               bug5.SetActive(false);
               bugsFound ++;
               isCaught = true;
-              //randomIndex = -1;
             }
             else
             {
@@ -345,66 +334,9 @@ public class FrogScript : MonoBehaviour
           Debug.Log("removedBugs " + bugsFound);  
         }
       }
-
     }
-    Vector3 v3;
-/*
-    if(Input.touchCount != 1)
-    {
-      dragging = false;
-      return;
-    }
-
-    Touch touch = Input.touches[0];
-    Vector3 pos = touch.position;
-
-    if(touch.phase == TouchPhase.Began)
-    {
-      Ray ray = Camera.main.ScreenPointToRay(pos);
-      RaycastHit hit;
-
-      if (Physics.Raycast(ray, out hit))
-      {
-        if(hit.collider.tag =="bug")
-        {
-          toDrag = hit.transform;
-          dist = hit.transform.position.z - Camera.main.transform.position.z;
-          v3 = new Vector3(pos.x, pos.y, dist);
-          v3 = Camera.main.ScreenToWorldPoint(v3);
-          offset = toDrag.position - v3;
-          dragging = true;
-        }    
-      }
-    }
-
-    if(dragging && touch.phase == TouchPhase.Moved)
-    {
-      v3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
-      v3 = new Camera.main.ScreenToWorldPoint(v3);
-      toDrag.position = v3 + offset;
-    }
-
-    if(dragging && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
-    {
-      dragging = false;
-    }
-*/
-    rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
-      
-    animator.SetFloat("yVelocity", rb.velocity.y);
-
-    for (int i =0; i<2 ; i++)
-    {
-      if(bugsFound == 14 && !isJumping)
-      {
-        animator.SetBool("Jump", true);
-        playerSpeed = 1.8f;
-
-        rb.AddForce(new Vector2(rb.velocity.x, 500));
-
-        isJumping = true;
-      }
-    }
+    
+   
    /*
     if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
     {
@@ -416,6 +348,22 @@ public class FrogScript : MonoBehaviour
       isJumping = true;
     }
     */
+    Vector3 v3;
+    rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+                
+    animator.SetFloat("yVelocity", rb.velocity.y);
+
+    for (int i =0; i<2 ; i++)
+    {
+      if(bugsFound == 14 && !isJumping)
+        {
+        animator.SetBool("Jump", true);
+        playerSpeed = 1.8f;
+
+        rb.AddForce(new Vector2(rb.velocity.x, 500));
+        isJumping = true;
+      }
+    }
   }
 
   public void WaitToPickBug()
@@ -435,7 +383,7 @@ public class FrogScript : MonoBehaviour
     
     if(other.gameObject.CompareTag("Leaf1"))
     {
-      confetti.Play();
+      //confetti.Play();
       playerSpeed = 0;
       animator.SetBool("Jump", false);
       animator.SetBool("Catch", false);

@@ -6,17 +6,16 @@ using TMPro;
 public class Login : MonoBehaviour
 {
     public LoginRequest loginRequest;
-    //public TMP_InputField userInput;
-    //public TMP_InputField passInput;
+    public TMP_InputField userInput;
+    public TMP_InputField passInput;
   
-
     public void ConfirmLogin()
     {
-        //string user = userInput.text;
-        //string pass = passInput.text;
+        string user = userInput.text;
+        string pass = passInput.text;
 
-        const string user = "speech1@play.pt";
-        const string pass = "123";
+        //const string user = "speech1@play.pt";
+        //const string pass = "123";
 
         //GUILHERME A
         /*const string user = "cresce1@play.pt";
@@ -31,5 +30,4 @@ public class Login : MonoBehaviour
         Application.Quit();       
     }
 
-   
 }
