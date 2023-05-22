@@ -41,8 +41,6 @@ public class OctopusScript : MonoBehaviour
     private Vector3 offset;
     [SerializeField] private LayerMask movableLayers;
     public Vector3 startPosition;
-
-
     public GameObject currentObj;
 
     // Start is called before the first frame update

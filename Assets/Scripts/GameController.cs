@@ -171,8 +171,6 @@ public class GameController : MonoBehaviour
   IEnumerator BonusGameLoop()
   {
     yield return StartCoroutine(ChapIntro());
-
-
     gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
     sequenceID = PlayerPrefs.GetInt("SEQUENCEID");
     yield return StartCoroutine(webRequests.GetChapterErrors(gameExecutionID.ToString(), sequenceID.ToString()));
@@ -196,7 +194,6 @@ public class GameController : MonoBehaviour
         webSockets.PrepareMessage("game", payload); 
         Debug.Log("DIZ -> " + currentWord); 
         PlayAudioClip(currentWord);
-        yield return new WaitForSeconds(1.0f);
 
         wordToSay.text = currentWord;
         timer = sequenceToPlayList[j].time;
@@ -204,7 +201,7 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(WaitForValidation());
       }   
     }
-    yield return StartCoroutine(ChapFinal());
+   yield return StartCoroutine(ChapFinal());
     SceneManager.LoadScene("Travel");      
   }
 
@@ -230,16 +227,17 @@ public class GameController : MonoBehaviour
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
       Debug.Log("DIZ -> " + currentWord);
+      
       yield return StartCoroutine(PlayGuideVoiceToInitSentences(currentWord));
-      PlayAudioClip(currentWord); 
-      if(currentWord.Contains(" "))
-      {
-        yield return new WaitForSeconds(1.7f);
-      }
-      else
-      {
-       yield return new WaitForSeconds(1.0f);
-      }
+      yield return StartCoroutine(PlayAudioClip(currentWord));
+      //if(currentWord.Contains(" "))
+      //{
+        //yield return new WaitForSeconds(1.7f);
+     // }
+      //else
+      //{
+      // yield return new WaitForSeconds(1.0f);
+      //}
       
       wordToSay.text = currentWord;
       timer = sequenceToPlayList[i].time;
@@ -378,13 +376,14 @@ public class GameController : MonoBehaviour
     }
   }
 
-  public void PlayAudioClip(string clipToPlay)
+   IEnumerator PlayAudioClip(string clipToPlay)
   {
     foreach (AudioClip clip in clips)
     {
       if(clip.name == clipToPlay)
       {
-      aud.PlayOneShot(clip);
+        aud.PlayOneShot(clip);
+        yield return new WaitForSeconds(clip.length);
       }
     }
   }
@@ -410,7 +409,6 @@ public class GameController : MonoBehaviour
         travelFinal.Play();
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
-        //OnApplicationQuit();
       }
       else
       {
@@ -427,7 +425,6 @@ public class GameController : MonoBehaviour
         travelFinal.Play();
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
-        //OnApplicationQuit();
       }
       else
       {
@@ -445,7 +442,6 @@ public class GameController : MonoBehaviour
         travelFinal.Play();
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
-        //OnApplicationQuit();
       }
     }
 
@@ -572,17 +568,25 @@ public class GameController : MonoBehaviour
     }
     else
     {
-      yield return new WaitForSeconds(timer);     
+      yield return new WaitForSeconds(timer);
       endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
       SavWav.Save(currentWord + ".wav", userRecording.clip);
 
       gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
-      yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
-    
-      gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
-      yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
+       
+      if(repetition == true)
+      {
+        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString()));   
+      }
+      else
+      {
+        yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
+        gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+        //Debug.Log("SAMPLE ID " + gameSampleID);
+        yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
+      }
 
-      webSockets.ActionClassificationRequest(therapistID, currentWordID, gameSampleID);
+      webSockets.ActionClassificationGeralRequest(therapistID, currentWordID, gameSampleID);
     }
     //ESPERAR ATE QUE A VALIDACAO SEJA FEITA
     yield return new WaitUntil(() => webSockets.validationDone);
@@ -594,13 +598,14 @@ public class GameController : MonoBehaviour
       yield return new WaitForSeconds(2.0f);
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       Debug.Log("DIZ -> " + currentWord); 
-      PlayAudioClip(currentWord);
-      yield return new WaitForSeconds(1.0f);
+      
+      yield return StartCoroutine(PlayAudioClip(currentWord));
+      
       RecordSound(timer);
       webSockets.validationValue = -2;
       repetition = true;
       repSampleID = gameSampleID;
-      Debug.Log("REP SAMPLE ID" + repSampleID);
+      //Debug.Log("REP SAMPLE ID" + repSampleID);
       yield return StartCoroutine(WaitForValidation());
     }
 
@@ -610,8 +615,6 @@ public class GameController : MonoBehaviour
       {     
         repetition = false;
       }
-
-      //actionValidated = true;
 
       if(webSockets.validationValue > 0)
       {
@@ -683,12 +686,12 @@ public class GameController : MonoBehaviour
   IEnumerator PrepareGameStructure()
   {
     yield return new WaitUntil(() => structReqDone);
-    Debug.Log("Waiting for structure...");
-    Debug.Log("Structure request completed! Actions: " + contentList.Count);
+    //Debug.Log("Waiting for structure...");
+    //Debug.Log("Structure request completed! Actions: " + contentList.Count);
     
-    Debug.Log("Waiting for word repository...");
+    //Debug.Log("Waiting for word repository...");
     yield return new WaitUntil(() => respositoryReqDone);
-    Debug.Log("Repository request completed! Words: " + dataList.Count);
+    //Debug.Log("Repository request completed! Words: " + dataList.Count);
   }
 
   IEnumerator PreparedGameExecutionID()
@@ -703,13 +706,13 @@ public class GameController : MonoBehaviour
 
   IEnumerator PreparedGameResult()
   {
-    Debug.Log("REP " + repetition);
+    //Debug.Log("REP " + repetition);
 
     if(repetition == false)
     {
       if(webSockets.statusValue > 0)
       {
-        Debug.Log("ERRORSTATUS" + webSockets.statusValue);
+        //Debug.Log("ERRORSTATUS" + webSockets.statusValue);
         errorStatus = 0;
       }
       else
@@ -717,7 +720,7 @@ public class GameController : MonoBehaviour
         errorStatus = 1;
       }
       yield return StartCoroutine(webRequests.PostGameResult(errorStatus.ToString(), "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
-      Debug.Log("LOG POST GAME RESULT");
+      //Debug.Log("LOG POST GAME RESULT");
       Debug.Log("STATUS: " + errorStatus.ToString() + " ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORD: " + currentWord);
     }
   }
