@@ -586,7 +586,7 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
       }
 
-      webSockets.ActionClassificationGeralRequest(therapistID, currentWordID, gameSampleID);
+      webSockets.ActionClassificationRequest(therapistID, currentWordID, gameSampleID);
     }
     //ESPERAR ATE QUE A VALIDACAO SEJA FEITA
     yield return new WaitUntil(() => webSockets.validationDone);
