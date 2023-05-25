@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
   public GameObject finalMenu;
     
   [SerializeField] private AudioSource userRecording;
-  [SerializeField] private TextMeshProUGUI wordToSay;
+  //[SerializeField] private TextMeshProUGUI wordToSay;
   
   public GameObject startMenuUI;
 
@@ -193,9 +193,9 @@ public class GameController : MonoBehaviour
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
         Debug.Log("DIZ -> " + currentWord); 
-        PlayAudioClip(currentWord);
+        yield return StartCoroutine(PlayAudioClip(currentWord));
 
-        wordToSay.text = currentWord;
+        //wordToSay.text = currentWord;
         timer = sequenceToPlayList[j].time;
         RecordSound(timer);
         yield return StartCoroutine(WaitForValidation());
@@ -239,7 +239,7 @@ public class GameController : MonoBehaviour
       // yield return new WaitForSeconds(1.0f);
       //}
       
-      wordToSay.text = currentWord;
+      //wordToSay.text = currentWord;
       timer = sequenceToPlayList[i].time;
       RecordSound(timer);
       yield return StartCoroutine(WaitForValidation());
@@ -444,7 +444,6 @@ public class GameController : MonoBehaviour
         finalMenu.SetActive(true);
       }
     }
-
   }
 
   IEnumerator PrepareSequence()

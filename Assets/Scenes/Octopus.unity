@@ -2294,7 +2294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1225280746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4086,8 +4086,9 @@ MonoBehaviour:
   dataList: []
   webRequests: {fileID: 935269091}
   webSockets: {fileID: 2055381717}
+  confetti: {fileID: 0}
+  finalMenu: {fileID: 0}
   userRecording: {fileID: 0}
-  wordToSay: {fileID: 204280695}
   startMenuUI: {fileID: 0}
   homeScript: {fileID: 0}
   chameleonScript: {fileID: 0}
