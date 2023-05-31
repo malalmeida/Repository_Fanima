@@ -160,8 +160,9 @@ public class OwlScript : MonoBehaviour
     public void WaitToShowObj()
     {
         Debug.Log("OBJ NUMBER " + randomIndex);
-        objList[randomIndex].SetActive(true);
         currentObj = objList[randomIndex];
+        currentObj.transform.position = new Vector3(0, 1.4f, 0);
+        objList[randomIndex].SetActive(true);
         canShow = false;
     }
 }

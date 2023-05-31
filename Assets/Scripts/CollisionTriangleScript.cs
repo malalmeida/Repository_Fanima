@@ -18,7 +18,6 @@ public class CollisionTriangleScript : MonoBehaviour
         {
             owlScript.isMatch = true;
             owlScript.currentObj.SetActive(false);
-            owlScript.currentObj.transform.position = owlScript.startPosition;
         }
     }
 }

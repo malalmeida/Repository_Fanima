@@ -133,11 +133,10 @@ public class OctopusScript : MonoBehaviour
 
     public void WaitToShowObj()
     {
-        canShow = false;
         Debug.Log("OBJ NUMBER " + randomIndex);
-        Debug.Log("objs " +  objList.Count);
-        objList[randomIndex].SetActive(true);
         currentObj = objList[randomIndex];
-        startPosition = new Vector3(currentObj.transform.position.x, currentObj.transform.position.y, currentObj.transform.position.z);
+        currentObj.transform.position = new Vector3(0, 2.3f, 0);
+        objList[randomIndex].SetActive(true);
+        canShow = false;
     }
 }

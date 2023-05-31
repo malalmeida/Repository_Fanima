@@ -18,7 +18,6 @@ public class GreenCollision : MonoBehaviour
         {
             octopusScript.isMatch = true;
             octopusScript.currentObj.SetActive(false);
-            octopusScript.currentObj.transform.position = octopusScript.startPosition;
         }
     }
 }
