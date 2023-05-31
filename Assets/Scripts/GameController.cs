@@ -318,7 +318,7 @@ public class GameController : MonoBehaviour
     }
     else if (SceneManager.GetActiveScene().name == "Monkey")
     {
-      yield return new WaitForSeconds(10.0f);
+      yield return new WaitForSeconds(9.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Chameleon")
     {
