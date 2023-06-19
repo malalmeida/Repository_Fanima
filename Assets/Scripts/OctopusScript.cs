@@ -135,7 +135,7 @@ public class OctopusScript : MonoBehaviour
     {
         Debug.Log("OBJ NUMBER " + randomIndex);
         currentObj = objList[randomIndex];
-        currentObj.transform.position = new Vector3(0, 2.3f, 0);
+        currentObj.transform.position = new Vector3(0, -2.7f, 0);
         objList[randomIndex].SetActive(true);
         canShow = false;
     }
