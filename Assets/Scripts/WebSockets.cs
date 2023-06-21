@@ -40,7 +40,8 @@ public class WebSockets : MonoBehaviour{
     public int validationValue;
     public List<string> levelsList; 
     public int statusValue = -3;
-    
+    public jsonDataSentences jsonDataSentences;
+    public int playSentences = 2;
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
         this.wsURL = url;
@@ -96,6 +97,13 @@ public class WebSockets : MonoBehaviour{
                 levelsList = jsonDataLevels.value;
                 getLevelsDone = true;    
             }
+            else if(msg.Contains("sentences"))
+            {
+                Debug.Log("PLAYSENTENCES " + msg);
+                jsonDataSentences = JsonUtility.FromJson<jsonDataSentences>(msg);
+                playSentences = int.Parse(jsonDataSentences.value);
+                Debug.Log("JOGA? " + playSentences);
+            }
             else
             {
                 Debug.Log("MSG " + msg);
@@ -136,9 +144,21 @@ public class WebSockets : MonoBehaviour{
         PrepareMessage("request", request);
     }
 
+    //public void ActionClassificationGeralRequest(int therapistID, int wordID, int sampleID)
+    //{
+        //string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID +  ",\"errors\":" + 0 + "}";
+        //PrepareMessage("request", request);
+    //}
+
+    public void PlaySentencesRequest(int therapistID)
+    {
+        string request = "{\"therapist\":\"" + therapistID + "\",\"sentences\":\"" + gameID + "\"}";
+        PrepareMessage("request", request);
+    }
+
     public void ActionClassificationGeralRequest(int therapistID, int wordID, int sampleID)
     {
-        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID +  ",\"errors\":" + 0 + "}";
+        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID +  ",\"multiple\":" + 1 + "}";
         PrepareMessage("request", request);
     }
 

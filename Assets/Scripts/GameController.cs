@@ -168,43 +168,6 @@ public class GameController : MonoBehaviour
     }
   }
 
-  IEnumerator BonusGameLoop()
-  {
-    yield return StartCoroutine(ChapIntro());
-    gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
-    sequenceID = PlayerPrefs.GetInt("SEQUENCEID");
-    yield return StartCoroutine(webRequests.GetChapterErrors(gameExecutionID.ToString(), sequenceID.ToString()));
-    yield return new WaitUntil(() => webRequests.chapterErrorListDone);
-    
-    for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
-    { 
-      activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
-      Debug.Log("FONEMA: " + activeChapter);
-      
-      yield return StartCoroutine(PrepareSequence());
-      yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
-      Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
-      for(int j = 0; j < sequenceToPlayList.Count; j++)
-      {      
-        currentActionID = sequenceToPlayList[j].id;
-        currentWordID = sequenceToPlayList[j].word;
-        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-        FindWordNameByWordId(currentWordID);
-        string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
-        webSockets.PrepareMessage("game", payload); 
-        Debug.Log("DIZ -> " + currentWord); 
-        yield return StartCoroutine(PlayAudioClip(currentWord));
-
-        //wordToSay.text = currentWord;
-        timer = sequenceToPlayList[j].time;
-        RecordSound(timer);
-        yield return StartCoroutine(WaitForValidation());
-      }   
-    }
-   yield return StartCoroutine(ChapFinal());
-    SceneManager.LoadScene("Travel");      
-  }
-
   IEnumerator GameLoop()
   {
     if((SceneManager.GetActiveScene().name == "Home"))
@@ -228,18 +191,9 @@ public class GameController : MonoBehaviour
       webSockets.PrepareMessage("game", payload); 
       Debug.Log("DIZ -> " + currentWord);
       
-      yield return StartCoroutine(PlayGuideVoiceToInitSentences(currentWord));
+      yield return StartCoroutine(PlaySentences(currentWord));
       yield return StartCoroutine(PlayAudioClip(currentWord));
-      //if(currentWord.Contains(" "))
-      //{
-        //yield return new WaitForSeconds(1.7f);
-     // }
-      //else
-      //{
-      // yield return new WaitForSeconds(1.0f);
-      //}
       
-      //wordToSay.text = currentWord;
       timer = sequenceToPlayList[i].time;
       RecordSound(timer);
       yield return StartCoroutine(WaitForValidation());
@@ -289,6 +243,43 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("Travel"); 
       }
     }
+  }
+
+   IEnumerator BonusGameLoop()
+  {
+    yield return StartCoroutine(ChapIntro());
+    gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+    sequenceID = PlayerPrefs.GetInt("SEQUENCEID");
+    yield return StartCoroutine(webRequests.GetChapterErrors(gameExecutionID.ToString(), sequenceID.ToString()));
+    yield return new WaitUntil(() => webRequests.chapterErrorListDone);
+    
+    for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
+    { 
+      activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
+      Debug.Log("FONEMA: " + activeChapter);
+      
+      yield return StartCoroutine(PrepareSequence());
+      yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
+      Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
+      for(int j = 0; j < sequenceToPlayList.Count; j++)
+      {      
+        currentActionID = sequenceToPlayList[j].id;
+        currentWordID = sequenceToPlayList[j].word;
+        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+        FindWordNameByWordId(currentWordID);
+        string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
+        webSockets.PrepareMessage("game", payload); 
+        Debug.Log("DIZ -> " + currentWord); 
+        yield return StartCoroutine(PlayAudioClip(currentWord));
+
+        //wordToSay.text = currentWord;
+        timer = sequenceToPlayList[j].time;
+        RecordSound(timer);
+        yield return StartCoroutine(WaitForValidation());
+      }   
+    }
+   yield return StartCoroutine(ChapFinal());
+    SceneManager.LoadScene("Travel");      
   }
 
   public void FindWordNameByWordId(int wordID)
@@ -367,12 +358,26 @@ public class GameController : MonoBehaviour
     }
   }
 
-  IEnumerator PlayGuideVoiceToInitSentences(string currentWord)
+  IEnumerator PlaySentences(string currentWord)
   {
     if(currentWord == "O sapato da menina tem bolas amarelas.")
     {
-      home2.Play();
-      yield return new WaitForSeconds(4.8f);
+      webSockets.PlaySentencesRequest(therapistID);
+      //webSockets.playSentences = 1 playSentences     webSockets.playSentences = -1 dont playSentences
+      Debug.Log("JOGA?1 " + webSockets.playSentences);
+      yield return new WaitUntil(() => webSockets.playSentences < 2);
+      Debug.Log("JOGA?2 " + webSockets.playSentences);
+
+      if(webSockets.playSentences == 1)
+      {
+        home2.Play();
+        yield return new WaitForSeconds(4.8f);
+      }
+      else if(webSockets.playSentences == -1)
+      {
+        Debug.Log("NO SENTENCES");
+        SceneManager.LoadScene("Travel");
+      } 
     }
   }
 

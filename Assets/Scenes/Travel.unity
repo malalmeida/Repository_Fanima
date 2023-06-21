@@ -170,7 +170,6 @@ MonoBehaviour:
   confetti: {fileID: 983773196}
   finalMenu: {fileID: 1686084699}
   userRecording: {fileID: 0}
-  wordToSay: {fileID: 0}
   startMenuUI: {fileID: 0}
   homeScript: {fileID: 0}
   chameleonScript: {fileID: 0}
@@ -11064,7 +11063,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075717222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.11, y: -1.04, z: 0}
+  m_LocalPosition: {x: -4.64, y: -1.12, z: 0}
   m_LocalScale: {x: 1.5173862, y: 1.3410898, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12064,7 +12063,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778814507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -472.82, y: -182.57, z: -6.063989}
+  m_LocalPosition: {x: -472.35, y: -182.68, z: -6.063989}
   m_LocalScale: {x: 1.225196, y: 1.0995375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
