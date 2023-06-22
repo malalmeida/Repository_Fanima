@@ -87,9 +87,20 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("ACTION " + msg);
                 jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
-                validationValue = int.Parse(jsonDataValidation.value);
-                statusValue = int.Parse(jsonDataValidation.value);
-                validationDone = true;
+                if(jsonDataValidation.value.Contains(":"))
+                {
+                    //aleatory nunmbem just needed to be bigget then -3 and not -2 or -1
+                    validationValue = 9999;
+                    statusValue = 1;
+                    validationDone = true;
+                }
+                else
+                {
+                    validationValue = int.Parse(jsonDataValidation.value);
+                    statusValue = int.Parse(jsonDataValidation.value);
+                    validationDone = true;
+                }
+                
             }
             else if(msg.Contains("levels"))
             {
@@ -162,5 +173,4 @@ public class WebSockets : MonoBehaviour{
         string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID +  ",\"multiple\":" + 1 + "}";
         PrepareMessage("request", request);
     }
-
 }
