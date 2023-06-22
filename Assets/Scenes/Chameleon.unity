@@ -2232,7 +2232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &369837693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3707,7 +3707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &713584504
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8446,6 +8446,7 @@ MonoBehaviour:
     msg: 
     value: 
   playSentences: 2
+  getPlaySentencesDone: 0
 --- !u!4 &1710161259
 Transform:
   m_ObjectHideFlags: 0

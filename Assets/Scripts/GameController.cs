@@ -364,10 +364,7 @@ public class GameController : MonoBehaviour
     {
       webSockets.PlaySentencesRequest(therapistID);
       //webSockets.playSentences = 1 playSentences     webSockets.playSentences = -1 dont playSentences
-      Debug.Log("JOGA?1 " + webSockets.playSentences);
-      yield return new WaitUntil(() => webSockets.playSentences < 2);
-      Debug.Log("JOGA?2 " + webSockets.playSentences);
-
+      yield return new WaitUntil(() => webSockets.getPlaySentencesDone);
       if(webSockets.playSentences == 1)
       {
         home2.Play();
@@ -375,7 +372,6 @@ public class GameController : MonoBehaviour
       }
       else if(webSockets.playSentences == -1)
       {
-        Debug.Log("NO SENTENCES");
         SceneManager.LoadScene("Travel");
       } 
     }

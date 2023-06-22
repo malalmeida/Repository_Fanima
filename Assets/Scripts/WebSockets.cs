@@ -42,6 +42,7 @@ public class WebSockets : MonoBehaviour{
     public int statusValue = -3;
     public jsonDataSentences jsonDataSentences;
     public int playSentences = 2;
+    public bool getPlaySentencesDone = false;
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
         this.wsURL = url;
@@ -97,12 +98,12 @@ public class WebSockets : MonoBehaviour{
                 levelsList = jsonDataLevels.value;
                 getLevelsDone = true;    
             }
-            else if(msg.Contains("sentences"))
+            else if(msg.Contains("nextlevel"))
             {
                 Debug.Log("PLAYSENTENCES " + msg);
                 jsonDataSentences = JsonUtility.FromJson<jsonDataSentences>(msg);
                 playSentences = int.Parse(jsonDataSentences.value);
-                Debug.Log("JOGA? " + playSentences);
+                getPlaySentencesDone = true;
             }
             else
             {
