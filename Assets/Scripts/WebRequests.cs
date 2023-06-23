@@ -152,6 +152,8 @@ public class WebRequests : MonoBehaviour
         else {
             
             Debug.Log("ANSWER POST GAME RESULT: " + www.downloadHandler.text + " END");
+            PlayerPrefs.SetInt("GAMERESULTID", int.Parse(www.downloadHandler.text));
+
         }
     }
 

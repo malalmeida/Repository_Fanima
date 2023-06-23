@@ -60,14 +60,15 @@ public class GameController : MonoBehaviour
   public int repSampleID = -1;
 
   public bool validationDone = false;
-
   public bool selectionDone;
   public bool postGameResultDone = false;
   public bool errorDetected = false;
   public bool readyForNextWord = false;
   public bool prepareLevelsDone = false; 
   public bool repetition = false;
+  public bool bonusgameResult = false;
   public bool actionValidated = false;
+  public bool lastBonusSample = false;
 
   public List<errorClass> phonemeList;
 
@@ -270,10 +271,14 @@ public class GameController : MonoBehaviour
         FindWordNameByWordId(currentWordID);
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
-        Debug.Log("DIZ -> " + currentWord); 
         //Repite the same word 3 times
         for(int l = 0; l< 3; l++)
         {
+          if(l == 2)
+          {
+            lastBonusSample = true;
+          }
+          bonusgameResult = true;
           //yield return StartCoroutine(PlayAudioClip(currentWord));
           Debug.Log("DIZ -> " + currentWord); 
           timer = sequenceToPlayList[j].time;
@@ -775,9 +780,14 @@ public class GameController : MonoBehaviour
       {
         errorStatus = 1;
       }
-      yield return StartCoroutine(webRequests.PostGameResult(errorStatus.ToString(), "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
-      //Debug.Log("LOG POST GAME RESULT");
-      Debug.Log("STATUS: " + errorStatus.ToString() + " ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORD: " + currentWord);
+      if(bonusgameResult == false || (bonusgameResult == true && lastBonusSample == true))
+      {
+        yield return StartCoroutine(webRequests.PostGameResult(errorStatus.ToString(), "0", currentActionID.ToString(),  gameExecutionID.ToString(), startTime, endTime, currentWord));     
+        //Debug.Log("LOG POST GAME RESULT");
+        Debug.Log("STATUS: " + errorStatus.ToString() + " ACTIONID: " +  currentActionID.ToString() + " GAMEEXECUTIONID: " +  gameExecutionID.ToString() + " WORD: " + currentWord);
+        bonusgameResult = false;
+        lastBonusSample = false;
+      }
     }
   }
 
