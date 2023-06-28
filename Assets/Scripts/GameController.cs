@@ -174,10 +174,10 @@ public class GameController : MonoBehaviour
     if((SceneManager.GetActiveScene().name == "Home"))
     {
       yield return StartCoroutine(PreparedGameExecutionID());
-      yield return StartCoroutine(HomeIntro());
+      //yield return StartCoroutine(HomeIntro());
     }
 
-    yield return StartCoroutine(ChapIntro());
+    //yield return StartCoroutine(ChapIntro());
     yield return StartCoroutine(PrepareSequence());
     yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
 
@@ -191,15 +191,16 @@ public class GameController : MonoBehaviour
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
       Debug.Log("DIZ -> " + currentWord);
+      ShowImage(currentWord);
       
       yield return StartCoroutine(PlaySentences(currentWord));
-      yield return StartCoroutine(PlayAudioClip(currentWord));
+      //yield return StartCoroutine(PlayAudioClip(currentWord));
       
       timer = sequenceToPlayList[i].time;
       RecordSound(timer);
       yield return StartCoroutine(WaitForValidation());
     }
-    yield return StartCoroutine(ChapFinal());
+    //yield return StartCoroutine(ChapFinal());
     Debug.Log("ACABOU O SEQUENCIA");
 
     if((SceneManager.GetActiveScene().name == "Home"))
@@ -248,7 +249,7 @@ public class GameController : MonoBehaviour
 
   IEnumerator BonusGameLoop()
   {
-    yield return StartCoroutine(ChapIntro());
+    //yield return StartCoroutine(ChapIntro());
     gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
     sequenceID = PlayerPrefs.GetInt("SEQUENCEID");
     yield return StartCoroutine(webRequests.GetChapterErrors(gameExecutionID.ToString(), sequenceID.ToString()));
@@ -272,7 +273,7 @@ public class GameController : MonoBehaviour
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
         //Repite the same word 3 times
-        for(int l = 0; l< 3; l++)
+        for(int l = 0; l < 3; l++)
         {
           if(l == 2)
           {
@@ -281,13 +282,14 @@ public class GameController : MonoBehaviour
           bonusgameResult = true;
           //yield return StartCoroutine(PlayAudioClip(currentWord));
           Debug.Log("DIZ -> " + currentWord); 
+          ShowImageBonus(currentWord, l);
           timer = sequenceToPlayList[j].time;
           RecordSound(timer);
           yield return StartCoroutine(WaitForValidation());
         }
       }   
     }
-    yield return StartCoroutine(ChapFinal());
+    //yield return StartCoroutine(ChapFinal());
     SceneManager.LoadScene("Travel");      
   }
 
@@ -338,6 +340,47 @@ public class GameController : MonoBehaviour
       {
         currentWord = dataList[i].name;
       }
+    }
+  }
+
+  public void ShowImageBonus(string currentWord, int repNumber)
+  {
+    if((SceneManager.GetActiveScene().name == "Monkey"))
+    {
+      
+    }
+    else if((SceneManager.GetActiveScene().name == "Owl"))
+    {
+      owlScript.currentWord = currentWord;
+      owlScript.canShowImage = true;
+      owlScript.repNumber = repNumber;
+    }
+    else if((SceneManager.GetActiveScene().name == "Octopus"))
+    {
+      octopusScript.currentWord = currentWord;
+      octopusScript.canShowImage = true;
+      octopusScript.repNumber = repNumber;
+    }
+  }
+
+  public void ShowImage(string currentWord)
+  {
+    if((SceneManager.GetActiveScene().name == "Home"))
+    {
+      homeScript.currentWord = currentWord;
+      homeScript.canShowImage = true;
+    }
+    else if((SceneManager.GetActiveScene().name == "Frog"))
+    {
+
+    }
+    else if((SceneManager.GetActiveScene().name == "Chameleon"))
+    {
+      
+    }
+    else if((SceneManager.GetActiveScene().name == "Fish"))
+    {
+      
     }
   }
 
@@ -415,7 +458,7 @@ public class GameController : MonoBehaviour
       yield return new WaitUntil(() => webSockets.getPlaySentencesDone);
       if(webSockets.playSentences == 1)
       {
-        home2.Play();
+        //home2.Play();
         yield return new WaitForSeconds(4.8f);
       }
       else if(webSockets.playSentences == -1)
@@ -647,7 +690,8 @@ public class GameController : MonoBehaviour
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       //Debug.Log("DIZ -> " + currentWord); 
       Debug.Log("Repete comigo, arroz "); 
-      yield return StartCoroutine(PlayAudioClip(currentWord));
+  
+      //yield return StartCoroutine(PlayAudioClip(currentWord));
       
       RecordSound(timer);
       webSockets.validationValue = -3;
@@ -663,7 +707,7 @@ public class GameController : MonoBehaviour
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       //Debug.Log("DIZ -> " + currentWord); 
       Debug.Log("Não percebi, podores repetir? "); 
-      yield return StartCoroutine(PlayAudioClip(currentWord));
+      //yield return StartCoroutine(PlayAudioClip(currentWord));
       
       RecordSound(timer);
       webSockets.validationValue = -3;
@@ -712,11 +756,19 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Octopus")
       {
-        octopusScript.randomIndex = Random.Range(0, 21);
-        octopusScript.canShow = true;
-        yield return new WaitUntil(() => octopusScript.isMatch);
-        octopusScript.isMatch = false;
-        webSockets.validationValue = -3;
+        if(lastBonusSample == true)
+        {
+          octopusScript.repNumber = 3;
+          yield return new WaitUntil(() => octopusScript.isMatch);
+          octopusScript.isMatch = false;
+        }
+        octopusScript.nextAction = true;
+        webSockets.validationValue = -3;   
+
+        //octopusScript.canShow = true;
+        //yield return new WaitUntil(() => octopusScript.isMatch);
+        //octopusScript.isMatch = false;
+        //webSockets.validationValue = -3;
       }
       else if (SceneManager.GetActiveScene().name == "Monkey")
       {
@@ -727,10 +779,13 @@ public class GameController : MonoBehaviour
         }
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
-        owlScript.randomIndex = Random.Range(0, 28);
-        owlScript.canShow = true;
-        yield return new WaitUntil(() => owlScript.isMatch);
-        owlScript.isMatch = false;
+        if(lastBonusSample == true)
+        {
+          owlScript.repNumber = 3;
+          yield return new WaitUntil(() => owlScript.isMatch);
+          owlScript.isMatch = false;
+        }
+        owlScript.nextAction = true;
         webSockets.validationValue = -3;      
       }
       else if (SceneManager.GetActiveScene().name == "Fish")
