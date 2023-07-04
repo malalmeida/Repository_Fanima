@@ -482,7 +482,7 @@ GameObject:
   - component: {fileID: 89995497}
   - component: {fileID: 89995498}
   m_Layer: 0
-  m_Name: FishFood1
+  m_Name: ratoObj
   m_TagString: Food1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,8 +496,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89995495}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.952766, y: 3.2523565, z: 0.6700903}
-  m_LocalScale: {x: 0.29797527, y: 0.30846438, z: 1}
+  m_LocalPosition: {x: -40.26, y: 3.15, z: 0.6700903}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -544,7 +544,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11962fcb612c9494d8e442d60cae5425, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -568,104 +568,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &103565223
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 103565224}
-  - component: {fileID: 103565225}
-  - component: {fileID: 103565226}
-  m_Layer: 0
-  m_Name: FishFood13
-  m_TagString: Food13
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &103565224
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103565223}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.827236, y: 2.5123568, z: 0.6700903}
-  m_LocalScale: {x: 0.26853532, y: 0.30846438, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1721607826}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &103565225
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103565223}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!65 &103565226
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103565223}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.12, y: 5.12, z: 0.2}
-  m_Center: {x: 0, y: 0.00000047683716, z: 0}
 --- !u!1 &115725392
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +580,7 @@ GameObject:
   - component: {fileID: 115725394}
   - component: {fileID: 115725395}
   m_Layer: 0
-  m_Name: FishFood9
+  m_Name: polvoObj
   m_TagString: Food9
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -693,7 +595,7 @@ Transform:
   m_GameObject: {fileID: 115725392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.562767, y: 0.59235656, z: 0.6700903}
-  m_LocalScale: {x: 0.29797527, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -740,7 +642,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71ef23082a65d4c659c6e142600a224b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -776,7 +678,7 @@ GameObject:
   - component: {fileID: 294649554}
   - component: {fileID: 294649555}
   m_Layer: 0
-  m_Name: FishFood6
+  m_Name: cobraObj
   m_TagString: Food6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -791,7 +693,7 @@ Transform:
   m_GameObject: {fileID: 294649552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -17.042767, y: -1.1776433, z: 0.6700903}
-  m_LocalScale: {x: 0.29797527, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -838,7 +740,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24a7337300ddd459894591641a3f91c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1002,7 +904,7 @@ GameObject:
   - component: {fileID: 439188012}
   - component: {fileID: 439188013}
   m_Layer: 0
-  m_Name: FishFood8
+  m_Name: molaObj
   m_TagString: Food8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1017,7 +919,7 @@ Transform:
   m_GameObject: {fileID: 439188010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.552765, y: 4.3123565, z: 0.6700903}
-  m_LocalScale: {x: 0.26853532, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -1064,7 +966,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fcdbdd46249ae40e7b031745f31a2993, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1628,7 +1530,7 @@ GameObject:
   - component: {fileID: 776164456}
   - component: {fileID: 776164457}
   m_Layer: 0
-  m_Name: FishFood4
+  m_Name: barcoObj
   m_TagString: Food4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1643,7 +1545,7 @@ Transform:
   m_GameObject: {fileID: 776164454}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -26.152767, y: 5.8923564, z: 0.6700903}
-  m_LocalScale: {x: 0.29797527, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -1690,7 +1592,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42956f497c47544309677b88392770db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1843,7 +1745,7 @@ GameObject:
   - component: {fileID: 836340731}
   - component: {fileID: 836340732}
   m_Layer: 0
-  m_Name: FishFood7
+  m_Name: "l\xE1pisObj"
   m_TagString: Food7
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1858,7 +1760,7 @@ Transform:
   m_GameObject: {fileID: 836340729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -13.1227665, y: 1.9623566, z: 0.6700903}
-  m_LocalScale: {x: 0.29797527, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -1905,7 +1807,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e59c569836f740a1b536ad722a3fa5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1972,7 +1874,7 @@ MonoBehaviour:
   food10: {fileID: 1703823177}
   food11: {fileID: 1635282349}
   food12: {fileID: 1437393690}
-  food13: {fileID: 103565223}
+  food13: {fileID: 0}
   foodList: []
   isCaught: 0
   canShowFood: 0
@@ -2005,7 +1907,7 @@ GameObject:
   - component: {fileID: 937142583}
   - component: {fileID: 937142584}
   m_Layer: 0
-  m_Name: FishFood2
+  m_Name: carroObj
   m_TagString: Food2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2019,8 +1921,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937142581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -35.672768, y: -0.33764338, z: 0.6700903}
-  m_LocalScale: {x: 0.29797527, y: 0.30846438, z: 1}
+  m_LocalPosition: {x: -35.0974, y: -1.1222, z: 0.6700903}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -2067,7 +1969,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77655c440cbbc4fcc9a45aa275936764, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2203,7 +2105,7 @@ MonoBehaviour:
   - {fileID: 1703823178}
   - {fileID: 1635282350}
   - {fileID: 1437393691}
-  - {fileID: 103565224}
+  - {fileID: 0}
   objectSpeed: 3
   starAnimation: 0
   animationDone: 0
@@ -2219,7 +2121,7 @@ GameObject:
   - component: {fileID: 1252025821}
   - component: {fileID: 1252025822}
   m_Layer: 0
-  m_Name: FishFood5
+  m_Name: tamborObj
   m_TagString: Food5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2234,7 +2136,7 @@ Transform:
   m_GameObject: {fileID: 1252025819}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -20.822767, y: 2.2223566, z: 0.6700903}
-  m_LocalScale: {x: 0.26853532, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -2281,7 +2183,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b40f12332affb45f29505f84d5649499, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2351,7 +2253,7 @@ GameObject:
   - component: {fileID: 1437393692}
   - component: {fileID: 1437393693}
   m_Layer: 0
-  m_Name: FishFood12
+  m_Name: alhoObj
   m_TagString: Food12
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2366,7 +2268,7 @@ Transform:
   m_GameObject: {fileID: 1437393690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 15.097233, y: 5.7123566, z: 0.6700903}
-  m_LocalScale: {x: 0.26853532, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -2413,7 +2315,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e5af9ccf33ad446c82f7c1345ca0cb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2763,7 +2665,7 @@ GameObject:
   - component: {fileID: 1607370672}
   - component: {fileID: 1607370673}
   m_Layer: 0
-  m_Name: FishFood3
+  m_Name: caguroObj
   m_TagString: Food3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2777,8 +2679,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607370670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.072765, y: 3.1423566, z: 0.6700903}
-  m_LocalScale: {x: 0.26853532, y: 0.30846438, z: 1}
+  m_LocalPosition: {x: -31.5261, y: 3.7526, z: 0.6700903}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -2825,7 +2727,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1c5a5ef3b086453f89c82d2a35510d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2849,37 +2751,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12, z: 0.2}
   m_Center: {x: -0.0000038146973, y: -0.00000047683716, z: 0}
---- !u!1 &1634584030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1634584031}
-  m_Layer: 0
-  m_Name: Objects
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1634584031
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634584030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6120802, y: -1.9031913, z: 0.008816604}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635282349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,7 +2763,7 @@ GameObject:
   - component: {fileID: 1635282351}
   - component: {fileID: 1635282352}
   m_Layer: 0
-  m_Name: FishFood11
+  m_Name: atletaObj
   m_TagString: Food11
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2907,7 +2778,7 @@ Transform:
   m_GameObject: {fileID: 1635282349}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 9.0872345, y: 3.8723567, z: 0.6700903}
-  m_LocalScale: {x: 0.29797527, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -2954,7 +2825,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c0601b3f00c74daa84a94772663d37a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3077,7 +2948,7 @@ GameObject:
   - component: {fileID: 1703823179}
   - component: {fileID: 1703823180}
   m_Layer: 0
-  m_Name: FishFood10
+  m_Name: papelObj
   m_TagString: Food10
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3092,7 +2963,7 @@ Transform:
   m_GameObject: {fileID: 1703823177}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.0272331, y: 0.8323566, z: 0.6700903}
-  m_LocalScale: {x: 0.29797527, y: 0.30846438, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1721607826}
@@ -3139,7 +3010,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: de6377d59044b534d8a178ccb32d3024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11145771cc04b48a38c86bba7cb34f22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3173,7 +3044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721607826}
   m_Layer: 0
-  m_Name: FishFoods
+  m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3203,7 +3074,6 @@ Transform:
   - {fileID: 1703823178}
   - {fileID: 1635282350}
   - {fileID: 1437393691}
-  - {fileID: 103565224}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

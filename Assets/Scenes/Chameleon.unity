@@ -2370,7 +2370,7 @@ GameObject:
   - component: {fileID: 409501226}
   - component: {fileID: 409501227}
   m_Layer: 0
-  m_Name: cesto
+  m_Name: cestoObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2384,8 +2384,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409501225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.13, y: 2.01, z: 9.499344}
-  m_LocalScale: {x: 1.2331923, y: 1.0654465, z: 1}
+  m_LocalPosition: {x: -2.29, y: 1.99, z: 9.499344}
+  m_LocalScale: {x: 0.64747095, y: 0.58567065, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -2431,8 +2431,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 6059f742fbbe54aeda7b6265b995146c, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 0d3346089323446ebb61c4bd921fb5b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2631,7 +2631,7 @@ GameObject:
   - component: {fileID: 426060098}
   - component: {fileID: 426060099}
   m_Layer: 0
-  m_Name: "ma\xE7\xE3"
+  m_Name: "ma\xE7\xE3Obj"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2645,8 +2645,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426060097}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2894, y: 1.9193, z: 9.499344}
-  m_LocalScale: {x: 0.49437436, y: 0.46761048, z: 1}
+  m_LocalPosition: {x: -2.38, y: 1.93, z: 9.499344}
+  m_LocalScale: {x: 0.574463, y: 0.54112077, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -2692,8 +2692,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 997cd0963cec941f9935fce868c4c3fb, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 2eaed91ff46584b62afff6a9fe7f0c08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3135,7 +3135,7 @@ GameObject:
   - component: {fileID: 511176808}
   - component: {fileID: 511176809}
   m_Layer: 0
-  m_Name: gancho
+  m_Name: ganchoObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3149,8 +3149,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511176807}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3969, y: 1.8156, z: 9.499344}
-  m_LocalScale: {x: 0.4960422, y: 0.46846867, z: 1}
+  m_LocalPosition: {x: -2.37, y: 1.9, z: 9.499344}
+  m_LocalScale: {x: 0.576153, y: 0.4917047, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -3196,8 +3196,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 14e2b3d8795f743a08b0e86aeff18ae7, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 6d79c5441bf344cc6aac8df822d4e075, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3589,7 +3589,7 @@ GameObject:
   - component: {fileID: 581735453}
   - component: {fileID: 581735454}
   m_Layer: 0
-  m_Name: janela
+  m_Name: janelaObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3603,8 +3603,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581735452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.26, y: 2.02, z: 9.499344}
-  m_LocalScale: {x: 1.086171, y: 0.9999826, z: 1}
+  m_LocalPosition: {x: -2.31, y: 1.9, z: 9.499344}
+  m_LocalScale: {x: 0.61053675, y: 0.53179073, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -3650,13 +3650,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 1a11319c80b024a68911a9a02be976dc, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 6bfbb53aae871492d83dac30c7d8371b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.59, y: 1.57}
+  m_Size: {x: 4.39, y: 5.68}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3916,7 +3916,7 @@ GameObject:
   - component: {fileID: 708784262}
   - component: {fileID: 708784263}
   m_Layer: 0
-  m_Name: livros
+  m_Name: livrosObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3930,8 +3930,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708784261}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.305, y: 1.8725, z: 9.499344}
-  m_LocalScale: {x: 0.48814702, y: 0.41134778, z: 1}
+  m_LocalPosition: {x: -2.34, y: 1.94, z: 9.499344}
+  m_LocalScale: {x: 0.6533848, y: 0.54293793, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -3977,8 +3977,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 019f139c8f3784b1892e603e5e8c1d6c, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: aedaa6d74c62049e886b0b8c22ce2fd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4536,7 +4536,7 @@ GameObject:
   - component: {fileID: 778628554}
   - component: {fileID: 778628555}
   m_Layer: 0
-  m_Name: foca
+  m_Name: focaObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4550,8 +4550,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778628553}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3047, y: 2, z: 9.499344}
-  m_LocalScale: {x: 0.4361961, y: 0.3872602, z: 1}
+  m_LocalPosition: {x: -2.32, y: 2, z: 9.499344}
+  m_LocalScale: {x: 0.7015778, y: 0.58852726, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -4597,8 +4597,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 0b718610805d749ef8525e7452bf9730, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 4e98efe27ba40479c824edd3a80ca045, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5479,7 +5479,7 @@ GameObject:
   - component: {fileID: 968708492}
   - component: {fileID: 968708493}
   m_Layer: 0
-  m_Name: casa
+  m_Name: casaObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5493,8 +5493,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968708491}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.28, y: 1.99, z: 9.499344}
-  m_LocalScale: {x: 0.405724, y: 0.40663067, z: 1}
+  m_LocalPosition: {x: -2.31, y: 2.01, z: 9.499344}
+  m_LocalScale: {x: 0.8213071, y: 0.74718386, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -5540,8 +5540,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: eab69b1271cf2471a9d6cb4b25bc3f81, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: ea7cd77860c8346758647963048cc410, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6619,7 +6619,7 @@ GameObject:
   - component: {fileID: 1195874162}
   - component: {fileID: 1195874163}
   m_Layer: 0
-  m_Name: vela
+  m_Name: velaObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6633,8 +6633,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195874161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2894, y: 1.98, z: 9.499344}
-  m_LocalScale: {x: 0.49437436, y: 0.46761048, z: 1}
+  m_LocalPosition: {x: -2.3663, y: 1.97, z: 9.499344}
+  m_LocalScale: {x: 0.5294255, y: 0.48696953, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -6680,8 +6680,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: b548df09097654d688889477b3c69ccd, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: afad6ea15fb7a41a8956629e520c9bce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6850,7 +6850,7 @@ GameObject:
   - component: {fileID: 1220655321}
   - component: {fileID: 1220655322}
   m_Layer: 0
-  m_Name: queijo
+  m_Name: queijoObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6864,8 +6864,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220655320}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.31, y: 2.09, z: 9.499344}
-  m_LocalScale: {x: 0.43645993, y: 0.35398924, z: 1}
+  m_LocalPosition: {x: -2.36, y: 1.9871, z: 9.499344}
+  m_LocalScale: {x: 0.7557587, y: 0.5808289, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -6911,8 +6911,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 2b053d0bc1aca4f08bfe14099b11362d, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: afb0f590598d54d759a3778b85457281, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8415,7 +8415,7 @@ GameObject:
   - component: {fileID: 1573525932}
   - component: {fileID: 1573525933}
   m_Layer: 0
-  m_Name: chave
+  m_Name: chaveObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8429,8 +8429,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573525931}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.33, y: 2.07, z: 9.499344}
-  m_LocalScale: {x: 1.0397431, y: 1.1736323, z: 1}
+  m_LocalPosition: {x: -2.3, y: 2.04, z: 9.499344}
+  m_LocalScale: {x: 0.75433356, y: 0.81379664, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -8476,8 +8476,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: d95b7a3db5ddc49b4b0c2ff239fcb828, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 8dd32677dab474bd78775031bcf23218, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9071,7 +9071,7 @@ GameObject:
   - component: {fileID: 1710231480}
   - component: {fileID: 1710231481}
   m_Layer: 0
-  m_Name: garfo
+  m_Name: garfoObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9085,8 +9085,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710231479}
   m_LocalRotation: {x: -0.0038283302, y: 0.0016815863, z: 0.40215814, w: 0.91556066}
-  m_LocalPosition: {x: -2.3012, y: 1.8775, z: 9.5005}
-  m_LocalScale: {x: 0.55309147, y: 0.52112174, z: 1}
+  m_LocalPosition: {x: -2.245, y: 1.917, z: 9.5005}
+  m_LocalScale: {x: 0.6108938, y: 0.5659105, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -9132,8 +9132,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 904908cf51d194cd092c0995194ceae1, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: b447bf019232146b7be56684d8e17d44, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10800,7 +10800,7 @@ GameObject:
   - component: {fileID: 2098615008}
   - component: {fileID: 2098615009}
   m_Layer: 0
-  m_Name: zero
+  m_Name: zeroObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10861,8 +10861,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: ef509e5ac02ea4c14a4a506319fc57ed, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: a8d9f0d456b8845bb82ce56b1640867d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10884,7 +10884,7 @@ GameObject:
   - component: {fileID: 2105564058}
   - component: {fileID: 2105564059}
   m_Layer: 0
-  m_Name: cisne
+  m_Name: cisneObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10898,8 +10898,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105564057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3047, y: 1.95, z: 9.499344}
-  m_LocalScale: {x: 0.4361961, y: 0.3872602, z: 1}
+  m_LocalPosition: {x: -2.39, y: 1.95, z: 9.499344}
+  m_LocalScale: {x: 0.6464862, y: 0.5575385, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 875601256}
@@ -10945,8 +10945,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 2989def4569b547fc9aacbf5124187f1, type: 3}
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 2bccc3577a1ea44a0b75e516b5eb6102, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

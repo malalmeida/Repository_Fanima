@@ -58,6 +58,13 @@ public class FrogScript : MonoBehaviour
 
   public GameObject currentBug;
 
+  public GameObject currentObject;
+  public SpriteRenderer rend;
+  public bool canShowImage = false;
+  public string currentWord = "";
+
+  public bool validationDone = false;
+
 
   [SerializeField] private ParticleSystem confetti;
 
@@ -106,6 +113,10 @@ public class FrogScript : MonoBehaviour
 
   void Update()
   {
+    if(canShowImage)
+    {
+      WaitToShowObj();
+    }
     if(canShow)
     {
         WaitToPickBug();
@@ -124,6 +135,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 0)
             {
               bugTouch1.SetActive(false);
+              HideObj();
               canShow = false;
               bug1.SetActive(false);
               bugsFound ++;
@@ -139,6 +151,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 1)
             {
               bugTouch2.SetActive(false);
+              HideObj();
               canShow = false;
               bug2.SetActive(false);
               bugsFound ++;
@@ -154,6 +167,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 2)
             {
               bugTouch3.SetActive(false);
+              HideObj();
               canShow = false;
               bug3.SetActive(false);     
               bugsFound ++;
@@ -169,6 +183,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 3)
             {
               bugTouch4.SetActive(false);
+              HideObj();
               canShow = false;
               bug4.SetActive(false);
               bugsFound ++;
@@ -185,6 +200,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 4)
             {
               bugTouch5.SetActive(false);
+              HideObj();
               canShow = false;
               bug5.SetActive(false);
               bugsFound ++;
@@ -200,6 +216,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 5)
             {
               bugTouch6.SetActive(false);
+              HideObj();
               canShow = false;
               bug6.SetActive(false);
               bugsFound ++;
@@ -215,9 +232,10 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 6)
             {
               bugTouch7.SetActive(false);
+              HideObj();
               canShow = false;
               bug7.SetActive(false);
-             bugsFound ++;
+              bugsFound ++;
               isCaught = true;
             }
             else
@@ -230,6 +248,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 7)
             {
               bugTouch8.SetActive(false);
+              HideObj();
               canShow = false;
               bug8.SetActive(false);
               bugsFound ++;
@@ -245,6 +264,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 8)
             {
               bugTouch9.SetActive(false);
+              HideObj();
               canShow = false;
               bug9.SetActive(false);
               bugsFound ++;
@@ -260,6 +280,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 9)
             {
               bugTouch10.SetActive(false);
+              HideObj();
               canShow = false;
               bug10.SetActive(false);
               bugsFound ++;
@@ -275,6 +296,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 10)
             {
               bugTouch11.SetActive(false);
+              HideObj();
               canShow = false;
               bug11.SetActive(false);
               bugsFound ++;
@@ -290,6 +312,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 11)
             {
               bugTouch12.SetActive(false);
+              HideObj();
               canShow = false;
               bug12.SetActive(false);
               bugsFound ++;
@@ -305,6 +328,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 12)
             {
               bugTouch13.SetActive(false);
+              HideObj();
               canShow = false;
               bug13.SetActive(false);
               bugsFound ++;
@@ -320,6 +344,7 @@ public class FrogScript : MonoBehaviour
             if(bugNumber == 13)
             {
               bugTouch14.SetActive(false);
+              HideObj();
               canShow = false;
               bug14.SetActive(false);
               bugsFound ++;
@@ -365,10 +390,30 @@ public class FrogScript : MonoBehaviour
       }
     }
   }
+  public void WaitToShowObj()
+  {
+    string gameObjName = currentWord + "Obj";       
+    Debug.Log("OBJ " + gameObjName);
+
+    currentObject = GameObject.Find(gameObjName);
+
+    rend = currentObject.GetComponent<SpriteRenderer>();
+    rend.sortingOrder = 10;
+
+    currentObject.SetActive(true);
+    canShowImage = false;
+  }
+
+  public void HideObj()
+  {
+    rend.sortingOrder = -1;
+  }
+
 
   public void WaitToPickBug()
   {
-    bugList[bugNumber].SetActive(true); 
+    bugList[bugNumber].SetActive(true);
+    
   }
 
   private void OnCollisionEnter2D(Collision2D other)

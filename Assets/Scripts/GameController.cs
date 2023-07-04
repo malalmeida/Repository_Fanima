@@ -372,7 +372,8 @@ public class GameController : MonoBehaviour
     }
     else if((SceneManager.GetActiveScene().name == "Frog"))
     {
-
+      frogScript.currentWord = currentWord;
+      frogScript.canShowImage = true;
     }
     else if((SceneManager.GetActiveScene().name == "Chameleon"))
     {
@@ -741,8 +742,9 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
-        frogScript.canShow = true;
+        frogScript.validationDone = true;
         frogScript.bugNumber ++;
+        frogScript.canShow = true;
         yield return new WaitUntil(() => frogScript.isCaught);
         frogScript.isCaught = false;
         webSockets.validationValue = -3;      
