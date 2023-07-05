@@ -7,8 +7,8 @@ using TMPro;
 
 public class HomeScript : MonoBehaviour
 {
-    public GameObject femaleGuide;
-    public GameObject maleGuide;
+    //public GameObject femaleGuide;
+    public GameObject board;
     public GameObject ten;
     public GameObject twenty;
     public GameObject thirty;
@@ -31,12 +31,13 @@ public class HomeScript : MonoBehaviour
     public bool wordsDone = false; 
     public MoveObject ballon;
     public bool animationDone = false;
+    public bool showBoard = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        maleGuide.SetActive(false);
-        femaleGuide.SetActive(false);
+        //maleGuide.SetActive(false);
+        //femaleGuide.SetActive(false);
         ten.SetActive(false);
         twenty.SetActive(false);
         thirty.SetActive(false);
@@ -61,6 +62,17 @@ public class HomeScript : MonoBehaviour
         {
             WaitToShowObj();
         }
+        if(showBoard)
+        {
+            board = GameObject.Find("Board");
+            board.GetComponent<SpriteRenderer>().sortingOrder = 9;
+        }else{
+            board = GameObject.Find("Board");
+            board.GetComponent<SpriteRenderer>().sortingOrder = -1;
+        }
+
+        
+    
     }
 
     public void WaitToShowObj()
@@ -84,6 +96,7 @@ public class HomeScript : MonoBehaviour
             ballon.starAnimation = true;
             doAnimation = false;
             animationDone = false;
+            rend.sortingOrder = -1;
             yield return StartCoroutine(WaitForAnimationDone());
         }
         if (oneHundred.activeSelf)

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FishScript : MonoBehaviour
 {
+   
     public int removedFishFoods = 0;
+    /**
     public int foodNumber = 0;
     public GameObject food1;
     public GameObject food2;
@@ -20,15 +22,25 @@ public class FishScript : MonoBehaviour
     public GameObject food12;
     public GameObject food13;
     public List<GameObject> foodList;
+    **/
     public bool isCaught = false;
     public bool canShowFood = false;
     public GameObject currentFood;
 
+    public GameObject currentObject;
+    public SpriteRenderer rend;
+
+    public bool canShowImage = false;
+    public string currentWord = "";
+    public bool canShake = false;
+
+    public AudioSource fishEating;
     public MoveObject fish;
 
     // Start is called before the first frame update
     void Start()
     {
+        /**
         foodList = new List<GameObject>();
         foodList.Add(food1);
         foodList.Add(food2);
@@ -56,15 +68,15 @@ public class FishScript : MonoBehaviour
         food11.SetActive(false);
         food12.SetActive(false);
         food13.SetActive(false);
-        
+        **/
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(canShowFood)
+        if(canShowImage)
         {
-            ShowFood();
+            ShowObj();
         }
 
         if(Input.GetMouseButtonDown(0))
@@ -77,116 +89,97 @@ public class FishScript : MonoBehaviour
                 {
                     if(hit.collider.CompareTag("Food1"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food1;
-                        StartCoroutine(WaitForAnimationDone());
+                        IsShaking();
                     }
                     else if(hit.collider.CompareTag("Food2"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food2;
-                        StartCoroutine(WaitForAnimationDone());
+                        IsShaking();
                     }
                     else if(hit.collider.CompareTag("Food3"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food3;
-                        StartCoroutine(WaitForAnimationDone());
-                        
+                        IsShaking();
                     }
                     else if(hit.collider.CompareTag("Food4"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food4;
-                        StartCoroutine(WaitForAnimationDone());
+                       IsShaking();
                     }               
                     else if(hit.collider.CompareTag("Food5"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food5;
-                        StartCoroutine(WaitForAnimationDone());
+                        IsShaking();
                     } 
                     else if(hit.collider.CompareTag("Food6"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food6;
-                        StartCoroutine(WaitForAnimationDone());
+                        IsShaking();
                     }
                     else if(hit.collider.CompareTag("Food7"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food7;
-                        StartCoroutine(WaitForAnimationDone());
+                         IsShaking();
                     } 
                     else if(hit.collider.CompareTag("Food8"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food8;
-                        StartCoroutine(WaitForAnimationDone());
+                         IsShaking();
                     }               
                     else if(hit.collider.CompareTag("Food9"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food9;
-                        StartCoroutine(WaitForAnimationDone());
+                         IsShaking();
                     }
                     else if(hit.collider.CompareTag("Food10"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food10;
-                        StartCoroutine(WaitForAnimationDone());
+                         IsShaking();
                     }
                     else if(hit.collider.CompareTag("Food11"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food11;
-                        StartCoroutine(WaitForAnimationDone());
+                         IsShaking();
                     }
                     else if(hit.collider.CompareTag("Food12"))
                     {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food12;
-                        StartCoroutine(WaitForAnimationDone());
-                    }   
-                    else if(hit.collider.CompareTag("Food13"))
-                    {
-                        canShowFood = false;
-                        fish.starAnimation = true;
-                        currentFood = food13;
-                        StartCoroutine(WaitForAnimationDone());
-                    } 
+                         IsShaking();
+                    }    
                 }
             }
         }
     }
 
-    void ShowFood()
+    public void ShowObj()
     {
-        Debug.Log("FOOD NUMBER " + foodNumber);
-        foodList[foodNumber].SetActive(true);
+        string gameObjName = currentWord + "Obj";       
+        Debug.Log("OBJ " + gameObjName);
+
+        currentObject = GameObject.Find(gameObjName);
+
+        rend = currentObject.GetComponent<SpriteRenderer>();
+        rend.sortingOrder = 2;
+
+        currentObject.SetActive(true);
+        canShowImage = false;
     }
 
     IEnumerator WaitForAnimationDone()
     {
+        yield return new WaitUntil(() => fish.starAnimation);
         fish.animationDone = false;
-        Debug.Log("STARTANIMATIONDONE " + fish.starAnimation);
-        Debug.Log("ANIMATIONDONE " + fish.animationDone);
+        //Debug.Log("STARTANIMATIONDONE " + fish.starAnimation);
+        //Debug.Log("ANIMATIONDONE " + fish.animationDone);
 
         yield return new WaitUntil(() => fish.animationDone);
-        currentFood.SetActive(false);
+        HideObj();
         removedFishFoods ++;
         isCaught = true;
+    }
+
+    public void HideObj()
+    {
+        fishEating.Play();
+        rend = currentObject.GetComponent<SpriteRenderer>();
+        rend.sortingOrder = -1;
+    }
+
+    public void IsShaking()
+    {
+        if(canShake)
+        {
+            fish.starAnimation = true;
+            StartCoroutine(WaitForAnimationDone());
+        }
     }
 }

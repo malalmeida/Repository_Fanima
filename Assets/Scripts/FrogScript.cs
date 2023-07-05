@@ -413,7 +413,6 @@ public class FrogScript : MonoBehaviour
   public void WaitToPickBug()
   {
     bugList[bugNumber].SetActive(true);
-    
   }
 
   private void OnCollisionEnter2D(Collision2D other)

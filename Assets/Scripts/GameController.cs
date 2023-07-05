@@ -175,6 +175,8 @@ public class GameController : MonoBehaviour
     {
       yield return StartCoroutine(PreparedGameExecutionID());
       //yield return StartCoroutine(HomeIntro());
+      homeScript.showBoard = true;
+      
     }
 
     //yield return StartCoroutine(ChapIntro());
@@ -190,10 +192,10 @@ public class GameController : MonoBehaviour
       FindWordNameByWordId(currentWordID);
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
+      yield return StartCoroutine(PlaySentences(currentWord));
       Debug.Log("DIZ -> " + currentWord);
       ShowImage(currentWord);
       
-      yield return StartCoroutine(PlaySentences(currentWord));
       //yield return StartCoroutine(PlayAudioClip(currentWord));
       
       timer = sequenceToPlayList[i].time;
@@ -381,7 +383,8 @@ public class GameController : MonoBehaviour
     }
     else if((SceneManager.GetActiveScene().name == "Fish"))
     {
-      
+      fishScript.currentWord = currentWord;
+      fishScript.canShowImage = true;
     }
   }
 
@@ -390,6 +393,7 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => PlayerPrefs.GetInt("GAMESTARTED") == 1);
     home1.Play();  
     yield return new WaitForSeconds(7.1f);
+    homeScript.showBoard = true;
   }
 
   IEnumerator ChapIntro()
@@ -454,6 +458,7 @@ public class GameController : MonoBehaviour
   {
     if(currentWord == "O sapato da menina tem bolas amarelas.")
     {
+      homeScript.showBoard = false;
       webSockets.PlaySentencesRequest(therapistID);
       //webSockets.playSentences = 1 playSentences     webSockets.playSentences = -1 dont playSentences
       yield return new WaitUntil(() => webSockets.getPlaySentencesDone);
@@ -792,11 +797,9 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Fish")
       {
-        fishScript.canShowFood = true;
+        fishScript.canShake = true;
         yield return new WaitUntil(() => fishScript.isCaught);
         fishScript.isCaught = false;
-        fishScript.canShowFood = false;
-        fishScript.foodNumber ++;
         webSockets.validationValue = -3;      
       }
       yield return StartCoroutine(PreparedGameResult());
