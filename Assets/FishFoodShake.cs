@@ -13,7 +13,12 @@ public class FishFoodShake : MonoBehaviour
         if(fishScript.canShake)
         {
             animator.SetBool("shake", true);
-            fishScript.canShake = false;
+            animator.SetBool("idle", false);
+        }
+        else
+        {
+            animator.SetBool("shake", false);
+            animator.SetBool("idle", true);
         }
     }
 }

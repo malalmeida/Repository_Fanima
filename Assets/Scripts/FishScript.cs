@@ -89,51 +89,51 @@ public class FishScript : MonoBehaviour
                 {
                     if(hit.collider.CompareTag("Food1"))
                     {
-                        IsShaking();
+                        MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food2"))
                     {
-                        IsShaking();
+                        MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food3"))
                     {
-                        IsShaking();
+                        MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food4"))
                     {
-                       IsShaking();
+                       MoveFish();
                     }               
                     else if(hit.collider.CompareTag("Food5"))
                     {
-                        IsShaking();
+                        MoveFish();
                     } 
                     else if(hit.collider.CompareTag("Food6"))
                     {
-                        IsShaking();
+                        MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food7"))
                     {
-                         IsShaking();
+                         MoveFish();
                     } 
                     else if(hit.collider.CompareTag("Food8"))
                     {
-                         IsShaking();
+                         MoveFish();
                     }               
                     else if(hit.collider.CompareTag("Food9"))
                     {
-                         IsShaking();
+                         MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food10"))
                     {
-                         IsShaking();
+                         MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food11"))
                     {
-                         IsShaking();
+                         MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food12"))
                     {
-                         IsShaking();
+                         MoveFish();
                     }    
                 }
             }
@@ -142,6 +142,7 @@ public class FishScript : MonoBehaviour
 
     public void ShowObj()
     {
+
         string gameObjName = currentWord + "Obj";       
         Debug.Log("OBJ " + gameObjName);
 
@@ -156,15 +157,12 @@ public class FishScript : MonoBehaviour
 
     IEnumerator WaitForAnimationDone()
     {
+        fish.starAnimation = true;
         yield return new WaitUntil(() => fish.starAnimation);
         fish.animationDone = false;
-        //Debug.Log("STARTANIMATIONDONE " + fish.starAnimation);
-        //Debug.Log("ANIMATIONDONE " + fish.animationDone);
-
+        canShake = false;
         yield return new WaitUntil(() => fish.animationDone);
         HideObj();
-        removedFishFoods ++;
-        isCaught = true;
     }
 
     public void HideObj()
@@ -172,14 +170,16 @@ public class FishScript : MonoBehaviour
         fishEating.Play();
         rend = currentObject.GetComponent<SpriteRenderer>();
         rend.sortingOrder = -1;
+        removedFishFoods ++;
+        isCaught = true;
     }
 
-    public void IsShaking()
+    public void MoveFish()
     {
         if(canShake)
         {
-            fish.starAnimation = true;
             StartCoroutine(WaitForAnimationDone());
         }
     }
-}
+  }
+

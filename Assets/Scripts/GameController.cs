@@ -73,7 +73,9 @@ public class GameController : MonoBehaviour
   public List<errorClass> phonemeList;
 
   public AudioSource aud;
-  public List<AudioClip> clips; 
+  public List<AudioClip> wordsNameClips;
+  public List<AudioClip> clips;
+
   public AudioSource home1;
   public AudioSource home2;
   public AudioSource introChapVoice;
@@ -196,7 +198,7 @@ public class GameController : MonoBehaviour
       Debug.Log("DIZ -> " + currentWord);
       ShowImage(currentWord);
       
-      //yield return StartCoroutine(PlayAudioClip(currentWord));
+      //yield return StartCoroutine(PlayWordName(currentWord));
       
       timer = sequenceToPlayList[i].time;
       RecordSound(timer);
@@ -282,7 +284,7 @@ public class GameController : MonoBehaviour
             lastBonusSample = true;
           }
           bonusgameResult = true;
-          //yield return StartCoroutine(PlayAudioClip(currentWord));
+          //yield return StartCoroutine(PlayWordName(currentWord));
           Debug.Log("DIZ -> " + currentWord); 
           ShowImageBonus(currentWord, l);
           timer = sequenceToPlayList[j].time;
@@ -321,7 +323,7 @@ public class GameController : MonoBehaviour
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
         Debug.Log("DIZ -> " + currentWord); 
-        yield return StartCoroutine(PlayAudioClip(currentWord));
+        yield return StartCoroutine(PlayWordName(currentWord));
 
         //wordToSay.text = currentWord;
         timer = sequenceToPlayList[j].time;
@@ -474,9 +476,9 @@ public class GameController : MonoBehaviour
     }
   }
 
-   IEnumerator PlayAudioClip(string clipToPlay)
+  IEnumerator PlayWordName(string clipToPlay)
   {
-    foreach (AudioClip clip in clips)
+    foreach (AudioClip clip in wordsNameClips)
     {
       if(clip.name == clipToPlay)
       {
@@ -696,8 +698,7 @@ public class GameController : MonoBehaviour
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       //Debug.Log("DIZ -> " + currentWord); 
       Debug.Log("Repete comigo, arroz "); 
-  
-      //yield return StartCoroutine(PlayAudioClip(currentWord));
+      //yield return StartCoroutine(PlayWordName(currentWord));
       
       RecordSound(timer);
       webSockets.validationValue = -3;
@@ -713,7 +714,7 @@ public class GameController : MonoBehaviour
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       //Debug.Log("DIZ -> " + currentWord); 
       Debug.Log("Não percebi, podores repetir? "); 
-      //yield return StartCoroutine(PlayAudioClip(currentWord));
+      //yield return StartCoroutine(PlayWordName(currentWord));
       
       RecordSound(timer);
       webSockets.validationValue = -3;
@@ -860,6 +861,28 @@ public class GameController : MonoBehaviour
   void SaveSound(string fileName)
   {
     SavWav.Save(fileName + ".wav", userRecording.clip);
+  }
+
+  IEnumerator PlayAudioClip(string clipToPlay)
+  {
+    foreach (AudioClip clip in clips)
+    {
+      if(clip.name == clipToPlay)
+      {
+        aud.PlayOneShot(clip);
+        yield return new WaitForSeconds(clip.length);
+      }
+    }
+  }
+  
+
+  public void SendHelp()
+  {    
+    Debug.Log("O que estás a ver é"); 
+
+    //askToRepeatF.Play();
+    //StartCoroutine(PlayAudioClip("Não percebo, podes repetir?"));
+    //StartCoroutine(PlayWordName(currentWord));
   }
 
   public void OnApplicationQuit()
