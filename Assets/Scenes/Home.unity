@@ -8569,23 +8569,46 @@ MonoBehaviour:
   lastBonusSample: 0
   phonemeList: []
   aud: {fileID: 0}
-  clips:
+  wordsNameClips:
+  - {fileID: 8300000, guid: f22ff8f679812426c8925b5dd284dfe8, type: 3}
   - {fileID: 8300000, guid: 62096ae59a3d645f39f791b794f65eac, type: 3}
+  - {fileID: 8300000, guid: 79c71b82e9feb42bbbb43c782b891096, type: 3}
   - {fileID: 8300000, guid: 7f212543c8a384d389d503ba0735f3fe, type: 3}
+  - {fileID: 8300000, guid: 56aa94a00296c45f28ab276e5967a047, type: 3}
   - {fileID: 8300000, guid: 4d5454aed5e2c4366a6358897afd8722, type: 3}
+  - {fileID: 8300000, guid: f53149cb69a0c4ff6bdc873f41a8461e, type: 3}
   - {fileID: 8300000, guid: ec2edfedaa3a34ca4ade956030adfeda, type: 3}
+  - {fileID: 8300000, guid: e7519caf226804028b938ed2349401c6, type: 3}
   - {fileID: 8300000, guid: 2d91075d4dce549a2be9bed65d803f1c, type: 3}
+  - {fileID: 8300000, guid: c731ea8b4ab704bf0b169cbc8838c6aa, type: 3}
   - {fileID: 8300000, guid: 618a35d04da5e40b29e1e49ed906532d, type: 3}
+  - {fileID: 8300000, guid: dc25b8dd5e5414fbbb8fc45715550103, type: 3}
   - {fileID: 8300000, guid: 7bc58f5a12261415ba75c57c80f1929a, type: 3}
+  - {fileID: 8300000, guid: e0a2f6d2b89814cf9a0cb852cc83ce7d, type: 3}
   - {fileID: 8300000, guid: 44c71f37457f84e5a8aa6535bc864930, type: 3}
-  - {fileID: 8300000, guid: 0408c69d01d534d53863e6c92644a07b, type: 3}
+  - {fileID: 8300000, guid: 8c68696db6a69405fb11425e2f95ab63, type: 3}
+  - {fileID: 8300000, guid: 0c933c1db9fa142d0a79d1ece2ebe1d8, type: 3}
+  - {fileID: 8300000, guid: 6013a0a8bcca84f9986ef0475f7b4e3a, type: 3}
   - {fileID: 8300000, guid: 67660525fb07346ee81043acd2888a5c, type: 3}
+  - {fileID: 8300000, guid: 236847ab70efb46aa92a4ad9dd4724a7, type: 3}
   - {fileID: 8300000, guid: 7ef357725ba264581bf2b9ff3c8c4476, type: 3}
+  - {fileID: 8300000, guid: 3ae6b8f1f4960487d909910482d3755f, type: 3}
   - {fileID: 8300000, guid: 5e1d439b4a65d4c7bb4b4d5709d362c7, type: 3}
+  - {fileID: 8300000, guid: 180a164491fd6431cbbace292bad19b0, type: 3}
   - {fileID: 8300000, guid: a2134ccd82dc74a629131588a1c076a0, type: 3}
+  - {fileID: 8300000, guid: 8e4ee25344e384f4986e35b485243dcc, type: 3}
   - {fileID: 8300000, guid: 1308b5e72e0fc4b19ac5819610d7f475, type: 3}
-  - {fileID: 8300000, guid: 1d676e06643e24a50b03ca89eb3d4b47, type: 3}
+  - {fileID: 8300000, guid: 879b85f79191b4e7ca0ce89bde24ce33, type: 3}
+  - {fileID: 8300000, guid: 13eda6b6c7a094c5c8d89d3c79b3f47f, type: 3}
+  - {fileID: 8300000, guid: 6e02726e76817461e940aaafecf3b6b5, type: 3}
   - {fileID: 8300000, guid: 93b3c987e518647aeb1c44f394ab04e1, type: 3}
+  clips:
+  - {fileID: 8300000, guid: f21428f4ec4ef4ec2a8f1f350353acc3, type: 3}
+  - {fileID: 8300000, guid: fb9921e74d6224145bb94e8eb9d235f3, type: 3}
+  - {fileID: 8300000, guid: 488528141fe544d289bf9d25be849f04, type: 3}
+  - {fileID: 8300000, guid: 488528141fe544d289bf9d25be849f04, type: 3}
+  - {fileID: 8300000, guid: 488528141fe544d289bf9d25be849f04, type: 3}
+  - {fileID: 8300000, guid: 488528141fe544d289bf9d25be849f04, type: 3}
   home1: {fileID: 1451453423}
   home2: {fileID: 1344479384}
   introChapVoice: {fileID: 0}
