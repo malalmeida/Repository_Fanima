@@ -486,6 +486,7 @@ GameObject:
   - component: {fileID: 40731026}
   - component: {fileID: 40731025}
   - component: {fileID: 40731027}
+  - component: {fileID: 40731028}
   m_Layer: 0
   m_Name: YellowOctopus
   m_TagString: Untagged
@@ -553,7 +554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40731022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.94, y: 3.06, z: 0}
+  m_LocalPosition: {x: -4.9, y: 3.09, z: 0}
   m_LocalScale: {x: 0.8, y: 0.6, z: 0.65528}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,6 +621,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   octopusScript: {fileID: 1247644165}
+--- !u!95 &40731028
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40731022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8cc13f5a7c212354ebc4b15ffa36799a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &44665629
 GameObject:
   m_ObjectHideFlags: 0
@@ -5164,6 +5185,7 @@ GameObject:
   - component: {fileID: 1251719048}
   - component: {fileID: 1251719047}
   - component: {fileID: 1251719049}
+  - component: {fileID: 1251719050}
   m_Layer: 0
   m_Name: RedOctopus
   m_TagString: Untagged
@@ -5298,6 +5320,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   octopusScript: {fileID: 1247644165}
+--- !u!95 &1251719050
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251719044}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 501f3121edb585649b9f544500eb7add, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1255668369
 GameObject:
   m_ObjectHideFlags: 0
@@ -10487,6 +10529,7 @@ GameObject:
   - component: {fileID: 2120717870}
   - component: {fileID: 2120717869}
   - component: {fileID: 2120717871}
+  - component: {fileID: 2120717872}
   m_Layer: 0
   m_Name: GreenOctopus
   m_TagString: Untagged
@@ -10621,6 +10664,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   octopusScript: {fileID: 1247644165}
+--- !u!95 &2120717872
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120717866}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33ec27d5248d9e04d8c6faac8d053b1d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2127848609
 GameObject:
   m_ObjectHideFlags: 0

@@ -768,7 +768,7 @@ public class GameController : MonoBehaviour
         if(lastBonusSample == true)
         {
           octopusScript.repNumber = 3;
-
+          yield return new WaitUntil(() => octopusScript.isMatch);
           octopusScript.isMatch = false;
         }
         octopusScript.nextAction = true;

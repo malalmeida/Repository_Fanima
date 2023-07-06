@@ -200,6 +200,7 @@ MonoBehaviour:
   lastBonusSample: 0
   phonemeList: []
   aud: {fileID: 0}
+  wordsNameClips: []
   clips: []
   home1: {fileID: 0}
   home2: {fileID: 0}
@@ -10996,8 +10997,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1075717224}
   - component: {fileID: 1075717223}
-  - component: {fileID: 1075717225}
   - component: {fileID: 1075717227}
+  - component: {fileID: 1075717228}
   m_Layer: 0
   m_Name: Ballon
   m_TagString: Untagged
@@ -11065,33 +11066,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075717222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7, y: -1.09, z: 0}
+  m_LocalPosition: {x: -4.92, y: -1.13, z: 0}
   m_LocalScale: {x: 1.5173862, y: 1.3410898, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1075717225
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075717222}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b93bc1b2a4147444291ba28175c3c715, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1075717227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11109,6 +11090,26 @@ MonoBehaviour:
   objectSpeed: 3
   starAnimation: 0
   animationDone: 0
+--- !u!95 &1075717228
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075717222}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a607e1902fa6e3f42b954b054bc7cb86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1229065147
 GameObject:
   m_ObjectHideFlags: 0
@@ -12052,7 +12053,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 4a24d50b398d14016b9ce29eeafc1f83, type: 3}
+  m_Sprite: {fileID: 21300080, guid: f6a737996a4a842e58ba28428e71d711, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12071,8 +12072,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778814507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -471.22, y: -183.14, z: -6.063989}
-  m_LocalScale: {x: 0.88924724, y: 0.7861693, z: 1}
+  m_LocalPosition: {x: -461.32, y: -183.06, z: -6.063989}
+  m_LocalScale: {x: 1.4244, y: 1.3537, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1639839552}
@@ -12255,7 +12256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb05230b43d8a348850ae7d37a91d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1075717225}
+  animator: {fileID: 0}
   doAnimation: 0
 --- !u!4 &1892162202
 Transform:

@@ -7745,7 +7745,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4a24d50b398d14016b9ce29eeafc1f83, type: 3}
+  m_Sprite: {fileID: 21300080, guid: f6a737996a4a842e58ba28428e71d711, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7764,8 +7764,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778814507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -460.73, y: -184.91, z: -6.063989}
-  m_LocalScale: {x: 0.9322034, y: 0.7149708, z: 1}
+  m_LocalPosition: {x: -460.79, y: -183.4, z: -6.063989}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1639839552}
@@ -8128,6 +8128,7 @@ MonoBehaviour:
   lastBonusSample: 0
   phonemeList: []
   aud: {fileID: 0}
+  wordsNameClips: []
   clips:
   - {fileID: 8300000, guid: 7fe590cbb9180c04ca90bcc1811c0d9d, type: 3}
   - {fileID: 8300000, guid: c9aff433040377348bfeb1bc20b81297, type: 3}
