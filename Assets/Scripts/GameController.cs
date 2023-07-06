@@ -282,6 +282,7 @@ public class GameController : MonoBehaviour
           if(l == 2)
           {
             lastBonusSample = true;
+            Debug.Log("L: " + l);
           }
           bonusgameResult = true;
           //yield return StartCoroutine(PlayWordName(currentWord));
@@ -767,7 +768,7 @@ public class GameController : MonoBehaviour
         if(lastBonusSample == true)
         {
           octopusScript.repNumber = 3;
-          yield return new WaitUntil(() => octopusScript.isMatch);
+
           octopusScript.isMatch = false;
         }
         octopusScript.nextAction = true;

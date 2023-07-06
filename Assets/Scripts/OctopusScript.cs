@@ -35,7 +35,7 @@ public class OctopusScript : MonoBehaviour
     {
         if(canShowImage)
         {
-            WaitToShowObj();
+            ShowObj();
         }
         if(nextAction)
         {
@@ -71,13 +71,20 @@ public class OctopusScript : MonoBehaviour
         }
     }
 
-   public void WaitToShowObj()
+    public void MoveImage()
+    {
+        HidePreviousImage();
+        ShowObj();
+        repNumber = -1;
+    }
+
+   public void ShowObj()
     {
         string gameObjName = currentWord + "Obj" + repNumber;       
         Debug.Log("OBJ " + gameObjName);
 
         currentObj = GameObject.Find(gameObjName);
-        currentObj.transform.position = new Vector3(-3.32f, 0.3f, 0);
+        //currentObj.transform.position = new Vector3(0f, -2f, 0);
 
         rend = currentObj.GetComponent<SpriteRenderer>();
         rend.sortingOrder = 10;
@@ -90,11 +97,5 @@ public class OctopusScript : MonoBehaviour
         rend = currentObj.GetComponent<SpriteRenderer>();
         rend.sortingOrder = -1;
         nextAction = false;
-    }
-
-    public void MoveImage()
-    {
-        HidePreviousImage();
-        WaitToShowObj();
-    }
+    }    
 }
