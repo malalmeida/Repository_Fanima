@@ -8606,9 +8606,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f21428f4ec4ef4ec2a8f1f350353acc3, type: 3}
   - {fileID: 8300000, guid: fb9921e74d6224145bb94e8eb9d235f3, type: 3}
   - {fileID: 8300000, guid: 488528141fe544d289bf9d25be849f04, type: 3}
-  - {fileID: 8300000, guid: 488528141fe544d289bf9d25be849f04, type: 3}
-  - {fileID: 8300000, guid: 488528141fe544d289bf9d25be849f04, type: 3}
-  - {fileID: 8300000, guid: 488528141fe544d289bf9d25be849f04, type: 3}
+  - {fileID: 8300000, guid: 919eaf3a35527488d86cb956d02e1196, type: 3}
+  - {fileID: 8300000, guid: 04383c4705bb946dc908e8fc711d8275, type: 3}
   home1: {fileID: 1451453423}
   home2: {fileID: 1344479384}
   introChapVoice: {fileID: 0}
