@@ -176,12 +176,12 @@ public class GameController : MonoBehaviour
     if((SceneManager.GetActiveScene().name == "Home"))
     {
       yield return StartCoroutine(PreparedGameExecutionID());
-      //yield return StartCoroutine(HomeIntro());
+      yield return StartCoroutine(HomeIntro());
       homeScript.showBoard = true;
       
     }
 
-    //yield return StartCoroutine(ChapIntro());
+    yield return StartCoroutine(ChapIntro());
     yield return StartCoroutine(PrepareSequence());
     yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
 
@@ -198,7 +198,7 @@ public class GameController : MonoBehaviour
       Debug.Log("DIZ -> " + currentWord);
       ShowImage(currentWord);
       
-      //yield return StartCoroutine(PlayWordName(currentWord));
+      yield return StartCoroutine(PlayWordName(currentWord + "Obj"));
       
       timer = sequenceToPlayList[i].time;
       RecordSound(timer);
@@ -394,8 +394,9 @@ public class GameController : MonoBehaviour
   IEnumerator HomeIntro()
   {
     yield return new WaitUntil(() => PlayerPrefs.GetInt("GAMESTARTED") == 1);
-    home1.Play();  
-    yield return new WaitForSeconds(7.1f);
+    //home1.Play(); 
+    yield return StartCoroutine(PlayAudioClip("Geral intro"));
+    //yield return new WaitForSeconds(7.1f);
     homeScript.showBoard = true;
   }
 
@@ -696,10 +697,11 @@ public class GameController : MonoBehaviour
     {
       //askToRepeatF.Play();
       //yield return new WaitForSeconds(2.0f);
+      yield return StartCoroutine(PlayAudioClip("ajuda"));
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       //Debug.Log("DIZ -> " + currentWord); 
-      Debug.Log("Repete comigo, arroz "); 
-      //yield return StartCoroutine(PlayWordName(currentWord));
+      Debug.Log("Repete comigo, .... "); 
+      yield return StartCoroutine(PlayWordName(currentWord + "Help"));
       
       RecordSound(timer);
       webSockets.validationValue = -3;
@@ -712,6 +714,7 @@ public class GameController : MonoBehaviour
     {
       //askToRepeatF.Play();
       //yield return new WaitForSeconds(2.0f);
+      yield return StartCoroutine(PlayAudioClip("repetir"));
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       //Debug.Log("DIZ -> " + currentWord); 
       Debug.Log("Não percebi, podores repetir? "); 
