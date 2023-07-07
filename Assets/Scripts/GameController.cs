@@ -469,10 +469,12 @@ public class GameController : MonoBehaviour
       if(webSockets.playSentences == 1)
       {
         //home2.Play();
-        yield return new WaitForSeconds(4.8f);
+        yield return StartCoroutine(PlayAudioClip("Geral com frases"));
+        //yield return new WaitForSeconds(4.8f);
       }
       else if(webSockets.playSentences == -1)
       {
+        yield return StartCoroutine(PlayAudioClip("Geral fim"));
         SceneManager.LoadScene("Travel");
       } 
     }
@@ -883,10 +885,10 @@ public class GameController : MonoBehaviour
   public void SendHelp()
   {    
     Debug.Log("O que estás a ver é"); 
-
+    
     //askToRepeatF.Play();
-    //StartCoroutine(PlayAudioClip("Não percebo, podes repetir?"));
-    //StartCoroutine(PlayWordName(currentWord));
+    StartCoroutine(PlayAudioClip("ajuda"));
+    StartCoroutine(PlayWordName(currentWord + "Help"));
   }
 
   public void OnApplicationQuit()
