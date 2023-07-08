@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Linq;
+using System.IO;
+
 
 
 public class GameController : MonoBehaviour
@@ -85,6 +87,8 @@ public class GameController : MonoBehaviour
   public AudioSource travelTrip2;
   public AudioSource travelTrip3;
   public AudioSource travelFinal;
+
+  public TextMeshProUGUI print;
 
   // Start is called before the first frame update
   void Start()
@@ -662,11 +666,13 @@ public class GameController : MonoBehaviour
       else
       {
         yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
+        print.text = "PostSample " + currentWord +  " " + currentActionID.ToString() + " " + gameExecutionID.ToString() + " " + currentWordID.ToString();
         gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
         Debug.Log("SAMPLE ID " + gameSampleID);
         yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
       }
       webSockets.ActionClassificationGeralRequest(therapistID, currentWordID, gameSampleID);
+      print.text = "ActionClassificationGeralRequest " + therapistID + " " + currentWordID + " " + gameSampleID;
     }
     else
     {
@@ -880,7 +886,6 @@ public class GameController : MonoBehaviour
       }
     }
   }
-  
 
   public void SendHelp()
   {    
@@ -898,6 +903,6 @@ public class GameController : MonoBehaviour
     webSockets.PrepareMessage("status", payload);
     webSockets.StopClient(payload);
     Application.Quit();       
-
   }
+
 }

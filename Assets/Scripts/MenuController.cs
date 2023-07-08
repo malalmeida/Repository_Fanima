@@ -27,9 +27,9 @@ public class MenuController : MonoBehaviour
     {
         //patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID", "52"));
         patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
-        PlayerPrefs.SetInt("PATIENTID", patientID);
+        //PlayerPrefs.SetInt("PATIENTID", patientID);
         pauseMenuUI.SetActive(false);
-        StartCoroutine(gameStructureRequest.GetTherapist(patientID.ToString()));
+        //StartCoroutine(gameStructureRequest.GetTherapist(patientID.ToString()));
     }
 
     public void StartGame()

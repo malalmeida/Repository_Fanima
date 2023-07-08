@@ -10,6 +10,8 @@ using UnityEngine.Windows;
 public class LoginRequest : MonoBehaviour
 {
    readonly string baseURL = "http://193.137.46.11/api/";
+   int therapistID;
+   int patientID;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,11 @@ public class LoginRequest : MonoBehaviour
                 PlayerPrefs.SetString("PLAYERID", playerInfo.content[0]);
                 PlayerPrefs.SetString("PLAYERNAME", playerInfo.content[1]);
                 PlayerPrefs.SetString("TOKEN", playerInfo.content[3]);
+
+                patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
+                PlayerPrefs.SetInt("PATIENTID", patientID);
+                therapistID = Int32.Parse(playerInfo.content[4]);
+                PlayerPrefs.SetInt("THERAPISTID", therapistID);
 
                 SceneManager.LoadScene("Home");
             }     
