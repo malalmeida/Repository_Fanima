@@ -55,7 +55,7 @@ public class LoginRequest : MonoBehaviour
                 therapistID = Int32.Parse(playerInfo.content[4]);
                 PlayerPrefs.SetInt("THERAPISTID", therapistID);
 
-                SceneManager.LoadScene("Home");
+                SceneManager.LoadScene("Geral");
             }     
         }
 

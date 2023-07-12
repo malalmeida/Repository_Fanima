@@ -629,7 +629,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40731022}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8cc13f5a7c212354ebc4b15ffa36799a, type: 2}
   m_CullingMode: 0
@@ -5328,7 +5328,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251719044}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 501f3121edb585649b9f544500eb7add, type: 2}
   m_CullingMode: 0
@@ -8292,7 +8292,7 @@ MonoBehaviour:
   finalMenu: {fileID: 0}
   userRecording: {fileID: 0}
   startMenuUI: {fileID: 0}
-  homeScript: {fileID: 0}
+  geralScript: {fileID: 0}
   chameleonScript: {fileID: 0}
   frogScript: {fileID: 0}
   travelScript: {fileID: 0}
@@ -8343,8 +8343,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c710a6fc4a196d643ba535c74669f19b, type: 3}
   - {fileID: 8300000, guid: 296259705fc24e942bc3a4fa58962451, type: 3}
   - {fileID: 8300000, guid: a13116d28174d0442b93d9d92f5b9273, type: 3}
-  home1: {fileID: 0}
-  home2: {fileID: 0}
+  Geral1: {fileID: 0}
+  Geral2: {fileID: 0}
   introChapVoice: {fileID: 1979289481}
   finalChapVoice: {fileID: 1590927}
   askToRepeatF: {fileID: 1360334396}
@@ -8352,6 +8352,7 @@ MonoBehaviour:
   travelTrip2: {fileID: 0}
   travelTrip3: {fileID: 0}
   travelFinal: {fileID: 0}
+  print: {fileID: 0}
 --- !u!4 &1861653386
 Transform:
   m_ObjectHideFlags: 0
@@ -10672,7 +10673,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120717866}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 33ec27d5248d9e04d8c6faac8d053b1d, type: 2}
   m_CullingMode: 0

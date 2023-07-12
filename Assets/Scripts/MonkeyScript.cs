@@ -22,6 +22,11 @@ public class MonkeyScript : MonoBehaviour
     public bool canShow = false;
     public bool isCaught = false;
 
+    public bool canShowImage = false;
+    public string currentWord = "";
+    public int repNumber = -1;
+
+
     public GameObject currentMonkey;
     // Start is called before the first frame update
     void Start()

@@ -83,7 +83,7 @@ public class GameStructureRequest : MonoBehaviour
         else {
             Debug.Log("ANSWER GAME EXECUTION: " + www.downloadHandler.text + " END");
             
-            if(SceneManager.GetActiveScene().name == "Home")
+            if(SceneManager.GetActiveScene().name == "Geral")
             {
                 PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
                 gameController.gameExecutionDone = true;

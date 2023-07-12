@@ -25,6 +25,9 @@ public class ChameleonScript : MonoBehaviour
     public bool canShow = false;
     public bool isCaught = false;
 
+    public bool canShowImage = false;
+    public string currentWord = "";
+
     public GameObject currentChameleon;
 
     // Start is called before the first frame update
