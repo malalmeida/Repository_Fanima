@@ -429,19 +429,19 @@ public class GameController : MonoBehaviour
   {
     if(currentWord == "O sapato da menina tem bolas amarelas.")
     {
-      geralScript.showBoard = false;
+      geralScript.wordsDone = true;
       webSockets.PlaySentencesRequest(therapistID);
       //webSockets.playSentences = 1 playSentences     webSockets.playSentences = -1 dont playSentences
       yield return new WaitUntil(() => webSockets.getPlaySentencesDone);
       if(webSockets.playSentences == 1)
       {
-        //Geral2.Play();
-        yield return StartCoroutine(PlayAudioClip("Geral com frases"));
-        //yield return new WaitForSeconds(4.8f);
+        //yield return StartCoroutine(PlayAudioClip("Geral com frases"));
+        geralScript.doAnimation = true;
+
       }
       else if(webSockets.playSentences == -1)
       {
-        yield return StartCoroutine(PlayAudioClip("Geral fim"));
+        //yield return StartCoroutine(PlayAudioClip("Geral fim"));
         SceneManager.LoadScene("Travel");
       } 
     }
@@ -467,7 +467,7 @@ public class GameController : MonoBehaviour
     if(PlayerPrefs.GetInt("ChapterPlayed") == 0)
     {
       PlayerPrefs.SetInt("ChapterPlayed", 1);
-      travelTrip1.Play();
+      //travelTrip1.Play();
       yield return new WaitForSeconds(4.0f);
       SceneManager.LoadScene(PlayerPrefs.GetString("ChapterOne"));
     }
@@ -477,13 +477,13 @@ public class GameController : MonoBehaviour
       if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 1)
       {
         confetti.Play();
-        travelFinal.Play();
+        //travelFinal.Play();
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
       }
       else
       {
-       travelTrip2.Play();
+       //travelTrip2.Play();
        yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
       }
@@ -617,7 +617,10 @@ public class GameController : MonoBehaviour
     if (SceneManager.GetActiveScene().name == "Geral")
     {
       //Esperar pelo click no ramo
-      yield return new WaitUntil(() => geralScript.startValidation);
+      if(geralScript.wordsDone == false)
+      {
+        yield return new WaitUntil(() => geralScript.startValidation);
+      }
       yield return new WaitForSeconds(timer);
       endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
       SavWav.Save(currentWord + ".wav", userRecording.clip);
@@ -713,20 +716,28 @@ public class GameController : MonoBehaviour
 
       if (SceneManager.GetActiveScene().name == "Geral")
       {
-        geralScript.doAnimation = true;
-        if(geralScript.wordsDone)
+        if(currentWord == "caracol")
         {
-          yield return new WaitUntil(() => geralScript.animationDone);
+          geralScript.doAnimation = false;
+        }
+        else
+        {
+          geralScript.doAnimation = true;
           geralScript.animationDone = false;
         }
-        geralScript.animationDone = false;
-        webSockets.validationValue = -3;      
+          webSockets.validationValue = -3;  
+        //if(geralScript.wordsDone)
+        //{
+          //yield return new WaitUntil(() => geralScript.animationDone);
+          //geralScript.animationDone = false;
+        //}
+           
       }
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
         frogScript.validationDone = true;
         frogScript.bugNumber ++;
-        frogScript.canShow = true;
+        frogScript.canShowBug = true;
         yield return new WaitUntil(() => frogScript.isCaught);
         frogScript.isCaught = false;
         webSockets.validationValue = -3;      

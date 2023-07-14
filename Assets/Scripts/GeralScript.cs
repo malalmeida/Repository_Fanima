@@ -7,16 +7,6 @@ using TMPro;
 
 public class GeralScript : MonoBehaviour
 {
-    //public GameObject femaleGuide;
-   // public GameObject leaf3;
-    //public GameObject leaf4;
-    //public GameObject leaf5;
-    //public GameObject leaf6;
-    //public GameObject leaf7;
-   // public GameObject leaf8;
-   // public GameObject leaf9;
-   // public GameObject leaf10;
-
     public GameObject femaleGuide;
 
     public GameObject currentObject;
@@ -40,6 +30,8 @@ public class GeralScript : MonoBehaviour
 
     public bool startValidation = false;
     public int leafNumber = 0;
+
+    public AudioSource leavesShaking;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +73,7 @@ public class GeralScript : MonoBehaviour
                     {
                         ShowObj();
                         shake = false;
+                        leavesShaking.Stop();
                         startValidation = true;
                     }
                 }
@@ -105,13 +98,15 @@ public class GeralScript : MonoBehaviour
 
     IEnumerator MoveUp()
     {
-        leafNumber ++;
         ballon.starAnimation = true;
         doAnimation = false;
         animationDone = false;
         yield return StartCoroutine(WaitForAnimationDone());
-        shake = true;
-
+        if(wordsDone == false)
+        {
+            shake = true;
+            leavesShaking.Play();
+        }
     /**
         if(wordsDone == true)
         {

@@ -10,17 +10,14 @@ public class AnimationFrogPresent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(frogScript.canShowImage)
+
+        if(frogScript.closeBox)
         {
-            animator.SetBool("open", true);
-            animator.SetBool("close", false);
-            animator.SetBool("animation", false);
-        }
-        if(frogScript.validationDone)
-        {
-            animator.SetBool("open", false);
-            animator.SetBool("animation", true);
             animator.SetBool("close", true);
+        }
+        else
+        {
+            animator.SetBool("close", false);
         }
     }
 }

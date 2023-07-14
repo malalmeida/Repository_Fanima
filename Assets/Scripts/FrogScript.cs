@@ -20,7 +20,7 @@ public class FrogScript : MonoBehaviour
   public bool isCaught = false;
   public List<int> removedBugs;
   public bool chapterFinished = false;
-  public bool canShow = false;
+  public bool canShowBug = false;
 
   public GameObject bug1;
   public GameObject bug2;
@@ -65,13 +65,14 @@ public class FrogScript : MonoBehaviour
 
   public bool validationDone = false;
 
-
   [SerializeField] private ParticleSystem confetti;
 
   private float dist;
   private bool dragging  = false;
   private Vector3 offset;
   private Transform toDrag;
+
+  public bool closeBox = false;
 
   // Start is called before the first frame update
   void Start()
@@ -115,11 +116,18 @@ public class FrogScript : MonoBehaviour
   {
     if(canShowImage)
     {
-      WaitToShowObj();
+      Debug.Log("SHOW");
+      ShowObj();
     }
-    if(canShow)
+    if(canShowBug)
     {
         WaitToPickBug();
+
+    }
+    if(validationDone)
+    {
+        closeBox = true;
+        validationDone = false;
     }
 
     if(Input.GetMouseButtonDown(0))
@@ -129,14 +137,14 @@ public class FrogScript : MonoBehaviour
       if(Physics.Raycast(ray, out hit))
       {
         if(hit.collider != null)
-        {                  
+        {           
           if(hit.collider.CompareTag("Bug1"))
           {
             if(bugNumber == 0)
             {
               bugTouch1.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug1.SetActive(false);
               bugsFound ++;
               isCaught = true; 
@@ -152,7 +160,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch2.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug2.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -168,7 +176,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch3.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug3.SetActive(false);     
               bugsFound ++;
               isCaught = true;
@@ -184,7 +192,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch4.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug4.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -201,7 +209,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch5.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug5.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -217,7 +225,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch6.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug6.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -233,7 +241,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch7.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug7.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -249,7 +257,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch8.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug8.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -265,7 +273,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch9.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug9.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -281,7 +289,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch10.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug10.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -297,7 +305,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch11.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug11.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -313,7 +321,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch12.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug12.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -329,7 +337,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch13.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug13.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -345,7 +353,7 @@ public class FrogScript : MonoBehaviour
             {
               bugTouch14.SetActive(false);
               HideObj();
-              canShow = false;
+              canShowBug = false;
               bug14.SetActive(false);
               bugsFound ++;
               isCaught = true;
@@ -356,7 +364,9 @@ public class FrogScript : MonoBehaviour
               Debug.Log("PROCURA MELHOR");
             }
           } 
-          Debug.Log("removedBugs " + bugsFound);  
+          Debug.Log("removedBugs " + bugsFound);
+          closeBox = false;
+
         }
       }
     }
@@ -390,7 +400,7 @@ public class FrogScript : MonoBehaviour
       }
     }
   }
-  public void WaitToShowObj()
+  public void ShowObj()
   {
     string gameObjName = currentWord + "Obj";       
     Debug.Log("OBJ " + gameObjName);
@@ -400,7 +410,7 @@ public class FrogScript : MonoBehaviour
     rend = currentObject.GetComponent<SpriteRenderer>();
     rend.sortingOrder = 10;
 
-    currentObject.SetActive(true);
+    //currentObject.SetActive(true);
     canShowImage = false;
   }
 
