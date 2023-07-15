@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
   public int patientID;
   public bool structReqDone = false;
   public bool respositoryReqDone = false;
-  public bool sampleReqDone = false;
+  //public bool sampleReqDone = false;
   public bool gameExecutionDone = false;
   public bool errorDone = false;
   public int gameExecutionID = -1;
@@ -219,12 +219,12 @@ public class GameController : MonoBehaviour
     {
       if(errorDetected == true)
       {
-        yield return new WaitUntil(() => frogScript.chapterFinished);
+        //yield return new WaitUntil(() => frogScript.chapterFinished);
         SceneManager.LoadScene("Monkey"); 
       }
       else
       {
-        yield return new WaitUntil(() => frogScript.chapterFinished);
+        //yield return new WaitUntil(() => frogScript.chapterFinished);
         SceneManager.LoadScene("Travel"); 
       }
     }
@@ -267,25 +267,35 @@ public class GameController : MonoBehaviour
       activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
       Debug.Log("FONEMA: " + activeChapter);
       
+      if((SceneManager.GetActiveScene().name == "Monkey"))
+      {
+        if(i < 0)
+        {
+          monkeyScript.newPhonemeGroup = true;
+        }
+      }
       yield return StartCoroutine(PrepareSequence());
       yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
       Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
       for(int j = 0; j < sequenceToPlayList.Count; j++)
-      {     
-         
+      { 
+        if((SceneManager.GetActiveScene().name == "Monkey"))
+        { 
+          monkeyScript.newWord = true;
+        } 
+
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         FindWordNameByWordId(currentWordID);
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
-        //Repite the same word 3 times
+        //Repeat the same word 3 times
         for(int l = 0; l < 3; l++)
         {
           if(l == 2)
           {
             lastBonusSample = true;
-            Debug.Log("L: " + l);
           }
           bonusgameResult = true;
           //yield return StartCoroutine(PlayWordName(currentWord));
@@ -640,7 +650,6 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
       }
       webSockets.ActionClassificationGeralRequest(therapistID, currentWordID, gameSampleID);
-      print.text = "ActionClassificationGeralRequest " + therapistID + " " + currentWordID + " " + gameSampleID;
     }
     else
     {
@@ -656,11 +665,13 @@ public class GameController : MonoBehaviour
       }
       else
       {
+
         yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
         gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
+        Debug.Log("GAMESAMPLEID" + gameSampleID);
+
         yield return StartCoroutine(webRequests.PostGameRequest(gameSampleID.ToString()));
       }
-
       webSockets.ActionClassificationRequest(therapistID, currentWordID, gameSampleID);
     }
     //ESPERAR ATE QUE A VALIDACAO SEJA FEITA
@@ -767,9 +778,16 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Monkey")
       {
-        monkeyScript.randomIndex = Random.Range(0, 11);
-        yield return new WaitUntil(() => monkeyScript.isCaught);
-        monkeyScript.isCaught = false;
+        //monkeyScript.randomIndex = Random.Range(0, 11);
+        //yield return new WaitUntil(() => monkeyScript.isCaught);
+        //monkeyScript.isCaught = false;
+        monkeyScript.nextAction = true;
+
+        //if(lastBonusSample == true)
+        //{
+          //monkeyScript.repNumber = 3;
+        //}
+        monkeyScript.nextAction = true;
         webSockets.validationValue = -3;      
         }
       else if (SceneManager.GetActiveScene().name == "Owl")
