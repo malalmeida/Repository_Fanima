@@ -6,102 +6,181 @@ using System;
 
 public class OwlScript : MonoBehaviour
 {
-    public GameObject square;
-    public GameObject triangle;
-    public GameObject circle;
-  
     public SpriteRenderer rend;
     public GameObject currentObj; 
     public string currentWord = "";
     public bool canShowImage = false;
-    public int repNumber = -1;
 
     public bool nextAction = false;
     public bool isMatch = false;
 
     public int randomIndex = -1;
 
-    private Transform dragging = null;
-    private Vector3 offset;
-    [SerializeField] private LayerMask movableLayers;
-    public Vector3 startPosition;
+    public bool pop = false;
+    public bool startValidation = false;
 
+    public AudioSource popSound;
+    public AudioSource validationSound;
 
-
+    public string gameObjName;
     // Start is called before the first frame update
     void Start()
     {
-        startPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        square.SetActive(true);
-        triangle.SetActive(true);
-        circle.SetActive(true);
+
     }
 
     void Update()
     {
         if(canShowImage)
         {
-            WaitToShowObj();
+            ShowObj();
         }
         if(nextAction)
         {
             HidePreviousImage();
         }
-        if(repNumber == 3)
-        {
-            MoveImage();
-        }
          
-        if (Input.GetMouseButtonDown(0)) 
+        if(Input.GetMouseButtonDown(0))
         {
-            // Cast our own ray.
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.PositiveInfinity, movableLayers);
-            if (hit) 
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
             {
-                // If we hit, record the transform of the object we hit.
-                dragging = hit.transform;
-                // And record the offset.
-                offset = dragging.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if(hit.collider != null)
+                {           
+                    if(hit.collider.CompareTag("Chameleon1"))
+                    {   
+                        if(gameObjName == "focaObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon2"))
+                    {   
+                        if(gameObjName == "garfoObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon3"))
+                    {   
+                        if(gameObjName == "velaObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon4"))
+                    {   
+                        if(gameObjName == "livrosObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon5"))
+                    {   
+                        if(gameObjName == "maçãObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon6"))
+                    {   
+                        if(gameObjName == "zeroObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon7"))
+                    {   
+                        if(gameObjName == "casaObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon8"))
+                    {   
+                        if(gameObjName == "chaveObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon9"))
+                    {   
+                        if(gameObjName == "ganchoObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon10"))
+                    {   
+                        if(gameObjName == "queijoObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon11"))
+                    {   
+                        if(gameObjName == "cestoObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon12"))
+                    {   
+                        if(gameObjName == "janelaObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                    if(hit.collider.CompareTag("Chameleon13"))
+                    {   
+                        if(gameObjName == "cisneObj")
+                        {
+                            popSound.Play();
+                            pop = true;
+                        }   
+                    }
+                }
             }
-        }
-        else if (Input.GetMouseButtonUp(0)) 
-        {
-            // Stop dragging.
-            dragging = null;
-        }
-
-        if (dragging != null) 
-        {
-            // Move object, taking into account original offset.
-            dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
     }
 
-    public void WaitToShowObj()
+    public void ShowObj()
     {
-        string gameObjName = currentWord + "Obj" + repNumber;       
+        pop = false;
+        gameObjName = currentWord + "Obj";       
         Debug.Log("OBJ " + gameObjName);
 
         currentObj = GameObject.Find(gameObjName);
-        currentObj.transform.position = new Vector3(0, 1.4f, 0);
-
+        
         rend = currentObj.GetComponent<SpriteRenderer>();
         rend.sortingOrder = 10;
 
         canShowImage = false;
+        
+
     }
 
     public void HidePreviousImage()
     {
-        rend = currentObj.GetComponent<SpriteRenderer>();
-        rend.sortingOrder = -1;
+        pop = false;
+        //rend = currentObj.GetComponent<SpriteRenderer>();
+        //rend.sortingOrder = -1;
+        currentObj.SetActive(false);
+        validationSound.Play();
         nextAction = false;
-    }
-
-    public void MoveImage()
-    {
-        HidePreviousImage();
-        WaitToShowObj();
     }
 }
 

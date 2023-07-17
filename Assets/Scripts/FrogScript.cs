@@ -14,7 +14,7 @@ public class FrogScript : MonoBehaviour
   private bool isJumping;
   private float move;
   private Rigidbody2D rb;
-  public AudioSource waterSplashSound;
+  public AudioSource nonoSound;
   public int numberOfJumps = 0;
   public int bugNumber = -1;
   public bool isCaught = false;
@@ -116,7 +116,6 @@ public class FrogScript : MonoBehaviour
   {
     if(canShowImage)
     {
-      Debug.Log("SHOW");
       ShowObj();
     }
     if(canShowBug)
@@ -151,7 +150,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug2"))
@@ -167,7 +166,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug3"))
@@ -183,7 +182,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug4"))
@@ -199,7 +198,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
             
           } 
@@ -216,7 +215,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug6"))
@@ -232,7 +231,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug7"))
@@ -248,7 +247,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug8"))
@@ -264,7 +263,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug9"))
@@ -280,7 +279,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug10"))
@@ -296,7 +295,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug11"))
@@ -312,7 +311,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug12"))
@@ -328,7 +327,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug13"))
@@ -344,7 +343,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           }  
           else if(hit.collider.CompareTag("Bug14"))
@@ -361,7 +360,7 @@ public class FrogScript : MonoBehaviour
             }
             else
             {
-              Debug.Log("PROCURA MELHOR");
+              nonoSound.Play();
             }
           } 
           Debug.Log("removedBugs " + bugsFound);
@@ -410,7 +409,6 @@ public class FrogScript : MonoBehaviour
     rend = currentObject.GetComponent<SpriteRenderer>();
     rend.sortingOrder = 10;
 
-    //currentObject.SetActive(true);
     canShowImage = false;
   }
 
@@ -443,7 +441,7 @@ public class FrogScript : MonoBehaviour
       animator.SetBool("Catch", false);
       isJumping = false;
 
-      waterSplashSound.Play();
+      //waterSplashSound.Play();
     }
 
     if(other.gameObject.CompareTag("Leaf2"))
@@ -453,7 +451,7 @@ public class FrogScript : MonoBehaviour
         
       isJumping = false;
 
-      waterSplashSound.Play();  
+      //waterSplashSound.Play();  
       chapterFinished = true;
       
     }

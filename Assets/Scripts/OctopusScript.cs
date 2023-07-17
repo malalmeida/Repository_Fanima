@@ -23,6 +23,9 @@ public class OctopusScript : MonoBehaviour
     [SerializeField] private LayerMask movableLayers;
     public Vector3 startPosition;
 
+    public AudioSource validationSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,10 +39,12 @@ public class OctopusScript : MonoBehaviour
         if(canShowImage)
         {
             ShowObj();
+
         }
         if(nextAction)
         {
             HidePreviousImage();
+            validationSound.Play();
         }
         if(repNumber == 3)
         {
@@ -84,7 +89,7 @@ public class OctopusScript : MonoBehaviour
         Debug.Log("OBJ " + gameObjName);
 
         currentObj = GameObject.Find(gameObjName);
-        //currentObj.transform.position = new Vector3(0f, -2f, 0);
+        currentObj.transform.position = new Vector3(0f, -1.5f, 0);
 
         rend = currentObj.GetComponent<SpriteRenderer>();
         rend.sortingOrder = 10;
@@ -94,8 +99,9 @@ public class OctopusScript : MonoBehaviour
 
     public void HidePreviousImage()
     {
-        rend = currentObj.GetComponent<SpriteRenderer>();
-        rend.sortingOrder = -1;
+        currentObj.SetActive(false);
+        //rend = currentObj.GetComponent<SpriteRenderer>();
+        //rend.sortingOrder = -1;
         nextAction = false;
     }    
 }

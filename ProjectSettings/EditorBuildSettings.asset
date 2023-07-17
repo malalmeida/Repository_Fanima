@@ -21,11 +21,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Monkey.unity
     guid: ed2c3e37282b44d3887a0d3e1cd46eb5
   - enabled: 1
-    path: Assets/Scenes/Chameleon.unity
-    guid: bb57dc6097c28a940b6cbd339d939deb
-  - enabled: 1
     path: Assets/Scenes/Owl.unity
     guid: c9729b008287633438e0bb44319d7b59
+  - enabled: 1
+    path: Assets/Scenes/Chameleon.unity
+    guid: bb57dc6097c28a940b6cbd339d939deb
   - enabled: 1
     path: Assets/Scenes/Octopus.unity
     guid: d929dac5ac58cb94b9949a3c9ab62532

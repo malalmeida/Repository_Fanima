@@ -105,7 +105,7 @@ public class MonkeyScript : MonoBehaviour
     } 
 
     public void ShowStart()
-    {   Debug.Log("STAR NUMBER: " + repNumber);
+    {   
         if(repNumber == 0)
         {
             rendStar1.sortingOrder = 10;
@@ -118,13 +118,6 @@ public class MonkeyScript : MonoBehaviour
         {
             rendStar3.sortingOrder = 10;
         }
-        //else if(repNumber == 3)
-        //{
-           // rendStar1.sortingOrder = -5;
-            //rendStar2.sortingOrder = -5;
-            //rendStar3.sortingOrder = -5;
-            //repNumber == -1;
-        //}
         nextAction = false;
     }
 
