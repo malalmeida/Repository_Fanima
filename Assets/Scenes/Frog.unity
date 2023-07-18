@@ -2097,7 +2097,7 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: b9c6593587af0410caa2f71337fa304c, type: 3}
   - {fileID: 8300000, guid: f5ca85263bbad40929a45c5549760ca7, type: 3}
-  - {fileID: 8300000, guid: 9b2699575bb40404aad02eab8e9841b7, type: 3}
+  - {fileID: 8300000, guid: 9bbe63d902ce04550a461d2ed868e491, type: 3}
   - {fileID: 8300000, guid: 393e106a824c74c1684efa745f9d36a4, type: 3}
   introChapVoice: {fileID: 1247360789}
   finalChapVoice: {fileID: 1725297925}
@@ -6603,8 +6603,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390116023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.97, y: 4.4, z: 0}
-  m_LocalScale: {x: 0.42793494, y: 0.56955224, z: 1}
+  m_LocalPosition: {x: 13.9525, y: 4.45, z: 0}
+  m_LocalScale: {x: 0.40252087, y: 0.45581266, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 264628283}

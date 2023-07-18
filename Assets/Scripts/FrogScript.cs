@@ -147,6 +147,7 @@ public class FrogScript : MonoBehaviour
               bug1.SetActive(false);
               bugsFound ++;
               isCaught = true; 
+              closeBox = false;
             }
             else
             {
@@ -163,6 +164,7 @@ public class FrogScript : MonoBehaviour
               bug2.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -179,6 +181,7 @@ public class FrogScript : MonoBehaviour
               bug3.SetActive(false);     
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -195,6 +198,7 @@ public class FrogScript : MonoBehaviour
               bug4.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -212,6 +216,7 @@ public class FrogScript : MonoBehaviour
               bug5.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -228,6 +233,7 @@ public class FrogScript : MonoBehaviour
               bug6.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -244,6 +250,7 @@ public class FrogScript : MonoBehaviour
               bug7.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -260,6 +267,7 @@ public class FrogScript : MonoBehaviour
               bug8.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -276,6 +284,7 @@ public class FrogScript : MonoBehaviour
               bug9.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -292,6 +301,7 @@ public class FrogScript : MonoBehaviour
               bug10.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -308,6 +318,7 @@ public class FrogScript : MonoBehaviour
               bug11.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -324,6 +335,7 @@ public class FrogScript : MonoBehaviour
               bug12.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -340,6 +352,7 @@ public class FrogScript : MonoBehaviour
               bug13.SetActive(false);
               bugsFound ++;
               isCaught = true;
+              closeBox = false;
             }
             else
             {
@@ -357,14 +370,15 @@ public class FrogScript : MonoBehaviour
               bugsFound ++;
               isCaught = true;
               dialogCloud.SetActive(false);
+              closeBox = false;
             }
             else
             {
               nonoSound.Play();
             }
           } 
-          Debug.Log("removedBugs " + bugsFound);
-          closeBox = false;
+          //Debug.Log("removedBugs " + bugsFound);
+          //closeBox = false;
 
         }
       }

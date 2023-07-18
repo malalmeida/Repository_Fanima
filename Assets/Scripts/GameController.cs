@@ -763,31 +763,35 @@ public class GameController : MonoBehaviour
       {
         if(currentWord == "caracol")
         {
+          yield return StartCoroutine(PlayAudioClip("validationMusic"));
           geralScript.doAnimation = false;
         }
         else
         {
+          yield return StartCoroutine(PlayAudioClip("validationMusic"));
           geralScript.doAnimation = true;
           geralScript.animationDone = false;
         }
-          webSockets.validationValue = -3;             
+          webSockets.validationValue = -3;  
+           
       }
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
         frogScript.validationDone = true;
         frogScript.bugNumber ++;
+        yield return StartCoroutine(PlayAudioClip("validationMusic"));
         frogScript.canShowBug = true;
         yield return new WaitUntil(() => frogScript.isCaught);
         frogScript.isCaught = false;
         webSockets.validationValue = -3;
-        yield return StartCoroutine(PlayAudioClip("validationMusic"));
+        
 
       }
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
+        yield return StartCoroutine(PlayAudioClip("validationMusic"));
         owlScript.nextAction = true;
         webSockets.validationValue = -3;
-        yield return StartCoroutine(PlayAudioClip("validationMusic"));
 
       }
       else if (SceneManager.GetActiveScene().name == "Octopus")
@@ -798,9 +802,9 @@ public class GameController : MonoBehaviour
           yield return new WaitUntil(() => octopusScript.isMatch);
           octopusScript.isMatch = false;
         }
+        yield return StartCoroutine(PlayAudioClip("validationMusic"));
         octopusScript.nextAction = true;
         webSockets.validationValue = -3;   
-        yield return StartCoroutine(PlayAudioClip("validationMusic"));
 
         //octopusScript.canShow = true;
         //yield return new WaitUntil(() => octopusScript.isMatch);
@@ -809,9 +813,7 @@ public class GameController : MonoBehaviour
       }
       else if (SceneManager.GetActiveScene().name == "Monkey")
       {
-        //monkeyScript.randomIndex = Random.Range(0, 11);
-        //yield return new WaitUntil(() => monkeyScript.isCaught);
-        //monkeyScript.isCaught = false;
+        yield return StartCoroutine(PlayAudioClip("validationMusic"));
         monkeyScript.nextAction = true;
 
         //if(lastBonusSample == true)
@@ -819,25 +821,24 @@ public class GameController : MonoBehaviour
           //monkeyScript.repNumber = 3;
         //}
         webSockets.validationValue = -3; 
-        yield return StartCoroutine(PlayAudioClip("validationMusic"));
      
         }
       else if (SceneManager.GetActiveScene().name == "Chameleon")
       {
+        yield return StartCoroutine(PlayAudioClip("validationMusic"));
         chameleonScript.nextAction = true;
           //yield return new WaitUntil(() => chameleonScript.isCaught);
           //chameleonScript.isCaught = false;
         webSockets.validationValue = -3;
-        yield return StartCoroutine(PlayAudioClip("validationMusic"));
       
       }
       else if (SceneManager.GetActiveScene().name == "Fish")
       {
+        yield return StartCoroutine(PlayAudioClip("validationMusic"));
         fishScript.canShake = true;
         yield return new WaitUntil(() => fishScript.isCaught);
         fishScript.isCaught = false;
         webSockets.validationValue = -3;
-        yield return StartCoroutine(PlayAudioClip("validationMusic"));
      
       }
       yield return StartCoroutine(PreparedGameResult());
