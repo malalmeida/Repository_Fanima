@@ -29,7 +29,7 @@ public class ChameleonScript : MonoBehaviour
 
     public bool hideObj = false;
     public bool canShowImage = false;
-    public string currentWord = "";
+    public string currentWord = "XXXX";
     public int repNumber = -1;
     public bool nextAction = false;
 
@@ -95,7 +95,6 @@ public class ChameleonScript : MonoBehaviour
         if(nextAction)
         {
             ShowStart();
-            //HidePreviousImage();
         }
 
         if(newWord)
@@ -104,15 +103,10 @@ public class ChameleonScript : MonoBehaviour
             HidePreviousImage();
         }
 
-        if(isCaught)
+        if(canShowImage)
         {
-            ShowObj();
+           ShowObj();
         }
-
-        //if(hideObj)
-        //{
-            //HidePreviousImage();
-        //}
         
         if(Input.GetMouseButtonDown(0))
         {
@@ -148,6 +142,8 @@ public class ChameleonScript : MonoBehaviour
                         chameleon4.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
+                        chameleonSound.Play();
+
                     } 
                     if(hit.collider.CompareTag("Chameleon5"))
                     {
@@ -226,16 +222,20 @@ public class ChameleonScript : MonoBehaviour
 
     public void ShowObj()
     {
-        string gameObjName = currentWord + "Obj";       
-        Debug.Log("OBJ " + gameObjName);
+        if(currentWord != "XXXX")
+        {
+            string gameObjName = currentWord + "Obj";       
+            Debug.Log("OBJ " + gameObjName);
 
-        currentObj = GameObject.Find(gameObjName);
+            currentObj = GameObject.Find(gameObjName);
 
-        rend = currentObj.GetComponent<SpriteRenderer>();
-        rend.sortingOrder = 10;
+            rend = currentObj.GetComponent<SpriteRenderer>();
+            rend.sortingOrder = 10;
 
-        canShowImage = false;
-        isCaught = false;
+            canShowImage = false;
+            isCaught = false;
+        }
+       
     }
 
     public void HidePreviousImage()
@@ -246,9 +246,7 @@ public class ChameleonScript : MonoBehaviour
             //rend.sortingOrder = -5;
             currentObj.SetActive(false);
         }
-        
         nextAction = false;
-        //hideObj = false;
     } 
 
     public void ShowStart()
@@ -266,7 +264,6 @@ public class ChameleonScript : MonoBehaviour
             rendStar3.sortingOrder = 10;
         }
         nextAction = false;
-        //StartCoroutine(PlayStarSound());
     }
 
     public void ResartStars()
@@ -291,6 +288,8 @@ public class ChameleonScript : MonoBehaviour
         Debug.Log("CAMELEON NUMBER " + randomIndex);
         chameleonList[randomIndex].SetActive(true);
         randomIndex = -1;
+        chameleonSound.Play();
+        
     }
 }
 

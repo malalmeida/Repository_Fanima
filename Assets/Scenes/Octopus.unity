@@ -5457,7 +5457,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251719044}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 501f3121edb585649b9f544500eb7add, type: 2}
   m_CullingMode: 0
@@ -6297,7 +6297,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4.39, y: 5.68}
-    newSize: {x: 2.78, y: 2.86}
+    newSize: {x: 4.39, y: 5.68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -6346,15 +6346,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 95b3507911f744b3f8894cf6853c840c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a118165d69ab5434192f88807fe458eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.78, y: 2.86}
+  m_Size: {x: 4.39, y: 5.68}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1424272215
@@ -10839,7 +10839,7 @@ GameObject:
   - component: {fileID: 2131221231}
   - component: {fileID: 2131221233}
   - component: {fileID: 2131221232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bilheteObj3
   m_TagString: Green
   m_Icon: {fileID: 0}

@@ -1244,6 +1244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605102697}
   - component: {fileID: 605102696}
+  - component: {fileID: 605102698}
   m_Layer: 0
   m_Name: Nemo
   m_TagString: Untagged
@@ -1318,6 +1319,26 @@ Transform:
   m_Father: {fileID: 1129421068}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &605102698
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605102695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6a4506304ed542df92387a4166f4361, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &619545196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2520,6 +2541,7 @@ GameObject:
   - component: {fileID: 1129421068}
   - component: {fileID: 1129421067}
   - component: {fileID: 1129421069}
+  - component: {fileID: 1129421070}
   m_Layer: 0
   m_Name: FatherNemo
   m_TagString: Untagged
@@ -2624,6 +2646,26 @@ MonoBehaviour:
   objectSpeed: 3
   starAnimation: 0
   animationDone: 0
+--- !u!95 &1129421070
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129421066}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15f0fafb947f6483492d03cb9f502be8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1252025819
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,6 +4316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988406128}
   - component: {fileID: 1988406127}
+  - component: {fileID: 1988406129}
   m_Layer: 0
   m_Name: MaleGuide
   m_TagString: Untagged
@@ -4348,6 +4391,26 @@ Transform:
   m_Father: {fileID: 1129421068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1988406129
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988406126}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 825edb3aeb1f347cea36c357f3c2c1c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2003026799
 GameObject:
   m_ObjectHideFlags: 0

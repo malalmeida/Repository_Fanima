@@ -21,7 +21,7 @@ public class MonkeyScript : MonoBehaviour
     public GameObject currentObj;
 
     public bool canShowImage = false;
-    public string currentWord = "";
+    public string currentWord = "XXXX";
     public int repNumber = -1;
     public bool nextAction = false;
 
@@ -35,6 +35,8 @@ public class MonkeyScript : MonoBehaviour
     public SpriteRenderer rendStar1;
     public SpriteRenderer rendStar2;
     public SpriteRenderer rendStar3;
+
+    public AudioSource monkeySound;
 
     // Start is called before the first frame update
     void Start()
@@ -64,43 +66,118 @@ public class MonkeyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canShowImage)
-        {
-            ShowObj();
-        }
-        if(nextAction)
-        {
-            ShowStart();
-            HidePreviousImage();
-        }
-        if(newPhonemeGroup)
+        if(randomIndex > -1)
         {
             ShowMonkey();
         }
+
+        if(nextAction)
+        {
+            ShowStart();
+        }
+
         if(newWord)
         {
             ResartStars();
+            HidePreviousImage();  
         }
-        
+
+        if(canShowImage)
+        {
+           ShowObj();
+        }
+
+         if(Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray, out hit))
+            {
+                if(hit.collider != null)
+                {
+                     if(hit.collider.CompareTag("Monkey1"))
+                    {
+                        monkey1.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();                    
+                    } 
+                    if(hit.collider.CompareTag("Monkey2"))
+                    {
+                        monkey2.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();                    
+                    } 
+                    if(hit.collider.CompareTag("Monkey3"))
+                    {
+                        monkey3.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();                    
+                    } 
+                    if(hit.collider.CompareTag("Monkey4"))
+                    {
+                        monkey4.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();
+                    } 
+                    if(hit.collider.CompareTag("Monkey5"))
+                    {
+                        monkey5.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();
+                    } 
+                    if(hit.collider.CompareTag("Monkey6"))
+                    {
+                        monkey6.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();
+                    } 
+                    if(hit.collider.CompareTag("Monkey7"))
+                    {
+                        monkey7.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();
+                    } 
+                    if(hit.collider.CompareTag("Monkey8"))
+                    {
+                        monkey8.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();
+                    } 
+                    if(hit.collider.CompareTag("Monkey9"))
+                    {
+                        monkey9.SetActive(false);
+                        isCaught = true;
+                        monkeySound.Play();
+                    } 
+                }
+            }
+        }
     }
 
     public void ShowObj()
     {
-        string gameObjName = currentWord + "Obj";       
-        Debug.Log("OBJ " + gameObjName);
+        if(currentWord != "XXXX")
+        {
+            string gameObjName = currentWord + "Obj";       
+            Debug.Log("OBJ " + gameObjName);
 
-        currentObj = GameObject.Find(gameObjName);
+            currentObj = GameObject.Find(gameObjName);
 
-        rend = currentObj.GetComponent<SpriteRenderer>();
-        rend.sortingOrder = 10;
+            rend = currentObj.GetComponent<SpriteRenderer>();
+            rend.sortingOrder = 10;
 
-        canShowImage = false;
+            canShowImage = false;
+            isCaught = false;
+        }
     }
 
     public void HidePreviousImage()
     {
-        rend = currentObj.GetComponent<SpriteRenderer>();
-        rend.sortingOrder = -5;
+        if(currentObj != null)
+        {
+            currentObj.SetActive(false);
+        }
+        
         nextAction = false;
     } 
 
@@ -140,8 +217,10 @@ public class MonkeyScript : MonoBehaviour
 
     public void ShowMonkey()
     {
-        monkeyNumber ++;
-        monkeyList[monkeyNumber].SetActive(true);
+        monkeyList[randomIndex].SetActive(true);
+        randomIndex = -1;
+        monkeySound.Play();
+        
     }
 
 }
