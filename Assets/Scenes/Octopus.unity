@@ -5814,7 +5814,7 @@ GameObject:
   - component: {fileID: 1311516042}
   - component: {fileID: 1311516041}
   m_Layer: 10
-  m_Name: flechaObj03
+  m_Name: flechaObj3
   m_TagString: Yellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
