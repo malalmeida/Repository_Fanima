@@ -20,7 +20,7 @@ public class OwlScript : MonoBehaviour
     public bool startValidation = false;
 
     public AudioSource popSound;
-    public AudioSource validationSound;
+    //public AudioSource validationSound;
 
     public string gameObjName;
     // Start is called before the first frame update
@@ -179,7 +179,7 @@ public class OwlScript : MonoBehaviour
         //rend = currentObj.GetComponent<SpriteRenderer>();
         //rend.sortingOrder = -1;
         currentObj.SetActive(false);
-        validationSound.Play();
+        //validationSound.Play();
         nextAction = false;
     }
 }

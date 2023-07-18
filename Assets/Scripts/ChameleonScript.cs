@@ -256,20 +256,17 @@ public class ChameleonScript : MonoBehaviour
         if(repNumber == 0)
         {
             rendStar1.sortingOrder = 10;
-            //validationSound.Play();
         }
         else if(repNumber == 1)
         {
             rendStar2.sortingOrder = 10;
-            //validationSound.Play();
         }
         else if(repNumber == 2)
         {
             rendStar3.sortingOrder = 10;
-            //validationSound.Play();
         }
         nextAction = false;
-        StartCoroutine(PlayStarSound());
+        //StartCoroutine(PlayStarSound());
     }
 
     public void ResartStars()
@@ -294,13 +291,6 @@ public class ChameleonScript : MonoBehaviour
         Debug.Log("CAMELEON NUMBER " + randomIndex);
         chameleonList[randomIndex].SetActive(true);
         randomIndex = -1;
-    }
-
-    IEnumerator PlayStarSound()
-    {
-        validationSound.Play();
-        yield return new WaitForSeconds(2.5f);
-        
     }
 }
 

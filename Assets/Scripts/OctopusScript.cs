@@ -44,7 +44,7 @@ public class OctopusScript : MonoBehaviour
         if(nextAction)
         {
             HidePreviousImage();
-            validationSound.Play();
+            //validationSound.Play();
         }
         if(repNumber == 3)
         {

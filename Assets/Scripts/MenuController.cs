@@ -13,6 +13,8 @@ public class MenuController : MonoBehaviour
     private string startTime;
     private string endTime;
 
+    public AudioSource song;
+
     public GameStructureRequest gameStructureRequest;
    
     void Awake()
@@ -40,6 +42,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 1f;
         startMenuUI.SetActive(false);
         PlayerPrefs.SetInt("GAMESTARTED", 1);
+        song.Stop();
  
     }
 }

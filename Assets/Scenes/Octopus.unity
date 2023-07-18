@@ -153,7 +153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 696507400}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1590927
 AudioSource:
@@ -2318,7 +2318,7 @@ GameObject:
   - component: {fileID: 597651748}
   - component: {fileID: 597651747}
   m_Layer: 0
-  m_Name: carangueijoObj0
+  m_Name: caranguejoObj0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2429,7 +2429,7 @@ GameObject:
   - component: {fileID: 606732730}
   - component: {fileID: 606732729}
   m_Layer: 0
-  m_Name: carangueijoObj1
+  m_Name: caranguejoObj1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2889,7 +2889,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1360334395}
   - {fileID: 1979289480}
   - {fileID: 1590926}
   m_Father: {fileID: 0}
@@ -3285,7 +3284,7 @@ GameObject:
   - component: {fileID: 852093843}
   - component: {fileID: 852093842}
   m_Layer: 0
-  m_Name: carangueijoObj2
+  m_Name: caranguejoObj2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3418,6 +3417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMenuUI: {fileID: 0}
   pauseMenuUI: {fileID: 0}
+  song: {fileID: 0}
   gameStructureRequest: {fileID: 762141119}
 --- !u!114 &852455944
 MonoBehaviour:
@@ -3628,7 +3628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &886557121
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5913,134 +5913,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1360334394
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1360334395}
-  - component: {fileID: 1360334396}
-  m_Layer: 0
-  m_Name: RepeatF
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1360334395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360334394}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 696507400}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1360334396
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360334394}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 67f77a6f959d67747ae39d8131ec20d5, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1369257741
 GameObject:
   m_ObjectHideFlags: 0
@@ -6608,7 +6480,7 @@ GameObject:
   - component: {fileID: 1474218297}
   - component: {fileID: 1474218296}
   m_Layer: 10
-  m_Name: carangueijoObj3
+  m_Name: caranguejoObj3
   m_TagString: Yellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8481,38 +8353,38 @@ MonoBehaviour:
   lastBonusSample: 0
   phonemeList: []
   aud: {fileID: 0}
-  wordsNameClips: []
-  clips:
-  - {fileID: 8300000, guid: fa3c276387080434597f7fc1255cfd7a, type: 3}
-  - {fileID: 8300000, guid: 5a762c368955b694b9f1c887daab5ce0, type: 3}
-  - {fileID: 8300000, guid: e18fd2dd704356c47a09beeba3ddc160, type: 3}
-  - {fileID: 8300000, guid: 2d763c78d97f77e4789ec1faf41c47fd, type: 3}
-  - {fileID: 8300000, guid: 041e28d3f382c0f4893d919522de04a0, type: 3}
-  - {fileID: 8300000, guid: 1f3ea86f563f80145b76a7a18793f04a, type: 3}
-  - {fileID: 8300000, guid: 3919eb6802cc3da4f8ab6316af3c4f7f, type: 3}
-  - {fileID: 8300000, guid: 53b421abc8c48de47bd4d332c9f4ce6e, type: 3}
-  - {fileID: 8300000, guid: 7d9096e17ce6ccb4d8942a9c1fbacd54, type: 3}
+  wordsNameClips:
   - {fileID: 8300000, guid: 9d56a4148b1860f4bb3ece2fb95f652d, type: 3}
+  - {fileID: 8300000, guid: d21056d4ca48b3b4b81489ceacf665ed, type: 3}
   - {fileID: 8300000, guid: 60baa1e927444174795768a159f99874, type: 3}
-  - {fileID: 8300000, guid: 47aafb9ff14786343b87b6e30a5c889d, type: 3}
+  - {fileID: 8300000, guid: c710a6fc4a196d643ba535c74669f19b, type: 3}
+  - {fileID: 8300000, guid: 7d9096e17ce6ccb4d8942a9c1fbacd54, type: 3}
+  - {fileID: 8300000, guid: 041e28d3f382c0f4893d919522de04a0, type: 3}
+  - {fileID: 8300000, guid: 3919eb6802cc3da4f8ab6316af3c4f7f, type: 3}
   - {fileID: 8300000, guid: 52ce06909a826224baeff39571246583, type: 3}
   - {fileID: 8300000, guid: 170de59b70d5eb341857988b8c4c6347, type: 3}
-  - {fileID: 8300000, guid: 4b518168cfdd85e4db1fcfb0e4bf4249, type: 3}
-  - {fileID: 8300000, guid: d21056d4ca48b3b4b81489ceacf665ed, type: 3}
-  - {fileID: 8300000, guid: 2abb925776816194eac48a4e3923e722, type: 3}
-  - {fileID: 8300000, guid: c710a6fc4a196d643ba535c74669f19b, type: 3}
+  - {fileID: 8300000, guid: 53b421abc8c48de47bd4d332c9f4ce6e, type: 3}
+  - {fileID: 8300000, guid: 47aafb9ff14786343b87b6e30a5c889d, type: 3}
   - {fileID: 8300000, guid: 296259705fc24e942bc3a4fa58962451, type: 3}
   - {fileID: 8300000, guid: a13116d28174d0442b93d9d92f5b9273, type: 3}
-  Geral1: {fileID: 0}
-  Geral2: {fileID: 0}
+  - {fileID: 8300000, guid: 4b518168cfdd85e4db1fcfb0e4bf4249, type: 3}
+  - {fileID: 8300000, guid: 2abb925776816194eac48a4e3923e722, type: 3}
+  - {fileID: 8300000, guid: 1f3ea86f563f80145b76a7a18793f04a, type: 3}
+  - {fileID: 8300000, guid: fa3c276387080434597f7fc1255cfd7a, type: 3}
+  - {fileID: 8300000, guid: e18fd2dd704356c47a09beeba3ddc160, type: 3}
+  - {fileID: 8300000, guid: 5a762c368955b694b9f1c887daab5ce0, type: 3}
+  - {fileID: 8300000, guid: 2d763c78d97f77e4789ec1faf41c47fd, type: 3}
+  clips:
+  - {fileID: 8300000, guid: f5ca85263bbad40929a45c5549760ca7, type: 3}
+  - {fileID: 8300000, guid: b9c6593587af0410caa2f71337fa304c, type: 3}
+  - {fileID: 8300000, guid: 9b2699575bb40404aad02eab8e9841b7, type: 3}
+  - {fileID: 8300000, guid: 393e106a824c74c1684efa745f9d36a4, type: 3}
   introChapVoice: {fileID: 1979289481}
   finalChapVoice: {fileID: 1590927}
-  askToRepeatF: {fileID: 1360334396}
   travelTrip1: {fileID: 0}
   travelTrip2: {fileID: 0}
   travelTrip3: {fileID: 0}
   travelFinal: {fileID: 0}
-  print: {fileID: 0}
 --- !u!4 &1861653386
 Transform:
   m_ObjectHideFlags: 0
@@ -9293,7 +9165,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 696507400}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1979289481
 AudioSource:
@@ -9305,7 +9177,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f09081bb2b576445abe79d673bc3671, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4248e1621a03742d6b026c0208d8b74b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
