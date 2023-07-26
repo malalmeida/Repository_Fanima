@@ -6,8 +6,6 @@ using TMPro;
 using System.Linq;
 using System.IO;
 
-
-
 public class GameController : MonoBehaviour
 {
   public string wsURL = "ws://193.137.46.11/";
@@ -17,7 +15,6 @@ public class GameController : MonoBehaviour
   public int patientID;
   public bool structReqDone = false;
   public bool respositoryReqDone = false;
-  //public bool sampleReqDone = false;
   public bool gameExecutionDone = false;
   public bool errorDone = false;
   public int gameExecutionID = -1;
@@ -34,7 +31,6 @@ public class GameController : MonoBehaviour
   public GameObject finalMenu;
     
   [SerializeField] private AudioSource userRecording;
-  //[SerializeField] private TextMeshProUGUI wordToSay;
   
   public GameObject startMenuUI;
 
@@ -72,24 +68,21 @@ public class GameController : MonoBehaviour
   public bool actionValidated = false;
   public bool lastBonusSample = false;
 
+  public bool speak = false;
+  public bool activeHelpButton = false;
+
   public List<errorClass> phonemeList;
 
   public AudioSource aud;
   public List<AudioClip> wordsNameClips;
   public List<AudioClip> clips;
 
-  //public AudioSource GeralIntro;
-  //public AudioSource GeralIntroSentences;
   public AudioSource introChapVoice;
   public AudioSource finalChapVoice;
-  //public AudioSource repeatVoice;
   public AudioSource travelTrip1;
   public AudioSource travelTrip2;
   public AudioSource travelTrip3;
   public AudioSource travelFinal;
-
-  //public AudioSource validationSound;
-  //public AudioSource endChapSound;
 
   // Start is called before the first frame update
   void Start()
@@ -206,16 +199,33 @@ public class GameController : MonoBehaviour
       if((SceneManager.GetActiveScene().name == "Geral"))
       {
         yield return new WaitUntil(() => geralScript.animationDone);
+        if(geralScript.wordsDone == false)
+        {
+          yield return new WaitUntil(() => geralScript.startValidation);
+        }
+        else
+        {
+          yield return new WaitUntil(() => geralScript.animationDone);
+          geralScript.startValidation = true;
+        }
       }
 
       if((SceneManager.GetActiveScene().name == "Owl"))
       {
         yield return new WaitUntil(() => owlScript.pop);
         yield return new WaitForSeconds(1.0f);
-
       }
 
       timer = sequenceToPlayList[i].time;
+
+      if(repetition == false)
+      {
+        //tempo de perceber o que é a imagem
+        yield return new WaitForSeconds(2.0f);
+        speak = true;
+      }
+      speak = true;
+      activeHelpButton = true;
       RecordSound(timer);
       yield return StartCoroutine(WaitForValidation());
     }
@@ -283,24 +293,6 @@ public class GameController : MonoBehaviour
       Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
       for(int j = 0; j < sequenceToPlayList.Count; j++)
       { 
-        if((SceneManager.GetActiveScene().name == "Monkey"))
-        { 
-          monkeyScript.newWord = true;
-
-          monkeyScript.randomIndex = Random.Range(0, 8);
-          yield return new WaitUntil(() => monkeyScript.isCaught);
-          yield return new WaitForSeconds(2.0f);
-        } 
-  
-        if((SceneManager.GetActiveScene().name == "Chameleon"))
-        { 
-          chameleonScript.newWord = true;
-
-          chameleonScript.randomIndex = Random.Range(0, 13);
-          yield return new WaitUntil(() => chameleonScript.isCaught);
-          yield return new WaitForSeconds(0.7f);
-        } 
-
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -314,18 +306,28 @@ public class GameController : MonoBehaviour
           if(l == 2)
           {
             lastBonusSample = true;
-            
           }
           bonusgameResult = true;
           Debug.Log("DIZ -> " + currentWord); 
           ShowImageBonus(currentWord, l);
+          if(l == 0)
+          {
+            //tempo de perceber o que é a imagem
+            yield return new WaitForSeconds(2.0f);
+            speak = true;
+          }
           timer = sequenceToPlayList[j].time;
+
+          activeHelpButton = true;
+          speak = true;
+          
           RecordSound(timer);
           yield return StartCoroutine(WaitForValidation());
         }
       }   
     }
-    yield return StartCoroutine(ChapFinalVoices());
+    //yield return StartCoroutine(ChapFinalVoices());
+    yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
     SceneManager.LoadScene("Travel");      
   }
 
@@ -389,10 +391,7 @@ public class GameController : MonoBehaviour
   IEnumerator GeralIntro()
   {
     yield return new WaitUntil(() => PlayerPrefs.GetInt("GAMESTARTED") == 1);
-    //Geral1.Play(); 
     yield return StartCoroutine(PlayAudioClip("Intro words"));
-    //yield return new WaitForSeconds(7.1f);
-    //geralScript.showBoard = true;
   }
 
   IEnumerator ChapIntroVoices()
@@ -404,7 +403,7 @@ public class GameController : MonoBehaviour
     }
     else if (SceneManager.GetActiveScene().name == "Monkey")
     {
-      yield return new WaitForSeconds(4.8f);
+      yield return new WaitForSeconds(13.7f);
     }
     else if (SceneManager.GetActiveScene().name == "Owl")
     {
@@ -412,15 +411,15 @@ public class GameController : MonoBehaviour
     }
     else if (SceneManager.GetActiveScene().name == "Chameleon")
     {
-      yield return new WaitForSeconds(9.0f);
+      yield return new WaitForSeconds(17.2f);
     }
     else if (SceneManager.GetActiveScene().name == "Fish")
     {
-      yield return new WaitForSeconds(7.6f);    
+      yield return new WaitForSeconds(6.5f);    
     }
     else if (SceneManager.GetActiveScene().name == "Octopus")
     {
-      yield return new WaitForSeconds(11.3f);
+      yield return new WaitForSeconds(13.9f);
     }
   }
 
@@ -493,8 +492,8 @@ public class GameController : MonoBehaviour
     if(PlayerPrefs.GetInt("ChapterPlayed") == 0)
     {
       PlayerPrefs.SetInt("ChapterPlayed", 1);
-      travelTrip1.Play();
-      yield return new WaitForSeconds(4.0f);
+      //travelTrip1.Play();
+      //yield return new WaitForSeconds(4.0f);
       SceneManager.LoadScene(PlayerPrefs.GetString("ChapterOne"));
     }
     else if(PlayerPrefs.GetInt("ChapterPlayed") == 1)
@@ -509,8 +508,8 @@ public class GameController : MonoBehaviour
       }
       else
       {
-       travelTrip2.Play();
-       yield return new WaitForSeconds(5.0f);
+        //travelTrip2.Play();
+        //yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
       }
     }
@@ -526,8 +525,8 @@ public class GameController : MonoBehaviour
       else
       {
         PlayerPrefs.SetInt("ChapterPlayed", 3);
-        travelTrip3.Play();
-        yield return new WaitForSeconds(3.0f);
+        //travelTrip3.Play();
+        //yield return new WaitForSeconds(3.0f);
         SceneManager.LoadScene(PlayerPrefs.GetString("ChapterThree")); 
       }
     }
@@ -642,12 +641,12 @@ public class GameController : MonoBehaviour
     if (SceneManager.GetActiveScene().name == "Geral")
     {
       //Esperar pelo click no ramo
-      if(geralScript.wordsDone == false)
-      {
-        yield return new WaitUntil(() => geralScript.startValidation);
-      }
+      yield return new WaitUntil(() => geralScript.startValidation);
+
       yield return new WaitForSeconds(timer);
-      endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
+
+      endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"); 
+      speak = false;        
       SavWav.Save(currentWord + ".wav", userRecording.clip);
 
       gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
@@ -673,7 +672,8 @@ public class GameController : MonoBehaviour
         yield return new WaitUntil(() => owlScript.pop);
       }
       yield return new WaitForSeconds(timer);
-      endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");         
+      endTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");  
+      speak = false;       
       SavWav.Save(currentWord + ".wav", userRecording.clip);
 
       gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
@@ -703,7 +703,9 @@ public class GameController : MonoBehaviour
       yield return StartCoroutine(PlayWordName(currentWord));
       Debug.Log("Repete comigo, " + currentWord);
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-       
+      
+      speak = true;
+
       RecordSound(timer);
       webSockets.validationValue = -3;
       repetition = true;
@@ -714,9 +716,11 @@ public class GameController : MonoBehaviour
     else if(webSockets.validationValue == -1)
     {
       yield return StartCoroutine(PlayAudioClip("repeat"));
-      startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       Debug.Log("Não percebi, podores repetir? "); 
+      startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       
+      speak = true;
+
       RecordSound(timer);
       webSockets.validationValue = -3;
       repetition = true;
@@ -735,7 +739,8 @@ public class GameController : MonoBehaviour
       {
         errorDetected = true;
       }
-
+      //desativar ajuda
+      activeHelpButton = false;
       if (SceneManager.GetActiveScene().name == "Geral")
       {
         if(currentWord == "caracol")
@@ -767,6 +772,7 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
         yield return StartCoroutine(PlayAudioClip("validationMusic"));
+        owlScript.pop = false;
         owlScript.nextAction = true;
         webSockets.validationValue = -3;
 
@@ -786,6 +792,12 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Monkey")
       {
         yield return StartCoroutine(PlayAudioClip("validationMusic"));
+        if(lastBonusSample)
+        {
+          monkeyScript.newWord = true;
+          monkeyScript.randomIndex = Random.Range(0, 8);
+          yield return new WaitUntil(() => monkeyScript.isCaught);
+        }
         monkeyScript.nextAction = true;
         webSockets.validationValue = -3; 
      
@@ -793,7 +805,13 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Chameleon")
       {
         yield return StartCoroutine(PlayAudioClip("validationMusic"));
-        chameleonScript.nextAction = true;
+        if(lastBonusSample)
+        {
+          chameleonScript.newWord = true;
+          chameleonScript.randomIndex = Random.Range(0, 13);
+          yield return new WaitUntil(() => chameleonScript.isCaught);
+        }
+        chameleonScript.nextAction = true; 
         webSockets.validationValue = -3;
       
       }
@@ -813,12 +831,7 @@ public class GameController : MonoBehaviour
   IEnumerator PrepareGameStructure()
   {
     yield return new WaitUntil(() => structReqDone);
-    //Debug.Log("Waiting for structure...");
-    //Debug.Log("Structure request completed! Actions: " + contentList.Count);
-    
-    //Debug.Log("Waiting for word repository...");
     yield return new WaitUntil(() => respositoryReqDone);
-    //Debug.Log("Repository request completed! Words: " + dataList.Count);
   }
 
   IEnumerator PreparedGameExecutionID()
@@ -880,10 +893,17 @@ public class GameController : MonoBehaviour
 
   public void SendHelp()
   {    
-    Debug.Log("O que estás a ver é"); 
-    
-    StartCoroutine(PlayAudioClip("help"));
-    StartCoroutine(PlayWordName(currentWord));
+    if(activeHelpButton)
+    {
+      webSockets.HelpRequest(therapistID);
+      Debug.Log("AJUDA");
+    }
+  }
+
+  IEnumerator PlayHelpVoice()
+  {
+    yield return StartCoroutine(PlayAudioClip("help"));
+    yield return StartCoroutine(PlayWordName(currentWord));
   }
 
   public void OnApplicationQuit()

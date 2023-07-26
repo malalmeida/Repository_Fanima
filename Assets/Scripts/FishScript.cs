@@ -37,40 +37,6 @@ public class FishScript : MonoBehaviour
     public AudioSource fishEating;
     public MoveObject fish;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        /**
-        foodList = new List<GameObject>();
-        foodList.Add(food1);
-        foodList.Add(food2);
-        foodList.Add(food3);
-        foodList.Add(food4);
-        foodList.Add(food5);
-        foodList.Add(food6);
-        foodList.Add(food7);
-        foodList.Add(food8);
-        foodList.Add(food9);
-        foodList.Add(food10);
-        foodList.Add(food11);
-        foodList.Add(food12);
-        foodList.Add(food13);
-        food1.SetActive(false);
-        food2.SetActive(false);
-        food3.SetActive(false);
-        food4.SetActive(false);
-        food5.SetActive(false);
-        food6.SetActive(false);
-        food7.SetActive(false);
-        food8.SetActive(false);
-        food9.SetActive(false);
-        food10.SetActive(false);
-        food11.SetActive(false);
-        food12.SetActive(false);
-        food13.SetActive(false);
-        **/
-    }
-
     // Update is called once per frame
     void Update()
     {

@@ -35,6 +35,7 @@ public class OwlScript : MonoBehaviour
         {
             ShowObj();
         }
+
         if(nextAction)
         {
             HidePreviousImage();
@@ -166,11 +167,17 @@ public class OwlScript : MonoBehaviour
         currentObj = GameObject.Find(gameObjName);
         
         rend = currentObj.GetComponent<SpriteRenderer>();
+        StartCoroutine(WaitForAmimation());
         rend.sortingOrder = 10;
 
         canShowImage = false;
         
 
+    }
+
+    IEnumerator WaitForAmimation()
+    {
+        yield return new WaitForSeconds(1.5f);
     }
 
     public void HidePreviousImage()

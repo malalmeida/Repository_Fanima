@@ -150,6 +150,12 @@ public class WebSockets : MonoBehaviour{
         PrepareMessage("request", request);
     }
 
+     public void HelpRequest(int therapistID)
+    {
+        string request = "{\"therapist\":\"" + therapistID + "\",\"cancel\":\"" + 1 + "\"}";
+        PrepareMessage("request", request);
+    }
+
     public void ActionClassificationRequest(int therapistID, int wordID, int sampleID)
     {
         string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID + ",\"errors\":" + 1 + "}";

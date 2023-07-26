@@ -71,14 +71,14 @@ public class MonkeyScript : MonoBehaviour
             ShowMonkey();
         }
 
-        if(nextAction)
-        {
-            ShowStart();
-        }
+        //if(nextAction)
+        //{
+            //ShowStart();
+        //}
 
         if(newWord)
         {
-            ResartStars();
+            //ResartStars();
             HidePreviousImage();  
         }
 
@@ -99,55 +99,55 @@ public class MonkeyScript : MonoBehaviour
                     {
                         monkey1.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();                    
+                        //monkeySound.Play();                    
                     } 
                     if(hit.collider.CompareTag("Monkey2"))
                     {
                         monkey2.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();                    
+                        //monkeySound.Play();                    
                     } 
                     if(hit.collider.CompareTag("Monkey3"))
                     {
                         monkey3.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();                    
+                        //monkeySound.Play();                    
                     } 
                     if(hit.collider.CompareTag("Monkey4"))
                     {
                         monkey4.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();
+                        //monkeySound.Play();
                     } 
                     if(hit.collider.CompareTag("Monkey5"))
                     {
                         monkey5.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();
+                        //monkeySound.Play();
                     } 
                     if(hit.collider.CompareTag("Monkey6"))
                     {
                         monkey6.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();
+                        //monkeySound.Play();
                     } 
                     if(hit.collider.CompareTag("Monkey7"))
                     {
                         monkey7.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();
+                        //monkeySound.Play();
                     } 
                     if(hit.collider.CompareTag("Monkey8"))
                     {
                         monkey8.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();
+                        //monkeySound.Play();
                     } 
                     if(hit.collider.CompareTag("Monkey9"))
                     {
                         monkey9.SetActive(false);
                         isCaught = true;
-                        monkeySound.Play();
+                        //monkeySound.Play();
                     } 
                 }
             }
@@ -168,6 +168,9 @@ public class MonkeyScript : MonoBehaviour
 
             canShowImage = false;
             isCaught = false;
+
+            newWord = false;
+
         }
     }
 
@@ -177,7 +180,6 @@ public class MonkeyScript : MonoBehaviour
         {
             currentObj.SetActive(false);
         }
-        
         nextAction = false;
     } 
 

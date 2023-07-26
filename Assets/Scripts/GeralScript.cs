@@ -14,7 +14,6 @@ public class GeralScript : MonoBehaviour
 
     public GameObject currentLeaf;
 
-
     public bool canShowImage = false;
     public string currentWord = "";
 
@@ -36,20 +35,6 @@ public class GeralScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /**
-        maleGuide.SetActive(false);
-        femaleGuide.SetActive(false);
-        ten.SetActive(false);
-        twenty.SetActive(false);
-        thirty.SetActive(false);
-        forty.SetActive(false);
-        fifty.SetActive(false);
-        sixty.SetActive(false);
-        seventy.SetActive(false);
-        eighty.SetActive(false);
-        ninety.SetActive(false);
-        oneHundred.SetActive(false);
-        **/
         balloAnimator.SetBool("isFull", true);
     }
 
@@ -57,10 +42,9 @@ public class GeralScript : MonoBehaviour
     {
         if(doAnimation)
         {
-            StartCoroutine(MoveUp());
+            StartCoroutine(MoveBallon());
             startValidation = false;
         }
-
         if(Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -79,7 +63,6 @@ public class GeralScript : MonoBehaviour
                 }
             }
         }
-
     }
 
     public void ShowObj()
@@ -92,11 +75,13 @@ public class GeralScript : MonoBehaviour
         rend = currentObject.GetComponent<SpriteRenderer>();
         rend.sortingOrder = 10;
 
+        leavesShaking.Stop();
+
         currentObject.SetActive(true);
         canShowImage = false;
     }
 
-    IEnumerator MoveUp()
+    IEnumerator MoveBallon()
     {
         ballon.starAnimation = true;
         doAnimation = false;

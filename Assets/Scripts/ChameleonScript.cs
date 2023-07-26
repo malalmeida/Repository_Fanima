@@ -92,14 +92,14 @@ public class ChameleonScript : MonoBehaviour
             ShowChameleon();
         }
 
-        if(nextAction)
-        {
-            ShowStart();
-        }
+        //if(nextAction)
+        //{
+            //ShowStart();
+        //}
 
         if(newWord)
         {
-            ResartStars();
+            //ResartStars();
             HidePreviousImage();
         }
 
@@ -121,28 +121,28 @@ public class ChameleonScript : MonoBehaviour
                         chameleon1.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon2"))
                     {
                         chameleon2.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon3"))
                     {
                         chameleon3.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon4"))
                     {
                         chameleon4.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
 
                     } 
                     if(hit.collider.CompareTag("Chameleon5"))
@@ -150,70 +150,70 @@ public class ChameleonScript : MonoBehaviour
                         chameleon5.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon6"))
                     {
                         chameleon6.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon7"))
                     {
                         chameleon7.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon8"))
                     {
                         chameleon8.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon9"))
                     {
                         chameleon9.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon10"))
                     {
                         chameleon10.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon11"))
                     {
                         chameleon11.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon12"))
                     {
                         chameleon12.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon13"))
                     {
                         chameleon13.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     }
                     if(hit.collider.CompareTag("Chameleon14"))
                     {
                         chameleon14.SetActive(false);
                         removedChameleons ++;
                         isCaught = true;
-                        chameleonSound.Play();
+                        //chameleonSound.Play();
                     }      
                 }
             }
@@ -234,6 +234,8 @@ public class ChameleonScript : MonoBehaviour
 
             canShowImage = false;
             isCaught = false;
+
+            newWord = false;
         }
        
     }
@@ -242,8 +244,6 @@ public class ChameleonScript : MonoBehaviour
     {
         if(currentObj != null)
         {
-            //rend = currentObj.GetComponent<SpriteRenderer>();
-            //rend.sortingOrder = -5;
             currentObj.SetActive(false);
         }
         nextAction = false;
