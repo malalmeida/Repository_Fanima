@@ -14604,7 +14604,7 @@ MonoBehaviour:
   - {fileID: 799788594}
   - {fileID: 1846812585}
   - {fileID: 1271711949}
-  objectSpeed: 4
+  objectSpeed: 10
   starAnimation: 0
   animationDone: 0
 --- !u!1 &1453638116

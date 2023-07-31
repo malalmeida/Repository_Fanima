@@ -195,7 +195,6 @@ public class GameController : MonoBehaviour
       Debug.Log("DIZ -> " + currentWord);
       ShowImage(currentWord);
       
-      //yield return StartCoroutine(PlayWordName(currentWord + "Obj"));
       if((SceneManager.GetActiveScene().name == "Geral"))
       {
         yield return new WaitUntil(() => geralScript.animationDone);
@@ -548,7 +547,7 @@ public class GameController : MonoBehaviour
     {
       sequenceToPlayList.Clear();
     }
-
+    Debug.Log("Esperar pela estrutura...");
     yield return StartCoroutine(PrepareGameStructure());
     for(int i = 0; i < contentList.Count; i++)
     {
@@ -556,7 +555,8 @@ public class GameController : MonoBehaviour
       {
         sequenceToPlayList.Add(contentList[i]);
       } 
-    }     
+    }
+    Debug.Log("estrutura DONE");
   }
 
   IEnumerator PrepareLevels()
@@ -618,7 +618,7 @@ public class GameController : MonoBehaviour
       }
       else if(webSockets.levelsList[0].Equals("2"))
       {
-        PlayerPrefs.SetString("ChapterOne", "Chameleon");
+        PlayerPrefs.SetString("ChapterOne", "Owl");
         PlayerPrefs.SetString("ChapterTwo", "Fish");
       }
     }
