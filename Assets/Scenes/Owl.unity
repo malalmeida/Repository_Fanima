@@ -6541,6 +6541,7 @@ MonoBehaviour:
   actionValidated: 0
   lastBonusSample: 0
   speak: 0
+  activeHelpButton: 0
   phonemeList: []
   aud: {fileID: 0}
   wordsNameClips:

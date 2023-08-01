@@ -3729,6 +3729,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f5ca85263bbad40929a45c5549760ca7, type: 3}
   - {fileID: 8300000, guid: 393e106a824c74c1684efa745f9d36a4, type: 3}
   - {fileID: 8300000, guid: 9bbe63d902ce04550a461d2ed868e491, type: 3}
+  - {fileID: 8300000, guid: 893ce22c04fdc443b8c3e497b565bef7, type: 3}
   introChapVoice: {fileID: 1774519874}
   finalChapVoice: {fileID: 408949642}
   travelTrip1: {fileID: 0}

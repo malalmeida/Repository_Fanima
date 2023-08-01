@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 95876890}
   - component: {fileID: 95876891}
   - component: {fileID: 95876892}
+  - component: {fileID: 95876893}
   m_Layer: 0
   m_Name: Chameleon6
   m_TagString: Chameleon6
@@ -363,8 +364,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95876889}
   m_LocalRotation: {x: 0.010628543, y: 0.0030461173, z: -0.2754894, w: 0.9612406}
-  m_LocalPosition: {x: 4.36, y: -3.53, z: -0.04}
-  m_LocalScale: {x: 0.5002695, y: 0.66982496, z: 1}
+  m_LocalPosition: {x: 4.36, y: -3.02, z: -0.04}
+  m_LocalScale: {x: 0.25209498, y: 0.31875202, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -411,7 +412,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: e4b35a0d4990d4c7f83252210b4b1478, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cad028220131a4d92835c5be2d44d4af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -433,8 +434,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.6852093, y: 2.0590672, z: 0.2}
-  m_Center: {x: 0.5921061, y: 0.081703626, z: -0.0000000067520887}
+  m_Size: {x: 11.715102, y: 4.032674, z: 0}
+  m_Center: {x: 1.1945832, y: 0.31171733, z: -0.10000189}
+--- !u!95 &95876893
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95876889}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eef532d873e3c47549790891d10f6bc2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &116937012
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +467,7 @@ GameObject:
   - component: {fileID: 116937014}
   - component: {fileID: 116937013}
   - component: {fileID: 116937015}
+  - component: {fileID: 116937016}
   m_Layer: 0
   m_Name: Chameleon2
   m_TagString: Chameleon2
@@ -494,7 +516,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: f3627b4d144b24e059bb90c9220adf86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5ef519817b8d436e803b705b4a8dca9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -513,8 +535,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116937012}
   m_LocalRotation: {x: -0, y: -0, z: -0.011404401, w: 0.999935}
-  m_LocalPosition: {x: -3.73, y: -1.63, z: -0.05110389}
-  m_LocalScale: {x: 0.65907025, y: 0.609103, z: 1}
+  m_LocalPosition: {x: -3.99, y: -1.4, z: -0.05110389}
+  m_LocalScale: {x: 0.262037, y: 0.26955587, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -531,8 +553,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.2437654, y: 1.4759822, z: 0.2}
-  m_Center: {x: -0.14522846, y: 0.10621522, z: 0}
+  m_Size: {x: 7.997164, y: 4.828001, z: 0.2}
+  m_Center: {x: 2.083349, y: 0.10621378, z: 0}
+--- !u!95 &116937016
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116937012}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b0528936ad98249aebba89051dbd7387, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &143415666
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +838,7 @@ GameObject:
   - component: {fileID: 159727042}
   - component: {fileID: 159727043}
   - component: {fileID: 159727044}
+  - component: {fileID: 159727045}
   m_Layer: 0
   m_Name: Chameleon11
   m_TagString: Chameleon11
@@ -811,8 +854,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159727041}
   m_LocalRotation: {x: -0, y: -0, z: -0.020112395, w: 0.99979776}
-  m_LocalPosition: {x: -5.99, y: -4.115, z: -0.05110389}
-  m_LocalScale: {x: 0.665452, y: 0.6641931, z: 1}
+  m_LocalPosition: {x: -6.58, y: -3.83, z: -0.05110389}
+  m_LocalScale: {x: 0.30098394, y: 0.33289358, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -859,7 +902,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: fd0021b5a017a471f9e326611bddf8e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4046970331327418ba6de85cc085ccb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -881,8 +924,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8389003, y: 1.5949492, z: 0.2}
-  m_Center: {x: 0.7507783, y: -0.07961189, z: 0}
+  m_Size: {x: 7.5403275, y: 4.1339326, z: 0.2}
+  m_Center: {x: 1.7041941, y: -0.3421448, z: 0}
+--- !u!95 &159727045
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159727041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: daf8aa98fb15c440ab48fad539c1ed03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &170853114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1128,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 92f7ff43bffc2433fa48631c9a9472a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1985,6 +2048,7 @@ GameObject:
   - component: {fileID: 366383817}
   - component: {fileID: 366383818}
   - component: {fileID: 366383819}
+  - component: {fileID: 366383820}
   m_Layer: 0
   m_Name: Chameleon8
   m_TagString: Chameleon8
@@ -2000,8 +2064,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366383816}
   m_LocalRotation: {x: -0.16653496, y: 0.98469406, z: -0.008574292, w: -0.050698403}
-  m_LocalPosition: {x: -6.18, y: 2.29, z: -0.12}
-  m_LocalScale: {x: 0.6692248, y: 0.7531762, z: 1}
+  m_LocalPosition: {x: -6.4235, y: 2.26, z: -0.12}
+  m_LocalScale: {x: 0.22385882, y: 0.23410918, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -2048,7 +2112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 3b033e0bef1cb405b8ca4ad5b531b586, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6705d12545b2040d2a9e7c762d2e60f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2070,8 +2134,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.9833124, y: 1.53535, z: 0.2}
-  m_Center: {x: -0.20701177, y: -0.16863146, z: -0.00000004377216}
+  m_Size: {x: 11.123275, y: 4.6461654, z: 0.2}
+  m_Center: {x: -0.24937165, y: -0.08012222, z: -0.00000006752089}
+--- !u!95 &366383820
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366383816}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d3668a0f9e3d4e138a183222aebd7f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &409501225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2251,7 @@ GameObject:
   - component: {fileID: 424248162}
   - component: {fileID: 424248163}
   - component: {fileID: 424248164}
+  - component: {fileID: 424248165}
   m_Layer: 0
   m_Name: Chameleon5
   m_TagString: Chameleon5
@@ -2182,8 +2267,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424248161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.61, y: -0.31, z: -0.05110389}
-  m_LocalScale: {x: 0.55041707, y: 0.5957091, z: 1}
+  m_LocalPosition: {x: 5.35, y: -0.29, z: -0.05110389}
+  m_LocalScale: {x: 0.27064008, y: 0.30792204, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -2230,7 +2315,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: fd0021b5a017a471f9e326611bddf8e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4046970331327418ba6de85cc085ccb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2252,8 +2337,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.915598, y: 1.7511247, z: 0.2}
-  m_Center: {x: -0.48073426, y: 0.00000020011326, z: 0}
+  m_Size: {x: 9.782459, y: 3.725966, z: 0.2}
+  m_Center: {x: -0.4183208, y: 0.21942812, z: 0}
+--- !u!95 &424248165
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424248161}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: daf8aa98fb15c440ab48fad539c1ed03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &426060097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,6 +2454,7 @@ GameObject:
   - component: {fileID: 435856578}
   - component: {fileID: 435856580}
   - component: {fileID: 435856579}
+  - component: {fileID: 435856581}
   m_Layer: 0
   m_Name: Chameleon14
   m_TagString: Chameleon14
@@ -2364,8 +2470,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435856577}
   m_LocalRotation: {x: -0, y: 0.99867725, z: -0, w: -0.05141834}
-  m_LocalPosition: {x: 3.18, y: 0.65, z: -0.12}
-  m_LocalScale: {x: 0.480254, y: 0.51615167, z: 1}
+  m_LocalPosition: {x: 3.03, y: 0.67, z: -0.12}
+  m_LocalScale: {x: 0.21232028, y: 0.2228743, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -2382,8 +2488,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.683214, y: 1.8714273, z: 0.2}
-  m_Center: {x: -0.2434684, y: -0.12303556, z: 9.313226e-10}
+  m_Size: {x: 10.544375, y: 4.8492384, z: 0.2}
+  m_Center: {x: 0.4040045, y: -0.2583911, z: 0.000000030733645}
 --- !u!212 &435856580
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2425,7 +2531,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 3b033e0bef1cb405b8ca4ad5b531b586, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6705d12545b2040d2a9e7c762d2e60f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -2436,6 +2542,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &435856581
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435856577}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d3668a0f9e3d4e138a183222aebd7f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &450454506
 GameObject:
   m_ObjectHideFlags: 0
@@ -3524,6 +3650,7 @@ GameObject:
   - component: {fileID: 716628400}
   - component: {fileID: 716628401}
   - component: {fileID: 716628402}
+  - component: {fileID: 716628403}
   m_Layer: 0
   m_Name: Chameleon13
   m_TagString: Chameleon13
@@ -3539,8 +3666,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716628399}
   m_LocalRotation: {x: -0, y: -0, z: 0.049543284, w: 0.998772}
-  m_LocalPosition: {x: -6.05, y: 0.44, z: -0.05110389}
-  m_LocalScale: {x: 0.5494, y: 0.5816, z: 1}
+  m_LocalPosition: {x: -6.27, y: 0.4, z: -0.05110389}
+  m_LocalScale: {x: 0.3348893, y: 0.32874006, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -3587,7 +3714,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: b1d278d232fe845edac702b6f20fa1aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45f1a6230ea7f40b59c64cca2b4af2d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -3609,8 +3736,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.085702, y: 1.5775177, z: 0.2}
-  m_Center: {x: 0.7718203, y: -0.0836425, z: 0}
+  m_Size: {x: 9.589335, y: 3.7322643, z: 0.2}
+  m_Center: {x: 1.5248377, y: 0.18097296, z: 0}
+--- !u!95 &716628403
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716628399}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2ed3a419ad6843ed9df7ba0211d6b06, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &744980741
 GameObject:
   m_ObjectHideFlags: 0
@@ -3706,6 +3853,7 @@ GameObject:
   - component: {fileID: 750219177}
   - component: {fileID: 750219176}
   - component: {fileID: 750219178}
+  - component: {fileID: 750219179}
   m_Layer: 0
   m_Name: Chameleon1
   m_TagString: Chameleon1
@@ -3754,7 +3902,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 3a29ecc5538904fad8649eaba5fc0766, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6dafde08bf5a14bfc84f8f8bfaa4fa3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -3773,8 +3921,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750219175}
   m_LocalRotation: {x: -0, y: -0, z: 0.66313773, w: 0.7484975}
-  m_LocalPosition: {x: -7.48, y: -2.58, z: -0.05110389}
-  m_LocalScale: {x: 0.61296, y: 0.68779075, z: 1}
+  m_LocalPosition: {x: -7.24, y: -2.65, z: -0.05110389}
+  m_LocalScale: {x: 0.2928473, y: 0.32754192, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -3791,8 +3939,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.4522963, y: 2.0221457, z: 0.2}
-  m_Center: {x: 0.42546377, y: -0.17360301, z: 0}
+  m_Size: {x: 8.790539, y: 4.5237455, z: 0.2}
+  m_Center: {x: 1.3991524, y: -0.12606925, z: 0}
+--- !u!95 &750219179
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750219175}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 00c84dad999884bb2b6a6fe3138703e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &751566281
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,6 +4369,7 @@ GameObject:
   - component: {fileID: 899534471}
   - component: {fileID: 899534472}
   - component: {fileID: 899534473}
+  - component: {fileID: 899534474}
   m_Layer: 0
   m_Name: Chameleon7
   m_TagString: Chameleon7
@@ -4216,8 +4385,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899534470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.16, y: -2.05, z: -0.05110389}
-  m_LocalScale: {x: 0.49790263, y: 0.5040723, z: 1}
+  m_LocalPosition: {x: 1.69, y: -2.22, z: -0.05110389}
+  m_LocalScale: {x: 0.27446595, y: 0.27884176, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -4264,7 +4433,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 31ee3147d3bbe4f92bc6523c00f76f0f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc6a96d12e7a44b05bab8749653fd29d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4286,8 +4455,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.856519, y: 1.6282706, z: 0.2}
-  m_Center: {x: 0.40389258, y: 0.23097111, z: 0}
+  m_Size: {x: 10.626307, y: 4.6571527, z: 0.2}
+  m_Center: {x: -0.6423455, y: 0.53385943, z: 0}
+--- !u!95 &899534474
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899534470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ded1396ee99241509f11befbf255319, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &950534738
 GameObject:
   m_ObjectHideFlags: 0
@@ -4299,6 +4488,7 @@ GameObject:
   - component: {fileID: 950534739}
   - component: {fileID: 950534740}
   - component: {fileID: 950534741}
+  - component: {fileID: 950534742}
   m_Layer: 0
   m_Name: Chameleon4
   m_TagString: Chameleon4
@@ -4314,8 +4504,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950534738}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.89, y: -0.47, z: -0.05110389}
-  m_LocalScale: {x: 0.5721659, y: 0.6436475, z: 1}
+  m_LocalPosition: {x: 0.3655, y: -0.5713, z: -0.05110389}
+  m_LocalScale: {x: 0.23609556, y: 0.2620644, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -4362,7 +4552,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: b1d278d232fe845edac702b6f20fa1aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45f1a6230ea7f40b59c64cca2b4af2d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4384,8 +4574,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.153279, y: 1.6922718, z: 0.2}
-  m_Center: {x: -1.2023983, y: 0.016443964, z: 0}
+  m_Size: {x: 7.446009, y: 4.399417, z: 0.2}
+  m_Center: {x: -2.4902182, y: -0.30583498, z: 0}
+--- !u!95 &950534742
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950534738}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2ed3a419ad6843ed9df7ba0211d6b06, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &961194046
 GameObject:
   m_ObjectHideFlags: 0
@@ -5254,6 +5464,7 @@ GameObject:
   - component: {fileID: 1185949470}
   - component: {fileID: 1185949471}
   - component: {fileID: 1185949472}
+  - component: {fileID: 1185949473}
   m_Layer: 0
   m_Name: Chameleon12
   m_TagString: Chameleon12
@@ -5269,8 +5480,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185949469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.99, y: -4.15, z: -0.05110389}
-  m_LocalScale: {x: 0.65050435, y: 0.62248975, z: 1}
+  m_LocalPosition: {x: 3.01, y: -4.2, z: -0.05110389}
+  m_LocalScale: {x: 0.31900734, y: 0.35712236, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -5317,7 +5528,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 237b83f05217841b6a52d33f1f710bdd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5ef519817b8d436e803b705b4a8dca9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5339,8 +5550,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8556864, y: 1.9437374, z: 0.2}
-  m_Center: {x: -1.4969074, y: 0.37406516, z: 0}
+  m_Size: {x: 6.4089594, y: 4.1400347, z: 0.2}
+  m_Center: {x: -2.7735455, y: 0.6274836, z: 0}
+--- !u!95 &1185949473
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185949469}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b0528936ad98249aebba89051dbd7387, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1186673951
 GameObject:
   m_ObjectHideFlags: 0
@@ -6326,6 +6557,7 @@ GameObject:
   - component: {fileID: 1337975945}
   - component: {fileID: 1337975946}
   - component: {fileID: 1337975947}
+  - component: {fileID: 1337975948}
   m_Layer: 0
   m_Name: Chameleon10
   m_TagString: Chameleon10
@@ -6341,8 +6573,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337975944}
   m_LocalRotation: {x: -0, y: -0, z: 0.48862273, w: 0.87249523}
-  m_LocalPosition: {x: 5.45, y: 0.53, z: -0.05110389}
-  m_LocalScale: {x: 0.6055, y: 0.6379, z: 1}
+  m_LocalPosition: {x: 5.26, y: 0.4, z: -0.05110389}
+  m_LocalScale: {x: 0.2542636, y: 0.29872185, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -6389,7 +6621,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 31ee3147d3bbe4f92bc6523c00f76f0f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc6a96d12e7a44b05bab8749653fd29d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -6411,8 +6643,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.3892846, y: 1.8716029, z: 0.2}
-  m_Center: {x: 0.44421715, y: 0.22726005, z: 0}
+  m_Size: {x: 10.194351, y: 3.929744, z: 0.2}
+  m_Center: {x: 1.2322243, y: 0.6341596, z: 0}
+--- !u!95 &1337975948
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337975944}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ded1396ee99241509f11befbf255319, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1366422994
 GameObject:
   m_ObjectHideFlags: 0
@@ -6541,6 +6793,7 @@ GameObject:
   - component: {fileID: 1385811786}
   - component: {fileID: 1385811787}
   - component: {fileID: 1385811788}
+  - component: {fileID: 1385811789}
   m_Layer: 0
   m_Name: Chameleon9
   m_TagString: Chameleon9
@@ -6556,8 +6809,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385811785}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.61199564, y: -3.2698245, z: -0.05110389}
-  m_LocalScale: {x: 0.6214, y: 0.7081, z: 1}
+  m_LocalPosition: {x: -1.39, y: -3.04, z: -0.05110389}
+  m_LocalScale: {x: 0.33346337, y: 0.38642567, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
@@ -6604,7 +6857,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 3a29ecc5538904fad8649eaba5fc0766, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6dafde08bf5a14bfc84f8f8bfaa4fa3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -6626,8 +6879,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5837665, y: 1.8364301, z: 0.2}
-  m_Center: {x: 0.80054104, y: -0.04484111, z: 0}
+  m_Size: {x: 11.375549, y: 3.712857, z: 0.2}
+  m_Center: {x: -0.28668603, y: -0.20120923, z: 0}
+--- !u!95 &1385811789
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385811785}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 00c84dad999884bb2b6a6fe3138703e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1394428142
 GameObject:
   m_ObjectHideFlags: 0
@@ -8122,6 +8395,7 @@ GameObject:
   - component: {fileID: 1671041600}
   - component: {fileID: 1671041601}
   - component: {fileID: 1671041602}
+  - component: {fileID: 1671041603}
   m_Layer: 0
   m_Name: Chameleon3
   m_TagString: Chameleon3
@@ -8136,14 +8410,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671041599}
-  m_LocalRotation: {x: -0.30570373, y: 0.9501381, z: 0.0016267251, w: 0.06148291}
-  m_LocalPosition: {x: 5.49, y: 2.35, z: -0.9749}
-  m_LocalScale: {x: 0.47344193, y: 0.5291442, z: 1}
+  m_LocalRotation: {x: -0.16071668, y: 0.9850824, z: -0.0075526396, w: 0.061038934}
+  m_LocalPosition: {x: 5.31, y: 2.49, z: -0.9749}
+  m_LocalScale: {x: 0.2801356, y: 0.308544, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337267934}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -2.332, y: 173.342, z: -35.535}
+  m_LocalEulerAnglesHint: {x: -0.272, y: 172.953, z: -18.516}
 --- !u!212 &1671041601
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8185,7 +8459,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 9
-  m_Sprite: {fileID: 21300000, guid: 237b83f05217841b6a52d33f1f710bdd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cad028220131a4d92835c5be2d44d4af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -8207,8 +8481,28 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.2457438, y: 1.9451203, z: 0.2}
-  m_Center: {x: -0.99712783, y: 0.40535635, z: 0.00000032037497}
+  m_Size: {x: 11.56783, y: 4.357044, z: 0.20000184}
+  m_Center: {x: 0.70068026, y: 0.33263573, z: 0.000000230968}
+--- !u!95 &1671041603
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671041599}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eef532d873e3c47549790891d10f6bc2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1671626355
 GameObject:
   m_ObjectHideFlags: 0
@@ -9566,7 +9860,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300058, guid: f6a737996a4a842e58ba28428e71d711, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9694,6 +9988,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 68e3a82b14a23496c8118b4c7f3571f3, type: 3}
   - {fileID: 8300000, guid: 9bbe63d902ce04550a461d2ed868e491, type: 3}
   - {fileID: 8300000, guid: 393e106a824c74c1684efa745f9d36a4, type: 3}
+  - {fileID: 8300000, guid: 252c620dc91a242c2aa597858b69d2f1, type: 3}
+  - {fileID: 8300000, guid: 57933856233f64a69aac9a606bd0214a, type: 3}
+  - {fileID: 8300000, guid: 0147f640f134249edb30d2de527cc623, type: 3}
   introChapVoice: {fileID: 1878418238}
   finalChapVoice: {fileID: 1755284542}
   travelTrip1: {fileID: 0}

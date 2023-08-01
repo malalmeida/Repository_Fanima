@@ -205,6 +205,7 @@ public class GameController : MonoBehaviour
         else
         {
           yield return new WaitUntil(() => geralScript.animationDone);
+          yield return StartCoroutine(PlayGuideVoice(currentWord));
           geralScript.startValidation = true;
         }
       }
@@ -220,7 +221,7 @@ public class GameController : MonoBehaviour
       if(repetition == false)
       {
         //tempo de perceber o que é a imagem
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         speak = true;
       }
       speak = true;
@@ -305,15 +306,20 @@ public class GameController : MonoBehaviour
           if(l == 2)
           {
             lastBonusSample = true;
+            yield return StartCoroutine(PlayGuideVoiceForReps(l));
           }
           bonusgameResult = true;
-          Debug.Log("DIZ -> " + currentWord); 
+          //Debug.Log("DIZ -> " + currentWord); 
           ShowImageBonus(currentWord, l);
           if(l == 0)
           {
             //tempo de perceber o que é a imagem
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.0f);
             speak = true;
+          }
+          if(l == 1)
+          {
+            yield return StartCoroutine(PlayGuideVoiceForReps(l));
           }
           timer = sequenceToPlayList[j].time;
 
@@ -763,6 +769,7 @@ public class GameController : MonoBehaviour
         frogScript.bugNumber ++;
         yield return StartCoroutine(PlayAudioClip("validationMusic"));
         frogScript.canShowBug = true;
+        yield return StartCoroutine(PlayAudioClip("matchBug"));
         yield return new WaitUntil(() => frogScript.isCaught);
         frogScript.isCaught = false;
         webSockets.validationValue = -3;
@@ -782,6 +789,7 @@ public class GameController : MonoBehaviour
         if(lastBonusSample == true)
         {
           octopusScript.repNumber = 3;
+          yield return StartCoroutine(PlayAudioClip("matchOctopus"));
           yield return new WaitUntil(() => octopusScript.isMatch);
           octopusScript.isMatch = false;
         }
@@ -796,6 +804,7 @@ public class GameController : MonoBehaviour
         {
           monkeyScript.newWord = true;
           monkeyScript.randomIndex = Random.Range(0, 8);
+          yield return StartCoroutine(PlayAudioClip("findMonkey"));
           yield return new WaitUntil(() => monkeyScript.isCaught);
         }
         monkeyScript.nextAction = true;
@@ -809,6 +818,7 @@ public class GameController : MonoBehaviour
         {
           chameleonScript.newWord = true;
           chameleonScript.randomIndex = Random.Range(0, 13);
+          yield return StartCoroutine(PlayAudioClip("findChameleon"));
           yield return new WaitUntil(() => chameleonScript.isCaught);
         }
         chameleonScript.nextAction = true; 
@@ -819,6 +829,7 @@ public class GameController : MonoBehaviour
       {
         yield return StartCoroutine(PlayAudioClip("validationMusic"));
         fishScript.canShake = true;
+        yield return StartCoroutine(PlayAudioClip("touchFood"));
         yield return new WaitUntil(() => fishScript.isCaught);
         fishScript.isCaught = false;
         webSockets.validationValue = -3;
@@ -867,6 +878,58 @@ public class GameController : MonoBehaviour
       }
     }
   }
+  IEnumerator PlayGuideVoice(string word)
+  {
+    if(word == "O sapato da menina tem bolas amarelas." || word == "A chuva cai da nuvem.")
+    {
+      yield return StartCoroutine(PlayAudioClip("1"));
+    }
+    else if(word == "A mãe faz comida no fogão.")
+    {
+      yield return StartCoroutine(PlayAudioClip("2"));
+    }
+    else if(word == "A zebra dorme na sua cama." || word == "A joaninha tira a rolha da garrafa." || word == "O caracol dorme ao sol.")
+    {
+      yield return StartCoroutine(PlayAudioClip("3"));
+    }
+  }
+
+  IEnumerator PlayGuideVoiceForReps(int l)
+  {
+    if(SceneManager.GetActiveScene().name == "Monkey")
+    {
+      if(l == 1)
+      {
+        yield return StartCoroutine(PlayAudioClip("rep1"));
+      }
+      else if (l == 2)
+      {
+        yield return StartCoroutine(PlayAudioClip("repMacaco"));  
+      }     
+    }
+    else if(SceneManager.GetActiveScene().name == "Chameleon")
+    {
+      if(l == 1)
+      {
+        yield return StartCoroutine(PlayAudioClip("rep1"));
+      }
+      else if (l == 2)
+      {
+        yield return StartCoroutine(PlayAudioClip("repCamaleao"));
+      }
+    }
+    else if(SceneManager.GetActiveScene().name == "Octopus")
+    {
+      if(l == 1)
+      {
+        yield return StartCoroutine(PlayAudioClip("rep1"));
+      }
+      else if (l == 2)
+      {
+        yield return StartCoroutine(PlayAudioClip("repPolvo"));
+      }
+    }
+  }
 
   void RecordSound(int timer)
   {
@@ -905,6 +968,8 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(PlayAudioClip("help"));
     yield return StartCoroutine(PlayWordName(currentWord));
   }
+ 
+    
 
   public void OnApplicationQuit()
   {
