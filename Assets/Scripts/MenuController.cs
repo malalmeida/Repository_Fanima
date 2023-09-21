@@ -11,7 +11,6 @@ public class MenuController : MonoBehaviour
     public GameObject startMenuUI;
     private string startTime;
     private string endTime;
-
     public AudioSource song;
 
     public GameStructureRequest gameStructureRequest;
@@ -35,13 +34,21 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+        //StartCoroutine(gameStructureRequest.gameController.RequestTherapistStatus());
 
-        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-        Time.timeScale = 1f;
-        startMenuUI.SetActive(false);
-        PlayerPrefs.SetInt("GAMESTARTED", 1);
-        song.Stop();
- 
+        if(gameStructureRequest.gameController.therapistReady)
+        {
+            gameStructureRequest.gameController.requestTherapistStatus = false;
+            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+            startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+            Time.timeScale = 1f;
+            startMenuUI.SetActive(false);
+            PlayerPrefs.SetInt("GAMESTARTED", 1);
+            song.Stop();
+        }
+        else
+        {
+            gameStructureRequest.gameController.requestTherapistStatus = true;
+        }
     }
 }

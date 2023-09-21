@@ -43,6 +43,9 @@ public class WebSockets : MonoBehaviour{
     public jsonDataSentences jsonDataSentences;
     public int playSentences = 2;
     public bool getPlaySentencesDone = false;
+    public jsonDataAware jsonDataAware;
+    public int awareValue = -1;
+    public bool getAwareValue = false;
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
         this.wsURL = url;
@@ -116,6 +119,13 @@ public class WebSockets : MonoBehaviour{
                 playSentences = int.Parse(jsonDataSentences.value);
                 getPlaySentencesDone = true;
             }
+            else if(msg.Contains("aware"))
+            {
+                Debug.Log("AWARE " + msg);
+                jsonDataAware = JsonUtility.FromJson<jsonDataAware>(msg);
+                awareValue = int.Parse(jsonDataAware.value);
+                getAwareValue = true;
+            }
             else
             {
                 Debug.Log("MSG " + msg);
@@ -139,9 +149,18 @@ public class WebSockets : MonoBehaviour{
     {
         try
         {
+            Debug.Log("PepareMessage");
             ws.Send("{\"id\":" + patientID + ",\"msg\":\"" + msg + "\",\"value\":" + value + "}");
         }
-        catch (Exception) { }
+        catch (Exception ex) 
+        {
+            Debug.Log("PepareMessage FAIL" + ex.ToString());
+            Debug.Log("PATIENT id " + patientID);
+            Debug.Log("MSG " + msg);
+            Debug.Log("VALUE " + value);
+        }
+
+
     }
 
     public void LevelsToPlayRequest(int therapistID)
@@ -170,7 +189,13 @@ public class WebSockets : MonoBehaviour{
 
     public void PlaySentencesRequest(int therapistID)
     {
-        string request = "{\"therapist\":\"" + therapistID + "\",\"sentences\":\"" + gameID + "\"}";
+        string request = "{\"therapist\":\"" + therapistID + "\",\"sentences\":\"" + 1 + "\"}";
+        PrepareMessage("request", request);
+    }
+
+    public void VerifyTherapistActivity(int therapistID)
+    {
+        string request = "{\"therapist\":\"" + therapistID + "\",\"aware\":\"" + 1 + "\"}";
         PrepareMessage("request", request);
     }
 

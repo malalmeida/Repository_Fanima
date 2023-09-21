@@ -14,6 +14,8 @@ public class FrogScript : MonoBehaviour
   private bool isJumping;
   private float move;
   private Rigidbody2D rb;
+  public AudioSource waterSplashSound;
+  public AudioSource coinSound;
   public AudioSource nonoSound;
   public int numberOfJumps = 0;
   public int bugNumber = -1;
@@ -21,6 +23,8 @@ public class FrogScript : MonoBehaviour
   public List<int> removedBugs;
   public bool chapterFinished = false;
   public bool canShowBug = false;
+
+   public MoveObject youCantSeeMe;
 
   public GameObject bug1;
   public GameObject bug2;
@@ -64,6 +68,8 @@ public class FrogScript : MonoBehaviour
   public string currentWord = "";
 
   public bool validationDone = false;
+  public bool canShake = false;
+  public MoveObject circle;
 
   [SerializeField] private ParticleSystem confetti;
 
@@ -73,6 +79,7 @@ public class FrogScript : MonoBehaviour
   private Transform toDrag;
 
   public bool closeBox = false;
+  public int rock = -1;
 
   // Start is called before the first frame update
   void Start()
@@ -118,14 +125,14 @@ public class FrogScript : MonoBehaviour
     {
       ShowObj();
     }
-    if(canShowBug)
-    {
-        WaitToPickBug();
+    //if(canShowBug)
+    //{
+        //WaitToPickBug();
 
-    }
+    //}
     if(validationDone)
     {
-        closeBox = true;
+        //closeBox = true;
         validationDone = false;
     }
 
@@ -139,242 +146,194 @@ public class FrogScript : MonoBehaviour
         {           
           if(hit.collider.CompareTag("Bug1"))
           {
-            if(bugNumber == 0)
+            if(currentWord == "pato" && canShake == true)
             {
-              bugTouch1.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug1.SetActive(false);
-              bugsFound ++;
-              isCaught = true; 
-              closeBox = false;
-            }
-            else
-            {
-              nonoSound.Play();
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
           } 
           else if(hit.collider.CompareTag("Bug2"))
           {
-            if(bugNumber == 1)
+            if(currentWord == "sapo" && canShake == true)
             {
-              bugTouch2.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug2.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug3"))
           {
-            if(bugNumber == 2)
+            if(currentWord == "bolo" && canShake == true)
             {
-              bugTouch3.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug3.SetActive(false);     
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug4"))
           {
-            if(bugNumber == 3)
+            if(currentWord == "lobo" && canShake == true) 
             {
-              bugTouch4.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug4.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
             
           } 
           else if(hit.collider.CompareTag("Bug5"))
           {
-            if(bugNumber == 4)
+            if(currentWord == "teia" && canShake == true) 
             {
-              bugTouch5.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug5.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug6"))
           {
-            if(bugNumber == 5)
+            if(currentWord == "dado" && canShake == true)
             {
-              bugTouch6.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug6.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug7"))
           {
-            if(bugNumber == 6)
+            if(currentWord == "camisa" && canShake == true)
             {
-              bugTouch7.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug7.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug8"))
           {
-            if(bugNumber == 7)
+            if(currentWord == "vaca" && canShake == true)
             {
-              bugTouch8.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug8.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug9"))
           {
-            if(bugNumber == 8)
+            if(currentWord == "gato" && canShake == true)
             {
-              bugTouch9.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug9.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug10"))
           {
-            if(bugNumber == 9)
+            if(currentWord == "dragão" && canShake == true)
             {
-              bugTouch10.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug10.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug11"))
           {
-            if(bugNumber == 10)
+            if(currentWord == "mesa" && canShake == true)
             {
-              bugTouch11.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug11.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug12"))
           {
-            if(bugNumber == 11)
+            if(currentWord == "goma" && canShake == true)
             {
-              bugTouch12.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug12.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           } 
           else if(hit.collider.CompareTag("Bug13"))
           {
-            if(bugNumber == 12)
+            if(currentWord == "novelo" && canShake == true)
             {
-              bugTouch13.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug13.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
             }
           }  
           else if(hit.collider.CompareTag("Bug14"))
           {
-            if(bugNumber == 13)
+            if(currentWord == "chinelo" && canShake == true)
             {
-              bugTouch14.SetActive(false);
-              HideObj();
-              canShowBug = false;
-              bug14.SetActive(false);
-              bugsFound ++;
-              isCaught = true;
-              dialogCloud.SetActive(false);
-              closeBox = false;
+              canShake = false;
+              FrogJump();
+              MoveCamera();
             }
             else
             {
-              nonoSound.Play();
+              //nonoSound.Play();
+            }
+          } 
+           else if(hit.collider.CompareTag("Bug15"))
+          {
+            if(currentWord == "joaninha" && canShake == true)
+            {
+              canShake = false;
+              FrogJump();
+              //MoveCamera();
+            }
+            else
+            {
+              //nonoSound.Play();
             }
           } 
           //Debug.Log("removedBugs " + bugsFound);
@@ -383,36 +342,64 @@ public class FrogScript : MonoBehaviour
         }
       }
     }
-    
-   
-   /*
-    if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
-    {
-      animator.SetBool("Jump", true);
-      playerSpeed = 1.8f;
-
-      rb.AddForce(new Vector2(rb.velocity.x, 500));
-
-      isJumping = true;
-    }
-    */
     Vector3 v3;
     rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
                 
     animator.SetFloat("yVelocity", rb.velocity.y);
 
-    for (int i =0; i<2 ; i++)
-    {
-      if(bugsFound == 14 && !isJumping)
-        {
-        animator.SetBool("Jump", true);
-        playerSpeed = 1.8f;
+    //for (int i =0; i<2 ; i++)
+    //{
+      //if(bugsFound == 14 && !isJumping)
+        //{
+        //animator.SetBool("Jump", true);
+        //playerSpeed = 1.8f;
 
-        rb.AddForce(new Vector2(rb.velocity.x, 500));
-        isJumping = true;
-      }
-    }
+        //rb.AddForce(new Vector2(rb.velocity.x, 500));
+        //isJumping = true;
+      //}
+    //}
   }
+
+  IEnumerator WaitForCameraAnimationDone()
+    {
+        circle.starAnimation = true;
+        yield return new WaitUntil(() => circle.starAnimation);
+        circle.animationDone = false;
+        //canShake = false;
+        yield return new WaitUntil(() => circle.animationDone);
+        //HideObj();
+
+    }
+
+    public void MoveCamera()
+    {
+        //if(canShake)
+        //{
+      StartCoroutine(WaitForCameraAnimationDone());
+        //}
+    }
+
+  public void FrogJump()
+  {
+    if(isJumping == false)
+    {
+      animator.SetBool("Jump", true);
+      //playerSpeed = 1.8f;
+      playerSpeed = 2.0f;
+      if( rock == 1 || rock == 3 || rock == 5 || rock == 7 || rock == 9 || rock == 11 || rock == 13 || rock == 15)
+      {
+        playerSpeed = playerSpeed - 0.2f;
+      }
+      else
+      {
+        playerSpeed = playerSpeed + 0.1f;
+      }
+      //playerSpeed = playerSpeed - 0.1f ;
+      rb.AddForce(new Vector2(rb.velocity.x, 500));
+      isJumping = true;
+    } 
+  }
+
   public void ShowObj()
   {
     string gameObjName = currentWord + "Obj";       
@@ -431,43 +418,175 @@ public class FrogScript : MonoBehaviour
     rend.sortingOrder = -1;
   }
 
-
-  public void WaitToPickBug()
-  {
-    bugList[bugNumber].SetActive(true);
-  }
-
   private void OnCollisionEnter2D(Collision2D other)
   {
-    if(other.gameObject.CompareTag("Leaf0"))
+    if(other.gameObject.CompareTag("Rock1"))
     {
+      coinSound.Play();
       playerSpeed = 0;
       animator.SetBool("Jump", false);
       animator.SetBool("Catch", false);
       isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 1;
     }
     
-    if(other.gameObject.CompareTag("Leaf1"))
+    if(other.gameObject.CompareTag("Rock2"))
     {
-      //confetti.Play();
+      coinSound.Play();
       playerSpeed = 0;
       animator.SetBool("Jump", false);
       animator.SetBool("Catch", false);
       isJumping = false;
-
-      //waterSplashSound.Play();
+      HideObj();
+      isCaught = true; 
+      rock = 2;
     }
 
-    if(other.gameObject.CompareTag("Leaf2"))
+    if(other.gameObject.CompareTag("Rock3"))
     {
+      coinSound.Play();
       playerSpeed = 0;
       animator.SetBool("Jump", false);
-        
+      animator.SetBool("Catch", false);
       isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 3;
+    }
+    if(other.gameObject.CompareTag("Rock4"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 4;
+    }
+    if(other.gameObject.CompareTag("Rock5"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 5;
+    }
+    if(other.gameObject.CompareTag("Rock6"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 6; 
+    }
+    if(other.gameObject.CompareTag("Rock7"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 7;
+    }
+    if(other.gameObject.CompareTag("Rock8"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 8;
+    }
+    if(other.gameObject.CompareTag("Rock9"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 9;
+    }
+    if(other.gameObject.CompareTag("Rock10"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 10;
+    }
+    if(other.gameObject.CompareTag("Rock11"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 11;
+    }
+    if(other.gameObject.CompareTag("Rock12"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 12;
+    }
+    if(other.gameObject.CompareTag("Rock13"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 13;
+    }
+    if(other.gameObject.CompareTag("Rock14"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 14;
+    }
+    if(other.gameObject.CompareTag("Rock15"))
+    {
+      coinSound.Play();
+      playerSpeed = 0;
+      animator.SetBool("Jump", false);
+      animator.SetBool("Catch", false);
+      isJumping = false;
+      HideObj();
+      isCaught = true; 
+      rock = 15;
 
-      //waterSplashSound.Play();  
-      chapterFinished = true;
-      
     }
   }
 }

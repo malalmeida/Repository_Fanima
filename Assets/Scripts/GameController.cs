@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
   public bool structReqDone = false;
   public bool respositoryReqDone = false;
   public bool gameExecutionDone = false;
+  public bool therapistReady = false;
   public bool errorDone = false;
   public int gameExecutionID = -1;
   public int gameSampleID = -1;
@@ -70,6 +71,7 @@ public class GameController : MonoBehaviour
 
   public bool speak = false;
   public bool activeHelpButton = false;
+  public bool requestTherapistStatus = false;
 
   public List<errorClass> phonemeList;
 
@@ -108,8 +110,9 @@ public class GameController : MonoBehaviour
 
     if(SceneManager.GetActiveScene().name == "Geral")
     {
+      //StartCoroutine(CheckTherapistStatus());
       activeChapter = "Geral"; 
-      PlayerPrefs.SetString("LEVELSELECTION", "NOTDONE");   
+      PlayerPrefs.SetString("LEVELSELECTION", "NOTDONE");  
       PlayerPrefs.SetInt("ChapterPlayed", 0);  
       StartCoroutine(GameLoop());    
     }
@@ -166,6 +169,32 @@ public class GameController : MonoBehaviour
     else
     {
       selectionDone = false;
+    }
+    if(requestTherapistStatus)
+    {
+      RequestTherapistStatus();
+      requestTherapistStatus = false;
+    }
+  }
+
+  public void RequestTherapistStatus()
+  {
+    StartCoroutine(CheckTherapistStatus());
+  }
+
+  IEnumerator CheckTherapistStatus()
+  {
+    yield return new WaitUntil(() => webSockets.socketIsReady);
+    webSockets.VerifyTherapistActivity(therapistID);
+    yield return new WaitUntil(() => webSockets.getAwareValue);
+    Debug.Log("AWARE VALEU" + webSockets.awareValue);
+    if(webSockets.awareValue == 1)
+    {
+      therapistReady = true;
+    }
+    else
+    {
+      therapistReady = false;
     }
   }
 
@@ -293,6 +322,7 @@ public class GameController : MonoBehaviour
       Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
       for(int j = 0; j < sequenceToPlayList.Count; j++)
       { 
+
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -309,7 +339,6 @@ public class GameController : MonoBehaviour
             yield return StartCoroutine(PlayGuideVoiceForReps(l));
           }
           bonusgameResult = true;
-          //Debug.Log("DIZ -> " + currentWord); 
           ShowImageBonus(currentWord, l);
           if(l == 0)
           {
@@ -404,7 +433,7 @@ public class GameController : MonoBehaviour
     introChapVoice.Play();
     if(SceneManager.GetActiveScene().name == "Frog")
     {
-      yield return new WaitForSeconds(7.7f);
+      yield return new WaitForSeconds(5.4f);
     }
     else if (SceneManager.GetActiveScene().name == "Monkey")
     {
@@ -766,10 +795,11 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
         frogScript.validationDone = true;
-        frogScript.bugNumber ++;
+        //frogScript.bugNumber ++;
         yield return StartCoroutine(PlayAudioClip("validationMusic"));
-        frogScript.canShowBug = true;
-        yield return StartCoroutine(PlayAudioClip("matchBug"));
+        //frogScript.canShowBug = true;
+        frogScript.canShake = true;
+        yield return StartCoroutine(PlayAudioClip("touchCoin"));
         yield return new WaitUntil(() => frogScript.isCaught);
         frogScript.isCaught = false;
         webSockets.validationValue = -3;
@@ -817,6 +847,7 @@ public class GameController : MonoBehaviour
         if(lastBonusSample)
         {
           chameleonScript.newWord = true;
+          //chameleonScript.nextAction = true; 
           chameleonScript.randomIndex = Random.Range(0, 13);
           yield return StartCoroutine(PlayAudioClip("findChameleon"));
           yield return new WaitUntil(() => chameleonScript.isCaught);
@@ -973,7 +1004,10 @@ public class GameController : MonoBehaviour
 
   public void OnApplicationQuit()
   {
+    
     Debug.Log("Stop WS client and logut");
+    //Enable screen dimming
+    Screen.sleepTimeout = SleepTimeout.SystemSetting;
     string payload = "{\"therapist\": " + therapistID + "}";
     webSockets.PrepareMessage("status", payload);
     webSockets.StopClient(payload);

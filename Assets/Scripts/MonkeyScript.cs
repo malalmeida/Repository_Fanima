@@ -27,14 +27,19 @@ public class MonkeyScript : MonoBehaviour
 
     public bool newPhonemeGroup = false;
     public bool newWord = false;
-    public GameObject star1GO;
-    public GameObject star2GO;
-    public GameObject star3GO;
 
     public SpriteRenderer rend;
-    public SpriteRenderer rendStar1;
-    public SpriteRenderer rendStar2;
-    public SpriteRenderer rendStar3;
+    public SpriteRenderer rend1;
+    public SpriteRenderer rend2;
+    public SpriteRenderer rend3;
+
+    public GameObject currentObj1;
+    public GameObject currentObj2;
+    public GameObject currentObj3;
+
+    public bool hide1 = true;
+    public bool hide2 = true;
+    public bool hide3 = true;
 
     public AudioSource monkeySound;
 
@@ -71,10 +76,10 @@ public class MonkeyScript : MonoBehaviour
             ShowMonkey();
         }
 
-        //if(nextAction)
-        //{
-            //ShowStart();
-        //}
+        if(nextAction)
+        {
+            NextObj();
+        }
 
         if(newWord)
         {
@@ -156,50 +161,89 @@ public class MonkeyScript : MonoBehaviour
 
     public void ShowObj()
     {
-        if(currentWord != "XXXX")
+         if(currentWord != "XXXX")
         {
-            string gameObjName = currentWord + "Obj";       
-            Debug.Log("OBJ " + gameObjName);
+            string gameObjName1 = currentWord + "Obj1";  
+            string gameObjName2 = currentWord + "Obj2";       
+            string gameObjName3 = currentWord + "Obj3";       
 
-            currentObj = GameObject.Find(gameObjName);
+            //Debug.Log("OBJ " + gameObjName);
+            Debug.Log("OBJ " + gameObjName1);
+            Debug.Log("OBJ " + gameObjName2);
+            Debug.Log("OBJ " + gameObjName3);
 
-            rend = currentObj.GetComponent<SpriteRenderer>();
-            rend.sortingOrder = 10;
+            //currentObj = GameObject.Find(gameObjName);
+
+            //rend = currentObj.GetComponent<SpriteRenderer>();
+            //rend.sortingOrder = 10;
+
+            currentObj1 = GameObject.Find(gameObjName1);
+            currentObj2 = GameObject.Find(gameObjName2);
+            currentObj3 = GameObject.Find(gameObjName3);
+
+            rend1 = currentObj1.GetComponent<SpriteRenderer>();
+            rend2 = currentObj2.GetComponent<SpriteRenderer>();
+            rend3 = currentObj3.GetComponent<SpriteRenderer>();
+            
+            //colorBlack = rend3.color;
+            
+            //rend1.color = colored; 
+                       
+            rend1.sortingOrder = 10;
+            rend2.sortingOrder = 10;
+            rend3.sortingOrder = 10;
+            
+            if(repNumber == 0)
+            {
+                hide1 = false;
+            }
 
             canShowImage = false;
             isCaught = false;
 
             newWord = false;
-
         }
     }
 
     public void HidePreviousImage()
     {
-        if(currentObj != null)
+        if(currentObj1 != null && currentObj2 != null && currentObj3 != null)
         {
-            currentObj.SetActive(false);
+            currentObj1.SetActive(false);
+            currentObj2.SetActive(false);
+            currentObj3.SetActive(false);
+            //currentObj.SetActive(false);
         }
         nextAction = false;
     } 
 
-    public void ShowStart()
+    public void NextObj()
     {   
         if(repNumber == 0)
         {
-            rendStar1.sortingOrder = 10;
+            Debug.Log("repNumber " + repNumber);
+            //rend1.color = colorBlack; 
+            //rend2.color = colored;
+            hide1 = true;            
+            hide2 = false;  
         }
         else if(repNumber == 1)
         {
-            rendStar2.sortingOrder = 10;
+            Debug.Log("repNumber " + repNumber);
+            //rend2.color = colorBlack;
+            //rend3.color = colored;
+            hide2 = true;
+            hide3 = false;
         }
         else if(repNumber == 2)
         {
-            rendStar3.sortingOrder = 10;
+            hide3 = true;
+            Debug.Log("repNumber " + repNumber);
+            HidePreviousImage();
         }
         nextAction = false;
     }
-
+/**
     public void ResartStars()
     {
         star1GO = GameObject.Find("star1");
@@ -216,7 +260,7 @@ public class MonkeyScript : MonoBehaviour
         rendStar3.sortingOrder = -5;
         newWord = false;
     }
-
+**/
     public void ShowMonkey()
     {
         monkeyList[randomIndex].SetActive(true);

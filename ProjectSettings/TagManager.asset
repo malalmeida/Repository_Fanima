@@ -77,6 +77,22 @@ TagManager:
   - Food12
   - Food13
   - Chameleon14
+  - Rock1
+  - Rock2
+  - Rock3
+  - Rock4
+  - Rock5
+  - Rock6
+  - Rock7
+  - Rock8
+  - Rock9
+  - Rock10
+  - Rock11
+  - Rock12
+  - Rock13
+  - Rock14
+  - Bug15
+  - Rock15
   layers:
   - Default
   - TransparentFX
