@@ -1006,8 +1006,10 @@ public class GameController : MonoBehaviour
   {
     
     Debug.Log("Stop WS client and logut");
+    
     //Enable screen dimming
     Screen.sleepTimeout = SleepTimeout.SystemSetting;
+
     string payload = "{\"therapist\": " + therapistID + "}";
     webSockets.PrepareMessage("status", payload);
     webSockets.StopClient(payload);

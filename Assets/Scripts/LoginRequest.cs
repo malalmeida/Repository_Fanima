@@ -55,8 +55,10 @@ public class LoginRequest : MonoBehaviour
                 therapistID = Int32.Parse(playerInfo.content[4]);
                 PlayerPrefs.SetInt("THERAPISTID", therapistID);
 
+                // Disable screen dimming
+                Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
                 SceneManager.LoadScene("Geral");
-                //SceneManager.LoadScene("Frog");
             }     
         }
 
