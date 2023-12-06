@@ -72,6 +72,7 @@ public class GameController : MonoBehaviour
   public bool speak = false;
   public bool activeHelpButton = false;
   public bool requestTherapistStatus = false;
+  public bool startMicro = false;
 
   public List<errorClass> phonemeList;
 
@@ -255,6 +256,8 @@ public class GameController : MonoBehaviour
       }
       speak = true;
       activeHelpButton = true;
+      yield return new WaitUntil(() => startMicro);
+      startMicro = false;
       RecordSound(timer);
       yield return StartCoroutine(WaitForValidation());
     }
@@ -354,8 +357,10 @@ public class GameController : MonoBehaviour
 
           activeHelpButton = true;
           speak = true;
-          
+          yield return new WaitUntil(() => startMicro);
+          startMicro = false;
           RecordSound(timer);
+          
           yield return StartCoroutine(WaitForValidation());
         }
       }   

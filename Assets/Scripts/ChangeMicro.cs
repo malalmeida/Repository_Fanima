@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class ChangeMicro : MonoBehaviour
 {
-    public GameController GameController;
+    public GameController gameController;
     public Animator animator;
 
     // Update is called once per frame
     void Update()
     {
-        if(GameController.speak)
+        if(gameController.speak)
         {
             animator.SetBool("speak", true);
+            gameController.startMicro = true;
         }
         else
         {
             animator.SetBool("speak", false);
-
         }
     }
 }
