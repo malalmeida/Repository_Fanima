@@ -46,6 +46,7 @@ public class WebSockets : MonoBehaviour{
     public jsonDataAware jsonDataAware;
     public int awareValue = -1;
     public bool getAwareValue = false;
+    public int repeatValue = 2;
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
         this.wsURL = url;
@@ -169,7 +170,7 @@ public class WebSockets : MonoBehaviour{
         PrepareMessage("request", request);
     }
 
-     public void HelpRequest(int therapistID)
+    public void HelpRequest(int therapistID)
     {
         string request = "{\"therapist\":\"" + therapistID + "\",\"cancel\":\"" + 1 + "\"}";
         PrepareMessage("request", request);

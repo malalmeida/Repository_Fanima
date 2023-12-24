@@ -87,6 +87,8 @@ public class GameController : MonoBehaviour
   public AudioSource travelTrip3;
   public AudioSource travelFinal;
 
+  public int numberToDivideProcessBar = -1;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -212,6 +214,7 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(PrepareSequence());
     yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
 
+    
     for(int i = 0; i < sequenceToPlayList.Count; i++)
     {
       currentActionID = sequenceToPlayList[i].id;
@@ -315,8 +318,13 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(webRequests.GetChapterErrors(gameExecutionID.ToString(), sequenceID.ToString()));
     yield return new WaitUntil(() => webRequests.chapterErrorListDone);
     
+    //monkeyScript.totalphonemesToPlay = numberToDivideProcessBar;
+    //octopusScript.totalphonemesToPlay = numberToDivideProcessBar;
+
     for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
     { 
+      chameleonScript.totalphonemesToPlay = webRequests.chapterErrorList.Count;
+      
       activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
       Debug.Log("FONEMA: " + activeChapter);
       
@@ -325,7 +333,6 @@ public class GameController : MonoBehaviour
       Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
       for(int j = 0; j < sequenceToPlayList.Count; j++)
       { 
-
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");

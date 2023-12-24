@@ -8630,6 +8630,7 @@ MonoBehaviour:
   speak: 0
   activeHelpButton: 0
   requestTherapistStatus: 0
+  startMicro: 0
   phonemeList: []
   aud: {fileID: 0}
   wordsNameClips:
@@ -8667,6 +8668,7 @@ MonoBehaviour:
   travelTrip2: {fileID: 0}
   travelTrip3: {fileID: 0}
   travelFinal: {fileID: 0}
+  numberToDivideProcessBar: -1
 --- !u!4 &1861653386
 Transform:
   m_ObjectHideFlags: 0
@@ -9314,7 +9316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd915851e69a456db7b65b79b5c5307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameController: {fileID: 1861653385}
+  gameController: {fileID: 1861653385}
   animator: {fileID: 1967769090}
 --- !u!1 &1968693678
 GameObject:
@@ -10280,6 +10282,7 @@ MonoBehaviour:
     value: 
   awareValue: -1
   getAwareValue: 0
+  repeatValue: 2
 --- !u!4 &2055381718
 Transform:
   m_ObjectHideFlags: 0

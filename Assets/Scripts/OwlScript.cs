@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.UI;
 
 public class OwlScript : MonoBehaviour
 {
@@ -23,10 +24,14 @@ public class OwlScript : MonoBehaviour
     //public AudioSource validationSound;
 
     public string gameObjName;
+
+    public Image barImage;
+    public float incrementAmount = 0.08f;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        barImage.fillAmount = 0.0f;
     }
 
     void Update()
@@ -55,6 +60,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon2"))
@@ -63,6 +69,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon3"))
@@ -71,6 +78,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon4"))
@@ -79,6 +87,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon5"))
@@ -87,6 +96,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon6"))
@@ -95,6 +105,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon7"))
@@ -103,6 +114,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon8"))
@@ -111,6 +123,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon9"))
@@ -119,6 +132,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon10"))
@@ -127,6 +141,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon11"))
@@ -135,6 +150,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon12"))
@@ -143,6 +159,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                     if(hit.collider.CompareTag("Chameleon13"))
@@ -151,6 +168,7 @@ public class OwlScript : MonoBehaviour
                         {
                             popSound.Play();
                             pop = true;
+                            barImage.fillAmount += incrementAmount;
                         }   
                     }
                 }

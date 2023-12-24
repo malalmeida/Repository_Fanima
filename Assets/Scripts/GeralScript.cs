@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using TMPro;
+using UnityEngine.UI;
 
 public class GeralScript : MonoBehaviour
 {
@@ -32,10 +33,16 @@ public class GeralScript : MonoBehaviour
 
     public AudioSource leavesShaking;
 
+    public Image barImage;
+    public float incrementAmountWords = 0.1f;
+    public float incrementAmountSentences = 0.17f;
+
     // Start is called before the first frame update
     void Start()
     {
         balloAnimator.SetBool("isFull", true);
+
+        barImage.fillAmount = 0.0f;
     }
 
     void Update()
@@ -59,6 +66,7 @@ public class GeralScript : MonoBehaviour
                         shake = false;
                         leavesShaking.Stop();
                         startValidation = true;
+                        barImage.fillAmount += incrementAmountWords;
                     }
                 }
             }

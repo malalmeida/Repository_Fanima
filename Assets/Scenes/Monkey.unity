@@ -3349,7 +3349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd915851e69a456db7b65b79b5c5307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameController: {fileID: 1793338315}
+  gameController: {fileID: 1793338315}
   animator: {fileID: 207762053}
 --- !u!1 &207978012
 GameObject:
@@ -18951,6 +18951,12 @@ MonoBehaviour:
     value: 
   playSentences: 2
   getPlaySentencesDone: 0
+  jsonDataAware:
+    msg: 
+    value: 
+  awareValue: -1
+  getAwareValue: 0
+  repeatValue: 2
 --- !u!4 &1503929912
 Transform:
   m_ObjectHideFlags: 0
@@ -23267,6 +23273,7 @@ MonoBehaviour:
   structReqDone: 0
   respositoryReqDone: 0
   gameExecutionDone: 0
+  therapistReady: 0
   errorDone: 0
   gameExecutionID: -1
   gameSampleID: -1
@@ -23307,6 +23314,8 @@ MonoBehaviour:
   lastBonusSample: 0
   speak: 0
   activeHelpButton: 0
+  requestTherapistStatus: 0
+  startMicro: 0
   phonemeList: []
   aud: {fileID: 0}
   wordsNameClips:
@@ -23367,6 +23376,7 @@ MonoBehaviour:
   travelTrip2: {fileID: 0}
   travelTrip3: {fileID: 0}
   travelFinal: {fileID: 0}
+  numberToDivideProcessBar: -1
 --- !u!4 &1793338316
 Transform:
   m_ObjectHideFlags: 0
