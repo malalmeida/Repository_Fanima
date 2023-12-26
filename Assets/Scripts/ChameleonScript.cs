@@ -92,30 +92,43 @@ public class ChameleonScript : MonoBehaviour
         chameleon14.SetActive(false);
 
         barImage.fillAmount = 0.0f;
+        Debug.Log("totalphonemesToPlay: " + totalphonemesToPlay);
 
-        if(totalphonemesToPlay == 1)
+        if(totalphonemesToPlay >0)
         {
-            incrementAmount = 0.2f;
-        }
-        else if(totalphonemesToPlay == 2)
-        {
-            incrementAmount = 0.1f;
-        }
-        else if(totalphonemesToPlay == 3)
-        {
-            incrementAmount = 0.07f;
-        }
-        else if(totalphonemesToPlay == 4)
-        {
-            incrementAmount = 0.05f;
-        }
-        else if(totalphonemesToPlay == 5)
-        {
-            incrementAmount = 0.04f;
-        }
-        else if(totalphonemesToPlay == 6)
-        {
-            incrementAmount = 0.033f;
+            if(totalphonemesToPlay == 1)
+            {
+                incrementAmount = 0.2f;
+                Debug.Log("incrementAmount: " + incrementAmount);
+            }
+            else if(totalphonemesToPlay == 2)
+            {
+                incrementAmount = 0.1f;
+                Debug.Log("incrementAmount: " + incrementAmount);
+            }
+            else if(totalphonemesToPlay == 3)
+            {
+                incrementAmount = 0.07f;
+                Debug.Log("incrementAmount: " + incrementAmount);
+            }
+            else if(totalphonemesToPlay == 4)
+            {
+                incrementAmount = 0.05f;
+                Debug.Log("incrementAmount: " + incrementAmount);
+            }
+            else if(totalphonemesToPlay == 5)
+            {
+                incrementAmount = 0.04f;
+                Debug.Log("incrementAmount: " + incrementAmount);
+            }
+            else if(totalphonemesToPlay == 6)
+            {
+                incrementAmount = 0.033f;
+                Debug.Log("incrementAmount: " + incrementAmount);
+            } 
+        }else
+        {   
+            Debug.Log("AINDA NÂO FOI DEFINIDO!");
         }
     }
 
