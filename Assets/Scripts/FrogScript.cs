@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Linq;
 using System;
 using TMPro;
+using UnityEngine.UI;
+
 
 public class FrogScript : MonoBehaviour
 {
@@ -81,9 +83,14 @@ public class FrogScript : MonoBehaviour
   public bool closeBox = false;
   public int rock = -1;
 
+  public Image barImage;
+  public float incrementAmount = 0.2f;
+
   // Start is called before the first frame update
   void Start()
   {
+    barImage.fillAmount = 0.0f;
+
     rb = GetComponent<Rigidbody2D>();
     bugList = new List<GameObject>();
     removedBugs = new List<int>();
@@ -148,6 +155,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "pato" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -157,6 +165,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "sapo" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -170,6 +179,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "bolo" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -183,6 +193,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "lobo" && canShake == true) 
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -197,6 +208,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "teia" && canShake == true) 
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -210,6 +222,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "dado" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -223,6 +236,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "camisa" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -236,6 +250,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "vaca" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -249,6 +264,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "gato" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -262,6 +278,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "dragão" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -275,6 +292,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "mesa" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -288,6 +306,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "goma" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -301,6 +320,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "novelo" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -314,6 +334,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "chinelo" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               MoveCamera();
@@ -327,6 +348,7 @@ public class FrogScript : MonoBehaviour
           {
             if(currentWord == "joaninha" && canShake == true)
             {
+              barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
               //MoveCamera();

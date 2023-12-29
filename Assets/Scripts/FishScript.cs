@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FishScript : MonoBehaviour
 {
@@ -37,6 +38,14 @@ public class FishScript : MonoBehaviour
     public AudioSource fishEating;
     public MoveObject fish;
 
+    public Image barImage;
+    public float incrementAmount = 0.083f;
+
+    void Start()
+    {
+        barImage.fillAmount = 0.0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -55,51 +64,63 @@ public class FishScript : MonoBehaviour
                 {
                     if(hit.collider.CompareTag("Food1"))
                     {
+                        barImage.fillAmount += incrementAmount;
                         MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food2"))
                     {
+                        barImage.fillAmount += incrementAmount;
                         MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food3"))
                     {
+                        barImage.fillAmount += incrementAmount;
                         MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food4"))
                     {
-                       MoveFish();
+                        barImage.fillAmount += incrementAmount;
+                        MoveFish();
                     }               
                     else if(hit.collider.CompareTag("Food5"))
                     {
+                        barImage.fillAmount += incrementAmount;
                         MoveFish();
                     } 
                     else if(hit.collider.CompareTag("Food6"))
                     {
+                        barImage.fillAmount += incrementAmount;
                         MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food7"))
                     {
-                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
+                        MoveFish();
                     } 
                     else if(hit.collider.CompareTag("Food8"))
                     {
-                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
+                        MoveFish();
                     }               
                     else if(hit.collider.CompareTag("Food9"))
                     {
-                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
+                        MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food10"))
                     {
-                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
+                        MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food11"))
                     {
-                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
+                        MoveFish();
                     }
                     else if(hit.collider.CompareTag("Food12"))
                     {
-                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
+                        MoveFish();
                     }    
                 }
             }

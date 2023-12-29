@@ -14959,6 +14959,8 @@ MonoBehaviour:
   confetti: {fileID: 0}
   closeBox: 0
   rock: -1
+  barImage: {fileID: 1121470346}
+  incrementAmount: 0.2
 --- !u!95 &1722962061
 Animator:
   serializedVersion: 4

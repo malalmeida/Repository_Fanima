@@ -1718,6 +1718,8 @@ MonoBehaviour:
   canShake: 0
   fishEating: {fileID: 16137343}
   fish: {fileID: 1129421069}
+  barImage: {fileID: 1462679313}
+  incrementAmount: 0.2
 --- !u!4 &913584944
 Transform:
   m_ObjectHideFlags: 0
