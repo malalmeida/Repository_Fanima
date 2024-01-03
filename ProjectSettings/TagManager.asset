@@ -93,6 +93,7 @@ TagManager:
   - Rock14
   - Bug15
   - Rock15
+  - Parrot
   layers:
   - Default
   - TransparentFX

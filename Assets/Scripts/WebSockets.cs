@@ -47,6 +47,8 @@ public class WebSockets : MonoBehaviour{
     public int awareValue = -1;
     public bool getAwareValue = false;
     public int repeatValue = 2;
+    public bool stop = false;
+
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
         this.wsURL = url;
@@ -127,6 +129,11 @@ public class WebSockets : MonoBehaviour{
                 awareValue = int.Parse(jsonDataAware.value);
                 getAwareValue = true;
             }
+            else if(msg.Contains("stop"))
+            {
+                Debug.Log("STOP " + msg);
+                stop = true;
+            }
             else
             {
                 Debug.Log("MSG " + msg);
@@ -160,8 +167,6 @@ public class WebSockets : MonoBehaviour{
             Debug.Log("MSG " + msg);
             Debug.Log("VALUE " + value);
         }
-
-
     }
 
     public void LevelsToPlayRequest(int therapistID)

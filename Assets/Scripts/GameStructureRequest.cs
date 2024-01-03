@@ -92,6 +92,37 @@ public class GameStructureRequest : MonoBehaviour
         }
     } 
 
+    public IEnumerator PostStopGameExecutionRequest(string executedDate, string gameID, string userID, string gameExecutionID, string status)
+    {
+        var url = baseURL + "gameexecution";
+
+        List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
+        parameters.Add(new MultipartFormDataSection("executed", executedDate));
+        parameters.Add(new MultipartFormDataSection("gameid", gameID));
+        parameters.Add(new MultipartFormDataSection("userid", userID));
+
+        UnityWebRequest www = UnityWebRequest.Post(url, parameters);
+
+        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        www.SetRequestHeader("Authorization", token);
+
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.Log("ERROR GAME EXECUTION:" + www.error + " END");
+        }
+        else {
+            Debug.Log("ANSWER GAME EXECUTION: " + www.downloadHandler.text + " END");
+            
+            if(SceneManager.GetActiveScene().name == "Geral")
+            {
+                PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
+                gameController.gameExecutionDone = true;
+
+            }
+        }
+    } 
+
     public IEnumerator GetTherapist(string patientID)
     {
         var url = baseURL + "patient/" + patientID + "/therapist";

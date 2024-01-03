@@ -178,6 +178,12 @@ public class GameController : MonoBehaviour
       RequestTherapistStatus();
       requestTherapistStatus = false;
     }
+     if(webSockets.stop)
+     {
+       //INTERROMPER JOGO
+       Debug.Log("JOGO INTERROMPIDO!");
+       OnApplicationQuit(); 
+     }
   }
 
   public void RequestTherapistStatus()
@@ -233,13 +239,18 @@ public class GameController : MonoBehaviour
         yield return new WaitUntil(() => geralScript.animationDone);
         if(geralScript.wordsDone == false)
         {
+          //PALAVRAS
           yield return new WaitUntil(() => geralScript.startValidation);
         }
         else
         {
+          //FRASES
+          //geralScript.parrotNumber ++;
+          Debug.Log("Esperar pela validação do terapeuta");
           yield return new WaitUntil(() => geralScript.animationDone);
           yield return StartCoroutine(PlayGuideVoice(currentWord));
           geralScript.startValidation = true;
+          
         }
       }
 
@@ -270,6 +281,10 @@ public class GameController : MonoBehaviour
 
     if((SceneManager.GetActiveScene().name == "Geral"))
     {
+      //VOZ TERMINRAR O CAPITULO
+      //MOSTRAR RECOMPENSA
+      geralScript.showSentencesReward = true;
+      yield return new WaitForSeconds(1.0f);
       SceneManager.LoadScene("Travel"); 
     }
 
@@ -277,10 +292,14 @@ public class GameController : MonoBehaviour
     {
       if(errorDetected == true)
       {
+        //VOZ TERMINRAR O CAPITULO
+        //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Monkey"); 
       }
       else
       {
+        //VOZ TERMINRAR O CAPITULO
+        //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Travel"); 
       }
     }
@@ -289,10 +308,14 @@ public class GameController : MonoBehaviour
     {
       if(errorDetected == true)
       {
+        //VOZ TERMINRAR O CAPITULO
+      //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Chameleon"); 
       }
       else
       {
+        //VOZ TERMINRAR O CAPITULO
+      //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Travel"); 
       }
     }
@@ -301,10 +324,14 @@ public class GameController : MonoBehaviour
     {
       if(errorDetected == true)
       {
+        //VOZ TERMINRAR O CAPITULO
+      //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Octopus"); 
       }
       else
       {
+        //VOZ TERMINRAR O CAPITULO
+      //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Travel"); 
       }
     }
@@ -374,7 +401,30 @@ public class GameController : MonoBehaviour
     }
     //yield return StartCoroutine(ChapFinalVoices());
     yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
-    SceneManager.LoadScene("Travel");      
+/*
+    if((SceneManager.GetActiveScene().name == "Monkey"))
+    {
+      //VOZ TERMINRAR O CAPITULO
+      //MOSTRAR RECOMPENSA
+      yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
+
+    }
+    else if((SceneManager.GetActiveScene().name == "Chameleon"))
+    {
+      //VOZ TERMINRAR O CAPITULO
+      //MOSTRAR RECOMPENSA
+      yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
+
+    }
+    else if((SceneManager.GetActiveScene().name == "Octopus"))
+    {
+      //VOZ TERMINRAR O CAPITULO
+      //MOSTRAR RECOMPENSA
+      yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
+
+    }
+    */
+
   }
 
   public void FindWordNameByWordId(int wordID)
@@ -508,13 +558,27 @@ public class GameController : MonoBehaviour
       yield return new WaitUntil(() => webSockets.getPlaySentencesDone);
       if(webSockets.playSentences == 1)
       {
+        // GRAVAR AUDIO "PARABENS ENCONTRASTE TODOS OS QUADROS ESCONDIDOS"
+
+        //barra de progresso volta a zero
+        //incremeto da barra alterado mediante o numeor de frases a jogar
+        geralScript.barImage.fillAmount = 0.0f;
+        geralScript.incrementAmount = 0.17f;
+        
+
         yield return StartCoroutine(PlayAudioClip("Intro sentences"));
         geralScript.doAnimation = true;
 
       }
       else if(webSockets.playSentences == -1)
       {
+        //Não jogar frases 
+        //Mostrar rewards do capitulo 0 das palavras
+        geralScript.showWordsReward = true;
+        //yield return new WaitForSeconds(1.0f);
+        // GRAVAR AUDIO "PARABENS ENCONTRASTE TODOS OS QUADROS ESCONDIDOS"
         yield return StartCoroutine(PlayAudioClip("ChapEndMusic"));
+        
         SceneManager.LoadScene("Travel");
       } 
     }
@@ -731,7 +795,6 @@ public class GameController : MonoBehaviour
       }
       else
       {
-
         yield return StartCoroutine(webRequests.PostSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString()));
         gameSampleID = PlayerPrefs.GetInt("GAMESAMPLEID");
 
@@ -788,7 +851,7 @@ public class GameController : MonoBehaviour
       }
       //desativar ajuda
       activeHelpButton = false;
-      if (SceneManager.GetActiveScene().name == "Geral")
+      if(SceneManager.GetActiveScene().name == "Geral")
       {
         if(currentWord == "caracol")
         {
@@ -798,8 +861,24 @@ public class GameController : MonoBehaviour
         else
         {
           yield return StartCoroutine(PlayAudioClip("validationMusic"));
-          geralScript.doAnimation = true;
-          geralScript.animationDone = false;
+          if(geralScript.wordsDone)
+          {
+            Debug.Log("VALIDACAO DA FRASES");
+            geralScript.showParrot = true;
+            geralScript.parrotNumber ++;
+            Debug.Log("PARROT NUMBER: " + gerlaScript.parrotNumber);
+            yield return new WaitUntil(() => geralScript.parrotClick);
+            geralScript.parrotClick = false;
+            geralScript.doAnimation = true;
+            geralScript.animationDone = false;
+          }
+          else
+          {
+            Debug.Log("VALIDACAO DA PALAVRA");
+            geralScript.doAnimation = true;
+            geralScript.animationDone = false;
+          }
+          
         }
           webSockets.validationValue = -3;  
            
@@ -923,9 +1002,13 @@ public class GameController : MonoBehaviour
   }
   IEnumerator PlayGuideVoice(string word)
   {
-    if(word == "O sapato da menina tem bolas amarelas." || word == "A chuva cai da nuvem.")
+    if(word == "O sapato da menina tem bolas amarelas.")
     {
       yield return StartCoroutine(PlayAudioClip("1"));
+    }
+    else if(word == "A chuva cai da nuvem.")
+    {
+      yield return StartCoroutine(PlayAudioClip("3"));
     }
     else if(word == "A mãe faz comida no fogão.")
     {
@@ -933,7 +1016,7 @@ public class GameController : MonoBehaviour
     }
     else if(word == "A zebra dorme na sua cama." || word == "A joaninha tira a rolha da garrafa." || word == "O caracol dorme ao sol.")
     {
-      yield return StartCoroutine(PlayAudioClip("3"));
+      yield return StartCoroutine(PlayAudioClip("4"));
     }
   }
 

@@ -34,8 +34,22 @@ public class GeralScript : MonoBehaviour
     public AudioSource leavesShaking;
 
     public Image barImage;
-    public float incrementAmountWords = 0.1f;
-    public float incrementAmountSentences = 0.17f;
+    public float incrementAmount = 0.1f;
+    //public float incrementAmountSentences = 0.17f;
+
+    public bool showWordsReward = false;
+    public bool showSentencesReward = false;
+    public bool hideWordsReward = false;
+    public GameObject rewardWordsObj;
+    public GameObject rewardSentencesObj;
+    public SpriteRenderer rendRewardWords;
+    public SpriteRenderer rendRewardSentences;
+
+    public bool parrotClick = false;
+    public GameObject currentParrot;
+    public SpriteRenderer rendParrot;
+    public int parrotNumber = 0;
+    public bool showParrot = false;
 
     // Start is called before the first frame update
     void Start()
@@ -66,10 +80,33 @@ public class GeralScript : MonoBehaviour
                         shake = false;
                         leavesShaking.Stop();
                         startValidation = true;
-                        barImage.fillAmount += incrementAmountWords;
+                        barImage.fillAmount += incrementAmount;
+                    }
+                    if(hit.collider.CompareTag("Parrot"))
+                    {
+                        barImage.fillAmount += incrementAmount;
+                        //StartCoroutine(MoveBallon());
+                        parrotClick = true;
                     }
                 }
             }
+        }
+        if(showParrot)
+        {
+            ShowParrot();
+        }
+
+        if(showWordsReward)
+        {
+            ShowWordsRewardBoard();
+        }
+        //if(hideWordsReward)
+        //{
+          //  HideWordsRewardBoard();
+        //}
+         if(showSentencesReward)
+        {
+            ShowSentencesRewardBoard();
         }
     }
 
@@ -89,17 +126,51 @@ public class GeralScript : MonoBehaviour
         canShowImage = false;
     }
 
+    public void ShowParrot()
+    {
+        //play audio "oh não apareceu um papagiao pirata consegues encontra-lo?, quando encontrares, toca nele"
+        string parrotOBJName = "Parrot" + parrotNumber;  
+        Debug.Log(parrotOBJName);
+
+        currentParrot = GameObject.Find(parrotOBJName);
+
+        rendParrot = currentObject.GetComponent<SpriteRenderer>();
+        rendParrot.sortingOrder = 1;
+    }
+
     IEnumerator MoveBallon()
     {
         ballon.starAnimation = true;
         doAnimation = false;
         animationDone = false;
         yield return StartCoroutine(WaitForAnimationDone());
-        if(wordsDone == false)
+        //if(wordsDone && showParrot)
+        //{
+            //Debug.Log("wordsDone " + wordsDone + " showParrot: " + showParrot);
+            //Debug.Log("PARROT NUMBER: " + parrotNumber);
+            //showParrot = false;
+            //ShowParrot();
+            //yield return new WaitUntil(() => parrotClick);
+            //parrotClick = false;
+            //ballon.starAnimation = true;
+            //doAnimation = false;
+            //animationDone = false;
+            //yield return StartCoroutine(WaitForAnimationDone());
+        //}
+        //else 
+        if (wordsDone == false)
         {
+            //ballon.starAnimation = true;
+            //doAnimation = false;
+            //animationDone = false;
+            //yield return StartCoroutine(WaitForAnimationDone());
+            //if(wordsDone == false)
+            //{
             shake = true;
             leavesShaking.Play();
         }
+        //}
+        
     /**
         if(wordsDone == true)
         {
@@ -196,5 +267,23 @@ public class GeralScript : MonoBehaviour
         yield return new WaitUntil(() => ballon.animationDone);
         animationDone = true;
         doAnimation = false;
+    }
+
+    public void ShowWordsRewardBoard()
+    {
+        rendRewardWords = rewardWordsObj.GetComponent<SpriteRenderer>();
+        rendRewardWords.sortingOrder = 20;
+    }
+
+/**
+    public void HideWordsRewardBoard()
+    {
+        rendRewardWords.sortingOrder = -1;
+    }
+**/
+    public void ShowSentencesRewardBoard()
+    {
+        rendRewardSentences = rewardSentencesObj.GetComponent<SpriteRenderer>();
+        rendRewardSentences.sortingOrder = 20;
     }
 }
