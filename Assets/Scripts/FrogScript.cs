@@ -86,6 +86,11 @@ public class FrogScript : MonoBehaviour
   public Image barImage;
   public float incrementAmount = 0.2f;
 
+  public GameObject rewardBoard;
+  public SpriteRenderer rendRewardBoard;
+
+  public bool showReward = false;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -128,6 +133,11 @@ public class FrogScript : MonoBehaviour
 
   void Update()
   {
+    if(showReward)
+    {
+      ShowRewardBoard();
+    }
+
     if(canShowImage)
     {
       ShowObj();
@@ -611,4 +621,11 @@ public class FrogScript : MonoBehaviour
 
     }
   }
+  
+  public void ShowRewardBoard()
+    {
+        rendRewardBoard = rewardBoard.GetComponent<SpriteRenderer>();
+        rendRewardBoard.sortingOrder = 20;
+    }
+
 }

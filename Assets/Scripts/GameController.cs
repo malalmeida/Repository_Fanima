@@ -53,6 +53,8 @@ public class GameController : MonoBehaviour
   public string currentWord;
   public int currentActionID = -1;
   public int currentWordID = -1;
+  public int currentSequenceID = -1;
+  public int currentLevelID = -1;
   public int sequenceID = -1;
   public int timer = -1;
   public int errorStatus = -1;
@@ -82,16 +84,25 @@ public class GameController : MonoBehaviour
 
   public AudioSource introChapVoice;
   public AudioSource finalChapVoice;
+  public AudioSource finalSentencesChapVoice;
   public AudioSource travelTrip1;
   public AudioSource travelTrip2;
   public AudioSource travelTrip3;
   public AudioSource travelFinal;
 
   public int numberToDivideProcessBar = -1;
+  public string levelsJson = "";
+
+  public List<string> levels; 
 
   // Start is called before the first frame update
   void Start()
   {
+    if(SceneManager.GetActiveScene().name == "Stop")
+    {
+      StartCoroutine(StopSession());
+    }
+
     if(SceneManager.GetActiveScene().name == "Travel")
     {
       finalMenu.SetActive(false);
@@ -180,9 +191,10 @@ public class GameController : MonoBehaviour
     }
      if(webSockets.stop)
      {
-       //INTERROMPER JOGO
-       Debug.Log("JOGO INTERROMPIDO!");
-       OnApplicationQuit(); 
+      webSockets.stop = false;
+      //INTERROMPER JOGO
+      Debug.Log("JOGO INTERROMPIDO!");
+      SceneManager.LoadScene("Stop");
      }
   }
 
@@ -225,6 +237,7 @@ public class GameController : MonoBehaviour
     {
       currentActionID = sequenceToPlayList[i].id;
       currentWordID = sequenceToPlayList[i].word;
+      currentLevelID = sequenceToPlayList[i].levelid;
       PlayerPrefs.SetInt("SEQUENCEID", sequenceToPlayList[i].sequenceid);
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       FindWordNameByWordId(currentWordID);
@@ -246,7 +259,7 @@ public class GameController : MonoBehaviour
         {
           //FRASES
           //geralScript.parrotNumber ++;
-          Debug.Log("Esperar pela validação do terapeuta");
+          //Debug.Log("Esperar pela validação do terapeuta");
           yield return new WaitUntil(() => geralScript.animationDone);
           yield return StartCoroutine(PlayGuideVoice(currentWord));
           geralScript.startValidation = true;
@@ -275,16 +288,13 @@ public class GameController : MonoBehaviour
       RecordSound(timer);
       yield return StartCoroutine(WaitForValidation());
     }
-    //yield return StartCoroutine(ChapFinalVoices());
     yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
+    ShowReward();
+    yield return StartCoroutine(ChapFinalVoices());
     Debug.Log("ACABOU O SEQUENCIA");
 
     if((SceneManager.GetActiveScene().name == "Geral"))
     {
-      //VOZ TERMINRAR O CAPITULO
-      //MOSTRAR RECOMPENSA
-      geralScript.showSentencesReward = true;
-      yield return new WaitForSeconds(1.0f);
       SceneManager.LoadScene("Travel"); 
     }
 
@@ -292,14 +302,10 @@ public class GameController : MonoBehaviour
     {
       if(errorDetected == true)
       {
-        //VOZ TERMINRAR O CAPITULO
-        //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Monkey"); 
       }
       else
       {
-        //VOZ TERMINRAR O CAPITULO
-        //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Travel"); 
       }
     }
@@ -308,14 +314,10 @@ public class GameController : MonoBehaviour
     {
       if(errorDetected == true)
       {
-        //VOZ TERMINRAR O CAPITULO
-      //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Chameleon"); 
       }
       else
       {
-        //VOZ TERMINRAR O CAPITULO
-      //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Travel"); 
       }
     }
@@ -324,18 +326,56 @@ public class GameController : MonoBehaviour
     {
       if(errorDetected == true)
       {
-        //VOZ TERMINRAR O CAPITULO
-      //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Octopus"); 
       }
       else
       {
-        //VOZ TERMINRAR O CAPITULO
-      //MOSTRAR RECOMPENSA
         SceneManager.LoadScene("Travel"); 
       }
     }
   }
+
+  public void ShowReward()
+  {
+    if((SceneManager.GetActiveScene().name == "Geral"))
+    {
+      geralScript.showSentencesReward = true;
+    }
+
+    else if((SceneManager.GetActiveScene().name == "Frog"))
+    {
+      frogScript.showReward = true;
+    }
+
+    else if((SceneManager.GetActiveScene().name == "Owl"))
+    {
+      owlScript.showReward = true;
+    }
+
+    else if((SceneManager.GetActiveScene().name == "Fish"))
+    {
+      fishScript.showReward = true;
+    }
+  }
+
+  public void ShowRewardBonusLevels()
+  {
+    if((SceneManager.GetActiveScene().name == "Monkey"))
+    {
+      monkeyScript.showReward = true;
+    }
+
+    else if((SceneManager.GetActiveScene().name == "Chameleon"))
+    {
+      chameleonScript.showReward = true;
+    }
+
+    else if((SceneManager.GetActiveScene().name == "Octopus"))
+    {
+      octopusScript.showReward = true;
+    }
+  }
+
 
   IEnumerator BonusGameLoop()
   {
@@ -362,6 +402,9 @@ public class GameController : MonoBehaviour
       { 
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
+        currentSequenceID = sequenceToPlayList[j].sequenceid;
+        currentLevelID = sequenceToPlayList[j].levelid;
+
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         FindWordNameByWordId(currentWordID);
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
@@ -399,32 +442,9 @@ public class GameController : MonoBehaviour
         }
       }   
     }
-    //yield return StartCoroutine(ChapFinalVoices());
     yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
-/*
-    if((SceneManager.GetActiveScene().name == "Monkey"))
-    {
-      //VOZ TERMINRAR O CAPITULO
-      //MOSTRAR RECOMPENSA
-      yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
-
-    }
-    else if((SceneManager.GetActiveScene().name == "Chameleon"))
-    {
-      //VOZ TERMINRAR O CAPITULO
-      //MOSTRAR RECOMPENSA
-      yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
-
-    }
-    else if((SceneManager.GetActiveScene().name == "Octopus"))
-    {
-      //VOZ TERMINRAR O CAPITULO
-      //MOSTRAR RECOMPENSA
-      yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
-
-    }
-    */
-
+    ShowRewardBonusLevels();
+    yield return StartCoroutine(ChapFinalVoices());
   }
 
   public void FindWordNameByWordId(int wordID)
@@ -495,7 +515,7 @@ public class GameController : MonoBehaviour
     introChapVoice.Play();
     if(SceneManager.GetActiveScene().name == "Frog")
     {
-      yield return new WaitForSeconds(5.4f);
+      yield return new WaitForSeconds(6.7f);
     }
     else if (SceneManager.GetActiveScene().name == "Monkey")
     {
@@ -522,29 +542,33 @@ public class GameController : MonoBehaviour
   IEnumerator ChapFinalVoices()
   {
     finalChapVoice.Play();
-    if(SceneManager.GetActiveScene().name == "Frog")
+    if(SceneManager.GetActiveScene().name == "Geral")
     {
-     yield return new WaitForSeconds(3.9f);
+     yield return new WaitForSeconds(4.0f);
+    }
+    else if(SceneManager.GetActiveScene().name == "Frog")
+    {
+     yield return new WaitForSeconds(4.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Monkey")
     {
-      yield return new WaitForSeconds(5.0f);
+      yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Owl")
     {
-      yield return new WaitForSeconds(3.2f);
+      yield return new WaitForSeconds(3.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Chameleon")
     {
-      yield return new WaitForSeconds(5.0f);
+      yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Fish")
     {
-      yield return new WaitForSeconds(5.0f);
+      yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Octopus")
     {
-      yield return new WaitForSeconds(5.0f);
+      yield return new WaitForSeconds(5.5f);
     }
   }
 
@@ -558,8 +582,6 @@ public class GameController : MonoBehaviour
       yield return new WaitUntil(() => webSockets.getPlaySentencesDone);
       if(webSockets.playSentences == 1)
       {
-        // GRAVAR AUDIO "PARABENS ENCONTRASTE TODOS OS QUADROS ESCONDIDOS"
-
         //barra de progresso volta a zero
         //incremeto da barra alterado mediante o numeor de frases a jogar
         geralScript.barImage.fillAmount = 0.0f;
@@ -573,12 +595,9 @@ public class GameController : MonoBehaviour
       else if(webSockets.playSentences == -1)
       {
         //Não jogar frases 
-        //Mostrar rewards do capitulo 0 das palavras
+        //yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
         geralScript.showWordsReward = true;
-        //yield return new WaitForSeconds(1.0f);
-        // GRAVAR AUDIO "PARABENS ENCONTRASTE TODOS OS QUADROS ESCONDIDOS"
-        yield return StartCoroutine(PlayAudioClip("ChapEndMusic"));
-        
+        yield return StartCoroutine(PlayAudioClip("finalWords"));
         SceneManager.LoadScene("Travel");
       } 
     }
@@ -684,11 +703,21 @@ public class GameController : MonoBehaviour
     {
       PlayerPrefs.DeleteKey("ChapterThree");
     }
-   
-    yield return new WaitUntil(() => webSockets.socketIsReady);
-    webSockets.LevelsToPlayRequest(therapistID);
-    yield return new WaitUntil(() => webSockets.getLevelsDone);
+   //pede para escolher os niveis caso não haja restore ou a lista de niveis estiver vazia
+   if((webSockets.restoreDone == false) || (webSockets.levelsList.Count < 1))
+   {
+      yield return new WaitUntil(() => webSockets.socketIsReady);
+      webSockets.LevelsToPlayRequest(therapistID);
+      yield return new WaitUntil(() => webSockets.getLevelsDone);
+   }
+
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
+    for (int i = 0; i < webSockets.levelsList.Count; i++)
+    {
+        levels.Add(webSockets.levelsList[i]);
+    }
+
+    levelsJson = JsonUtility.ToJson(levels);
 
     if(webSockets.levelsList.Count == 1)
     {
@@ -858,23 +887,27 @@ public class GameController : MonoBehaviour
           yield return StartCoroutine(PlayAudioClip("validationMusic"));
           geralScript.doAnimation = false;
         }
+        else if(currentWord == "O caracol dorme ao sol.")
+        {
+          geralScript.doAnimation = false;
+        } 
         else
         {
           yield return StartCoroutine(PlayAudioClip("validationMusic"));
           if(geralScript.wordsDone)
           {
-            Debug.Log("VALIDACAO DA FRASES");
-            geralScript.showParrot = true;
-            geralScript.parrotNumber ++;
-            Debug.Log("PARROT NUMBER: " + gerlaScript.parrotNumber);
-            yield return new WaitUntil(() => geralScript.parrotClick);
-            geralScript.parrotClick = false;
+            //Debug.Log("VALIDACAO DA FRASES");
+            //geralScript.showParrot = true;
+            //geralScript.parrotNumber ++;
+            //Debug.Log("PARROT NUMBER: " + geralScript.parrotNumber);
+            //yield return new WaitUntil(() => geralScript.parrotClick);
+            //geralScript.parrotClick = false;
             geralScript.doAnimation = true;
             geralScript.animationDone = false;
           }
           else
           {
-            Debug.Log("VALIDACAO DA PALAVRA");
+            //Debug.Log("VALIDACAO DA PALAVRA");
             geralScript.doAnimation = true;
             geralScript.animationDone = false;
           }
@@ -974,6 +1007,11 @@ public class GameController : MonoBehaviour
       Debug.Log("Waiting for execution ID...");
       yield return new WaitUntil(() => gameExecutionDone);
       Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
+      //em caso de restore
+      if(webSockets.restoreDone)
+      {
+        SceneManager.LoadScene("Travel");
+      }
     }
   }
 
@@ -1094,12 +1132,9 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(PlayAudioClip("help"));
     yield return StartCoroutine(PlayWordName(currentWord));
   }
- 
-    
 
   public void OnApplicationQuit()
   {
-    
     Debug.Log("Stop WS client and logut");
     
     //Enable screen dimming
@@ -1110,5 +1145,20 @@ public class GameController : MonoBehaviour
     webSockets.StopClient(payload);
     Application.Quit();       
   }
+  
+  IEnumerator StopSession()
+  {
+    Debug.Log("ENTROU NA FUNCAO STOP SESSION");
+    //yield return StartCoroutine(PlayAudioClip("stop"));
+    finalChapVoice.Play();
+    yield return new WaitForSeconds(6.0f);
+    //int actualSequenceID = PlayerPrefs.GetInt("SEQUENCEID");
+    //Debug.Log("GAMEEXECUTIONID: " + gameExecutionID.ToString() + "LEVELS: " + levelsJson +  "LEVELID: " + currentLevelID.ToString() + "ACTIONID: " + actualSequenceID.ToString() + "START TIME: " + startTime + "END TIME: " + endTime); 
+    //webRequests.PostStopGameExecutionRequest(gameExecutionID.ToString(), levelsJson, currentLevelID.ToString(), actualSequenceID.ToString(), currentActionID.ToString(), startTime, endTime);
+    OnApplicationQuit();
+  }
+    
+
+  
 
 }

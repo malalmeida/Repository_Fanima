@@ -85,14 +85,25 @@ public class GameStructureRequest : MonoBehaviour
             
             if(SceneManager.GetActiveScene().name == "Geral")
             {
-                PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
-                gameController.gameExecutionDone = true;
+                 if(gameController.webSockets.restoreDone)
+                {
+                    //added for restore
+                    PlayerPrefs.SetInt("GAMEEXECUTIONID", gameController.webSockets.restoreGameExecutionID);
+                    gameController.gameExecutionDone = true;
+
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
+                    gameController.gameExecutionDone = true;
+                }
+                
 
             }
         }
     } 
 
-    public IEnumerator PostStopGameExecutionRequest(string executedDate, string gameID, string userID, string gameExecutionID, string status)
+    /**public IEnumerator PostStopGameExecutionRequest(string executedDate, string gameID, string userID, string gameExecutionID, string status)
     {
         var url = baseURL + "gameexecution";
 
@@ -122,6 +133,7 @@ public class GameStructureRequest : MonoBehaviour
             }
         }
     } 
+    **/
 
     public IEnumerator GetTherapist(string patientID)
     {

@@ -48,6 +48,11 @@ public class WebSockets : MonoBehaviour{
     public bool getAwareValue = false;
     public int repeatValue = 2;
     public bool stop = false;
+    public bool restoreDone = false;
+    public jsonDataRestore jsonDataRestore;
+    public List<string> restorelevelsList; 
+    public int restoreGameExecutionID = -1;
+
 
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -126,13 +131,22 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("AWARE " + msg);
                 jsonDataAware = JsonUtility.FromJson<jsonDataAware>(msg);
-                awareValue = int.Parse(jsonDataAware.value);
+                awareValue = restoreGameExecutionID;
                 getAwareValue = true;
             }
             else if(msg.Contains("stop"))
             {
                 Debug.Log("STOP " + msg);
                 stop = true;
+            }
+            else if(msg.Contains("restore"))
+            {
+                Debug.Log("RESTORE " + msg);
+                jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
+                levelsList = jsonDataRestore.levels;
+                //restorelevelsList = jsonDataRestore.levels;
+                restoreGameExecutionID = jsonDataRestore.gameexid;
+                restoreDone = true;
             }
             else
             {

@@ -178,4 +178,35 @@ public class WebRequests : MonoBehaviour
             chapterErrorListDone = true;
         }
     }  
+
+    public IEnumerator PostStopGameExecutionRequest(string gameExecutionID, string levels, string levelID, string sequenceID, string actionID, string startTime, string endTime)
+    {
+        var url = baseURL + "gameexecution";
+
+        List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
+        parameters.Add(new MultipartFormDataSection("gameexid", gameExecutionID));
+       // parameters.Add(new MultipartFormDataSection("status", "{" + levels + "\", \"levelid\":\" " + levelID + "\", \"sequenceid\":\"" + sequenceID + "\", \"actionid\":\"" + actionID + "\", \"duration", "{\"start\":\"" + startTime + "\", \"end\":\"" + endTime + "\"}" "\"}"));
+
+
+        UnityWebRequest www = UnityWebRequest.Post(url, parameters);
+
+        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        www.SetRequestHeader("Authorization", token);
+
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.Log("ERROR GAME EXECUTION:" + www.error + " END");
+        }
+        else {
+            Debug.Log("ANSWER GAME EXECUTION: " + www.downloadHandler.text + " END");
+            
+            //if(SceneManager.GetActiveScene().name == "Geral")
+            //{
+                //PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
+                //gameController.gameExecutionDone = true;
+
+            //}
+        }
+    } 
 }

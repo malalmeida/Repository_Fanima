@@ -25,7 +25,10 @@ public class OctopusScript : MonoBehaviour
 
     public AudioSource validationSound;
 
+    public GameObject rewardBoard;
+    public SpriteRenderer rendRewardBoard;
 
+    public bool showReward = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,11 @@ public class OctopusScript : MonoBehaviour
 
     void Update()
     {
+        if(showReward)
+        {
+            ShowRewardBoard();
+        }
+        
         if(canShowImage)
         {
             ShowObj();
@@ -103,5 +111,11 @@ public class OctopusScript : MonoBehaviour
         //rend = currentObj.GetComponent<SpriteRenderer>();
         //rend.sortingOrder = -1;
         nextAction = false;
-    }    
+    }   
+
+    public void ShowRewardBoard()
+    {
+        rendRewardBoard = rewardBoard.GetComponent<SpriteRenderer>();
+        rendRewardBoard.sortingOrder = 20;
+    } 
 }

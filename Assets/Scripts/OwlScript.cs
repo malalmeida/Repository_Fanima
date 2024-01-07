@@ -28,6 +28,11 @@ public class OwlScript : MonoBehaviour
     public Image barImage;
     public float incrementAmount = 0.08f;
 
+    public GameObject rewardBoard;
+    public SpriteRenderer rendRewardBoard;
+
+    public bool showReward = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +41,11 @@ public class OwlScript : MonoBehaviour
 
     void Update()
     {
+        if(showReward)
+        {
+            ShowRewardBoard();
+        }
+        
         if(canShowImage)
         {
             ShowObj();
@@ -206,6 +216,12 @@ public class OwlScript : MonoBehaviour
         currentObj.SetActive(false);
         //validationSound.Play();
         nextAction = false;
+    }
+
+    public void ShowRewardBoard()
+    {
+        rendRewardBoard = rewardBoard.GetComponent<SpriteRenderer>();
+        rendRewardBoard.sortingOrder = 20;
     }
 }
 

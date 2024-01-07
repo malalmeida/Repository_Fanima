@@ -13,6 +13,7 @@ public class jsonDataLoader
 public class actionClass
 {
     public int id;
+    public int levelid;
     public string level;
     public int sequenceid;
     public string sequence;

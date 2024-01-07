@@ -159,6 +159,7 @@ MonoBehaviour:
   structReqDone: 0
   respositoryReqDone: 0
   gameExecutionDone: 0
+  therapistReady: 0
   errorDone: 0
   gameExecutionID: -1
   gameSampleID: -1
@@ -183,6 +184,8 @@ MonoBehaviour:
   currentWord: 
   currentActionID: -1
   currentWordID: -1
+  currentSequenceID: -1
+  currentLevelID: -1
   sequenceID: -1
   timer: -1
   errorStatus: -1
@@ -197,16 +200,24 @@ MonoBehaviour:
   bonusgameResult: 0
   actionValidated: 0
   lastBonusSample: 0
+  speak: 0
+  activeHelpButton: 0
+  requestTherapistStatus: 0
+  startMicro: 0
   phonemeList: []
   aud: {fileID: 0}
   wordsNameClips: []
   clips: []
   introChapVoice: {fileID: 0}
   finalChapVoice: {fileID: 0}
+  finalSentencesChapVoice: {fileID: 0}
   travelTrip1: {fileID: 132521020}
   travelTrip2: {fileID: 1888253282}
   travelTrip3: {fileID: 1384847343}
   travelFinal: {fileID: 2078844296}
+  numberToDivideProcessBar: -1
+  levelsJson: 
+  levels: []
 --- !u!4 &83325087
 Transform:
   m_ObjectHideFlags: 0
@@ -11975,6 +11986,13 @@ MonoBehaviour:
     value: 
   playSentences: 2
   getPlaySentencesDone: 0
+  jsonDataAware:
+    msg: 
+    value: 
+  awareValue: -1
+  getAwareValue: 0
+  repeatValue: 2
+  stop: 0
 --- !u!4 &1714722147
 Transform:
   m_ObjectHideFlags: 0
@@ -12409,7 +12427,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9a1e00c46e72c4da983f9725416e1a40, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 50c7bc690e0944e46aa61ae4f85f0705, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

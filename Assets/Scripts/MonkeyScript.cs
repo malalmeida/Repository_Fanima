@@ -43,6 +43,11 @@ public class MonkeyScript : MonoBehaviour
 
     public AudioSource monkeySound;
 
+    public GameObject rewardBoard;
+    public SpriteRenderer rendRewardBoard;
+
+    public bool showReward = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +76,11 @@ public class MonkeyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(showReward)
+        {
+            ShowRewardBoard();
+        }
+        
         if(randomIndex > -1)
         {
             ShowMonkey();
@@ -269,4 +279,9 @@ public class MonkeyScript : MonoBehaviour
         
     }
 
+    public void ShowRewardBoard()
+    {
+        rendRewardBoard = rewardBoard.GetComponent<SpriteRenderer>();
+        rendRewardBoard.sortingOrder = 20;
+    }
 }

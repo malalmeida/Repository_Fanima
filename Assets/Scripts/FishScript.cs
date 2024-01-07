@@ -41,6 +41,11 @@ public class FishScript : MonoBehaviour
     public Image barImage;
     public float incrementAmount = 0.083f;
 
+    public GameObject rewardBoard;
+    public SpriteRenderer rendRewardBoard;
+
+    public bool showReward = false;
+
     void Start()
     {
         barImage.fillAmount = 0.0f;
@@ -49,6 +54,11 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(showReward)
+        {
+            ShowRewardBoard();
+        }
+        
         if(canShowImage)
         {
             ShowObj();
@@ -168,5 +178,12 @@ public class FishScript : MonoBehaviour
             StartCoroutine(WaitForAnimationDone());
         }
     }
+
+    public void ShowRewardBoard()
+    {
+        rendRewardBoard = rewardBoard.GetComponent<SpriteRenderer>();
+        rendRewardBoard.sortingOrder = 20;
+    }
+
   }
 

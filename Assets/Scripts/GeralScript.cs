@@ -93,7 +93,7 @@ public class GeralScript : MonoBehaviour
         }
         if(showParrot)
         {
-            ShowParrot();
+            //ShowParrot();
         }
 
         if(showWordsReward)

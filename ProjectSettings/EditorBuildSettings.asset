@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fish.unity
     guid: 777275ffbb78b4cfcab94c9d3c9729ef
+  - enabled: 1
+    path: Assets/Scenes/Stop.unity
+    guid: b63128b24a0ca46d6a97714ab7f91371
   m_configObjects: {}

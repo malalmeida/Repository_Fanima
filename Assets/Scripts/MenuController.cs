@@ -40,45 +40,36 @@ public class MenuController : MonoBehaviour
     }
 
     public void StartGame()
-    {
+    {   
         if(gameStructureRequest.gameController.therapistReady)
-        {
-            gameStructureRequest.gameController.requestTherapistStatus = false;
-            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
-            startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-            Time.timeScale = 1f;
-            startMenuUI.SetActive(false);
-            PlayerPrefs.SetInt("GAMESTARTED", 1);
-            song.Stop();
+        { 
+            //if(gameStructureRequest.gameController.webSockets.restore)
+            //{
+                //PlayerPrefs.SetInt("GAMEEXECUTIONID", gameStructureRequest.gameController.webSockets.restoreGameExecutionID));
+               // startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+                //Time.timeScale = 1f;
+                //startMenuUI.SetActive(false);
+                //PlayerPrefs.SetInt("GAMESTARTED", 1);
+                //song.Stop();
+            //}
+            //else
+            //{
+                gameStructureRequest.gameController.requestTherapistStatus = false;
+                StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+                startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+                Time.timeScale = 1f;
+                startMenuUI.SetActive(false);
+                PlayerPrefs.SetInt("GAMESTARTED", 1);
+                song.Stop();
+            //}
         }
         else
         {
             gameStructureRequest.gameController.requestTherapistStatus = true;
         }
-    }
-    //para continuar a sessao 
-    // ver onde a sessão parou e mudar para a scene onde ficou
-    public void ContinueGame()
-    {
-        if(gameStructureRequest.gameController.therapistReady)
-        {
-            CheckLastChapterPlayed();
-            gameStructureRequest.gameController.requestTherapistStatus = false;
-            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
-            startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-            Time.timeScale = 1f;
-            startMenuUI.SetActive(false);
-            PlayerPrefs.SetInt("GAMESTARTED", 1);
-            song.Stop();
-        }
-        else
-        {
-            gameStructureRequest.gameController.requestTherapistStatus = true;
-        }
-    }
 
-    public void CheckLastChapterPlayed()
-    {
+        
+
 
     }
 }
