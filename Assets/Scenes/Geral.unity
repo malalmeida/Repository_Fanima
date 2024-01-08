@@ -5839,6 +5839,13 @@ MonoBehaviour:
   getAwareValue: 0
   repeatValue: 2
   stop: 0
+  restoreDone: 0
+  jsonDataRestore:
+    gameexid: 0
+    levels: []
+    levelid: 0
+  restorelevelsList: []
+  restoreGameExecutionID: -1
 --- !u!1 &507777526
 GameObject:
   m_ObjectHideFlags: 0
@@ -14510,6 +14517,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a871486bb839445fab42213def5a6a33, type: 3}
   introChapVoice: {fileID: 1451453423}
   finalChapVoice: {fileID: 889837918}
+  rewardVoice: {fileID: 0}
   finalSentencesChapVoice: {fileID: 0}
   travelTrip1: {fileID: 0}
   travelTrip2: {fileID: 0}
@@ -14518,6 +14526,7 @@ MonoBehaviour:
   numberToDivideProcessBar: -1
   levelsJson: 
   levels: []
+  adjustIncrementAmountDone: 0
 --- !u!4 &1403301867
 Transform:
   m_ObjectHideFlags: 0
@@ -15657,7 +15666,7 @@ MonoBehaviour:
   - {fileID: 799788594}
   - {fileID: 1846812585}
   - {fileID: 1271711949}
-  objectSpeed: 50
+  objectSpeed: 10
   starAnimation: 0
   animationDone: 0
 --- !u!1 &1453638116
@@ -22773,6 +22782,7 @@ MonoBehaviour:
   leavesShaking: {fileID: 1295325542}
   barImage: {fileID: 1200991119}
   incrementAmount: 0.1
+  incrementAmountSentences: 0.17
   showWordsReward: 0
   showSentencesReward: 0
   hideWordsReward: 0

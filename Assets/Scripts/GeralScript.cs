@@ -35,7 +35,7 @@ public class GeralScript : MonoBehaviour
 
     public Image barImage;
     public float incrementAmount = 0.1f;
-    //public float incrementAmountSentences = 0.17f;
+    public float incrementAmountSentences = 0.17f;
 
     public bool showWordsReward = false;
     public bool showSentencesReward = false;

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class OctopusScript : MonoBehaviour
 {
@@ -28,6 +30,9 @@ public class OctopusScript : MonoBehaviour
     public GameObject rewardBoard;
     public SpriteRenderer rendRewardBoard;
 
+    public float incrementAmount = 0.0f;
+    public Image barImage;
+
     public bool showReward = false;
     // Start is called before the first frame update
     void Start()
@@ -35,6 +40,9 @@ public class OctopusScript : MonoBehaviour
         red.SetActive(true);
         yellow.SetActive(true);
         green.SetActive(true);
+
+        barImage.fillAmount = 0.0f;
+
     }
 
     void Update()

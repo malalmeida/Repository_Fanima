@@ -84,6 +84,7 @@ public class GameController : MonoBehaviour
 
   public AudioSource introChapVoice;
   public AudioSource finalChapVoice;
+  public AudioSource rewardVoice;
   public AudioSource finalSentencesChapVoice;
   public AudioSource travelTrip1;
   public AudioSource travelTrip2;
@@ -94,6 +95,8 @@ public class GameController : MonoBehaviour
   public string levelsJson = "";
 
   public List<string> levels; 
+
+  public bool adjustIncrementAmountDone = false;
 
   // Start is called before the first frame update
   void Start()
@@ -385,12 +388,11 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(webRequests.GetChapterErrors(gameExecutionID.ToString(), sequenceID.ToString()));
     yield return new WaitUntil(() => webRequests.chapterErrorListDone);
     
-    //monkeyScript.totalphonemesToPlay = numberToDivideProcessBar;
-    //octopusScript.totalphonemesToPlay = numberToDivideProcessBar;
+    AdjustIncrementAmount();
+    yield return new WaitUntil(() => adjustIncrementAmountDone);
 
     for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
     { 
-      chameleonScript.totalphonemesToPlay = webRequests.chapterErrorList.Count;
       
       activeChapter = "Fonema /" + webRequests.chapterErrorList[i].phoneme + "/";
       Debug.Log("FONEMA: " + activeChapter);
@@ -456,6 +458,41 @@ public class GameController : MonoBehaviour
         currentWord = dataList[i].name;
       }
     }
+  }
+
+  public void AdjustIncrementAmount()
+  {
+    if((SceneManager.GetActiveScene().name == "Monkey"))
+    { 
+      bool addThree = false;
+      for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
+      {
+        if(webRequests.chapterErrorList[i].phoneme == "nh")
+        {
+          addThree = true;
+        }      
+      }
+      
+      if(addThree)
+      {
+        monkeyScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5 + (float)3) ;
+      }
+      else
+      {
+        monkeyScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5) ;
+      }
+    }
+
+    else if((SceneManager.GetActiveScene().name == "Chameleon"))
+    {
+      chameleonScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5) ;
+    }
+
+    else if((SceneManager.GetActiveScene().name == "Octopus"))
+    {
+      octopusScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5) ;
+    }
+    adjustIncrementAmountDone = true;
   }
 
   public void ShowImageBonus(string currentWord, int repNumber)
@@ -556,7 +593,7 @@ public class GameController : MonoBehaviour
     }
     else if (SceneManager.GetActiveScene().name == "Owl")
     {
-      yield return new WaitForSeconds(3.0f);
+      yield return new WaitForSeconds(5.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Chameleon")
     {
@@ -570,6 +607,9 @@ public class GameController : MonoBehaviour
     {
       yield return new WaitForSeconds(5.5f);
     }
+    rewardVoice.Play();
+    yield return new WaitForSeconds(2.5f);
+
   }
 
   IEnumerator PlaySentences(string currentWord)
@@ -889,6 +929,7 @@ public class GameController : MonoBehaviour
         }
         else if(currentWord == "O caracol dorme ao sol.")
         {
+          geralScript.barImage.fillAmount += geralScript.incrementAmountSentences;
           geralScript.doAnimation = false;
         } 
         else
@@ -902,6 +943,7 @@ public class GameController : MonoBehaviour
             //Debug.Log("PARROT NUMBER: " + geralScript.parrotNumber);
             //yield return new WaitUntil(() => geralScript.parrotClick);
             //geralScript.parrotClick = false;
+            geralScript.barImage.fillAmount += geralScript.incrementAmountSentences;
             geralScript.doAnimation = true;
             geralScript.animationDone = false;
           }

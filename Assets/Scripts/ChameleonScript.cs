@@ -55,7 +55,7 @@ public class ChameleonScript : MonoBehaviour
     public AudioSource chameleonSound;
 
     public Image barImage;
-    public int totalphonemesToPlay = -1;
+    //public int totalphonemesToPlay = -1;
     public float incrementAmount = 0.0f;
 
     public GameObject rewardBoard;
@@ -96,8 +96,9 @@ public class ChameleonScript : MonoBehaviour
         chameleon14.SetActive(false);
 
         barImage.fillAmount = 0.0f;
-        Debug.Log("totalphonemesToPlay: " + totalphonemesToPlay);
-
+        Debug.Log("totalphonemesToPlay: " + incrementAmount);
+        
+        /**
         if(totalphonemesToPlay >0)
         {
             if(totalphonemesToPlay == 1)
@@ -134,6 +135,7 @@ public class ChameleonScript : MonoBehaviour
         {   
             Debug.Log("AINDA NÂO FOI DEFINIDO!");
         }
+        **/
     }
 
     // Update is called once per frame

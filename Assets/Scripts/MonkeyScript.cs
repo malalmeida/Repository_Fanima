@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class MonkeyScript : MonoBehaviour
 {
@@ -45,6 +47,8 @@ public class MonkeyScript : MonoBehaviour
 
     public GameObject rewardBoard;
     public SpriteRenderer rendRewardBoard;
+    public float incrementAmount = 0.0f;
+    public Image barImage;
 
     public bool showReward = false;
 
@@ -71,6 +75,9 @@ public class MonkeyScript : MonoBehaviour
         monkey7.SetActive(false);
         monkey8.SetActive(false);
         monkey9.SetActive(false);
+
+        barImage.fillAmount = 0.0f;
+
     }
 
     // Update is called once per frame
@@ -114,55 +121,64 @@ public class MonkeyScript : MonoBehaviour
                     {
                         monkey1.SetActive(false);
                         isCaught = true;
-                        //monkeySound.Play();                    
+                        //monkeySound.Play();
+                        barImage.fillAmount += incrementAmount;                    
                     } 
                     if(hit.collider.CompareTag("Monkey2"))
                     {
                         monkey2.SetActive(false);
                         isCaught = true;
-                        //monkeySound.Play();                    
+                        //monkeySound.Play();      
+                        barImage.fillAmount += incrementAmount;              
                     } 
                     if(hit.collider.CompareTag("Monkey3"))
                     {
                         monkey3.SetActive(false);
                         isCaught = true;
-                        //monkeySound.Play();                    
+                        //monkeySound.Play();  
+                        barImage.fillAmount += incrementAmount;                  
                     } 
                     if(hit.collider.CompareTag("Monkey4"))
                     {
                         monkey4.SetActive(false);
                         isCaught = true;
                         //monkeySound.Play();
+                        barImage.fillAmount += incrementAmount;
                     } 
                     if(hit.collider.CompareTag("Monkey5"))
                     {
                         monkey5.SetActive(false);
                         isCaught = true;
                         //monkeySound.Play();
+                        barImage.fillAmount += incrementAmount;
                     } 
                     if(hit.collider.CompareTag("Monkey6"))
                     {
                         monkey6.SetActive(false);
                         isCaught = true;
                         //monkeySound.Play();
+                        barImage.fillAmount += incrementAmount;
                     } 
                     if(hit.collider.CompareTag("Monkey7"))
                     {
                         monkey7.SetActive(false);
                         isCaught = true;
                         //monkeySound.Play();
+                        barImage.fillAmount += incrementAmount;
                     } 
                     if(hit.collider.CompareTag("Monkey8"))
                     {
                         monkey8.SetActive(false);
                         isCaught = true;
                         //monkeySound.Play();
+                        barImage.fillAmount += incrementAmount;
                     } 
                     if(hit.collider.CompareTag("Monkey9"))
                     {
                         monkey9.SetActive(false);
                         isCaught = true;
                         //monkeySound.Play();
+                        barImage.fillAmount += incrementAmount;
                     } 
                 }
             }
