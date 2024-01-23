@@ -84,7 +84,7 @@ public class FrogScript : MonoBehaviour
   public int rock = -1;
 
   public Image barImage;
-  public float incrementAmount = 0.2f;
+  public float incrementAmount = 0.06f;
 
   public GameObject rewardBoard;
   public SpriteRenderer rendRewardBoard;

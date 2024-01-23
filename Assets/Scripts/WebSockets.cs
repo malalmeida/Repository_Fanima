@@ -131,7 +131,8 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("AWARE " + msg);
                 jsonDataAware = JsonUtility.FromJson<jsonDataAware>(msg);
-                awareValue = restoreGameExecutionID;
+                //awareValue = restoreGameExecutionID;
+                awareValue = int.Parse(jsonDataAware.value);
                 getAwareValue = true;
             }
             else if(msg.Contains("stop"))

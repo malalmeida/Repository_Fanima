@@ -211,7 +211,7 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => webSockets.socketIsReady);
     webSockets.VerifyTherapistActivity(therapistID);
     yield return new WaitUntil(() => webSockets.getAwareValue);
-    Debug.Log("AWARE VALEU" + webSockets.awareValue);
+    Debug.Log("AWARE VALUE " + webSockets.awareValue);
     if(webSockets.awareValue == 1)
     {
       therapistReady = true;
