@@ -15843,9 +15843,8 @@ MonoBehaviour:
   stop: 0
   restoreDone: 0
   jsonDataRestore:
-    gameexid: 0
-    levels: []
-    levelid: 0
+    msg: 
+    value: 
   restorelevelsList: []
   restoreGameExecutionID: -1
 --- !u!4 &1710161259
@@ -18084,6 +18083,16 @@ MonoBehaviour:
   levelsJson: 
   levels: []
   adjustIncrementAmountDone: 0
+  finalRewardBoard: {fileID: 0}
+  finalReward0: {fileID: 0}
+  finalReward0S: {fileID: 0}
+  finalReward1: {fileID: 0}
+  finalReward1E: {fileID: 0}
+  finalReward2: {fileID: 0}
+  finalReward2E: {fileID: 0}
+  finalReward3: {fileID: 0}
+  finalReward3E: {fileID: 0}
+  continueGame: 0
 --- !u!82 &1943259856
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19893,7 +19902,7 @@ GameObject:
   - component: {fileID: 2101415443}
   - component: {fileID: 2101415444}
   - component: {fileID: 2101415446}
-  - component: {fileID: 2101415445}
+  - component: {fileID: 2101415447}
   m_Layer: 0
   m_Name: fofoObj2
   m_TagString: Untagged
@@ -19968,20 +19977,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2101415445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101415442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d49b2e7c5a364fe2835ce2c0cb43584, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chameleonScript: {fileID: 1196066958}
-  animator: {fileID: 2101415446}
 --- !u!95 &2101415446
 Animator:
   serializedVersion: 4
@@ -20002,6 +19997,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2101415447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101415442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7f0e410ae594d82a34a42274131fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chameleonScript: {fileID: 1196066958}
+  animator: {fileID: 2101415446}
 --- !u!1 &2105564057
 GameObject:
   m_ObjectHideFlags: 0

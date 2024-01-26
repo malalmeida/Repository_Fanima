@@ -74,63 +74,64 @@ public class FishScript : MonoBehaviour
                 {
                     if(hit.collider.CompareTag("Food1"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
+
                     }
                     else if(hit.collider.CompareTag("Food2"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food3"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food4"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }               
                     else if(hit.collider.CompareTag("Food5"))
                     {
+                       MoveFish();
                         barImage.fillAmount += incrementAmount;
-                        MoveFish();
                     } 
                     else if(hit.collider.CompareTag("Food6"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food7"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     } 
                     else if(hit.collider.CompareTag("Food8"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }               
                     else if(hit.collider.CompareTag("Food9"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food10"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food11"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food12"))
                     {
-                        barImage.fillAmount += incrementAmount;
                         MoveFish();
+                        barImage.fillAmount += incrementAmount;
                     }    
                 }
             }

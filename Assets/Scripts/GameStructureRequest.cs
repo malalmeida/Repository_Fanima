@@ -85,20 +85,20 @@ public class GameStructureRequest : MonoBehaviour
             
             if(SceneManager.GetActiveScene().name == "Geral")
             {
-                 if(gameController.webSockets.restoreDone)
-                {
+                //yield return new WaitUntil(() => gameController.webSockets.restoreDone);
+                //if(gameController.webSockets.restoreGameExecutionID > 0)
+                //{
                     //added for restore
-                    PlayerPrefs.SetInt("GAMEEXECUTIONID", gameController.webSockets.restoreGameExecutionID);
-                    gameController.gameExecutionDone = true;
+                    //PlayerPrefs.SetInt("GAMEEXECUTIONID", gameController.webSockets.restoreGameExecutionID);
+                    //gameController.continueGame = true;
+                    //gameController.gameExecutionDone = true;
 
-                }
-                else
-                {
+                //}
+                //else if(gameController.webSockets.restoreGameExecutionID == 0)
+                //{
                     PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
                     gameController.gameExecutionDone = true;
-                }
-                
-
+                //}
             }
         }
     } 

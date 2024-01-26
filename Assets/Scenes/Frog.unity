@@ -15276,7 +15276,7 @@ MonoBehaviour:
   closeBox: 0
   rock: -1
   barImage: {fileID: 1121470346}
-  incrementAmount: 0.07
+  incrementAmount: 0.066
   rewardBoard: {fileID: 250182735}
   rendRewardBoard: {fileID: 0}
   showReward: 0

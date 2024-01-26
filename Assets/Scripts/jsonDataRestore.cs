@@ -4,7 +4,9 @@ using System.Collections.Generic;
 [Serializable]
 public class jsonDataRestore
 {
-    public int gameexid;
-    public List<string> levels;
-    public int levelid;
+    //public int gameexecutionid;
+    //public List<string> levels;
+    //public int levelid;
+    public string msg;
+    public string value;
 }

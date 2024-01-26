@@ -52,7 +52,7 @@ public class WebSockets : MonoBehaviour{
     public jsonDataRestore jsonDataRestore;
     public List<string> restorelevelsList; 
     public int restoreGameExecutionID = -1;
-
+    public bool continueGame = false;
 
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -113,6 +113,28 @@ public class WebSockets : MonoBehaviour{
                 }
                 
             }
+            else if(msg.Contains("restore"))
+            {
+                Debug.Log("RESTORE " + msg);
+                jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
+                Debug.Log("JSONRESTORE VALUE: " + jsonDataRestore.value);
+                if(jsonDataRestore.value.Contains("gameexecutionid"))
+                {
+                    continueGame = true;
+                    //List<string> valueList = jsonDataRestore.value.Split(":");
+                    //restoreGameExecutionID = int.Parse(valueList[1]);
+                    //levelsList = valueList[3];
+                }
+                else
+                {
+                    restoreGameExecutionID = int.Parse(jsonDataRestore.value);
+                }
+                
+
+                //levelsList = jsonDataRestore.value;
+                //restoreGameExecutionID = jsonDataRestore.gameexecutionid;
+                restoreDone = true;
+            }
             else if(msg.Contains("levels"))
             {
                 Debug.Log("LEVELS " + msg);
@@ -131,7 +153,6 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("AWARE " + msg);
                 jsonDataAware = JsonUtility.FromJson<jsonDataAware>(msg);
-                //awareValue = restoreGameExecutionID;
                 awareValue = int.Parse(jsonDataAware.value);
                 getAwareValue = true;
             }
@@ -139,15 +160,6 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("STOP " + msg);
                 stop = true;
-            }
-            else if(msg.Contains("restore"))
-            {
-                Debug.Log("RESTORE " + msg);
-                jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
-                levelsList = jsonDataRestore.levels;
-                //restorelevelsList = jsonDataRestore.levels;
-                restoreGameExecutionID = jsonDataRestore.gameexid;
-                restoreDone = true;
             }
             else
             {

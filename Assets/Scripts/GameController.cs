@@ -97,6 +97,17 @@ public class GameController : MonoBehaviour
   public List<string> levels; 
 
   public bool adjustIncrementAmountDone = false;
+  
+  public GameObject finalRewardBoard;
+  public GameObject finalReward0;
+  public GameObject finalReward0S;
+  public GameObject finalReward1;
+  public GameObject finalReward1E;
+  public GameObject finalReward2;
+  public GameObject finalReward2E;
+  public GameObject finalReward3;
+  public GameObject finalReward3E;
+
 
   // Start is called before the first frame update
   void Start()
@@ -109,6 +120,16 @@ public class GameController : MonoBehaviour
     if(SceneManager.GetActiveScene().name == "Travel")
     {
       finalMenu.SetActive(false);
+      
+      finalRewardBoard.SetActive(false);
+      finalReward0.SetActive(false);
+      finalReward0S.SetActive(false);
+      finalReward1.SetActive(false);
+      finalReward1E.SetActive(false);
+      finalReward2.SetActive(false);
+      finalReward2E.SetActive(false);
+      finalReward3.SetActive(false);
+      finalReward3E.SetActive(false);
     }
     
     aud = GetComponent<AudioSource>();
@@ -439,7 +460,6 @@ public class GameController : MonoBehaviour
           yield return new WaitUntil(() => startMicro);
           startMicro = false;
           RecordSound(timer);
-          
           yield return StartCoroutine(WaitForValidation());
         }
       }   
@@ -447,6 +467,9 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
     ShowRewardBonusLevels();
     yield return StartCoroutine(ChapFinalVoices());
+
+    Debug.Log("ACABOU O SEQUENCIA"); 
+    SceneManager.LoadScene("Travel");
   }
 
   public void FindWordNameByWordId(int wordID)
@@ -475,22 +498,32 @@ public class GameController : MonoBehaviour
       
       if(addThree)
       {
-        monkeyScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5 + (float)3) ;
+        Debug.Log("PHONEMES COUNT: " + webRequests.chapterErrorList.Count);
+        float minusPhonemeNh = (float)webRequests.chapterErrorList.Count - (float)1;
+        Debug.Log("NO NH COUNT: " + minusPhonemeNh);
+        monkeyScript.incrementAmount = (float)1 / (minusPhonemeNh * (float)5 + (float)3);
+        Debug.Log("BAR INCREMENT COM NH: " + monkeyScript.incrementAmount);
+
       }
       else
       {
-        monkeyScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5) ;
+        monkeyScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
+        Debug.Log("BAR INCREMENT: " + monkeyScript.incrementAmount);
+
       }
     }
 
     else if((SceneManager.GetActiveScene().name == "Chameleon"))
     {
-      chameleonScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5) ;
+      chameleonScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
+      Debug.Log("BAR INCREMENT: " + chameleonScript.incrementAmount);
+
     }
 
     else if((SceneManager.GetActiveScene().name == "Octopus"))
     {
-      octopusScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5) ;
+      octopusScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
+      Debug.Log("BAR INCREMENT: " + octopusScript.incrementAmount);
     }
     adjustIncrementAmountDone = true;
   }
@@ -581,30 +614,37 @@ public class GameController : MonoBehaviour
     finalChapVoice.Play();
     if(SceneManager.GetActiveScene().name == "Geral")
     {
-     yield return new WaitForSeconds(4.0f);
+      PlayerPrefs.SetInt("Chap0S", 1);
+      yield return new WaitForSeconds(4.0f);
     }
     else if(SceneManager.GetActiveScene().name == "Frog")
     {
+      PlayerPrefs.SetInt("Chap1", 1);
      yield return new WaitForSeconds(4.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Monkey")
     {
+      PlayerPrefs.SetInt("Chap1E", 1);
       yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Owl")
     {
+      PlayerPrefs.SetInt("Chap2", 1);
       yield return new WaitForSeconds(5.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Chameleon")
     {
+      PlayerPrefs.SetInt("Chap2E", 1);
       yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Fish")
     {
+      PlayerPrefs.SetInt("Chap3", 1);
       yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Octopus")
     {
+      PlayerPrefs.SetInt("Chap3E", 1);
       yield return new WaitForSeconds(5.5f);
     }
     rewardVoice.Play();
@@ -637,6 +677,7 @@ public class GameController : MonoBehaviour
         //Não jogar frases 
         //yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
         geralScript.showWordsReward = true;
+        PlayerPrefs.SetInt("Chap0", 1);
         yield return StartCoroutine(PlayAudioClip("finalWords"));
         SceneManager.LoadScene("Travel");
       } 
@@ -661,8 +702,8 @@ public class GameController : MonoBehaviour
     if(PlayerPrefs.GetInt("ChapterPlayed") == 0)
     {
       PlayerPrefs.SetInt("ChapterPlayed", 1);
-      //travelTrip1.Play();
-      //yield return new WaitForSeconds(4.0f);
+      travelTrip1.Play();
+      yield return new WaitForSeconds(4.0f);
       SceneManager.LoadScene(PlayerPrefs.GetString("ChapterOne"));
     }
     else if(PlayerPrefs.GetInt("ChapterPlayed") == 1)
@@ -672,13 +713,14 @@ public class GameController : MonoBehaviour
       {
         confetti.Play();
         travelFinal.Play();
+        ShowFinalRewards();
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
       }
       else
       {
-        //travelTrip2.Play();
-        //yield return new WaitForSeconds(5.0f);
+        travelTrip2.Play();
+        yield return new WaitForSeconds(5.0f);
         SceneManager.LoadScene(PlayerPrefs.GetString("ChapterTwo")); 
       }
     }
@@ -688,14 +730,15 @@ public class GameController : MonoBehaviour
       {
         confetti.Play();
         travelFinal.Play();
+        ShowFinalRewards();
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
       }
       else
       {
         PlayerPrefs.SetInt("ChapterPlayed", 3);
-        //travelTrip3.Play();
-        //yield return new WaitForSeconds(3.0f);
+        travelTrip3.Play();
+        yield return new WaitForSeconds(3.0f);
         SceneManager.LoadScene(PlayerPrefs.GetString("ChapterThree")); 
       }
     }
@@ -705,9 +748,80 @@ public class GameController : MonoBehaviour
       {
         confetti.Play();
         travelFinal.Play();
+        ShowFinalRewards();
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
       }
+    }
+  }
+
+  public void ShowFinalRewards()
+  {
+    finalRewardBoard.SetActive(true);
+    if(PlayerPrefs.GetInt("Chap0") == 1)
+    {
+      finalReward0.SetActive(true);
+    }
+    if(PlayerPrefs.GetInt("Chap0S") == 1)
+    {
+      finalReward0S.SetActive(true);
+    }
+    if(PlayerPrefs.GetInt("Chap1") == 1)
+    {
+      finalReward1.SetActive(true);
+    }
+    if(PlayerPrefs.GetInt("Chap1E") == 1)
+    {
+      finalReward1E.SetActive(true);
+    }
+    if(PlayerPrefs.GetInt("Chap2") == 1)
+    {
+      finalReward2.SetActive(true);
+    }
+    if(PlayerPrefs.GetInt("Chap2E") == 1)
+    {
+      finalReward2E.SetActive(true);
+    }
+    if(PlayerPrefs.GetInt("Chap3") == 1)
+    {
+      finalReward3.SetActive(true);
+    }
+    if(PlayerPrefs.GetInt("Chap3E") == 1)
+    {
+      finalReward3E.SetActive(true);
+    }
+
+    if (PlayerPrefs.HasKey("Chap0"))
+    {
+      PlayerPrefs.DeleteKey("Chap0");
+    }
+    if (PlayerPrefs.HasKey("Chap0S"))
+    {
+      PlayerPrefs.DeleteKey("Chap0S");
+    }
+    if (PlayerPrefs.HasKey("Chap1"))
+    {
+      PlayerPrefs.DeleteKey("Chap1");
+    }
+    if (PlayerPrefs.HasKey("Chap1E"))
+    {
+      PlayerPrefs.DeleteKey("Chap1E");
+    }
+    if (PlayerPrefs.HasKey("Chap2"))
+    {
+      PlayerPrefs.DeleteKey("Chap2");
+    }
+    if (PlayerPrefs.HasKey("Chap2E"))
+    {
+      PlayerPrefs.DeleteKey("Chap2E");
+    }
+    if (PlayerPrefs.HasKey("Chap3"))
+    {
+      PlayerPrefs.DeleteKey("Chap3");
+    }
+    if (PlayerPrefs.HasKey("Chap3E"))
+    {
+      PlayerPrefs.DeleteKey("Chap3E");
     }
   }
 
@@ -744,17 +858,18 @@ public class GameController : MonoBehaviour
       PlayerPrefs.DeleteKey("ChapterThree");
     }
    //pede para escolher os niveis caso não haja restore ou a lista de niveis estiver vazia
-   if((webSockets.restoreDone == false) || (webSockets.levelsList.Count < 1))
-   {
+   //Debug.Log("LVLS LIST COUNT: " + webSockets.levelsList.Count);
+   //if(webSockets.levelsList.Count < 1)
+   //{
       yield return new WaitUntil(() => webSockets.socketIsReady);
       webSockets.LevelsToPlayRequest(therapistID);
       yield return new WaitUntil(() => webSockets.getLevelsDone);
-   }
+   //}
 
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
     for (int i = 0; i < webSockets.levelsList.Count; i++)
     {
-        levels.Add(webSockets.levelsList[i]);
+      levels.Add(webSockets.levelsList[i]);
     }
 
     levelsJson = JsonUtility.ToJson(levels);
@@ -937,19 +1052,12 @@ public class GameController : MonoBehaviour
           yield return StartCoroutine(PlayAudioClip("validationMusic"));
           if(geralScript.wordsDone)
           {
-            //Debug.Log("VALIDACAO DA FRASES");
-            //geralScript.showParrot = true;
-            //geralScript.parrotNumber ++;
-            //Debug.Log("PARROT NUMBER: " + geralScript.parrotNumber);
-            //yield return new WaitUntil(() => geralScript.parrotClick);
-            //geralScript.parrotClick = false;
             geralScript.barImage.fillAmount += geralScript.incrementAmountSentences;
             geralScript.doAnimation = true;
             geralScript.animationDone = false;
           }
           else
           {
-            //Debug.Log("VALIDACAO DA PALAVRA");
             geralScript.doAnimation = true;
             geralScript.animationDone = false;
           }
@@ -961,16 +1069,12 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Frog")
       {
         frogScript.validationDone = true;
-        //frogScript.bugNumber ++;
         yield return StartCoroutine(PlayAudioClip("validationMusic"));
-        //frogScript.canShowBug = true;
         frogScript.canShake = true;
         yield return StartCoroutine(PlayAudioClip("touchCoin"));
         yield return new WaitUntil(() => frogScript.isCaught);
         frogScript.isCaught = false;
         webSockets.validationValue = -3;
-        
-
       }
       else if (SceneManager.GetActiveScene().name == "Owl")
       {
@@ -978,7 +1082,6 @@ public class GameController : MonoBehaviour
         owlScript.pop = false;
         owlScript.nextAction = true;
         webSockets.validationValue = -3;
-
       }
       else if (SceneManager.GetActiveScene().name == "Octopus")
       {
@@ -1046,13 +1149,21 @@ public class GameController : MonoBehaviour
   {
     if (SceneManager.GetActiveScene().name == "Geral")
     {
-      Debug.Log("Waiting for execution ID...");
-      yield return new WaitUntil(() => gameExecutionDone);
-      Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
-      //em caso de restore
-      if(webSockets.restoreDone)
+      yield return new WaitUntil(() => webSockets.restoreDone);
+      Debug.Log("RESPOSTA RESTORE: " + webSockets.restoreGameExecutionID);
+
+      if(websockets.continueGame)
       {
+        //em caso de restore
+        Debug.Log("JA HA GAMEEXID!");
         SceneManager.LoadScene("Travel");
+      }
+      else(webSockets.restoreGameExecutionID == 0)
+      {
+        //Debug.Log("NAO HA GAMEEXID!");
+        Debug.Log("Waiting for execution ID...");
+        yield return new WaitUntil(() => gameExecutionDone);
+        Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
       }
     }
   }

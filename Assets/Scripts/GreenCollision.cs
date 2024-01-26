@@ -17,6 +17,7 @@ public class GreenCollision : MonoBehaviour
         if (collision.gameObject.tag == "Green")
         {
             octopusScript.isMatch = true;
+            octopusScript.barImage.fillAmount += octopusScript.incrementAmount;
             octopusScript.currentObj.SetActive(false);
         }
     }

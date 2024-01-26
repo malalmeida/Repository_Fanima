@@ -17,6 +17,7 @@ public class YellowCollision : MonoBehaviour
         if (collision.gameObject.tag == "Yellow")
         {
             octopusScript.isMatch = true;
+            octopusScript.barImage.fillAmount += octopusScript.incrementAmount;
             octopusScript.currentObj.SetActive(false);
         }
     }

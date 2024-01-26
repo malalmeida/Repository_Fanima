@@ -17,6 +17,7 @@ public class RedCollision : MonoBehaviour
         if (collision.gameObject.tag == "Red")
         {
             octopusScript.isMatch = true;
+            octopusScript.barImage.fillAmount += octopusScript.incrementAmount;
             octopusScript.currentObj.SetActive(false);
         }
     }
