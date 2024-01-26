@@ -21,17 +21,6 @@ public class MenuController : MonoBehaviour
         StartCoroutine(gameStructureRequest.GetStructureRequest(PLAYGAMEID));
         StartCoroutine(gameStructureRequest.GetRepository());
         PlayerPrefs.SetInt("GAMESTARTED", 0);
-
-        //verificar se uma sessão foi interrompeida 
-        /*if(jogo interrompido a meio)
-        {
-            continueButtonUI.SetActive(true);
-        }
-        else
-        {
-            continueButtonUI.SetActive(false);
-        }
-        */
     }
 
     void Start()
@@ -43,25 +32,13 @@ public class MenuController : MonoBehaviour
     {   
         if(gameStructureRequest.gameController.therapistReady)
         { 
-            //if(gameStructureRequest.gameController.webSockets.restore)
-            //{
-                //PlayerPrefs.SetInt("GAMEEXECUTIONID", gameStructureRequest.gameController.webSockets.restoreGameExecutionID));
-               // startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-                //Time.timeScale = 1f;
-                //startMenuUI.SetActive(false);
-                //PlayerPrefs.SetInt("GAMESTARTED", 1);
-                //song.Stop();
-            //}
-            //else
-            //{
-                gameStructureRequest.gameController.requestTherapistStatus = false;
-                StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
-                startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-                Time.timeScale = 1f;
-                startMenuUI.SetActive(false);
-                PlayerPrefs.SetInt("GAMESTARTED", 1);
-                song.Stop();
-            //}
+            gameStructureRequest.gameController.requestTherapistStatus = false;
+            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+            startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+            Time.timeScale = 1f;
+            startMenuUI.SetActive(false);
+            PlayerPrefs.SetInt("GAMESTARTED", 1);
+            song.Stop();
         }
         else
         {

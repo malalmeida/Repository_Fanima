@@ -108,6 +108,7 @@ public class GameController : MonoBehaviour
   public GameObject finalReward3;
   public GameObject finalReward3E;
 
+  public List<string> lvlsRestore; 
 
   // Start is called before the first frame update
   void Start()
@@ -148,7 +149,6 @@ public class GameController : MonoBehaviour
 
     if(SceneManager.GetActiveScene().name == "Geral")
     {
-      //StartCoroutine(CheckTherapistStatus());
       activeChapter = "Geral"; 
       PlayerPrefs.SetString("LEVELSELECTION", "NOTDONE");  
       PlayerPrefs.SetInt("ChapterPlayed", 0);  
@@ -158,7 +158,7 @@ public class GameController : MonoBehaviour
     else if(SceneManager.GetActiveScene().name == "Travel")
     {      
       if(PlayerPrefs.GetString("LEVELSELECTION").Equals("NOTDONE"))
-      {
+      { 
         StartCoroutine(PrepareLevels());
       }
       StartCoroutine(PrepareNextLevel());
@@ -247,6 +247,12 @@ public class GameController : MonoBehaviour
   {
     if((SceneManager.GetActiveScene().name == "Geral"))
     {
+      //FAZER PEDIDO DE RESTORE 1 CASO JA SE TENHA FEITO
+      if(PlayerPrefs.GetInt("RESTORE") != 1)
+      {
+        yield return new WaitUntil(() => webSockets.socketIsReady);
+        webSockets.RestoreRequest(therapistID);
+      }
       yield return StartCoroutine(PreparedGameExecutionID());
       yield return StartCoroutine(GeralIntro());
       geralScript.doAnimation = true;
@@ -282,8 +288,6 @@ public class GameController : MonoBehaviour
         else
         {
           //FRASES
-          //geralScript.parrotNumber ++;
-          //Debug.Log("Esperar pela validação do terapeuta");
           yield return new WaitUntil(() => geralScript.animationDone);
           yield return StartCoroutine(PlayGuideVoice(currentWord));
           geralScript.startValidation = true;
@@ -857,19 +861,23 @@ public class GameController : MonoBehaviour
     {
       PlayerPrefs.DeleteKey("ChapterThree");
     }
-   //pede para escolher os niveis caso não haja restore ou a lista de niveis estiver vazia
-   //Debug.Log("LVLS LIST COUNT: " + webSockets.levelsList.Count);
-   //if(webSockets.levelsList.Count < 1)
-   //{
-      yield return new WaitUntil(() => webSockets.socketIsReady);
-      webSockets.LevelsToPlayRequest(therapistID);
-      yield return new WaitUntil(() => webSockets.getLevelsDone);
-   //}
+   //pede para escolher os niveis caso a lista esteja vazia
+   if(PlayerPrefs.GetInt("CONTINUEGAME") == 1)
+   {
+     if(PlayerPrefs.GetInt("LASTLVLPLAYED") == 0)
+      {
+        yield return new WaitUntil(() => webSockets.socketIsReady);
+        webSockets.LevelsToPlayRequest(therapistID);
+        yield return new WaitUntil(() => webSockets.getLevelsDone);
+      }
+   }
+    //webSockets.levelsList = lvlsRestore;
 
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
     for (int i = 0; i < webSockets.levelsList.Count; i++)
     {
       levels.Add(webSockets.levelsList[i]);
+      Debug.Log("LVL: " + webSockets.levelsList[i]);
     }
 
     levelsJson = JsonUtility.ToJson(levels);
@@ -1152,15 +1160,21 @@ public class GameController : MonoBehaviour
       yield return new WaitUntil(() => webSockets.restoreDone);
       Debug.Log("RESPOSTA RESTORE: " + webSockets.restoreGameExecutionID);
 
-      if(websockets.continueGame)
+      if(webSockets.continueGame)
       {
         //em caso de restore
-        Debug.Log("JA HA GAMEEXID!");
+        PlayerPrefs.SetInt("RESTORE", 1);
+        Debug.Log("CONTINUAR JOGO!");
+        PlayerPrefs.SetInt("CONTINUEGAME", 1);
+        PlayerPrefs.SetInt("LASTLVLPLAYED", webSockets.restoreLevelId);
+        StartCoroutine(PrepareLevels());
         SceneManager.LoadScene("Travel");
       }
-      else(webSockets.restoreGameExecutionID == 0)
+      else //if(webSockets.restoreGameExecutionID == 0)
       {
-        //Debug.Log("NAO HA GAMEEXID!");
+        PlayerPrefs.SetInt("RESTORE", 1);
+        Debug.Log("NOVO JOGO!");
+        PlayerPrefs.SetInt("RESTORE", 0);
         Debug.Log("Waiting for execution ID...");
         yield return new WaitUntil(() => gameExecutionDone);
         Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
@@ -1288,6 +1302,11 @@ public class GameController : MonoBehaviour
 
   public void OnApplicationQuit()
   {
+    if (PlayerPrefs.HasKey("RESTORE"))
+    {
+      PlayerPrefs.DeleteKey("RESTORE");
+    }
+
     Debug.Log("Stop WS client and logut");
     
     //Enable screen dimming

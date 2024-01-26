@@ -50,7 +50,7 @@ public class WebSockets : MonoBehaviour{
     public bool stop = false;
     public bool restoreDone = false;
     public jsonDataRestore jsonDataRestore;
-    public List<string> restorelevelsList; 
+    public int restoreLevelId = -1;
     public int restoreGameExecutionID = -1;
     public bool continueGame = false;
 
@@ -111,28 +111,21 @@ public class WebSockets : MonoBehaviour{
                     statusValue = int.Parse(jsonDataValidation.value);
                     validationDone = true;
                 }
-                
             }
             else if(msg.Contains("restore"))
             {
                 Debug.Log("RESTORE " + msg);
                 jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
-                Debug.Log("JSONRESTORE VALUE: " + jsonDataRestore.value);
-                if(jsonDataRestore.value.Contains("gameexecutionid"))
+                Debug.Log("RESTORE VALUE: " + jsonDataRestore.value);
+
+                if(jsonDataRestore.value.gameexecutionid > 0)
                 {
                     continueGame = true;
-                    //List<string> valueList = jsonDataRestore.value.Split(":");
-                    //restoreGameExecutionID = int.Parse(valueList[1]);
-                    //levelsList = valueList[3];
+                    restoreGameExecutionID = jsonDataRestore.value.gameexecutionid;
+                    levelsList = jsonDataRestore.value.levels;
+                    restoreLevelId = jsonDataRestore.value.levelid;
+                    Debug.Log("levelsCount" + levelsList.Count);
                 }
-                else
-                {
-                    restoreGameExecutionID = int.Parse(jsonDataRestore.value);
-                }
-                
-
-                //levelsList = jsonDataRestore.value;
-                //restoreGameExecutionID = jsonDataRestore.gameexecutionid;
                 restoreDone = true;
             }
             else if(msg.Contains("levels"))
@@ -184,7 +177,7 @@ public class WebSockets : MonoBehaviour{
     {
         try
         {
-            Debug.Log("PepareMessage");
+            Debug.Log("PepareMessage: MGS: " + msg + " VALUE: " + value);
             ws.Send("{\"id\":" + patientID + ",\"msg\":\"" + msg + "\",\"value\":" + value + "}");
         }
         catch (Exception ex) 
@@ -194,6 +187,14 @@ public class WebSockets : MonoBehaviour{
             Debug.Log("MSG " + msg);
             Debug.Log("VALUE " + value);
         }
+    }
+
+    public void RestoreRequest(int therapistID)
+    {
+        string request = "{\"therapist\":\"" + therapistID + "\",\"patient\":\"" + patientID + "\",\"game\":\"" + gameID + "\",\"restore\":\"" + 1 + "\"}";
+        //Debug.Log("TID: " + therapistID + " PID: " + patientID + " GID: " + gameID);
+        PrepareMessage("request", request);
+
     }
 
     public void LevelsToPlayRequest(int therapistID)
