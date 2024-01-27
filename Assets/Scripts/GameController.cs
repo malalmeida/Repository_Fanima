@@ -247,11 +247,13 @@ public class GameController : MonoBehaviour
   {
     if((SceneManager.GetActiveScene().name == "Geral"))
     {
-      //FAZER PEDIDO DE RESTORE 1 CASO JA SE TENHA FEITO
+      //FAZER PEDIDO DE RESTORE (RESTORE == 1 CASO JA SE TENHA FEITO)
       if(PlayerPrefs.GetInt("RESTORE") != 1)
       {
         yield return new WaitUntil(() => webSockets.socketIsReady);
         webSockets.RestoreRequest(therapistID);
+        yield return new WaitUntil(() => webSockets.restoreDone);
+
       }
       yield return StartCoroutine(PreparedGameExecutionID());
       yield return StartCoroutine(GeralIntro());
@@ -1168,6 +1170,8 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("CONTINUEGAME", 1);
         PlayerPrefs.SetInt("LASTLVLPLAYED", webSockets.restoreLevelId);
         StartCoroutine(PrepareLevels());
+        int levelsToContinue = webSockets.restoreLevelId - 1;
+        PlayerPrefs.SetInt("ChapterPlayed", levelsToContinue);
         SceneManager.LoadScene("Travel");
       }
       else //if(webSockets.restoreGameExecutionID == 0)
@@ -1302,11 +1306,6 @@ public class GameController : MonoBehaviour
 
   public void OnApplicationQuit()
   {
-    if (PlayerPrefs.HasKey("RESTORE"))
-    {
-      PlayerPrefs.DeleteKey("RESTORE");
-    }
-
     Debug.Log("Stop WS client and logut");
     
     //Enable screen dimming
@@ -1315,6 +1314,12 @@ public class GameController : MonoBehaviour
     string payload = "{\"therapist\": " + therapistID + "}";
     webSockets.PrepareMessage("status", payload);
     webSockets.StopClient(payload);
+
+    if (PlayerPrefs.HasKey("RESTORE"))
+    {
+      PlayerPrefs.DeleteKey("RESTORE");
+    }
+    
     Application.Quit();       
   }
   
