@@ -250,6 +250,7 @@ public class GameController : MonoBehaviour
       //FAZER PEDIDO DE RESTORE (RESTORE == 1 CASO JA SE TENHA FEITO)
       if(PlayerPrefs.GetInt("RESTORE") != 1)
       {
+        Debug.Log("1 não envia pedido / 0 envia: " + PlayerPrefs.GetInt("RESTORE"));
         yield return new WaitUntil(() => webSockets.socketIsReady);
         webSockets.RestoreRequest(therapistID);
         yield return new WaitUntil(() => webSockets.restoreDone);
@@ -273,7 +274,7 @@ public class GameController : MonoBehaviour
       PlayerPrefs.SetInt("SEQUENCEID", sequenceToPlayList[i].sequenceid);
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       FindWordNameByWordId(currentWordID);
-      string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
+      string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
       yield return StartCoroutine(PlaySentences(currentWord));
       Debug.Log("DIZ -> " + currentWord);
@@ -436,7 +437,7 @@ public class GameController : MonoBehaviour
 
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         FindWordNameByWordId(currentWordID);
-        string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
+        string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
         webSockets.PrepareMessage("game", payload); 
      
         //Repeat the same word 3 times
@@ -1169,19 +1170,21 @@ public class GameController : MonoBehaviour
         Debug.Log("CONTINUAR JOGO!");
         PlayerPrefs.SetInt("CONTINUEGAME", 1);
         PlayerPrefs.SetInt("LASTLVLPLAYED", webSockets.restoreLevelId);
+        gameExecutionID = webSockets.restoreGameExecutionID;
         StartCoroutine(PrepareLevels());
         int levelsToContinue = webSockets.restoreLevelId - 1;
         PlayerPrefs.SetInt("ChapterPlayed", levelsToContinue);
         SceneManager.LoadScene("Travel");
       }
-      else //if(webSockets.restoreGameExecutionID == 0)
+      else
       {
         PlayerPrefs.SetInt("RESTORE", 1);
         Debug.Log("NOVO JOGO!");
         PlayerPrefs.SetInt("RESTORE", 0);
-        Debug.Log("Waiting for execution ID...");
+        //Debug.Log("Waiting for execution ID...");
         yield return new WaitUntil(() => gameExecutionDone);
-        Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
+        //gameExecutionID = int.Parse(PlayerPrefs.GetString("GAMEEXECUTIONID"));
+        //Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
       }
     }
   }
@@ -1326,12 +1329,8 @@ public class GameController : MonoBehaviour
   IEnumerator StopSession()
   {
     Debug.Log("ENTROU NA FUNCAO STOP SESSION");
-    //yield return StartCoroutine(PlayAudioClip("stop"));
     finalChapVoice.Play();
     yield return new WaitForSeconds(6.0f);
-    //int actualSequenceID = PlayerPrefs.GetInt("SEQUENCEID");
-    //Debug.Log("GAMEEXECUTIONID: " + gameExecutionID.ToString() + "LEVELS: " + levelsJson +  "LEVELID: " + currentLevelID.ToString() + "ACTIONID: " + actualSequenceID.ToString() + "START TIME: " + startTime + "END TIME: " + endTime); 
-    //webRequests.PostStopGameExecutionRequest(gameExecutionID.ToString(), levelsJson, currentLevelID.ToString(), actualSequenceID.ToString(), currentActionID.ToString(), startTime, endTime);
     OnApplicationQuit();
   }
     

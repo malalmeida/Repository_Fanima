@@ -86,6 +86,7 @@ public class GameStructureRequest : MonoBehaviour
             if(SceneManager.GetActiveScene().name == "Geral")
             {
                 PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
+                gameController.gameExecutionID = int.Parse(www.downloadHandler.text);
                 gameController.gameExecutionDone = true;
             }
         }
