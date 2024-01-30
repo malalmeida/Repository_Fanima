@@ -109,6 +109,7 @@ public class GameController : MonoBehaviour
   public GameObject finalReward3E;
 
   public List<string> lvlsRestore; 
+  public bool responseToRestoreDone = false;
 
   // Start is called before the first frame update
   void Start()
@@ -251,10 +252,12 @@ public class GameController : MonoBehaviour
       if(PlayerPrefs.GetInt("RESTORE") != 1)
       {
         Debug.Log("1 não envia pedido / 0 envia: " + PlayerPrefs.GetInt("RESTORE"));
-        yield return new WaitUntil(() => webSockets.socketIsReady);
+        yield return new WaitUntil(() => therapistReady);
+        
         webSockets.RestoreRequest(therapistID);
+        yield return new WaitUntil(() => webSockets.socketIsReady);
         yield return new WaitUntil(() => webSockets.restoreDone);
-
+        responseToRestoreDone = true;
       }
       yield return StartCoroutine(PreparedGameExecutionID());
       yield return StartCoroutine(GeralIntro());
@@ -1171,10 +1174,15 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("CONTINUEGAME", 1);
         PlayerPrefs.SetInt("LASTLVLPLAYED", webSockets.restoreLevelId);
         gameExecutionID = webSockets.restoreGameExecutionID;
-        StartCoroutine(PrepareLevels());
-        int levelsToContinue = webSockets.restoreLevelId - 1;
-        PlayerPrefs.SetInt("ChapterPlayed", levelsToContinue);
-        SceneManager.LoadScene("Travel");
+
+        if(webSockets.restoreLevelId != 0)
+        {
+          StartCoroutine(PrepareLevels());
+          //Debug.Log("levelsToContinue: " + webSockets.restoreLevelId);
+          int levelsToContinue = webSockets.restoreLevelId - 1;
+          PlayerPrefs.SetInt("ChapterPlayed", levelsToContinue);
+          SceneManager.LoadScene("Travel");
+        }     
       }
       else
       {

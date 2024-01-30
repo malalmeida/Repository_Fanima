@@ -32,13 +32,16 @@ public class MenuController : MonoBehaviour
     {   
         if(gameStructureRequest.gameController.therapistReady)
         { 
-            gameStructureRequest.gameController.requestTherapistStatus = false;
-            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
-            startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-            Time.timeScale = 1f;
-            startMenuUI.SetActive(false);
-            PlayerPrefs.SetInt("GAMESTARTED", 1);
-            song.Stop();
+            if(gameStructureRequest.gameController.responseToRestoreDone)
+            {
+                gameStructureRequest.gameController.requestTherapistStatus = false;
+                StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+                startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+                Time.timeScale = 1f;
+                startMenuUI.SetActive(false);
+                PlayerPrefs.SetInt("GAMESTARTED", 1);
+                song.Stop();
+            }
         }
         else
         {
