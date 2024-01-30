@@ -111,6 +111,8 @@ public class GameController : MonoBehaviour
   public List<string> lvlsRestore; 
   public bool responseToRestoreDone = false;
 
+  public bool requestGameExecutionID = false;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -1186,6 +1188,7 @@ public class GameController : MonoBehaviour
       }
       else
       {
+        requestGameExecutionID = true;
         PlayerPrefs.SetInt("RESTORE", 1);
         Debug.Log("NOVO JOGO!");
         PlayerPrefs.SetInt("RESTORE", 0);
