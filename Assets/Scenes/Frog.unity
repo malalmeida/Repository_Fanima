@@ -1895,7 +1895,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMenuUI: {fileID: 0}
-  continueButtonUI: {fileID: 0}
+  connectButton: {fileID: 0}
+  playButton: {fileID: 0}
   song: {fileID: 0}
   gameStructureRequest: {fileID: 1093413548}
 --- !u!114 &201612238
@@ -4076,6 +4077,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6807711a4d79ffc4cbb9bf874f18b833, type: 3}
   - {fileID: 8300000, guid: f93c87ecf158856489b54b56d02e2f8c, type: 3}
   - {fileID: 8300000, guid: 8f390ba2630010d49b62db7e9bee7359, type: 3}
+  - {fileID: 8300000, guid: 6e2770819457048599e2271bfb643086, type: 3}
   - {fileID: 8300000, guid: ab6242e5f5ad01643981a8e891928b52, type: 3}
   - {fileID: 8300000, guid: 6f421fd4c3ab6bf41b770a08585ee512, type: 3}
   - {fileID: 8300000, guid: 818df385557644441b26dd72b6e0f7c0, type: 3}
@@ -4100,6 +4102,18 @@ MonoBehaviour:
   levelsJson: 
   levels: []
   adjustIncrementAmountDone: 0
+  finalRewardBoard: {fileID: 0}
+  finalReward0: {fileID: 0}
+  finalReward0S: {fileID: 0}
+  finalReward1: {fileID: 0}
+  finalReward1E: {fileID: 0}
+  finalReward2: {fileID: 0}
+  finalReward2E: {fileID: 0}
+  finalReward3: {fileID: 0}
+  finalReward3E: {fileID: 0}
+  lvlsRestore: []
+  responseToRestoreDone: 0
+  requestGameExecutionID: 0
 --- !u!4 &406911282
 Transform:
   m_ObjectHideFlags: 0
@@ -11617,11 +11631,14 @@ MonoBehaviour:
   stop: 0
   restoreDone: 0
   jsonDataRestore:
-    gameexid: 0
-    levels: []
-    levelid: 0
-  restorelevelsList: []
+    msg: 
+    value:
+      gameexecutionid: 0
+      levels: []
+      levelid: 0
+  restoreLevelId: -1
   restoreGameExecutionID: -1
+  continueGame: 0
 --- !u!4 &1311669047
 Transform:
   m_ObjectHideFlags: 0

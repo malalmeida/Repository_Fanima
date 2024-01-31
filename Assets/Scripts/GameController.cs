@@ -279,6 +279,7 @@ public class GameController : MonoBehaviour
       PlayerPrefs.SetInt("SEQUENCEID", sequenceToPlayList[i].sequenceid);
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       FindWordNameByWordId(currentWordID);
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
       yield return StartCoroutine(PlaySentences(currentWord));
@@ -879,6 +880,13 @@ public class GameController : MonoBehaviour
         yield return new WaitUntil(() => webSockets.getLevelsDone);
       }
    }
+   else if (PlayerPrefs.GetInt("CONTINUEGAME") == 0)
+   {
+     Debug.Log("NOVO PEDIDO DE LVL");
+      yield return new WaitUntil(() => webSockets.socketIsReady);
+      webSockets.LevelsToPlayRequest(therapistID);
+      yield return new WaitUntil(() => webSockets.getLevelsDone); 
+   }
     //webSockets.levelsList = lvlsRestore;
 
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
@@ -1189,7 +1197,7 @@ public class GameController : MonoBehaviour
       else
       {
         requestGameExecutionID = true;
-        PlayerPrefs.SetInt("RESTORE", 1);
+        PlayerPrefs.SetInt("CONTINUEGAME", 0);
         Debug.Log("NOVO JOGO!");
         PlayerPrefs.SetInt("RESTORE", 0);
         //Debug.Log("Waiting for execution ID...");
