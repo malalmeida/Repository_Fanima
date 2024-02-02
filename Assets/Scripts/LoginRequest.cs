@@ -6,17 +6,21 @@ using UnityEngine;
 using System.Text;
 using System;
 using UnityEngine.Windows;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class LoginRequest : MonoBehaviour
 {
    readonly string baseURL = "http://193.137.46.11/api/";
    int therapistID;
    int patientID;
+   public TextMeshProUGUI msg_error;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        FindObjectOfType<TextMeshProUGUI>().enabled = false;
     }
 
     public IEnumerator PostLoginRequest(string user, string pass)
@@ -43,9 +47,13 @@ public class LoginRequest : MonoBehaviour
             if(playerInfo.content[0] == "wrong data")
             {
                 Debug.Log("Wrong login info!");
+                //msg_error.SetActive(true);
+                FindObjectOfType<TextMeshProUGUI>().enabled = true;
+
             }
             else
             {
+                FindObjectOfType<TextMeshProUGUI>().enabled = false;
                 PlayerPrefs.SetString("PLAYERID", playerInfo.content[0]);
                 PlayerPrefs.SetString("PLAYERNAME", playerInfo.content[1]);
                 PlayerPrefs.SetString("TOKEN", playerInfo.content[3]);
