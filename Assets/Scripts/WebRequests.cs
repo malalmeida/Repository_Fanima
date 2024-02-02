@@ -12,8 +12,8 @@ public class WebRequests : MonoBehaviour
 
     public List<errorClass> chapterErrorList;
     public bool chapterErrorListDone = false;
-
-    //public GameController gameScript;
+    public bool badgesListDone = false;
+    public List<badgesClass> badgesList;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +58,7 @@ public class WebRequests : MonoBehaviour
 
     }
 
-    public IEnumerator PostRepSample(string fileName, string actionID, string gameExeID, string wordID, string sampleID)
+    public IEnumerator PostRepSample(string fileName, string actionID, string gameExeID, string wordID, string sampleID, string repeatValue)
     {
         var url = baseURL + "gamesample";
         string time = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -70,7 +70,7 @@ public class WebRequests : MonoBehaviour
         string base64String = System.Convert.ToBase64String(audiobyte);
 
         List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
-        parameters.Add(new MultipartFormDataSection("data", "{\"id\":\""+ wordID +"\", \"time\":\""+ time +"\", \"base64\":\""+ base64String +"\"}"));
+        parameters.Add(new MultipartFormDataSection("data", "{\"id\":\""+ wordID +"\", \"time\":\""+ time +"\", \"base64\":\""+ base64String +"\", \"repeat\":\""+ repeatValue +"\"}"));
         parameters.Add(new MultipartFormDataSection("gameactionid", actionID));
         parameters.Add(new MultipartFormDataSection("gameexecutionid", gameExeID));
         parameters.Add(new MultipartFormDataSection("sampleid", sampleID));
@@ -200,13 +200,52 @@ public class WebRequests : MonoBehaviour
         }
         else {
             Debug.Log("ANSWER GAME EXECUTION: " + www.downloadHandler.text + " END");
-            
-            //if(SceneManager.GetActiveScene().name == "Geral")
-            //{
-                //PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
-                //gameController.gameExecutionDone = true;
-
-            //}
         }
     } 
+
+    public IEnumerator PostBadge(string patientID, string gameID, string gameExecutionID, string badgeID)
+    {
+        var url = baseURL + "userbadge";
+
+        List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
+        parameters.Add(new MultipartFormDataSection("userid", patientID));
+        parameters.Add(new MultipartFormDataSection("gameid", gameID));
+        parameters.Add(new MultipartFormDataSection("execid", gameExecutionID));
+        parameters.Add(new MultipartFormDataSection("badgeid", badgeID));        
+
+        UnityWebRequest www = UnityWebRequest.Post(url, parameters);
+
+        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        www.SetRequestHeader("Authorization", token);
+
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.Log("ERROR GAME EXECUTION:" + www.error + " END");
+        }
+        else {
+            Debug.Log("ANSWER GAME EXECUTION: " + www.downloadHandler.text + " END");
+        }
+    }
+
+    public IEnumerator GetSessionBagdes(string patientID, string gameID, string gameExecutionID)
+    {
+        var url = baseURL + "patient/" + patientID + "/game/" + gameID + "/exec/" + gameExecutionID + "/badge" ;
+        UnityWebRequest www = UnityWebRequest.Get(url);
+
+        yield return www.SendWebRequest();
+
+        if(www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) 
+        {
+            Debug.Log("ERROR GET BADGES: " + www.error + " END");
+        }
+        else 
+        {
+            Debug.Log("ANSWER GET BADGES: " + www.downloadHandler.text + " END");
+            jsonDataBadges jsonDataBadges = JsonUtility.FromJson<jsonDataBadges>(www.downloadHandler.text);
+            
+            badgesList = jsonDataBadges.content;
+            badgesListDone = true;
+        }
+    }
 }

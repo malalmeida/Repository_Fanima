@@ -60,7 +60,6 @@ public class MenuController : MonoBehaviour
         {
             while (!gameStructureRequest.gameController.therapistReady)
             {
-                Debug.Log("REQUEST!!");
                 gameStructureRequest.gameController.requestTherapistStatus = true;
                 yield return new WaitForSeconds(2.0f);
             }

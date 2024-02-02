@@ -75,63 +75,63 @@ public class FishScript : MonoBehaviour
                     if(hit.collider.CompareTag("Food1"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
 
                     }
                     else if(hit.collider.CompareTag("Food2"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food3"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food4"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }               
                     else if(hit.collider.CompareTag("Food5"))
                     {
                        MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     } 
                     else if(hit.collider.CompareTag("Food6"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food7"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     } 
                     else if(hit.collider.CompareTag("Food8"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }               
                     else if(hit.collider.CompareTag("Food9"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food10"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food11"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }
                     else if(hit.collider.CompareTag("Food12"))
                     {
                         MoveFish();
-                        barImage.fillAmount += incrementAmount;
+                        //barImage.fillAmount += incrementAmount;
                     }    
                 }
             }
@@ -160,6 +160,7 @@ public class FishScript : MonoBehaviour
         fish.animationDone = false;
         canShake = false;
         yield return new WaitUntil(() => fish.animationDone);
+        barImage.fillAmount += incrementAmount;
         HideObj();
     }
 

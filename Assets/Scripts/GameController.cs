@@ -110,9 +110,8 @@ public class GameController : MonoBehaviour
 
   public List<string> lvlsRestore; 
   public bool responseToRestoreDone = false;
-
   public bool requestGameExecutionID = false;
-
+  public int repeatValue = -1;
   // Start is called before the first frame update
   void Start()
   {
@@ -627,37 +626,58 @@ public class GameController : MonoBehaviour
     finalChapVoice.Play();
     if(SceneManager.GetActiveScene().name == "Geral")
     {
-      PlayerPrefs.SetInt("Chap0S", 1);
+      //PlayerPrefs.SetInt("Chap0S", 1);
+      patientID = PlayerPrefs.GetInt("PATIENTID");
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "18"));
       yield return new WaitForSeconds(4.0f);
     }
     else if(SceneManager.GetActiveScene().name == "Frog")
     {
-      PlayerPrefs.SetInt("Chap1", 1);
-     yield return new WaitForSeconds(4.0f);
+      //PlayerPrefs.SetInt("Chap1", 1);
+      patientID = PlayerPrefs.GetInt("PATIENTID");
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "20"));
+      yield return new WaitForSeconds(4.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Monkey")
     {
-      PlayerPrefs.SetInt("Chap1E", 1);
+      //PlayerPrefs.SetInt("Chap1E", 1);
+      patientID = PlayerPrefs.GetInt("PATIENTID");
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "21"));
       yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Owl")
     {
-      PlayerPrefs.SetInt("Chap2", 1);
+      //PlayerPrefs.SetInt("Chap2", 1);
+      patientID = PlayerPrefs.GetInt("PATIENTID");
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "22"));
       yield return new WaitForSeconds(5.0f);
     }
     else if (SceneManager.GetActiveScene().name == "Chameleon")
     {
-      PlayerPrefs.SetInt("Chap2E", 1);
+      //PlayerPrefs.SetInt("Chap2E", 1);
+      patientID = PlayerPrefs.GetInt("PATIENTID");
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "23"));
       yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Fish")
     {
-      PlayerPrefs.SetInt("Chap3", 1);
+      //PlayerPrefs.SetInt("Chap3", 1);
+      patientID = PlayerPrefs.GetInt("PATIENTID");
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "24"));
       yield return new WaitForSeconds(5.5f);
     }
     else if (SceneManager.GetActiveScene().name == "Octopus")
     {
-      PlayerPrefs.SetInt("Chap3E", 1);
+      //PlayerPrefs.SetInt("Chap3E", 1);
+      patientID = PlayerPrefs.GetInt("PATIENTID");
+      gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "25"));
       yield return new WaitForSeconds(5.5f);
     }
     rewardVoice.Play();
@@ -690,7 +710,11 @@ public class GameController : MonoBehaviour
         //Não jogar frases 
         //yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
         geralScript.showWordsReward = true;
-        PlayerPrefs.SetInt("Chap0", 1);
+        //PlayerPrefs.SetInt("Chap0", 1);
+        patientID = PlayerPrefs.GetInt("PATIENTID");
+        gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+        yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "17"));
+      
         yield return StartCoroutine(PlayAudioClip("finalWords"));
         SceneManager.LoadScene("Travel");
       } 
@@ -726,7 +750,7 @@ public class GameController : MonoBehaviour
       {
         confetti.Play();
         travelFinal.Play();
-        ShowFinalRewards();
+        yield return StartCoroutine(ShowFinalRewards());
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
       }
@@ -743,7 +767,7 @@ public class GameController : MonoBehaviour
       {
         confetti.Play();
         travelFinal.Play();
-        ShowFinalRewards();
+        yield return StartCoroutine(ShowFinalRewards());
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
       }
@@ -761,15 +785,60 @@ public class GameController : MonoBehaviour
       {
         confetti.Play();
         travelFinal.Play();
-        ShowFinalRewards();
+        yield return StartCoroutine(ShowFinalRewards());
         yield return new WaitForSeconds(5.0f);
         finalMenu.SetActive(true);
       }
     }
   }
 
-  public void ShowFinalRewards()
+  public IEnumerator ShowFinalRewards()
   {
+    patientID = PlayerPrefs.GetInt("PATIENTID");
+    gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+    yield return StartCoroutine(webRequests.GetSessionBagdes(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString()));
+    yield return new WaitUntil(() => webRequests.badgesList.Count() > 0);
+    finalRewardBoard.SetActive(true);
+
+    for (int i = 0; i < webRequests.badgesList.Count; i++)
+    {
+      Debug.Log("BADGEID: " + webRequests.badgesList[i].badgeid);
+
+      if(webRequests.badgesList[i].badgeid == 17)
+      {
+        finalReward0.SetActive(true);
+      }
+      else if(webRequests.badgesList[i].badgeid == 18)
+      {
+        finalReward0S.SetActive(true);
+      }
+      else if(webRequests.badgesList[i].badgeid == 20)
+      {
+        finalReward1.SetActive(true);
+      }
+      else if(webRequests.badgesList[i].badgeid == 21)
+      {
+        finalReward1E.SetActive(true);
+      }
+      else if(webRequests.badgesList[i].badgeid == 22)
+      {
+        finalReward2.SetActive(true);
+      }
+      else if(webRequests.badgesList[i].badgeid == 23)
+      {
+        finalReward2E.SetActive(true);
+      }
+      else if(webRequests.badgesList[i].badgeid == 24)
+      {
+        finalReward3.SetActive(true);
+      }
+      else if(webRequests.badgesList[i].badgeid == 25)
+      {
+        finalReward3E.SetActive(true);
+      }
+    }
+
+    /*
     finalRewardBoard.SetActive(true);
     if(PlayerPrefs.GetInt("Chap0") == 1)
     {
@@ -836,6 +905,7 @@ public class GameController : MonoBehaviour
     {
       PlayerPrefs.DeleteKey("Chap3E");
     }
+    */
   }
 
   IEnumerator PrepareSequence()
@@ -972,7 +1042,8 @@ public class GameController : MonoBehaviour
        
       if(repetition == true)
       {
-        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString()));   
+        repeatValue = 1;
+        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
       }
       else
       {
@@ -999,7 +1070,7 @@ public class GameController : MonoBehaviour
        
       if(repetition == true)
       {
-        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString()));   
+        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
       }
       else
       {
@@ -1017,6 +1088,7 @@ public class GameController : MonoBehaviour
     //HELP
     if(webSockets.validationValue == -2)
     {
+      repeatValue = 2;
       yield return StartCoroutine(PlayAudioClip("help"));
       yield return StartCoroutine(PlayWordName(currentWord));
       Debug.Log("Repete comigo, " + currentWord);
@@ -1199,7 +1271,7 @@ public class GameController : MonoBehaviour
         requestGameExecutionID = true;
         PlayerPrefs.SetInt("CONTINUEGAME", 0);
         Debug.Log("NOVO JOGO!");
-        PlayerPrefs.SetInt("RESTORE", 0);
+        PlayerPrefs.SetInt("RESTORE", 1);
         //Debug.Log("Waiting for execution ID...");
         yield return new WaitUntil(() => gameExecutionDone);
         //gameExecutionID = int.Parse(PlayerPrefs.GetString("GAMEEXECUTIONID"));
@@ -1315,6 +1387,7 @@ public class GameController : MonoBehaviour
   {    
     if(activeHelpButton)
     {
+      repeatValue = 3;
       webSockets.HelpRequest(therapistID);
       Debug.Log("AJUDA");
     }
