@@ -957,7 +957,6 @@ public class GameController : MonoBehaviour
       webSockets.LevelsToPlayRequest(therapistID);
       yield return new WaitUntil(() => webSockets.getLevelsDone); 
    }
-    //webSockets.levelsList = lvlsRestore;
 
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
     for (int i = 0; i < webSockets.levelsList.Count; i++)
@@ -1261,8 +1260,31 @@ public class GameController : MonoBehaviour
         {
           StartCoroutine(PrepareLevels());
           //Debug.Log("levelsToContinue: " + webSockets.restoreLevelId);
+          if(webSockets.levelsList.Count == 1)
+          {
+            PlayerPrefs.SetInt("ChapterPlayed", 0);
+          }
+          else
+          {
+          //else if(webSockets.levelsList.Count == 2)
+          //{
+            //if(webSockets.restoreLevelId == 1)
+            //{
+              //PlayerPrefs.SetInt("ChapterPlayed", 0);
+            //}
+            //else if(webSockets.restoreLevelId == 2)
+            
+
+            //PlayerPrefs.SetInt("ChapterPlayed", 1);
+          //}
+          
+          //else if(webSockets.levelsList.Count == 3)
+          //{
+            //PlayerPrefs.SetInt("ChapterPlayed", 2);
+          //}
           int levelsToContinue = webSockets.restoreLevelId - 1;
           PlayerPrefs.SetInt("ChapterPlayed", levelsToContinue);
+          }
           SceneManager.LoadScene("Travel");
         }     
       }
