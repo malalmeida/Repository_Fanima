@@ -675,6 +675,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterErrorList: []
   chapterErrorListDone: 0
+  badgesListDone: 0
+  badgesList: []
 --- !u!4 &78339895
 Transform:
   m_ObjectHideFlags: 0
@@ -15844,9 +15846,13 @@ MonoBehaviour:
   restoreDone: 0
   jsonDataRestore:
     msg: 
-    value: 
-  restorelevelsList: []
+    value:
+      gameexecutionid: 0
+      levels: []
+      levelid: 0
+  restoreLevelId: -1
   restoreGameExecutionID: -1
+  continueGame: 0
 --- !u!4 &1710161259
 Transform:
   m_ObjectHideFlags: 0
@@ -18071,6 +18077,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 57933856233f64a69aac9a606bd0214a, type: 3}
   - {fileID: 8300000, guid: 0147f640f134249edb30d2de527cc623, type: 3}
   - {fileID: 8300000, guid: a871486bb839445fab42213def5a6a33, type: 3}
+  - {fileID: 8300000, guid: 8024a3d79046f4586863ce8068561004, type: 3}
   introChapVoice: {fileID: 1878418238}
   finalChapVoice: {fileID: 1755284542}
   rewardVoice: {fileID: 1680452493}
@@ -18092,7 +18099,10 @@ MonoBehaviour:
   finalReward2E: {fileID: 0}
   finalReward3: {fileID: 0}
   finalReward3E: {fileID: 0}
-  continueGame: 0
+  lvlsRestore: []
+  responseToRestoreDone: 0
+  requestGameExecutionID: 0
+  repeatValue: -1
 --- !u!82 &1943259856
 AudioSource:
   m_ObjectHideFlags: 0
@@ -18994,7 +19004,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMenuUI: {fileID: 0}
-  continueButtonUI: {fileID: 0}
+  connectButton: {fileID: 0}
+  playButton: {fileID: 0}
   song: {fileID: 0}
   gameStructureRequest: {fileID: 1508077805}
 --- !u!114 &2045954558

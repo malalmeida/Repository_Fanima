@@ -9109,6 +9109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterErrorList: []
   chapterErrorListDone: 0
+  badgesListDone: 0
+  badgesList: []
 --- !u!1 &850946929
 GameObject:
   m_ObjectHideFlags: 0
@@ -14648,6 +14650,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 66bb874bf47d54ea1976ec1eb76982cf, type: 3}
   - {fileID: 8300000, guid: f035df339ea664ef6817fffb61e8a3d8, type: 3}
   - {fileID: 8300000, guid: a871486bb839445fab42213def5a6a33, type: 3}
+  - {fileID: 8300000, guid: 771b8da8cde4140308d1432764b178ad, type: 3}
   introChapVoice: {fileID: 1451453423}
   finalChapVoice: {fileID: 889837918}
   rewardVoice: {fileID: 256264558}
@@ -14672,6 +14675,7 @@ MonoBehaviour:
   lvlsRestore: []
   responseToRestoreDone: 0
   requestGameExecutionID: 0
+  repeatValue: -1
 --- !u!4 &1403301867
 Transform:
   m_ObjectHideFlags: 0

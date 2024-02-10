@@ -4025,7 +4025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMenuUI: {fileID: 0}
-  continueButtonUI: {fileID: 0}
+  connectButton: {fileID: 0}
+  playButton: {fileID: 0}
   song: {fileID: 0}
   gameStructureRequest: {fileID: 392051442}
 --- !u!114 &276004830
@@ -18852,6 +18853,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterErrorList: []
   chapterErrorListDone: 0
+  badgesListDone: 0
+  badgesList: []
 --- !u!4 &1451098489
 Transform:
   m_ObjectHideFlags: 0
@@ -19098,11 +19101,14 @@ MonoBehaviour:
   stop: 0
   restoreDone: 0
   jsonDataRestore:
-    gameexid: 0
-    levels: []
-    levelid: 0
-  restorelevelsList: []
+    msg: 
+    value:
+      gameexecutionid: 0
+      levels: []
+      levelid: 0
+  restoreLevelId: -1
   restoreGameExecutionID: -1
+  continueGame: 0
 --- !u!4 &1503929912
 Transform:
   m_ObjectHideFlags: 0
@@ -23679,6 +23685,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 252c620dc91a242c2aa597858b69d2f1, type: 3}
   - {fileID: 8300000, guid: bf9845aa42a1c47b5b22863c1e615ae7, type: 3}
   - {fileID: 8300000, guid: a871486bb839445fab42213def5a6a33, type: 3}
+  - {fileID: 8300000, guid: 083002c1a677a4faf8281c997f2a2c90, type: 3}
   introChapVoice: {fileID: 714755807}
   finalChapVoice: {fileID: 633581444}
   rewardVoice: {fileID: 934076005}
@@ -23691,6 +23698,19 @@ MonoBehaviour:
   levelsJson: 
   levels: []
   adjustIncrementAmountDone: 0
+  finalRewardBoard: {fileID: 0}
+  finalReward0: {fileID: 0}
+  finalReward0S: {fileID: 0}
+  finalReward1: {fileID: 0}
+  finalReward1E: {fileID: 0}
+  finalReward2: {fileID: 0}
+  finalReward2E: {fileID: 0}
+  finalReward3: {fileID: 0}
+  finalReward3E: {fileID: 0}
+  lvlsRestore: []
+  responseToRestoreDone: 0
+  requestGameExecutionID: 0
+  repeatValue: -1
 --- !u!4 &1793338316
 Transform:
   m_ObjectHideFlags: 0

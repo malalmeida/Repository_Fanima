@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
 
   string activeChapter = "";
   public List<actionClass> sequenceToPlayList;
+  public List<actionClass> phonemeSequenceToPlayList;
   public List<string> listOfWordsToSay; 
   public string currentWord;
   public int currentActionID = -1;
@@ -282,7 +283,7 @@ public class GameController : MonoBehaviour
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
       yield return StartCoroutine(PlaySentences(currentWord));
-      Debug.Log("DIZ -> " + currentWord);
+      //Debug.Log("DIZ -> " + currentWord);
       ShowImage(currentWord);
       
       if((SceneManager.GetActiveScene().name == "Geral"))
@@ -292,6 +293,8 @@ public class GameController : MonoBehaviour
         {
           //PALAVRAS
           yield return new WaitUntil(() => geralScript.startValidation);
+          yield return StartCoroutine(PlayAudioClip("GeralSayWord"));
+
         }
         else
         {
@@ -303,10 +306,21 @@ public class GameController : MonoBehaviour
         }
       }
 
+      if((SceneManager.GetActiveScene().name == "Frog"))
+      {
+        yield return StartCoroutine(PlayAudioClip("FrogSayWord"));
+      }
+
       if((SceneManager.GetActiveScene().name == "Owl"))
       {
         yield return new WaitUntil(() => owlScript.pop);
+        yield return StartCoroutine(PlayAudioClip("OwlSayWord"));
         yield return new WaitForSeconds(1.0f);
+      }
+
+      if((SceneManager.GetActiveScene().name == "Fish"))
+      {
+        yield return StartCoroutine(PlayAudioClip("FishSayWord"));
       }
 
       timer = sequenceToPlayList[i].time;
@@ -314,7 +328,7 @@ public class GameController : MonoBehaviour
       if(repetition == false)
       {
         //tempo de perceber o que é a imagem
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.0f);
         speak = true;
       }
       speak = true;
@@ -458,7 +472,19 @@ public class GameController : MonoBehaviour
           if(l == 0)
           {
             //tempo de perceber o que é a imagem
-            yield return new WaitForSeconds(1.0f);
+            if((SceneManager.GetActiveScene().name == "Chameleon"))
+            {
+              yield return StartCoroutine(PlayAudioClip("ChameleonFirstWord"));
+            }
+            else if((SceneManager.GetActiveScene().name == "Monkey"))
+            {
+              yield return StartCoroutine(PlayAudioClip("MonkeyFirstWord"));
+            }
+            else if((SceneManager.GetActiveScene().name == "Octopus"))
+            {
+              yield return StartCoroutine(PlayAudioClip("OctopusFirstWord"));
+            }
+            yield return new WaitForSeconds(0.0f);
             speak = true;
           }
           if(l == 1)
@@ -914,6 +940,100 @@ public class GameController : MonoBehaviour
     {
       sequenceToPlayList.Clear();
     }
+
+    if(activeChapter == "Oclusivas")
+    {
+      if(PlayerPrefs.GetInt("PlayAllChapter1") == 1)
+      {
+        Debug.Log("Esperar pela estrutura...");
+        yield return StartCoroutine(PrepareGameStructure());
+        for(int i = 0; i < contentList.Count; i++)
+        {
+          if(contentList[i].sequence == activeChapter)
+          {
+            sequenceToPlayList.Add(contentList[i]);
+          } 
+        }
+        Debug.Log("estrutura DONE");
+      }
+      else
+      {
+        Debug.Log("Esperar pela estrutura...");
+        yield return StartCoroutine(PrepareGameStructure());
+        for (int i = 0; i < contentList.Count; i++)
+        {
+          for (int j = 0; j < PlayerPrefs.GetInt("WordsChapter1Size"); j++)
+          {
+            if(PlayerPrefs.GetInt("chap1actionID" + j) == contentList[i].id)
+            {
+              sequenceToPlayList.Add(contentList[i]);
+            }
+          }
+        }
+      }
+    }
+    else if(activeChapter == "Fricativas")
+    {
+      if(PlayerPrefs.GetInt("PlayAllChapter2") == 1)
+      {
+        Debug.Log("Esperar pela estrutura...");
+        yield return StartCoroutine(PrepareGameStructure());
+        for(int i = 0; i < contentList.Count; i++)
+        {
+          if(contentList[i].sequence == activeChapter)
+          {
+            sequenceToPlayList.Add(contentList[i]);
+          } 
+        }
+        Debug.Log("estrutura DONE");
+      } 
+      else
+      {
+        Debug.Log("Esperar pela estrutura...");
+        yield return StartCoroutine(PrepareGameStructure());
+        for (int i = 0; i < contentList.Count; i++)
+        {
+          for (int j = 0; j < PlayerPrefs.GetInt("WordsChapter2Size"); j++)
+          {
+            if(PlayerPrefs.GetInt("chap2actionID" + j) == contentList[i].id)
+            {
+              sequenceToPlayList.Add(contentList[i]);
+            }
+          }
+        }
+      }
+    }
+    else if(activeChapter == "Vibrantes e Laterais")
+    {
+      if(PlayerPrefs.GetInt("PlayAllChapter3") == 1)
+      {
+        Debug.Log("Esperar pela estrutura...");
+        yield return StartCoroutine(PrepareGameStructure());
+        for(int i = 0; i < contentList.Count; i++)
+        {
+          if(contentList[i].sequence == activeChapter)
+          {
+            sequenceToPlayList.Add(contentList[i]);
+          } 
+        }
+        Debug.Log("estrutura DONE");
+      }
+      else
+      {
+        Debug.Log("Esperar pela estrutura...");
+        yield return StartCoroutine(PrepareGameStructure());
+        for (int i = 0; i < contentList.Count; i++)
+        {
+          for (int j = 0; j < PlayerPrefs.GetInt("WordsChapter3Size"); j++)
+          {
+            if(PlayerPrefs.GetInt("chap3actionID" + j) == contentList[i].id)
+            {
+              sequenceToPlayList.Add(contentList[i]);
+            }
+          }
+        }
+      }
+    }
     Debug.Log("Esperar pela estrutura...");
     yield return StartCoroutine(PrepareGameStructure());
     for(int i = 0; i < contentList.Count; i++)
@@ -925,18 +1045,207 @@ public class GameController : MonoBehaviour
     }
     Debug.Log("estrutura DONE");
   }
+/**
+  public void SavePhonemesToPlayInChapterOne()
+  {
+    for(int i = 0; i < webSockets.chapterOnePhonemesList.Count; i++)
+    {
+      if(webSockets.chapterOnePhonemesList[i] == "p")
+      {
+        PlayerPrefs.SetInt("phoneme p", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme p", 0);
+      }
 
+      if(webSockets.chapterOnePhonemesList[i] == "b")
+      {
+        PlayerPrefs.SetInt("phoneme b", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme b", 0);
+      }
+      
+      if(webSockets.chapterOnePhonemesList[i] == "t")
+      {
+        PlayerPrefs.SetInt("phoneme t", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme t", 0);
+      }
+      
+      if(webSockets.chapterOnePhonemesList[i] == "d")
+      {
+        PlayerPrefs.SetInt("phoneme d", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme d", 0);
+      }
+      
+      if(webSockets.chapterOnePhonemesList[i] == "k")
+      {
+        PlayerPrefs.SetInt("phoneme k", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme k", 0);
+      }
+      
+      if(webSockets.chapterOnePhonemesList[i] == "g")
+      {
+        PlayerPrefs.SetInt("phoneme g", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme g", 0);
+      }
+      
+      if(webSockets.chapterOnePhonemesList[i] == "m")
+      {
+        PlayerPrefs.SetInt("phoneme m", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme m", 0);
+      }
+      
+      if(webSockets.chapterOnePhonemesList[i] == "n")
+      {
+        PlayerPrefs.SetInt("phoneme n", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme n", 0);
+      }
+      
+      if(webSockets.chapterOnePhonemesList[i] == "nh")
+      {
+        PlayerPrefs.SetInt("phoneme nh", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme nh", 0);
+      }
+    }
+  }
+
+  public void SavePhonemesToPlayInChapterTwo()
+  {
+    for(int i = 0; i < webSockets.chapterTwoPhonemesList.Count; i++)
+    {
+      if(webSockets.chapterTwoPhonemesList[i] == "f")
+      {
+        PlayerPrefs.SetInt("phoneme f", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme f", 0);
+      }
+      
+      if(webSockets.chapterTwoPhonemesList[i] == "v")
+      {
+        PlayerPrefs.SetInt("phoneme v", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme v", 0);
+      }
+      
+      if(webSockets.chapterTwoPhonemesList[i] == "s")
+      {
+        PlayerPrefs.SetInt("phoneme s", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme s", 0);
+      }
+      
+      if(webSockets.chapterTwoPhonemesList[i] == "z")
+      {
+        PlayerPrefs.SetInt("phoneme z", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme z", 0);
+      }
+      
+      if(webSockets.chapterTwoPhonemesList[i] == "ch")
+      {
+        PlayerPrefs.SetInt("phoneme ch", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme ch", 0);
+      }
+      
+      if(webSockets.chapterTwoPhonemesList[i] == "j")
+      {
+        PlayerPrefs.SetInt("phoneme j", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme j", 0);
+      }
+    }
+  }
+
+  public void SavePhonemesToPlayInChapterThree()
+  {
+    for(int i = 0; i < webSockets.chapterThreePhonemesList.Count; i++)
+    {
+      if(webSockets.chapterThreePhonemesList[i] == "rr")
+      {
+        PlayerPrefs.SetInt("phoneme rr", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme rr", 0);
+      }
+      
+      if(webSockets.chapterThreePhonemesList[i] == "r")
+      {
+        PlayerPrefs.SetInt("phoneme r", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme r", 0);
+      }
+      
+      if(webSockets.chapterThreePhonemesList[i] == "l")
+      {
+        PlayerPrefs.SetInt("phoneme l", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme l", 0);
+      }
+      
+      if(webSockets.chapterThreePhonemesList[i] == "lh")
+      {
+        PlayerPrefs.SetInt("phoneme lh", 1);
+      }
+      else 
+      {
+        PlayerPrefs.SetInt("phoneme lh", 0);
+      }
+    }
+  }
+**/
   IEnumerator PrepareLevels()
   {
-    if (PlayerPrefs.HasKey("ChapterOne"))
+    if(PlayerPrefs.HasKey("ChapterOne"))
     {
       PlayerPrefs.DeleteKey("ChapterOne");
     }
-    if (PlayerPrefs.HasKey("ChapterTwo"))
+    if(PlayerPrefs.HasKey("ChapterTwo"))
     {
       PlayerPrefs.DeleteKey("ChapterTwo");
     }
-    if (PlayerPrefs.HasKey("ChapterThree"))
+    if(PlayerPrefs.HasKey("ChapterThree"))
     {
       PlayerPrefs.DeleteKey("ChapterThree");
     }
@@ -967,6 +1276,51 @@ public class GameController : MonoBehaviour
 
     levelsJson = JsonUtility.ToJson(levels);
 
+    if(webSockets.playAllChapter1)
+    {
+      PlayerPrefs.SetInt("PlayAllChapter1", 1);
+    }
+    else
+    {
+      PlayerPrefs.SetInt("PlayAllChapter", 0);
+
+      for (int i = 0; i < webSockets.jsonDataLevels.value.structure.structure.Count; i++)
+      {
+        PlayerPrefs.SetInt("chap1actionID" + i, webSockets.jsonDataLevels.value.structure.structure[i].id);
+      }
+      PlayerPrefs.SetInt("WordsChapter1Size", webSockets.jsonDataLevels.value.structure.structure.Count);
+    }
+
+    if(webSockets.playAllChapter2)
+    {
+      PlayerPrefs.SetInt("PlayAllChapter2", 1);
+    }
+    else
+    {
+      PlayerPrefs.SetInt("PlayAllChapter2", 0);
+      
+      for (int i = 0; i < webSockets.jsonDataLevels.value.structure.structure.Count; i++)
+      {
+        PlayerPrefs.SetInt("chap2actionID" + i, webSockets.jsonDataLevels.value.structure.structure[i].id);
+      }
+      PlayerPrefs.SetInt("WordsChapter2Size", webSockets.jsonDataLevels.value.structure.structure.Count);
+    }
+
+    if(webSockets.playAllChapter3)
+    {
+      PlayerPrefs.SetInt("PlayAllChapter3", 1);
+    }
+    else
+    {
+      PlayerPrefs.SetInt("PlayAllChapter3", 0);
+
+      for (int i = 0; i < webSockets.jsonDataLevels.value.structure.structure.Count; i++)
+      {
+        PlayerPrefs.SetInt("chap3actionID" + i, webSockets.jsonDataLevels.value.structure.structure[i].id);
+      }
+      PlayerPrefs.SetInt("WordsChapter3Size", webSockets.jsonDataLevels.value.structure.structure.Count);
+    }
+
     if(webSockets.levelsList.Count == 1)
     {
       PlayerPrefs.SetInt("ChaptersToQuitGame", 1);
@@ -975,16 +1329,17 @@ public class GameController : MonoBehaviour
       if(webSockets.levelsList[0].Equals("1"))
       {
         PlayerPrefs.SetString("ChapterOne", "Frog");
-
+        //SavePhonemesToPlayInChapterOne(); 
       }
       else if(webSockets.levelsList[0].Equals("2"))
       {
         PlayerPrefs.SetString("ChapterOne", "Owl");
+        //SavePhonemesToPlayInChapterTwo();
       }
       else if(webSockets.levelsList[0].Equals("3"))
       {
         PlayerPrefs.SetString("ChapterOne", "Fish");
-        
+        //SavePhonemesToPlayInChapterThree();
       }
     }
     else if(webSockets.levelsList.Count == 2)
@@ -994,20 +1349,25 @@ public class GameController : MonoBehaviour
       if(webSockets.levelsList[0].Equals("1"))
       {
         PlayerPrefs.SetString("ChapterOne", "Frog");
+        //SavePhonemesToPlayInChapterOne();
 
         if(webSockets.levelsList[1].Equals("2"))
         {
           PlayerPrefs.SetString("ChapterTwo", "Owl");
+          //SavePhonemesToPlayInChapterTwo();
         }
         else if(webSockets.levelsList[1].Equals("3"))
         {
           PlayerPrefs.SetString("ChapterTwo", "Fish");
+          //SavePhonemesToPlayInChapterThree();
         }
       }
       else if(webSockets.levelsList[0].Equals("2"))
       {
         PlayerPrefs.SetString("ChapterOne", "Owl");
+        //SavePhonemesToPlayInChapterTwo();
         PlayerPrefs.SetString("ChapterTwo", "Fish");
+        //SavePhonemesToPlayInChapterThree();
       }
     }
     else if(webSockets.levelsList.Count == 3)
@@ -1015,8 +1375,11 @@ public class GameController : MonoBehaviour
       PlayerPrefs.SetInt("ChaptersToQuitGame", 3);
       PlayerPrefs.SetInt("NumberOfChaptersToPlay", 3);
       PlayerPrefs.SetString("ChapterOne", "Frog");
+      //SavePhonemesToPlayInChapterOne();
       PlayerPrefs.SetString("ChapterTwo", "Owl");
+      //SavePhonemesToPlayInChapterTwo();
       PlayerPrefs.SetString("ChapterThree", "Fish");
+      //SavePhonemesToPlayInChapterThree();
     }
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
   prepareLevelsDone = true;
@@ -1211,7 +1574,6 @@ public class GameController : MonoBehaviour
         if(lastBonusSample)
         {
           chameleonScript.newWord = true;
-          //chameleonScript.nextAction = true; 
           chameleonScript.randomIndex = Random.Range(0, 13);
           yield return StartCoroutine(PlayAudioClip("findChameleon"));
           yield return new WaitUntil(() => chameleonScript.isCaught);
@@ -1255,7 +1617,7 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("CONTINUEGAME", 1);
         PlayerPrefs.SetInt("LASTLVLPLAYED", webSockets.restoreLevelId);
         gameExecutionID = webSockets.restoreGameExecutionID;
-
+        //caso já se tenha escolhido os capitulos
         if(webSockets.restoreLevelId != 0)
         {
           StartCoroutine(PrepareLevels());
@@ -1266,22 +1628,6 @@ public class GameController : MonoBehaviour
           }
           else
           {
-          //else if(webSockets.levelsList.Count == 2)
-          //{
-            //if(webSockets.restoreLevelId == 1)
-            //{
-              //PlayerPrefs.SetInt("ChapterPlayed", 0);
-            //}
-            //else if(webSockets.restoreLevelId == 2)
-            
-
-            //PlayerPrefs.SetInt("ChapterPlayed", 1);
-          //}
-          
-          //else if(webSockets.levelsList.Count == 3)
-          //{
-            //PlayerPrefs.SetInt("ChapterPlayed", 2);
-          //}
           int levelsToContinue = webSockets.restoreLevelId - 1;
           PlayerPrefs.SetInt("ChapterPlayed", levelsToContinue);
           }
@@ -1294,10 +1640,7 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("CONTINUEGAME", 0);
         Debug.Log("NOVO JOGO!");
         PlayerPrefs.SetInt("RESTORE", 1);
-        //Debug.Log("Waiting for execution ID...");
         yield return new WaitUntil(() => gameExecutionDone);
-        //gameExecutionID = int.Parse(PlayerPrefs.GetString("GAMEEXECUTIONID"));
-        //Debug.Log("Game Execution request completed! ID -> " + PlayerPrefs.GetString("GAMEEXECUTIONID"));
       }
     }
   }

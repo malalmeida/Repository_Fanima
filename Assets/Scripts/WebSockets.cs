@@ -53,6 +53,16 @@ public class WebSockets : MonoBehaviour{
     public int restoreLevelId = -1;
     public int restoreGameExecutionID = -1;
     public bool continueGame = false;
+    public bool lvl1Selected = false;
+    public bool lvl2Selected = false;
+    public bool lvl3Selected = false;
+    public List<int> chapterOneWordIDList;
+    public List<int> chapterTwoWordIDList;
+    public List<int> chapterThreeWordIDList;
+    public bool playAllChapter1 = false;
+    public bool playAllChapter2 = false;
+    public bool playAllChapter3 = false;
+
 
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -132,7 +142,71 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("LEVELS " + msg);
                 jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
-                levelsList = jsonDataLevels.value;
+                //levelsList = jsonDataLevels.value;
+                levelsList = jsonDataLevels.value.levels;
+                for (int i = 0; i < levelsList.Count; i++)
+                {
+                    if(levelsList[i].Contains("1"))
+                    {
+                        lvl1Selected = true;
+                    }
+                    else if(levelsList[i].Contains("2"))
+                    {
+                        lvl2Selected = true;
+                    }
+                     else if(levelsList[i].Contains("3"))
+                    {
+                        lvl3Selected = true;
+                    }
+                }
+                //se lvl 1 selecionado verificar os fonemas escolhidos
+                if(lvl1Selected)
+                {
+                    if(jsonDataLevels.value.structure.level == "1")
+                    {
+                        if(jsonDataLevels.value.structure.structure.Count == 0)
+                        {
+                            Debug.Log("JOGAR O CAPITULO 1 TODO");
+                            playAllChapter1 = true;
+                        }
+                        //for (int i = 0; i < jsonDataLevels.value.structure.structure.Count; i++)
+                        //{
+                            //chapterOneWordIDList.Add(jsonDataLevels.value.structure.structure[i].word);
+                        //}
+                    }
+                }
+                //se lvl 2 selecionado verificar os fonemas escolhidos
+                if(lvl2Selected)
+                {
+                    if(jsonDataLevels.value.structure.level == "2")
+                    {
+                        if(jsonDataLevels.value.structure.structure.Count == 0)
+                        {
+                            Debug.Log("JOGAR O CAPITULO 2 TODO");
+                            playAllChapter2 = true;
+                        }
+                        //for (int i = 0; i < jsonDataLevels.value.structure.structure.Count; i++)
+                        //{
+                            //chapterTwoWordIDList.Add(jsonDataLevels.value.structure.structure[i].word);
+                        //}
+                    }  
+                }
+                //se lvl 3 selecionado verificar os fonemas escolhidos
+                if(lvl3Selected)
+                {
+                    if(jsonDataLevels.value.structure.level == "3")
+                    {
+                        if(jsonDataLevels.value.structure.structure.Count == 0)
+                        {
+                            Debug.Log("JOGAR O CAPITULO 3 TODO");
+                            playAllChapter3 = true;
+                        }
+                        //for (int i = 0; i < jsonDataLevels.value.structure.structure.Count; i++)
+                        //{
+                            //chapterThreeWordIDList.Add(jsonDataLevels.value.structure.structure[i].word);
+                        //}
+                    }
+                }
                 getLevelsDone = true;    
             }
             else if(msg.Contains("nextlevel"))
