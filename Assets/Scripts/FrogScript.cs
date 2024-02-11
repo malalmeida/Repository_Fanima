@@ -91,6 +91,8 @@ public class FrogScript : MonoBehaviour
 
   public bool showReward = false;
 
+  public int coinPosition = -1;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -163,7 +165,8 @@ public class FrogScript : MonoBehaviour
         {           
           if(hit.collider.CompareTag("Bug1"))
           {
-            if(currentWord == "pato" && canShake == true)
+            //if(currentWord == "pato" && canShake == true)
+            if(coinPosition == 0 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -173,7 +176,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug2"))
           {
-            if(currentWord == "sapo" && canShake == true)
+            //if(currentWord == "sapo" && canShake == true)
+            if(coinPosition == 1 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -187,7 +191,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug3"))
           {
-            if(currentWord == "bolo" && canShake == true)
+            //if(currentWord == "bolo" && canShake == true)
+            if(coinPosition == 2 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -201,7 +206,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug4"))
           {
-            if(currentWord == "lobo" && canShake == true) 
+            //if(currentWord == "lobo" && canShake == true) 
+            if(coinPosition == 3 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -216,7 +222,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug5"))
           {
-            if(currentWord == "teia" && canShake == true) 
+            //if(currentWord == "teia" && canShake == true) 
+            if(coinPosition == 4 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -230,7 +237,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug6"))
           {
-            if(currentWord == "dado" && canShake == true)
+            //if(currentWord == "dado" && canShake == true)
+            if(coinPosition == 5 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -244,7 +252,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug7"))
           {
-            if(currentWord == "camisa" && canShake == true)
+            //if(currentWord == "camisa" && canShake == true)
+            if(coinPosition == 6 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -258,7 +267,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug8"))
           {
-            if(currentWord == "vaca" && canShake == true)
+            //if(currentWord == "vaca" && canShake == true)
+            if(coinPosition == 7 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -272,7 +282,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug9"))
           {
-            if(currentWord == "gato" && canShake == true)
+            //if(currentWord == "gato" && canShake == true)
+            if(coinPosition == 8 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -286,7 +297,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug10"))
           {
-            if(currentWord == "dragão" && canShake == true)
+            //if(currentWord == "dragão" && canShake == true)
+            if(coinPosition == 9 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -300,8 +312,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug11"))
           {
-            if(currentWord == "mesa" && canShake == true)
-            {
+            //if(currentWord == "mesa" && canShake == true)
+            if(coinPosition == 10 && canShake == true){
               barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
@@ -314,7 +326,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug12"))
           {
-            if(currentWord == "goma" && canShake == true)
+            //if(currentWord == "goma" && canShake == true)
+            if(coinPosition == 11 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -328,7 +341,8 @@ public class FrogScript : MonoBehaviour
           } 
           else if(hit.collider.CompareTag("Bug13"))
           {
-            if(currentWord == "novelo" && canShake == true)
+            //if(currentWord == "novelo" && canShake == true)
+            if(coinPosition == 12 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -342,7 +356,8 @@ public class FrogScript : MonoBehaviour
           }  
           else if(hit.collider.CompareTag("Bug14"))
           {
-            if(currentWord == "chinelo" && canShake == true)
+            //if(currentWord == "chinelo" && canShake == true)
+            if(coinPosition == 13 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -356,7 +371,8 @@ public class FrogScript : MonoBehaviour
           } 
            else if(hit.collider.CompareTag("Bug15"))
           {
-            if(currentWord == "joaninha" && canShake == true)
+            //if(currentWord == "joaninha" && canShake == true)
+            if(coinPosition == 14 && canShake == true)
             {
               barImage.fillAmount += incrementAmount;
               canShake = false;
@@ -434,7 +450,7 @@ public class FrogScript : MonoBehaviour
 
   public void ShowObj()
   {
-    string gameObjName = currentWord + "Obj";       
+    string gameObjName = currentWord + "Obj" + coinPosition.ToString();       
     Debug.Log("OBJ " + gameObjName);
 
     currentObject = GameObject.Find(gameObjName);

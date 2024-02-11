@@ -148,14 +148,17 @@ public class WebSockets : MonoBehaviour{
                 {
                     if(levelsList[i].Contains("1"))
                     {
+                        Debug.Log("LVL 1 SELECIONADO!");
                         lvl1Selected = true;
                     }
                     else if(levelsList[i].Contains("2"))
                     {
+                        Debug.Log("LVL 2 SELECIONADO!");
                         lvl2Selected = true;
                     }
                      else if(levelsList[i].Contains("3"))
                     {
+                        Debug.Log("LVL 3 SELECIONADO!");
                         lvl3Selected = true;
                     }
                 }
@@ -169,10 +172,6 @@ public class WebSockets : MonoBehaviour{
                             Debug.Log("JOGAR O CAPITULO 1 TODO");
                             playAllChapter1 = true;
                         }
-                        //for (int i = 0; i < jsonDataLevels.value.structure.structure.Count; i++)
-                        //{
-                            //chapterOneWordIDList.Add(jsonDataLevels.value.structure.structure[i].word);
-                        //}
                     }
                 }
                 //se lvl 2 selecionado verificar os fonemas escolhidos
@@ -185,10 +184,6 @@ public class WebSockets : MonoBehaviour{
                             Debug.Log("JOGAR O CAPITULO 2 TODO");
                             playAllChapter2 = true;
                         }
-                        //for (int i = 0; i < jsonDataLevels.value.structure.structure.Count; i++)
-                        //{
-                            //chapterTwoWordIDList.Add(jsonDataLevels.value.structure.structure[i].word);
-                        //}
                     }  
                 }
                 //se lvl 3 selecionado verificar os fonemas escolhidos
@@ -201,10 +196,6 @@ public class WebSockets : MonoBehaviour{
                             Debug.Log("JOGAR O CAPITULO 3 TODO");
                             playAllChapter3 = true;
                         }
-                        //for (int i = 0; i < jsonDataLevels.value.structure.structure.Count; i++)
-                        //{
-                            //chapterThreeWordIDList.Add(jsonDataLevels.value.structure.structure[i].word);
-                        //}
                     }
                 }
                 getLevelsDone = true;    

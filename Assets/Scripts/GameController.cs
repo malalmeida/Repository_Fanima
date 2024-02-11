@@ -268,7 +268,9 @@ public class GameController : MonoBehaviour
 
     yield return StartCoroutine(ChapIntroVoices());
     yield return StartCoroutine(PrepareSequence());
+    
     yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
+    AdjustIncrementAmount();
 
     
     for(int i = 0; i < sequenceToPlayList.Count; i++)
@@ -284,7 +286,7 @@ public class GameController : MonoBehaviour
       webSockets.PrepareMessage("game", payload); 
       yield return StartCoroutine(PlaySentences(currentWord));
       //Debug.Log("DIZ -> " + currentWord);
-      ShowImage(currentWord);
+      ShowImage(currentWord, i);
       
       if((SceneManager.GetActiveScene().name == "Geral"))
       {
@@ -523,7 +525,19 @@ public class GameController : MonoBehaviour
 
   public void AdjustIncrementAmount()
   {
-    if((SceneManager.GetActiveScene().name == "Monkey"))
+    if((SceneManager.GetActiveScene().name == "Frog"))
+    {
+      frogScript.incrementAmount = (float)1 / (float)sequenceToPlayList.Count;
+    }
+    else if((SceneManager.GetActiveScene().name == "Owl"))
+    {
+      owlScript.incrementAmount = (float)1 / (float)sequenceToPlayList.Count;
+    }
+    else if((SceneManager.GetActiveScene().name == "Fish"))
+    {
+      fishScript.incrementAmount = (float)1 / (float)sequenceToPlayList.Count;
+    }
+    else if((SceneManager.GetActiveScene().name == "Monkey"))
     { 
       bool addThree = false;
       for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
@@ -588,7 +602,7 @@ public class GameController : MonoBehaviour
     }
   }
 
-  public void ShowImage(string currentWord)
+  public void ShowImage(string currentWord, int wordPosition)
   {
     if((SceneManager.GetActiveScene().name == "Geral"))
     {
@@ -598,6 +612,7 @@ public class GameController : MonoBehaviour
     else if((SceneManager.GetActiveScene().name == "Frog"))
     {
       frogScript.currentWord = currentWord;
+      frogScript.coinPosition = wordPosition;
       frogScript.canShowImage = true;
     }
     else if((SceneManager.GetActiveScene().name == "Owl"))
@@ -945,7 +960,7 @@ public class GameController : MonoBehaviour
     {
       if(PlayerPrefs.GetInt("PlayAllChapter1") == 1)
       {
-        Debug.Log("Esperar pela estrutura...");
+        Debug.Log("Esperar pela estrutura TODA... para o capitulo " + activeChapter);
         yield return StartCoroutine(PrepareGameStructure());
         for(int i = 0; i < contentList.Count; i++)
         {
@@ -954,11 +969,10 @@ public class GameController : MonoBehaviour
             sequenceToPlayList.Add(contentList[i]);
           } 
         }
-        Debug.Log("estrutura DONE");
       }
       else
       {
-        Debug.Log("Esperar pela estrutura...");
+        Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
         yield return StartCoroutine(PrepareGameStructure());
         for (int i = 0; i < contentList.Count; i++)
         {
@@ -976,7 +990,7 @@ public class GameController : MonoBehaviour
     {
       if(PlayerPrefs.GetInt("PlayAllChapter2") == 1)
       {
-        Debug.Log("Esperar pela estrutura...");
+        Debug.Log("Esperar pela estrutura TODA... para o capitulo " + activeChapter);
         yield return StartCoroutine(PrepareGameStructure());
         for(int i = 0; i < contentList.Count; i++)
         {
@@ -985,11 +999,10 @@ public class GameController : MonoBehaviour
             sequenceToPlayList.Add(contentList[i]);
           } 
         }
-        Debug.Log("estrutura DONE");
       } 
       else
       {
-        Debug.Log("Esperar pela estrutura...");
+        Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
         yield return StartCoroutine(PrepareGameStructure());
         for (int i = 0; i < contentList.Count; i++)
         {
@@ -1007,7 +1020,7 @@ public class GameController : MonoBehaviour
     {
       if(PlayerPrefs.GetInt("PlayAllChapter3") == 1)
       {
-        Debug.Log("Esperar pela estrutura...");
+        Debug.Log("Esperar pela estrutura TODA... para o capitulo " + activeChapter);
         yield return StartCoroutine(PrepareGameStructure());
         for(int i = 0; i < contentList.Count; i++)
         {
@@ -1016,11 +1029,10 @@ public class GameController : MonoBehaviour
             sequenceToPlayList.Add(contentList[i]);
           } 
         }
-        Debug.Log("estrutura DONE");
       }
       else
       {
-        Debug.Log("Esperar pela estrutura...");
+        Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
         yield return StartCoroutine(PrepareGameStructure());
         for (int i = 0; i < contentList.Count; i++)
         {
@@ -1034,14 +1046,19 @@ public class GameController : MonoBehaviour
         }
       }
     }
-    Debug.Log("Esperar pela estrutura...");
-    yield return StartCoroutine(PrepareGameStructure());
-    for(int i = 0; i < contentList.Count; i++)
+
+    else
     {
+
+      Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
+      yield return StartCoroutine(PrepareGameStructure());
+      for(int i = 0; i < contentList.Count; i++)
+      {
       if(contentList[i].sequence == activeChapter)
       {
         sequenceToPlayList.Add(contentList[i]);
       } 
+      }
     }
     Debug.Log("estrutura DONE");
   }
