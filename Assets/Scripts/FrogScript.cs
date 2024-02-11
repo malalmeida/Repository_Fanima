@@ -454,6 +454,7 @@ public class FrogScript : MonoBehaviour
     Debug.Log("OBJ " + gameObjName);
 
     currentObject = GameObject.Find(gameObjName);
+    currentObject.SetActive(true);
 
     rend = currentObject.GetComponent<SpriteRenderer>();
     rend.sortingOrder = 10;

@@ -46,6 +46,8 @@ public class FishScript : MonoBehaviour
 
     public bool showReward = false;
 
+    public int foodPosition = -1;
+
     void Start()
     {
         barImage.fillAmount = 0.0f;
@@ -140,11 +142,12 @@ public class FishScript : MonoBehaviour
 
     public void ShowObj()
     {
-
-        string gameObjName = currentWord + "Obj";       
+        //string gameObjName = currentWord + "Obj";
+        string gameObjName = currentWord + "Obj" + foodPosition.ToString();       
         Debug.Log("OBJ " + gameObjName);
 
         currentObject = GameObject.Find(gameObjName);
+        currentObject.SetActive(true);
 
         rend = currentObject.GetComponent<SpriteRenderer>();
         rend.sortingOrder = 2;

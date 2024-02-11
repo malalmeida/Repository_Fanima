@@ -623,6 +623,7 @@ public class GameController : MonoBehaviour
     else if((SceneManager.GetActiveScene().name == "Fish"))
     {
       fishScript.currentWord = currentWord;
+      fishScript.foodPosition = wordPosition;
       fishScript.canShowImage = true;
     }
   }

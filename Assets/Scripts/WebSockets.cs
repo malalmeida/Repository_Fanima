@@ -103,41 +103,6 @@ public class WebSockets : MonoBehaviour{
                 Debug.Log("STATUS " + status);
                 PrepareMessage("status", status);
             }
-            
-            else if(msg.Contains("action"))
-            {
-                Debug.Log("ACTION " + msg);
-                jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
-                if(jsonDataValidation.value.Contains(":"))
-                {
-                    //aleatory nunmbem just needed to be bigget then -3 and not -2 or -1
-                    validationValue = 9999;
-                    statusValue = 1;
-                    validationDone = true;
-                }
-                else
-                {
-                    validationValue = int.Parse(jsonDataValidation.value);
-                    statusValue = int.Parse(jsonDataValidation.value);
-                    validationDone = true;
-                }
-            }
-            else if(msg.Contains("restore"))
-            {
-                Debug.Log("RESTORE " + msg);
-                jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
-                Debug.Log("RESTORE VALUE: " + jsonDataRestore.value);
-
-                if(jsonDataRestore.value.gameexecutionid > 0)
-                {
-                    continueGame = true;
-                    restoreGameExecutionID = jsonDataRestore.value.gameexecutionid;
-                    levelsList = jsonDataRestore.value.levels;
-                    restoreLevelId = jsonDataRestore.value.levelid;
-                    Debug.Log("levelsCount" + levelsList.Count);
-                }
-                restoreDone = true;
-            }
             else if(msg.Contains("levels"))
             {
                 Debug.Log("LEVELS " + msg);
@@ -199,6 +164,40 @@ public class WebSockets : MonoBehaviour{
                     }
                 }
                 getLevelsDone = true;    
+            }
+            else if(msg.Contains("action"))
+            {
+                Debug.Log("ACTION " + msg);
+                jsonDataValidation = JsonUtility.FromJson<jsonDataValidation>(msg);
+                if(jsonDataValidation.value.Contains(":"))
+                {
+                    //aleatory nunmbem just needed to be bigget then -3 and not -2 or -1
+                    validationValue = 9999;
+                    statusValue = 1;
+                    validationDone = true;
+                }
+                else
+                {
+                    validationValue = int.Parse(jsonDataValidation.value);
+                    statusValue = int.Parse(jsonDataValidation.value);
+                    validationDone = true;
+                }
+            }
+            else if(msg.Contains("restore"))
+            {
+                Debug.Log("RESTORE " + msg);
+                jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
+                Debug.Log("RESTORE VALUE: " + jsonDataRestore.value);
+
+                if(jsonDataRestore.value.gameexecutionid > 0)
+                {
+                    continueGame = true;
+                    restoreGameExecutionID = jsonDataRestore.value.gameexecutionid;
+                    levelsList = jsonDataRestore.value.levels;
+                    restoreLevelId = jsonDataRestore.value.levelid;
+                    Debug.Log("levelsCount" + levelsList.Count);
+                }
+                restoreDone = true;
             }
             else if(msg.Contains("nextlevel"))
             {
