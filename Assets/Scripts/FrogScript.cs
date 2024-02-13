@@ -377,7 +377,6 @@ public class FrogScript : MonoBehaviour
               barImage.fillAmount += incrementAmount;
               canShake = false;
               FrogJump();
-              //MoveCamera();
             }
             else
             {
@@ -410,21 +409,15 @@ public class FrogScript : MonoBehaviour
 
   IEnumerator WaitForCameraAnimationDone()
     {
-        circle.starAnimation = true;
-        yield return new WaitUntil(() => circle.starAnimation);
-        circle.animationDone = false;
-        //canShake = false;
-        yield return new WaitUntil(() => circle.animationDone);
-        //HideObj();
-
+      circle.starAnimation = true;
+      yield return new WaitUntil(() => circle.starAnimation);
+      circle.animationDone = false;
+      yield return new WaitUntil(() => circle.animationDone);
     }
 
     public void MoveCamera()
     {
-        //if(canShake)
-        //{
       StartCoroutine(WaitForCameraAnimationDone());
-        //}
     }
 
   public void FrogJump()
@@ -454,7 +447,68 @@ public class FrogScript : MonoBehaviour
     Debug.Log("OBJ " + gameObjName);
 
     currentObject = GameObject.Find(gameObjName);
-    currentObject.SetActive(true);
+    
+    if(coinPosition == 0)
+    { 
+      currentObject.transform.position = new Vector3(0.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 1)
+    {
+      currentObject.transform.position = new Vector3(4.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 2)
+    {
+      currentObject.transform.position = new Vector3(8.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 3)
+    {
+      currentObject.transform.position = new Vector3(12.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 4)
+    {
+      currentObject.transform.position = new Vector3(16.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 5)
+    {
+      currentObject.transform.position = new Vector3(20.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 6)
+    {
+      currentObject.transform.position = new Vector3(24.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 7)
+    {
+      currentObject.transform.position = new Vector3(28.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 8)
+    {
+      currentObject.transform.position = new Vector3(32.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 9)
+    {
+      currentObject.transform.position = new Vector3(36.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 10)
+    {
+      currentObject.transform.position = new Vector3(40.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 11)
+    {
+      currentObject.transform.position = new Vector3(44.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 12)
+    {
+      currentObject.transform.position = new Vector3(48.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 13)
+    {
+      currentObject.transform.position = new Vector3(52.0f, -1.8f, 0);
+    }
+    else if(coinPosition == 14)
+    {
+      currentObject.transform.position = new Vector3(56.0f, -1.8f, 0);
+    }
+    //currentObject.SetActive(true);
 
     rend = currentObject.GetComponent<SpriteRenderer>();
     rend.sortingOrder = 10;
@@ -641,8 +695,8 @@ public class FrogScript : MonoBehaviour
   
   public void ShowRewardBoard()
     {
-        rendRewardBoard = rewardBoard.GetComponent<SpriteRenderer>();
-        rendRewardBoard.sortingOrder = 20;
+      rendRewardBoard = rewardBoard.GetComponent<SpriteRenderer>();
+      rendRewardBoard.sortingOrder = 20;
     }
 
 }

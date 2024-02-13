@@ -328,7 +328,7 @@ public class GameController : MonoBehaviour
       if(repetition == false)
       {
         //tempo de perceber o que é a imagem
-        yield return new WaitForSeconds(0.0f);
+        //yield return new WaitForSeconds(0.0f);
         speak = true;
       }
       speak = true;
@@ -484,7 +484,7 @@ public class GameController : MonoBehaviour
             {
               yield return StartCoroutine(PlayAudioClip("OctopusFirstWord"));
             }
-            yield return new WaitForSeconds(0.0f);
+            //yield return new WaitForSeconds(0.0f);
             speak = true;
           }
           if(l == 1)
@@ -611,6 +611,7 @@ public class GameController : MonoBehaviour
     {
       frogScript.currentWord = currentWord;
       frogScript.coinPosition = wordPosition;
+      Debug.Log("COIN POSISITON " + wordPosition);
       frogScript.canShowImage = true;
     }
     else if((SceneManager.GetActiveScene().name == "Owl"))
@@ -975,10 +976,14 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(PrepareGameStructure());
         for (int i = 0; i < contentList.Count; i++)
         {
+          Debug.Log("FOR SIZE " + PlayerPrefs.GetInt("WordsChapterSize"));
           for (int j = 0; j < PlayerPrefs.GetInt("WordsChapter1Size"); j++)
           {
+            Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
+            Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chap1actionID" + j));
             if(PlayerPrefs.GetInt("chap1actionID" + j) == contentList[i].id)
             {
+              Debug.Log("ADD: " + contentList[i].id);
               sequenceToPlayList.Add(contentList[i]);
             }
           }
@@ -1044,8 +1049,11 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(PrepareGameStructure());
         for (int i = 0; i < contentList.Count; i++)
         {
+          Debug.Log("FOR SIZE " + PlayerPrefs.GetInt("WordsChapter3Size"));
           for (int j = 0; j < PlayerPrefs.GetInt("WordsChapter3Size"); j++)
           {
+            Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
+            Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chap3actionID" + j));
             if(PlayerPrefs.GetInt("chap3actionID" + j) == contentList[i].id)
             {
               sequenceToPlayList.Add(contentList[i]);
@@ -1057,7 +1065,6 @@ public class GameController : MonoBehaviour
 
     else
     {
-
       Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
       yield return StartCoroutine(PrepareGameStructure());
       for(int i = 0; i < contentList.Count; i++)
@@ -1140,7 +1147,6 @@ public class GameController : MonoBehaviour
         Debug.Log("index " + i + "actionid" + int.Parse(webSockets.jsonDataLevels.value.actions2[i]));
 
       }
-      Debug.Log("PHONEMES SELECTED COUNT " + webSockets.jsonDataLevels.value.actions2.Count);
       PlayerPrefs.SetInt("WordsChapter2Size", webSockets.jsonDataLevels.value.actions2.Count);
     }
 

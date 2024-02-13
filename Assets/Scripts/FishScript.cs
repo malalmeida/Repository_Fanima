@@ -78,7 +78,6 @@ public class FishScript : MonoBehaviour
                     {
                         MoveFish();
                         //barImage.fillAmount += incrementAmount;
-
                     }
                     else if(hit.collider.CompareTag("Food2"))
                     {
@@ -147,7 +146,55 @@ public class FishScript : MonoBehaviour
         Debug.Log("OBJ " + gameObjName);
 
         currentObject = GameObject.Find(gameObjName);
-        currentObject.SetActive(true);
+
+        if(foodPosition == 0)
+        { 
+        currentObject.transform.position = new Vector3(5.0f, -1.0f, 0);
+        }
+        else if(foodPosition == 1)
+        {
+        currentObject.transform.position = new Vector3(10.0f, 1.0f, 0);
+        }
+        else if(foodPosition == 2)
+        {
+        currentObject.transform.position = new Vector3(15.0f, 3.0f, 0);
+        }
+        else if(foodPosition == 3)
+        {
+        currentObject.transform.position = new Vector3(20.0f, 5.0f, 0);
+        }
+        else if(foodPosition == 4)
+        {
+        currentObject.transform.position = new Vector3(26.0f, 6.0f, 0);
+        }
+        else if(foodPosition == 5)
+        {
+        currentObject.transform.position = new Vector3(32.0f, 5.0f, 0);
+        }
+        else if(foodPosition == 6)
+        {
+        currentObject.transform.position = new Vector3(37.0f, 3.0f, 0);
+        }
+        else if(foodPosition == 7)
+        {
+        currentObject.transform.position = new Vector3(42.0f, 1.0f, 0);
+        }
+        else if(foodPosition == 8)
+        {
+        currentObject.transform.position = new Vector3(47.0f, 0.0f, 0);
+        }
+        else if(foodPosition == 9)
+        {
+        currentObject.transform.position = new Vector3(52.0f, 2.0f, 0);
+        }
+        else if(foodPosition == 10)
+        {
+        currentObject.transform.position = new Vector3(57.0f, 4.0f, 0);
+        }
+        else if(foodPosition == 11)
+        {
+        currentObject.transform.position = new Vector3(62.0f, 3.0f, 0);
+        }
 
         rend = currentObject.GetComponent<SpriteRenderer>();
         rend.sortingOrder = 2;
