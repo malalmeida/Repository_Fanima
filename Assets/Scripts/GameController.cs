@@ -296,7 +296,6 @@ public class GameController : MonoBehaviour
           //PALAVRAS
           yield return new WaitUntil(() => geralScript.startValidation);
           yield return StartCoroutine(PlayAudioClip("GeralSayWord"));
-
         }
         else
         {
@@ -304,7 +303,6 @@ public class GameController : MonoBehaviour
           yield return new WaitUntil(() => geralScript.animationDone);
           yield return StartCoroutine(PlayGuideVoice(currentWord));
           geralScript.startValidation = true;
-          
         }
       }
 
@@ -1005,16 +1003,25 @@ public class GameController : MonoBehaviour
       {
         Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
         yield return StartCoroutine(PrepareGameStructure());
+        Debug.Log("Estrutura completa!");
+        yield return new WaitUntil(() => contentList.Count > 0);
+        Debug.Log("Tamanho da estrutura " + contentList.Count);
+
         for (int i = 0; i < contentList.Count; i++)
         {
+          Debug.Log("FOR SIZE " + PlayerPrefs.GetInt("WordsChapter2Size"));
           for (int j = 0; j < PlayerPrefs.GetInt("WordsChapter2Size"); j++)
           {
+            Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
+            Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chap2actionID" + j));
             if(PlayerPrefs.GetInt("chap2actionID" + j) == contentList[i].id)
             {
+              Debug.Log("ADD: " + contentList[i].id);
               sequenceToPlayList.Add(contentList[i]);
             }
           }
         }
+        Debug.Log("NUMERO PALAVRAS " + sequenceToPlayList.Count);
       }
     }
     else if(activeChapter == "Vibrantes e Laterais")
@@ -1063,196 +1070,7 @@ public class GameController : MonoBehaviour
     }
     Debug.Log("estrutura DONE");
   }
-/**
-  public void SavePhonemesToPlayInChapterOne()
-  {
-    for(int i = 0; i < webSockets.chapterOnePhonemesList.Count; i++)
-    {
-      if(webSockets.chapterOnePhonemesList[i] == "p")
-      {
-        PlayerPrefs.SetInt("phoneme p", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme p", 0);
-      }
 
-      if(webSockets.chapterOnePhonemesList[i] == "b")
-      {
-        PlayerPrefs.SetInt("phoneme b", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme b", 0);
-      }
-      
-      if(webSockets.chapterOnePhonemesList[i] == "t")
-      {
-        PlayerPrefs.SetInt("phoneme t", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme t", 0);
-      }
-      
-      if(webSockets.chapterOnePhonemesList[i] == "d")
-      {
-        PlayerPrefs.SetInt("phoneme d", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme d", 0);
-      }
-      
-      if(webSockets.chapterOnePhonemesList[i] == "k")
-      {
-        PlayerPrefs.SetInt("phoneme k", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme k", 0);
-      }
-      
-      if(webSockets.chapterOnePhonemesList[i] == "g")
-      {
-        PlayerPrefs.SetInt("phoneme g", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme g", 0);
-      }
-      
-      if(webSockets.chapterOnePhonemesList[i] == "m")
-      {
-        PlayerPrefs.SetInt("phoneme m", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme m", 0);
-      }
-      
-      if(webSockets.chapterOnePhonemesList[i] == "n")
-      {
-        PlayerPrefs.SetInt("phoneme n", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme n", 0);
-      }
-      
-      if(webSockets.chapterOnePhonemesList[i] == "nh")
-      {
-        PlayerPrefs.SetInt("phoneme nh", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme nh", 0);
-      }
-    }
-  }
-
-  public void SavePhonemesToPlayInChapterTwo()
-  {
-    for(int i = 0; i < webSockets.chapterTwoPhonemesList.Count; i++)
-    {
-      if(webSockets.chapterTwoPhonemesList[i] == "f")
-      {
-        PlayerPrefs.SetInt("phoneme f", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme f", 0);
-      }
-      
-      if(webSockets.chapterTwoPhonemesList[i] == "v")
-      {
-        PlayerPrefs.SetInt("phoneme v", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme v", 0);
-      }
-      
-      if(webSockets.chapterTwoPhonemesList[i] == "s")
-      {
-        PlayerPrefs.SetInt("phoneme s", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme s", 0);
-      }
-      
-      if(webSockets.chapterTwoPhonemesList[i] == "z")
-      {
-        PlayerPrefs.SetInt("phoneme z", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme z", 0);
-      }
-      
-      if(webSockets.chapterTwoPhonemesList[i] == "ch")
-      {
-        PlayerPrefs.SetInt("phoneme ch", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme ch", 0);
-      }
-      
-      if(webSockets.chapterTwoPhonemesList[i] == "j")
-      {
-        PlayerPrefs.SetInt("phoneme j", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme j", 0);
-      }
-    }
-  }
-
-  public void SavePhonemesToPlayInChapterThree()
-  {
-    for(int i = 0; i < webSockets.chapterThreePhonemesList.Count; i++)
-    {
-      if(webSockets.chapterThreePhonemesList[i] == "rr")
-      {
-        PlayerPrefs.SetInt("phoneme rr", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme rr", 0);
-      }
-      
-      if(webSockets.chapterThreePhonemesList[i] == "r")
-      {
-        PlayerPrefs.SetInt("phoneme r", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme r", 0);
-      }
-      
-      if(webSockets.chapterThreePhonemesList[i] == "l")
-      {
-        PlayerPrefs.SetInt("phoneme l", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme l", 0);
-      }
-      
-      if(webSockets.chapterThreePhonemesList[i] == "lh")
-      {
-        PlayerPrefs.SetInt("phoneme lh", 1);
-      }
-      else 
-      {
-        PlayerPrefs.SetInt("phoneme lh", 0);
-      }
-    }
-  }
-**/
   IEnumerator PrepareLevels()
   {
     if(PlayerPrefs.HasKey("ChapterOne"))
@@ -1300,13 +1118,13 @@ public class GameController : MonoBehaviour
     }
     else
     {
-      PlayerPrefs.SetInt("PlayAllChapter", 0);
+      PlayerPrefs.SetInt("PlayAllChapter1", 0);
 
-      for (int i = 0; i < webSockets.jsonDataLevels.value.structure.structure.Count; i++)
+      for (int i = 0; i < webSockets.jsonDataLevels.value.actions1.Count; i++)
       {
-        PlayerPrefs.SetInt("chap1actionID" + i, webSockets.jsonDataLevels.value.structure.structure[i].id);
+        PlayerPrefs.SetInt("chap1actionID" + i, int.Parse(webSockets.jsonDataLevels.value.actions1[i]));
       }
-      PlayerPrefs.SetInt("WordsChapter1Size", webSockets.jsonDataLevels.value.structure.structure.Count);
+      PlayerPrefs.SetInt("WordsChapter1Size", webSockets.jsonDataLevels.value.actions1.Count);
     }
 
     if(webSockets.playAllChapter2)
@@ -1316,12 +1134,14 @@ public class GameController : MonoBehaviour
     else
     {
       PlayerPrefs.SetInt("PlayAllChapter2", 0);
-      
-      for (int i = 0; i < webSockets.jsonDataLevels.value.structure.structure.Count; i++)
+      for (int i = 0; i < webSockets.jsonDataLevels.value.actions2.Count; i++)
       {
-        PlayerPrefs.SetInt("chap2actionID" + i, webSockets.jsonDataLevels.value.structure.structure[i].id);
+        PlayerPrefs.SetInt("chap2actionID" + i, int.Parse(webSockets.jsonDataLevels.value.actions2[i]));
+        Debug.Log("index " + i + "actionid" + int.Parse(webSockets.jsonDataLevels.value.actions2[i]));
+
       }
-      PlayerPrefs.SetInt("WordsChapter2Size", webSockets.jsonDataLevels.value.structure.structure.Count);
+      Debug.Log("PHONEMES SELECTED COUNT " + webSockets.jsonDataLevels.value.actions2.Count);
+      PlayerPrefs.SetInt("WordsChapter2Size", webSockets.jsonDataLevels.value.actions2.Count);
     }
 
     if(webSockets.playAllChapter3)
@@ -1332,11 +1152,11 @@ public class GameController : MonoBehaviour
     {
       PlayerPrefs.SetInt("PlayAllChapter3", 0);
 
-      for (int i = 0; i < webSockets.jsonDataLevels.value.structure.structure.Count; i++)
+      for (int i = 0; i < webSockets.jsonDataLevels.value.actions3.Count; i++)
       {
-        PlayerPrefs.SetInt("chap3actionID" + i, webSockets.jsonDataLevels.value.structure.structure[i].id);
+        PlayerPrefs.SetInt("chap3actionID" + i, int.Parse(webSockets.jsonDataLevels.value.actions3[i]));
       }
-      PlayerPrefs.SetInt("WordsChapter3Size", webSockets.jsonDataLevels.value.structure.structure.Count);
+      PlayerPrefs.SetInt("WordsChapter3Size", webSockets.jsonDataLevels.value.actions3.Count);
     }
 
     if(webSockets.levelsList.Count == 1)
@@ -1347,17 +1167,14 @@ public class GameController : MonoBehaviour
       if(webSockets.levelsList[0].Equals("1"))
       {
         PlayerPrefs.SetString("ChapterOne", "Frog");
-        //SavePhonemesToPlayInChapterOne(); 
       }
       else if(webSockets.levelsList[0].Equals("2"))
       {
         PlayerPrefs.SetString("ChapterOne", "Owl");
-        //SavePhonemesToPlayInChapterTwo();
       }
       else if(webSockets.levelsList[0].Equals("3"))
       {
         PlayerPrefs.SetString("ChapterOne", "Fish");
-        //SavePhonemesToPlayInChapterThree();
       }
     }
     else if(webSockets.levelsList.Count == 2)
@@ -1367,25 +1184,19 @@ public class GameController : MonoBehaviour
       if(webSockets.levelsList[0].Equals("1"))
       {
         PlayerPrefs.SetString("ChapterOne", "Frog");
-        //SavePhonemesToPlayInChapterOne();
-
         if(webSockets.levelsList[1].Equals("2"))
         {
           PlayerPrefs.SetString("ChapterTwo", "Owl");
-          //SavePhonemesToPlayInChapterTwo();
         }
         else if(webSockets.levelsList[1].Equals("3"))
         {
           PlayerPrefs.SetString("ChapterTwo", "Fish");
-          //SavePhonemesToPlayInChapterThree();
         }
       }
       else if(webSockets.levelsList[0].Equals("2"))
       {
         PlayerPrefs.SetString("ChapterOne", "Owl");
-        //SavePhonemesToPlayInChapterTwo();
         PlayerPrefs.SetString("ChapterTwo", "Fish");
-        //SavePhonemesToPlayInChapterThree();
       }
     }
     else if(webSockets.levelsList.Count == 3)
@@ -1393,11 +1204,8 @@ public class GameController : MonoBehaviour
       PlayerPrefs.SetInt("ChaptersToQuitGame", 3);
       PlayerPrefs.SetInt("NumberOfChaptersToPlay", 3);
       PlayerPrefs.SetString("ChapterOne", "Frog");
-      //SavePhonemesToPlayInChapterOne();
       PlayerPrefs.SetString("ChapterTwo", "Owl");
-      //SavePhonemesToPlayInChapterTwo();
       PlayerPrefs.SetString("ChapterThree", "Fish");
-      //SavePhonemesToPlayInChapterThree();
     }
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");
   prepareLevelsDone = true;
@@ -1617,7 +1425,10 @@ public class GameController : MonoBehaviour
   IEnumerator PrepareGameStructure()
   {
     yield return new WaitUntil(() => structReqDone);
+    Debug.Log("structReqDone " + structReqDone);
     yield return new WaitUntil(() => respositoryReqDone);
+    Debug.Log("respositoryReqDone " + respositoryReqDone);
+
   }
 
   IEnumerator PreparedGameExecutionID()
@@ -1782,6 +1593,106 @@ public class GameController : MonoBehaviour
     yield return StartCoroutine(PlayWordName(currentWord));
   }
 
+  public void DeleteData()
+  {
+    if (PlayerPrefs.HasKey("RESTORE"))
+    {
+      PlayerPrefs.DeleteKey("RESTORE");
+    }
+    if (PlayerPrefs.HasKey("THERAPISTID"))
+    {
+      PlayerPrefs.DeleteKey("THERAPISTID");
+    }
+    if (PlayerPrefs.HasKey("PATIENTID"))
+    {
+      PlayerPrefs.DeleteKey("PATIENTID");
+    }
+    if (PlayerPrefs.HasKey("LEVELSELECTION"))
+    {
+      PlayerPrefs.DeleteKey("LEVELSELECTION");
+    }
+    if (PlayerPrefs.HasKey("ChapterPlayed"))
+    {
+      PlayerPrefs.DeleteKey("ChapterPlayed");
+    }
+    if (PlayerPrefs.HasKey("SEQUENCEID"))
+    {
+      PlayerPrefs.DeleteKey("SEQUENCEID");
+    }
+    if (PlayerPrefs.HasKey("GAMEEXECUTIONID"))
+    {
+      PlayerPrefs.DeleteKey("GAMEEXECUTIONID");
+    }
+    if (PlayerPrefs.HasKey("GAMESTARTED"))
+    {
+      PlayerPrefs.DeleteKey("GAMESTARTED");
+    }
+    if (PlayerPrefs.HasKey("ChapterOne"))
+    {
+      PlayerPrefs.DeleteKey("ChapterOne");
+    }
+    if (PlayerPrefs.HasKey("ChaptersToQuitGame"))
+    {
+      PlayerPrefs.DeleteKey("ChaptersToQuitGame");
+    }
+    if (PlayerPrefs.HasKey("ChapterTwo"))
+    {
+      PlayerPrefs.DeleteKey("ChapterTwo");
+    }
+    if (PlayerPrefs.HasKey("ChapterThree"))
+    {
+      PlayerPrefs.DeleteKey("ChapterThree");
+    }
+    if (PlayerPrefs.HasKey("PlayAllChapter1"))
+    {
+      PlayerPrefs.DeleteKey("PlayAllChapter1");
+    }
+    if (PlayerPrefs.HasKey("WordsChapter1Size"))
+    {
+      PlayerPrefs.DeleteKey("WordsChapter1Size");
+    }
+    if (PlayerPrefs.HasKey("PlayAllChapter2"))
+    {
+      PlayerPrefs.DeleteKey("PlayAllChapter2");
+    }
+    if (PlayerPrefs.HasKey("WordsChapter2Size"))
+    {
+      PlayerPrefs.DeleteKey("WordsChapter2Size");
+    }
+    if (PlayerPrefs.HasKey("chap2actionID"))
+    {
+      PlayerPrefs.DeleteKey("chap2actionID");
+    }
+    if (PlayerPrefs.HasKey("PlayAllChapter3"))
+    {
+      PlayerPrefs.DeleteKey("PlayAllChapter3");
+    }
+    if (PlayerPrefs.HasKey("WordsChapter3Size"))
+    {
+      PlayerPrefs.DeleteKey("WordsChapter3Size");
+    }
+    if (PlayerPrefs.HasKey("chap3actionID"))
+    {
+      PlayerPrefs.DeleteKey("chap3actionID");
+    }
+    if (PlayerPrefs.HasKey("CONTINUEGAME"))
+    {
+      PlayerPrefs.DeleteKey("CONTINUEGAME");
+    }
+    if (PlayerPrefs.HasKey("LASTLVLPLAYED"))
+    {
+      PlayerPrefs.DeleteKey("LASTLVLPLAYED");
+    }
+    if (PlayerPrefs.HasKey("NumberOfChaptersToPlay"))
+    {
+      PlayerPrefs.DeleteKey("NumberOfChaptersToPlay");
+    }
+    if (PlayerPrefs.HasKey("GAMESAMPLEID"))
+    {
+      PlayerPrefs.DeleteKey("GAMESAMPLEID");
+    }
+  }
+
   public void OnApplicationQuit()
   {
     Debug.Log("Stop WS client and logut");
@@ -1793,11 +1704,7 @@ public class GameController : MonoBehaviour
     webSockets.PrepareMessage("status", payload);
     webSockets.StopClient(payload);
 
-    if (PlayerPrefs.HasKey("RESTORE"))
-    {
-      PlayerPrefs.DeleteKey("RESTORE");
-    }
-    
+    DeleteData();
     Application.Quit();       
   }
   
@@ -1808,8 +1715,4 @@ public class GameController : MonoBehaviour
     yield return new WaitForSeconds(6.0f);
     OnApplicationQuit();
   }
-    
-
-  
-
 }

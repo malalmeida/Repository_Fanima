@@ -5,34 +5,40 @@ using System.Collections.Generic;
 public class jsonDataLevels
 {
     public string msg;
-    //public List<string> value;
     public LevelsStructure value;
 }
 
 [Serializable]
 public class LevelsStructure
 {
+    public int patient;
     public List<string> levels;
-    public StructureData structure;
+    public List<string> actions1;
+    public List<string> actions2;
+    public List<string> actions3;
 }
 
-[Serializable]
-public class StructureData
-{
-    public string level;
-    public List<ActionData> structure;
-}
+//[Serializable]
+//public class StructureData
+//{
+  //  public List<string> level1;
+   // public List<string> level2;
+   // public List<string> level3;
+//}
 
-[Serializable]
+/**[Serializable]
 public class ActionData
 {
-    public int id;
+   public int id;V
+   public string action;
+    public int ordering;
     public int levelid;
     public string level;
     public int sequenceid;
     public string sequence;
-    public int time; 
     public int repository;
+    public int time; 
     public int word;
 }
+**/
 
