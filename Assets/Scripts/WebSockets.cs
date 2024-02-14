@@ -62,6 +62,12 @@ public class WebSockets : MonoBehaviour{
     public bool playAllChapter1 = false;
     public bool playAllChapter2 = false;
     public bool playAllChapter3 = false;
+    public List<string> actionsChapter1List;
+    public List<string> actionsChapter2List;
+    public List<string> actionsChapter3List;
+    public List<string> actionsChapterEx1List;
+    public List<string> actionsChapterEx2List;
+    public List<string> actionsChapterEx3List;
 
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -102,12 +108,52 @@ public class WebSockets : MonoBehaviour{
                 Debug.Log("STATUS " + status);
                 PrepareMessage("status", status);
             }
+             else if(msg.Contains("restore"))
+            {
+                Debug.Log("RESTORE " + msg);
+                jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
+                Debug.Log("RESTORE VALUE: " + jsonDataRestore.value);
+
+                if(jsonDataRestore.value.gameexecutionid > 0)
+                {
+                    continueGame = true;
+                    restoreGameExecutionID = jsonDataRestore.value.gameexecutionid;
+                    levelsList = jsonDataRestore.value.levels;
+                    restoreLevelId = jsonDataRestore.value.levelid;
+                    actionsChapter1List = jsonDataRestore.value.actions1;
+                    actionsChapter2List = jsonDataRestore.value.actions2;
+                    actionsChapter3List = jsonDataRestore.value.actions3;
+                    actionsChapterEx1List = jsonDataRestore.value.actionsEx1;
+                    actionsChapterEx2List = jsonDataRestore.value.actionsEx2;
+                    actionsChapterEx3List = jsonDataRestore.value.actionsEx3;
+
+                    if(actionsChapter1List.Count == 14)
+                    {
+                        Debug.Log("JOGAR O CAPITULO 1 TODO");
+                        playAllChapter1 = true;
+                    }
+                    if(actionsChapter2List.Count == 13)
+                    {
+                        Debug.Log("JOGAR O CAPITULO 2 TODO");
+                        playAllChapter2 = true;
+                    }
+                    if(actionsChapter3List.Count == 12)
+                    {
+                        Debug.Log("JOGAR O CAPITULO 3 TODO");
+                        playAllChapter3 = true;
+                    }
+
+                    Debug.Log("levelsCount" + levelsList.Count);
+                }
+                restoreDone = true;
+            }
             else if(msg.Contains("levels"))
             {
                 Debug.Log("LEVELS " + msg);
                 jsonDataLevels = JsonUtility.FromJson<jsonDataLevels>(msg);
-
-                //levelsList = jsonDataLevels.value;
+                actionsChapter1List = jsonDataLevels.value.actions1;
+                actionsChapter2List = jsonDataLevels.value.actions2;
+                actionsChapter3List = jsonDataLevels.value.actions3;
                 levelsList = jsonDataLevels.value.levels;
                 for (int i = 0; i < levelsList.Count; i++)
                 {
@@ -173,22 +219,6 @@ public class WebSockets : MonoBehaviour{
                     statusValue = int.Parse(jsonDataValidation.value);
                     validationDone = true;
                 }
-            }
-            else if(msg.Contains("restore"))
-            {
-                Debug.Log("RESTORE " + msg);
-                jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
-                Debug.Log("RESTORE VALUE: " + jsonDataRestore.value);
-
-                if(jsonDataRestore.value.gameexecutionid > 0)
-                {
-                    continueGame = true;
-                    restoreGameExecutionID = jsonDataRestore.value.gameexecutionid;
-                    levelsList = jsonDataRestore.value.levels;
-                    restoreLevelId = jsonDataRestore.value.levelid;
-                    Debug.Log("levelsCount" + levelsList.Count);
-                }
-                restoreDone = true;
             }
             else if(msg.Contains("nextlevel"))
             {

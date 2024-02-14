@@ -182,22 +182,52 @@ public class GameController : MonoBehaviour
     else if(SceneManager.GetActiveScene().name == "Fish")
     { 
       activeChapter = "Vibrantes e Laterais";
-      StartCoroutine(GameLoop());      
+      StartCoroutine(GameLoop());
     }
 
     else if(SceneManager.GetActiveScene().name == "Monkey")
     {
-      StartCoroutine(BonusGameLoop());
+      if(PlayerPrefs.HasKey("StartsAtExtraChapter"))
+      {
+        if(PlayerPrefs.GetInt("StartsAtExtraChapter") == 1)
+        {
+          StartCoroutine(RestoredBonusGameLoop());
+        }
+      }
+      else
+      {
+        StartCoroutine(BonusGameLoop());    
+      } 
     }
 
     else if(SceneManager.GetActiveScene().name == "Chameleon")
     {
-      StartCoroutine(BonusGameLoop());
+      if(PlayerPrefs.HasKey("StartsAtExtraChapter"))
+      {
+        if(PlayerPrefs.GetInt("StartsAtExtraChapter") == 1)
+        {
+          StartCoroutine(RestoredBonusGameLoop());
+        }
+      }
+      else
+      {
+        StartCoroutine(BonusGameLoop());    
+      } 
     }
 
     else if(SceneManager.GetActiveScene().name == "Octopus") 
     {
-      StartCoroutine(BonusGameLoop());
+      if(PlayerPrefs.HasKey("StartsAtExtraChapter"))
+      {
+        if(PlayerPrefs.GetInt("StartsAtExtraChapter") == 1)
+        {
+          StartCoroutine(RestoredBonusGameLoop());
+        }
+      }
+      else
+      {
+        StartCoroutine(BonusGameLoop());    
+      } 
     }
   }
 
@@ -272,7 +302,7 @@ public class GameController : MonoBehaviour
     yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
     AdjustIncrementAmount();
 
-    
+    Debug.Log("NUMERO DE PALAVRAS NESTE CAPITULO" + sequenceToPlayList.Count);
     for(int i = 0; i < sequenceToPlayList.Count; i++)
     {
       currentActionID = sequenceToPlayList[i].id;
@@ -285,7 +315,7 @@ public class GameController : MonoBehaviour
       string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[i].level + "\", \"sequence\": \"" + sequenceToPlayList[i].sequence + "\", \"action\": \"" + sequenceToPlayList[i].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
       yield return StartCoroutine(PlaySentences(currentWord));
-      //Debug.Log("DIZ -> " + currentWord);
+      Debug.Log("DIZ -> " + currentWord);
       ShowImage(currentWord, i);
       
       if((SceneManager.GetActiveScene().name == "Geral"))
@@ -471,7 +501,6 @@ public class GameController : MonoBehaviour
           ShowImageBonus(currentWord, l);
           if(l == 0)
           {
-            //tempo de perceber o que é a imagem
             if((SceneManager.GetActiveScene().name == "Chameleon"))
             {
               yield return StartCoroutine(PlayAudioClip("ChameleonFirstWord"));
@@ -484,6 +513,7 @@ public class GameController : MonoBehaviour
             {
               yield return StartCoroutine(PlayAudioClip("OctopusFirstWord"));
             }
+            //tempo de perceber o que é a imagem
             //yield return new WaitForSeconds(0.0f);
             speak = true;
           }
@@ -502,6 +532,84 @@ public class GameController : MonoBehaviour
         }
       }   
     }
+    yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
+    ShowRewardBonusLevels();
+    yield return StartCoroutine(ChapFinalVoices());
+
+    Debug.Log("ACABOU O SEQUENCIA"); 
+    SceneManager.LoadScene("Travel");
+  }
+
+  IEnumerator RestoredBonusGameLoop()
+  {
+    yield return StartCoroutine(ChapIntroVoices());
+    gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+    sequenceID = PlayerPrefs.GetInt("SEQUENCEID");
+
+    AdjustIncrementAmount();
+    yield return new WaitUntil(() => adjustIncrementAmountDone);
+
+    //for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
+    //{ 
+      
+      yield return StartCoroutine(PrepareSequence());
+      yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
+      Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
+      for(int j = 0; j < sequenceToPlayList.Count; j++)
+      { 
+        currentActionID = sequenceToPlayList[j].id;
+        currentWordID = sequenceToPlayList[j].word;
+        currentSequenceID = sequenceToPlayList[j].sequenceid;
+        currentLevelID = sequenceToPlayList[j].levelid;
+
+        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+        FindWordNameByWordId(currentWordID);
+        string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
+        webSockets.PrepareMessage("game", payload); 
+     
+        //Repeat the same word 3 times
+        for(int l = 0; l < 3; l++)
+        {
+          if(l == 2)
+          {
+            lastBonusSample = true;
+            yield return StartCoroutine(PlayGuideVoiceForReps(l));
+          }
+          bonusgameResult = true;
+          ShowImageBonus(currentWord, l);
+          if(l == 0)
+          {
+            if((SceneManager.GetActiveScene().name == "Chameleon"))
+            {
+              yield return StartCoroutine(PlayAudioClip("ChameleonFirstWord"));
+            }
+            else if((SceneManager.GetActiveScene().name == "Monkey"))
+            {
+              yield return StartCoroutine(PlayAudioClip("MonkeyFirstWord"));
+            }
+            else if((SceneManager.GetActiveScene().name == "Octopus"))
+            {
+              yield return StartCoroutine(PlayAudioClip("OctopusFirstWord"));
+            }
+            //tempo de perceber o que é a imagem
+            //yield return new WaitForSeconds(0.0f);
+            speak = true;
+          }
+          if(l == 1)
+          {
+            yield return StartCoroutine(PlayGuideVoiceForReps(l));
+          }
+          timer = sequenceToPlayList[j].time;
+
+          activeHelpButton = true;
+          speak = true;
+          yield return new WaitUntil(() => startMicro);
+          startMicro = false;
+          RecordSound(timer);
+          yield return StartCoroutine(WaitForValidation());
+        }
+      }   
+    //}
     yield return StartCoroutine(PlayAudioClip("chapEndMusic"));
     ShowRewardBonusLevels();
     yield return StartCoroutine(ChapFinalVoices());
@@ -1064,15 +1172,86 @@ public class GameController : MonoBehaviour
     }
 
     else
-    {
-      Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
-      yield return StartCoroutine(PrepareGameStructure());
-      for(int i = 0; i < contentList.Count; i++)
+    { 
+      if(PlayerPrefs.HasKey("StartsAtExtraChapter"))
       {
-      if(contentList[i].sequence == activeChapter)
+        if(PlayerPrefs.GetInt("StartsAtExtraChapter") == 1)
+        {
+          yield return StartCoroutine(PrepareGameStructure());
+          if (SceneManager.GetActiveScene().name == "Monkey")
+          {
+            for (int i = 0; i < contentList.Count; i++)
+            {
+              Debug.Log("FOR SIZE " + PlayerPrefs.GetInt("WordsChapterEx1Size"));
+              for (int j = 0; j < PlayerPrefs.GetInt("WordsChapterEx1Size"); j++)
+              { 
+                Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
+                Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chapEx1actionID" + j));
+                if(PlayerPrefs.GetInt("chapEx1actionID" + j) == contentList[i].id)
+                {
+                  sequenceToPlayList.Add(contentList[i]);
+                }
+              }
+            }
+          }
+          else if (SceneManager.GetActiveScene().name == "Chameleon")
+          {
+            for (int i = 0; i < contentList.Count; i++)
+            {
+              Debug.Log("FOR SIZE " + PlayerPrefs.GetInt("WordsChapterEx2Size"));
+              for (int j = 0; j < PlayerPrefs.GetInt("WordsChapterEx2Size"); j++)
+              { 
+                Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
+                Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chapEx2actionID" + j));
+                if(PlayerPrefs.GetInt("chapEx2actionID" + j) == contentList[i].id)
+                {
+                  sequenceToPlayList.Add(contentList[i]);
+                }
+              }
+            }
+          }
+          else if (SceneManager.GetActiveScene().name == "Fish")
+          {
+            for (int i = 0; i < contentList.Count; i++)
+            {
+              Debug.Log("FOR SIZE " + PlayerPrefs.GetInt("WordsChapterEx3Size"));
+              for (int j = 0; j < PlayerPrefs.GetInt("WordsChapterEx3Size"); j++)
+              { 
+                Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
+                Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chapEx3actionID" + j));
+                if(PlayerPrefs.GetInt("chapEx3actionID" + j) == contentList[i].id)
+                {
+                  sequenceToPlayList.Add(contentList[i]);
+                }
+              }
+            }
+          }
+          for (int i = 0; i < contentList.Count; i++)
+          {
+            //Debug.Log("FOR SIZE " + PlayerPrefs.GetInt("WordsChapter3Size"));
+            for (int j = 0; j < PlayerPrefs.GetInt("WordsChapter3Size"); j++)
+            { 
+              //Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
+              //Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chap3actionID" + j));
+              if(PlayerPrefs.GetInt("chap3actionID" + j) == contentList[i].id)
+              {
+                sequenceToPlayList.Add(contentList[i]);
+              }
+            }
+          }
+        }
+      }
+      else
       {
-        sequenceToPlayList.Add(contentList[i]);
-      } 
+        Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
+        yield return StartCoroutine(PrepareGameStructure());
+        for(int i = 0; i < contentList.Count; i++)
+        {
+          if(contentList[i].sequence == activeChapter)
+          {
+            sequenceToPlayList.Add(contentList[i]);
+          } 
+        }
       }
     }
     Debug.Log("estrutura DONE");
@@ -1127,11 +1306,13 @@ public class GameController : MonoBehaviour
     {
       PlayerPrefs.SetInt("PlayAllChapter1", 0);
 
-      for (int i = 0; i < webSockets.jsonDataLevels.value.actions1.Count; i++)
+      for (int i = 0; i < webSockets.actionsChapter1List.Count; i++)
       {
-        PlayerPrefs.SetInt("chap1actionID" + i, int.Parse(webSockets.jsonDataLevels.value.actions1[i]));
+        PlayerPrefs.SetInt("chap1actionID" + i, int.Parse(webSockets.actionsChapter1List[i]));
+        Debug.Log("index " + i + " 1actionid " + int.Parse(webSockets.actionsChapter1List[i]));
+
       }
-      PlayerPrefs.SetInt("WordsChapter1Size", webSockets.jsonDataLevels.value.actions1.Count);
+      PlayerPrefs.SetInt("WordsChapter1Size", webSockets.actionsChapter1List.Count);
     }
 
     if(webSockets.playAllChapter2)
@@ -1141,13 +1322,13 @@ public class GameController : MonoBehaviour
     else
     {
       PlayerPrefs.SetInt("PlayAllChapter2", 0);
-      for (int i = 0; i < webSockets.jsonDataLevels.value.actions2.Count; i++)
+      for (int i = 0; i < webSockets.actionsChapter2List.Count; i++)
       {
-        PlayerPrefs.SetInt("chap2actionID" + i, int.Parse(webSockets.jsonDataLevels.value.actions2[i]));
-        Debug.Log("index " + i + "actionid" + int.Parse(webSockets.jsonDataLevels.value.actions2[i]));
+        PlayerPrefs.SetInt("chap2actionID " + i, int.Parse(webSockets.actionsChapter2List[i]));
+        Debug.Log("index " + i + " 2actionid " + int.Parse(webSockets.actionsChapter2List[i]));
 
       }
-      PlayerPrefs.SetInt("WordsChapter2Size", webSockets.jsonDataLevels.value.actions2.Count);
+      PlayerPrefs.SetInt("WordsChapter2Size", webSockets.actionsChapter2List.Count);
     }
 
     if(webSockets.playAllChapter3)
@@ -1158,11 +1339,13 @@ public class GameController : MonoBehaviour
     {
       PlayerPrefs.SetInt("PlayAllChapter3", 0);
 
-      for (int i = 0; i < webSockets.jsonDataLevels.value.actions3.Count; i++)
+      for (int i = 0; i < webSockets.actionsChapter3List.Count; i++)
       {
-        PlayerPrefs.SetInt("chap3actionID" + i, int.Parse(webSockets.jsonDataLevels.value.actions3[i]));
+        PlayerPrefs.SetInt("chap3actionID" + i, int.Parse(webSockets.actionsChapter3List[i]));
+        Debug.Log("index " + i + " 3actionid " + int.Parse(webSockets.actionsChapter3List[i]));
+
       }
-      PlayerPrefs.SetInt("WordsChapter3Size", webSockets.jsonDataLevels.value.actions3.Count);
+      PlayerPrefs.SetInt("WordsChapter3Size", webSockets.actionsChapter3List.Count);
     }
 
     if(webSockets.levelsList.Count == 1)
@@ -1452,19 +1635,118 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("CONTINUEGAME", 1);
         PlayerPrefs.SetInt("LASTLVLPLAYED", webSockets.restoreLevelId);
         gameExecutionID = webSockets.restoreGameExecutionID;
+        PlayerPrefs.SetInt("GAMEEXECUTIONID", gameExecutionID);
         //caso já se tenha escolhido os capitulos
         if(webSockets.restoreLevelId != 0)
         {
           StartCoroutine(PrepareLevels());
-          //Debug.Log("levelsToContinue: " + webSockets.restoreLevelId);
           if(webSockets.levelsList.Count == 1)
           {
             PlayerPrefs.SetInt("ChapterPlayed", 0);
           }
-          else
+          else if(webSockets.levelsList.Count == 2)
           {
-          int levelsToContinue = webSockets.restoreLevelId - 1;
-          PlayerPrefs.SetInt("ChapterPlayed", levelsToContinue);
+            for (int i = 0; i < webSockets.levelsList.Count; i++)
+            {
+              if(int.Parse(webSockets.levelsList[i]) == webSockets.restoreLevelId)
+              {
+                if(i == 0)
+                {
+                  PlayerPrefs.SetInt("ChapterPlayed", 0);
+                  Debug.Log("ULTIMO CHAP JOGADO " + webSockets.restoreLevelId);
+                }
+                else   
+                {
+                  PlayerPrefs.SetInt("ChapterPlayed", 1);
+                  Debug.Log("ULTIMO CHAP JOGADO " + webSockets.restoreLevelId);
+                }
+              }
+            }
+          }
+          else if(webSockets.levelsList.Count == 3)
+          { 
+            for (int i = 0; i < webSockets.levelsList.Count; i++)
+            {
+              if(int.Parse(webSockets.levelsList[i]) == webSockets.restoreLevelId)
+              {
+                if(i == 0)
+                {
+                  PlayerPrefs.SetInt("ChapterPlayed", 0);
+                  Debug.Log("ULTIMO CHAP JOGADO " + webSockets.restoreLevelId);
+                }
+                else if( i == 1)   
+                {
+                  PlayerPrefs.SetInt("ChapterPlayed", 1);
+                  Debug.Log("ULTIMO CHAP JOGADO " + webSockets.restoreLevelId);
+                }
+                else if( i == 2)   
+                {
+                  PlayerPrefs.SetInt("ChapterPlayed", 2);
+                  Debug.Log("ULTIMO CHAP JOGADO " + webSockets.restoreLevelId);
+                }
+              }
+            }
+            //int levelsToContinue = webSockets.restoreLevelId - 1;
+            //PlayerPrefs.SetInt("ChapterPlayed", levelsToContinue);
+            //Debug.Log("ULTIMO CHAP JOGADO " + levelsToContinue);
+          }
+          //verificar se é para começar no capitulo extra (caso a lista das actions não esteja vazia)
+          if(webSockets.restoreLevelId == 1)
+          { 
+            if(webSockets.actionsChapterEx1List.Count == 0)
+            {
+              Debug.Log("COMEÇAR NO CHAP 1!");
+              PlayerPrefs.SetInt("StartsAtExtraChapter", 0);
+            }
+            else
+            {
+              PlayerPrefs.SetInt("StartsAtExtraChapter", 1);
+              for (int i = 0; i < webSockets.actionsChapterEx1List.Count; i++)
+              {
+                PlayerPrefs.SetInt("chapEx1actionID" + i, int.Parse(webSockets.actionsChapterEx1List[i]));
+                Debug.Log("index " + i + "actionid" + int.Parse(webSockets.actionsChapterEx1List[i]));
+              }
+              PlayerPrefs.SetInt("WordsChapterEx1Size", webSockets.actionsChapterEx1List.Count);
+              SceneManager.LoadScene("Monkey");
+            }
+          }
+          else if(webSockets.restoreLevelId == 2)
+          { 
+            if(webSockets.actionsChapterEx2List.Count == 0)
+            {
+              Debug.Log("COMEÇAR NO CHAP 2!");
+              PlayerPrefs.SetInt("StartsAtExtraChapter", 0);
+            }
+            else
+            {
+              PlayerPrefs.SetInt("StartsAtExtraChapter", 1);
+              for (int i = 0; i < webSockets.actionsChapterEx2List.Count; i++)
+              {
+                PlayerPrefs.SetInt("chapEx2actionID" + i, int.Parse(webSockets.actionsChapterEx2List[i]));
+                Debug.Log("index " + i + "actionid" + int.Parse(webSockets.actionsChapterEx2List[i]));
+              }
+              PlayerPrefs.SetInt("WordsChapterEx2Size", webSockets.actionsChapterEx2List.Count);
+              SceneManager.LoadScene("Chameleon");
+            }
+          }
+          else if(webSockets.restoreLevelId == 3)
+          { 
+            if(webSockets.actionsChapterEx3List.Count == 0)
+            {
+              Debug.Log("COMEÇAR NO CHAP 3!");
+              PlayerPrefs.SetInt("StartsAtExtraChapter", 0);
+            }
+            else
+            {
+              PlayerPrefs.SetInt("StartsAtExtraChapter", 1);
+              for (int i = 0; i < webSockets.actionsChapterEx3List.Count; i++)
+              {
+                PlayerPrefs.SetInt("chapEx3actionID" + i, int.Parse(webSockets.actionsChapterEx3List[i]));
+                Debug.Log("index " + i + "actionid" + int.Parse(webSockets.actionsChapterEx3List[i]));
+              }
+              PlayerPrefs.SetInt("WordsChapterEx3Size", webSockets.actionsChapterEx3List.Count);
+              SceneManager.LoadScene("Octopus");
+            }
           }
           SceneManager.LoadScene("Travel");
         }     
@@ -1486,7 +1768,6 @@ public class GameController : MonoBehaviour
     {
       if(webSockets.statusValue > 0)
       {
-        //Debug.Log("ERRORSTATUS" + webSockets.statusValue);
         errorStatus = 0;
       }
       else
@@ -1697,6 +1978,34 @@ public class GameController : MonoBehaviour
     {
       PlayerPrefs.DeleteKey("GAMESAMPLEID");
     }
+    if(PlayerPrefs.HasKey("StartsAtExtraChapter"))
+    {
+      PlayerPrefs.DeleteKey("StartsAtExtraChapter");
+    }
+    if (PlayerPrefs.HasKey("WordsChapterEx1Size"))
+    {
+      PlayerPrefs.DeleteKey("WordsChapterEx1Size");
+    }
+    if (PlayerPrefs.HasKey("chapEx1actionID"))
+    {
+      PlayerPrefs.DeleteKey("chapEx1actionID");
+    }
+    if (PlayerPrefs.HasKey("WordsChapterEx2Size"))
+    {
+      PlayerPrefs.DeleteKey("WordsChapterEx2Size");
+    }
+    if (PlayerPrefs.HasKey("chapEx2actionID"))
+    {
+      PlayerPrefs.DeleteKey("chapEx2actionID");
+    } 
+    if (PlayerPrefs.HasKey("WordsChapterEx3Size"))
+    {
+      PlayerPrefs.DeleteKey("WordsChapterEx3Size");
+    }
+    if (PlayerPrefs.HasKey("chapEx3actionID"))
+    {
+      PlayerPrefs.DeleteKey("chapEx3actionID");
+    } 
   }
 
   public void OnApplicationQuit()

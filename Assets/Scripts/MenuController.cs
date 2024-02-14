@@ -24,6 +24,11 @@ public class MenuController : MonoBehaviour
         StartCoroutine(gameStructureRequest.GetRepository());
         PlayerPrefs.SetInt("GAMESTARTED", 0);
     }
+    
+   // void Update()
+    //{
+      //  if(gameController.res)
+   // }
 
     void Start()
     {
