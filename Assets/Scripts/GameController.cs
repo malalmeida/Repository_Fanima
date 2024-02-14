@@ -1125,10 +1125,11 @@ public class GameController : MonoBehaviour
           Debug.Log("FOR SIZE " + PlayerPrefs.GetInt("WordsChapter2Size"));
           for (int j = 0; j < PlayerPrefs.GetInt("WordsChapter2Size"); j++)
           {
-            Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
+            //Debug.Log("REPOSITORY ACTION ID: " + contentList[i].id);
             Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chap2actionID" + j));
             if(PlayerPrefs.GetInt("chap2actionID" + j) == contentList[i].id)
             {
+              Debug.Log("SELECTED ACTION ID: " + PlayerPrefs.GetInt("chap2actionID" + j));
               Debug.Log("ADD: " + contentList[i].id);
               sequenceToPlayList.Add(contentList[i]);
             }
@@ -1324,8 +1325,8 @@ public class GameController : MonoBehaviour
       PlayerPrefs.SetInt("PlayAllChapter2", 0);
       for (int i = 0; i < webSockets.actionsChapter2List.Count; i++)
       {
-        PlayerPrefs.SetInt("chap2actionID " + i, int.Parse(webSockets.actionsChapter2List[i]));
-        Debug.Log("index " + i + " 2actionid " + int.Parse(webSockets.actionsChapter2List[i]));
+        PlayerPrefs.SetInt("chap2actionID" + i, int.Parse(webSockets.actionsChapter2List[i]));
+        Debug.Log("index " + i + " chap2actionID " + int.Parse(webSockets.actionsChapter2List[i]));
 
       }
       PlayerPrefs.SetInt("WordsChapter2Size", webSockets.actionsChapter2List.Count);
