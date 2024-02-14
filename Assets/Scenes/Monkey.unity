@@ -3830,7 +3830,6 @@ GameObject:
   m_Component:
   - component: {fileID: 265234699}
   - component: {fileID: 265234701}
-  - component: {fileID: 265234700}
   - component: {fileID: 265234703}
   - component: {fileID: 265234702}
   m_Layer: 0
@@ -3855,20 +3854,6 @@ Transform:
   m_Father: {fileID: 949129652}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &265234700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265234698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3a5720e5eff948adbc6945cc78a07e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monkeyScript: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!212 &265234701
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19082,7 +19067,12 @@ MonoBehaviour:
   validationDone: 0
   jsonDataLevels:
     msg: 
-    value: []
+    value:
+      patient: 0
+      levels: []
+      actions1: []
+      actions2: []
+      actions3: []
   getLevelsDone: 0
   validationValue: 0
   levelsList: []
@@ -19106,9 +19096,30 @@ MonoBehaviour:
       gameexecutionid: 0
       levels: []
       levelid: 0
+      actions1: []
+      actions2: []
+      actions3: []
+      actionsEx1: []
+      actionsEx2: []
+      actionsEx3: []
   restoreLevelId: -1
   restoreGameExecutionID: -1
   continueGame: 0
+  lvl1Selected: 0
+  lvl2Selected: 0
+  lvl3Selected: 0
+  chapterOneWordIDList: 
+  chapterTwoWordIDList: 
+  chapterThreeWordIDList: 
+  playAllChapter1: 0
+  playAllChapter2: 0
+  playAllChapter3: 0
+  actionsChapter1List: []
+  actionsChapter2List: []
+  actionsChapter3List: []
+  actionsChapterEx1List: []
+  actionsChapterEx2List: []
+  actionsChapterEx3List: []
 --- !u!4 &1503929912
 Transform:
   m_ObjectHideFlags: 0
@@ -23606,6 +23617,7 @@ MonoBehaviour:
   octopusScript: {fileID: 0}
   fishScript: {fileID: 0}
   sequenceToPlayList: []
+  phonemeSequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 
   currentActionID: -1

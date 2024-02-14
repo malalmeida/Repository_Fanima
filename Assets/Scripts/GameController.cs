@@ -193,6 +193,10 @@ public class GameController : MonoBehaviour
         {
           StartCoroutine(RestoredBonusGameLoop());
         }
+        else
+        {
+          StartCoroutine(BonusGameLoop());
+        }
       }
       else
       {
@@ -208,6 +212,10 @@ public class GameController : MonoBehaviour
         {
           StartCoroutine(RestoredBonusGameLoop());
         }
+        else
+        {
+          StartCoroutine(BonusGameLoop());
+        }
       }
       else
       {
@@ -222,6 +230,10 @@ public class GameController : MonoBehaviour
         if(PlayerPrefs.GetInt("StartsAtExtraChapter") == 1)
         {
           StartCoroutine(RestoredBonusGameLoop());
+        }
+        else
+        {
+          StartCoroutine(BonusGameLoop());
         }
       }
       else
@@ -1171,7 +1183,6 @@ public class GameController : MonoBehaviour
         }
       }
     }
-
     else
     { 
       if(PlayerPrefs.HasKey("StartsAtExtraChapter"))
@@ -1239,6 +1250,18 @@ public class GameController : MonoBehaviour
                 sequenceToPlayList.Add(contentList[i]);
               }
             }
+          }
+        }
+        else
+        {
+          Debug.Log("Esperar pela estrutura... para o capitulo " + activeChapter);
+          yield return StartCoroutine(PrepareGameStructure());
+          for(int i = 0; i < contentList.Count; i++)
+          {
+            if(contentList[i].sequence == activeChapter)
+            {
+              sequenceToPlayList.Add(contentList[i]);
+            } 
           }
         }
       }

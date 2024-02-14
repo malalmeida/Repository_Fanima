@@ -19,7 +19,7 @@ public class RestoreData
     public List<string> actions1;
     public List<string> actions2;
     public List<string> actions3;
-    public List<string> actionsEx1;
-    public List<string> actionsEx2;
-    public List<string> actionsEx3;
+    public List<string> extra1;
+    public List<string> extra2;
+    public List<string> extra3;
 }
