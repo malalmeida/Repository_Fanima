@@ -176,7 +176,7 @@ public class WebSockets : MonoBehaviour{
                 //se lvl 1 selecionado verificar os fonemas escolhidos
                 if(lvl1Selected)
                 {
-                    if(jsonDataLevels.value.actions1.Count == 9)
+                    if(jsonDataLevels.value.actions1.Count == 14)
                     {
                         Debug.Log("JOGAR O CAPITULO 1 TODO");
                         playAllChapter1 = true;
@@ -185,7 +185,7 @@ public class WebSockets : MonoBehaviour{
                 //se lvl 2 selecionado verificar os fonemas escolhidos
                 if(lvl2Selected)
                 {
-                    if(jsonDataLevels.value.actions2.Count == 6)
+                    if(jsonDataLevels.value.actions2.Count == 13)
                     {
                         Debug.Log("JOGAR O CAPITULO 2 TODO");
                         playAllChapter2 = true;
@@ -194,7 +194,7 @@ public class WebSockets : MonoBehaviour{
                 //se lvl 3 selecionado verificar os fonemas escolhidos
                 if(lvl3Selected)
                 {
-                    if(jsonDataLevels.value.actions3.Count == 4)
+                    if(jsonDataLevels.value.actions3.Count == 12)
                     {
                         Debug.Log("JOGAR O CAPITULO 3 TODO");
                         playAllChapter3 = true;
