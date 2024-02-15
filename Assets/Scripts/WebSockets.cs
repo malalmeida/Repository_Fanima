@@ -112,8 +112,7 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("RESTORE " + msg);
                 jsonDataRestore = JsonUtility.FromJson<jsonDataRestore>(msg);
-                Debug.Log("RESTORE VALUE: " + jsonDataRestore.value);
-
+                Debug.Log("RESTORE value " + jsonDataRestore.value.gameexecutionid);
                 if(jsonDataRestore.value.gameexecutionid > 0)
                 {
                     continueGame = true;
