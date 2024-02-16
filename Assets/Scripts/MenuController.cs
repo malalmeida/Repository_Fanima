@@ -33,7 +33,10 @@ public class MenuController : MonoBehaviour
     void Start()
     {
         patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
-        playButton.SetActive(false);
+        if(SceneManager.GetActiveScene().name == "Geral")
+        {
+            playButton.SetActive(false);
+        }
 
         StartCoroutine(WaitForTherapistReady());
     }

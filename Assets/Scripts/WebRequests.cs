@@ -53,7 +53,8 @@ public class WebRequests : MonoBehaviour
             Debug.Log("ANSWER POST SAMPLE: " + www.downloadHandler.text + " END");
 
             //gameScript.gameSampleID = int.Parse(www.downloadHandler.text);
-             PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
+            Debug.Log("WebREQUEST POST SAMPLE RESPONSE " + int.Parse(www.downloadHandler.text));
+            PlayerPrefs.SetInt("GAMESAMPLEID", int.Parse(www.downloadHandler.text));
         }
 
     }

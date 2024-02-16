@@ -124,6 +124,10 @@ public class WebSockets : MonoBehaviour{
                     actionsChapter3List = jsonDataRestore.value.actions3;
                     actionsChapterEx1List = jsonDataRestore.value.extra1;
                     actionsChapterEx2List = jsonDataRestore.value.extra2;
+                    for (int i = 0; i < actionsChapterEx2List.Count; i++)
+                    {
+                        Debug.Log("EXTRA ACTION " + jsonDataRestore.value.extra2);
+                    }
                     actionsChapterEx3List = jsonDataRestore.value.extra3;
 
                     if(actionsChapter1List.Count == 14)
