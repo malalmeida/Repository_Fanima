@@ -663,44 +663,67 @@ public class GameController : MonoBehaviour
       fishScript.incrementAmount = (float)1 / (float)sequenceToPlayList.Count;
     }
     else if((SceneManager.GetActiveScene().name == "Monkey"))
-    { 
-      bool addThree = false;
-      for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
+    {
+      if(restoredBonusGame)
       {
-        if(webRequests.chapterErrorList[i].phoneme == "nh")
-        {
-          addThree = true;
-        }      
-      }
-      
-      if(addThree)
-      {
-        Debug.Log("PHONEMES COUNT: " + webRequests.chapterErrorList.Count);
-        float minusPhonemeNh = (float)webRequests.chapterErrorList.Count - (float)1;
-        Debug.Log("NO NH COUNT: " + minusPhonemeNh);
-        monkeyScript.incrementAmount = (float)1 / (minusPhonemeNh * (float)5 + (float)3);
-        Debug.Log("BAR INCREMENT COM NH: " + monkeyScript.incrementAmount);
-
+        monkeyScript.incrementAmount = (float)1 / (float)sequenceToPlayList.Count;
+        Debug.Log("BAR INCREMENT: " + monkeyScript.incrementAmount);
       }
       else
       {
-        monkeyScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
-        Debug.Log("BAR INCREMENT: " + monkeyScript.incrementAmount);
+        bool addThree = false;
+        for(int i = 0; i < webRequests.chapterErrorList.Count; i ++)
+        {
+          if(webRequests.chapterErrorList[i].phoneme == "nh")
+          {
+            addThree = true;
+          }      
+        }
+        
+        if(addThree)
+        {
+          Debug.Log("PHONEMES COUNT: " + webRequests.chapterErrorList.Count);
+          float minusPhonemeNh = (float)webRequests.chapterErrorList.Count - (float)1;
+          Debug.Log("NO NH COUNT: " + minusPhonemeNh);
+          monkeyScript.incrementAmount = (float)1 / (minusPhonemeNh * (float)5 + (float)3);
+          Debug.Log("BAR INCREMENT COM NH: " + monkeyScript.incrementAmount);
 
+        }
+        else
+        {
+          monkeyScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
+          Debug.Log("BAR INCREMENT: " + monkeyScript.incrementAmount);
+
+        }
       }
     }
 
     else if((SceneManager.GetActiveScene().name == "Chameleon"))
     {
-      chameleonScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
-      Debug.Log("BAR INCREMENT: " + chameleonScript.incrementAmount);
-
+      if(restoredBonusGame)
+      {
+        chameleonScript.incrementAmount = (float)1 / ((float)sequenceToPlayList.Count);
+        Debug.Log("BAR INCREMENT: " + chameleonScript.incrementAmount);
+      }
+      else
+      {
+        chameleonScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
+        Debug.Log("BAR INCREMENT: " + chameleonScript.incrementAmount);
+      }
     }
 
     else if((SceneManager.GetActiveScene().name == "Octopus"))
     {
-      octopusScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
-      Debug.Log("BAR INCREMENT: " + octopusScript.incrementAmount);
+      if(restoredBonusGame)
+      {
+        octopusScript.incrementAmount = (float)1 / ((float)sequenceToPlayList.Count);
+        Debug.Log("BAR INCREMENT: " + octopusScript.incrementAmount);
+      }
+      else
+      {
+        octopusScript.incrementAmount = (float)1 / ((float)webRequests.chapterErrorList.Count * (float)5);
+        Debug.Log("BAR INCREMENT: " + octopusScript.incrementAmount);
+      }
     }
     adjustIncrementAmountDone = true;
   }
@@ -1669,10 +1692,10 @@ public class GameController : MonoBehaviour
   {
     if(goMonkeyScene)
     {
-      Debug.Log("CHANGE SCENE");
-      goMonkeyScene = false;
+      //Debug.Log("CHANGE SCENE");
+      //goMonkeyScene = false;
       SceneManager.LoadScene("Monkey");
-      SceneManager.LoadScene("Chameleon");
+      //SceneManager.LoadScene("Chameleon");
     }
     else if(goChameleonScene)
     {
@@ -1723,10 +1746,10 @@ public class GameController : MonoBehaviour
               for (int i = 0; i < webSockets.actionsChapterEx1List.Count; i++)
               {
                 PlayerPrefs.SetInt("chapEx1actionID" + i, int.Parse(webSockets.actionsChapterEx1List[i]));
-                Debug.Log("index " + i + "EXactionid" + int.Parse(webSockets.actionsChapterEx1List[i]));
+                Debug.Log("index " + i + " EXactionid" + int.Parse(webSockets.actionsChapterEx1List[i]));
               }
-              PlayerPrefs.SetInt("WordsChapterEx1Size ", webSockets.actionsChapterEx1List.Count);
-              Debug.Log("WordsChapterEx1Size" + webSockets.actionsChapterEx1List.Count);
+              PlayerPrefs.SetInt("WordsChapterEx1Size", webSockets.actionsChapterEx1List.Count);
+              //Debug.Log("WordsChapterEx1Size" + webSockets.actionsChapterEx1List.Count);
               goMonkeyScene = true;
               Debug.Log("MONKEY SCENE " + goMonkeyScene);
               //SceneManager.LoadScene("Monkey");
