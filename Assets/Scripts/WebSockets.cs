@@ -69,6 +69,8 @@ public class WebSockets : MonoBehaviour{
     public List<string> actionsChapterEx2List;
     public List<string> actionsChapterEx3List;
 
+    public bool EndGame = false;
+
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
         this.wsURL = url;
@@ -160,6 +162,11 @@ public class WebSockets : MonoBehaviour{
                 levelsList = jsonDataLevels.value.levels;
                 for (int i = 0; i < levelsList.Count; i++)
                 {
+                    if(levelsList[i].Contains("-1"))
+                    {
+                        Debug.Log("TERMINAR JOGO!");
+                        EndGame = true;
+                    }
                     if(levelsList[i].Contains("1"))
                     {
                         Debug.Log("LVL 1 SELECIONADO!");
@@ -179,29 +186,29 @@ public class WebSockets : MonoBehaviour{
                 //se lvl 1 selecionado verificar os fonemas escolhidos
                 if(lvl1Selected)
                 {
-                    if(jsonDataLevels.value.actions1.Count == 14)
-                    {
-                        Debug.Log("JOGAR O CAPITULO 1 TODO");
-                        playAllChapter1 = true;
-                    }
+                    //if(jsonDataLevels.value.actions1.Count == 14)
+                    //{
+                    Debug.Log("JOGAR O CAPITULO 1");
+                    playAllChapter1 = true;
+                    //}
                 }
                 //se lvl 2 selecionado verificar os fonemas escolhidos
                 if(lvl2Selected)
                 {
-                    if(jsonDataLevels.value.actions2.Count == 13)
-                    {
-                        Debug.Log("JOGAR O CAPITULO 2 TODO");
-                        playAllChapter2 = true;
-                    }  
+                    //if(jsonDataLevels.value.actions2.Count == 13)
+                    //{
+                    Debug.Log("JOGAR O CAPITULO 2");
+                    playAllChapter2 = true;
+                    //}  
                 }
                 //se lvl 3 selecionado verificar os fonemas escolhidos
                 if(lvl3Selected)
                 {
-                    if(jsonDataLevels.value.actions3.Count == 12)
-                    {
-                        Debug.Log("JOGAR O CAPITULO 3 TODO");
-                        playAllChapter3 = true;
-                    }
+                    //if(jsonDataLevels.value.actions3.Count == 12)
+                    //{
+                    Debug.Log("JOGAR O CAPITULO 3");
+                    playAllChapter3 = true;
+                    //}
                 }
                 getLevelsDone = true;    
             }
@@ -282,7 +289,13 @@ public class WebSockets : MonoBehaviour{
         string request = "{\"therapist\":\"" + therapistID + "\",\"patient\":\"" + patientID + "\",\"game\":\"" + gameID + "\",\"restore\":\"" + 1 + "\"}";
         //Debug.Log("TID: " + therapistID + " PID: " + patientID + " GID: " + gameID);
         PrepareMessage("request", request);
+    }
 
+    public void RequestPlayAgain(int therapistID)
+    {
+        string request = "{\"therapist\":\"" + therapistID + "\",\"patient\":\"" + patientID + "\",\"levels\":\"" + gameID + "\",\"more\":\"" + gameID + "\"}";
+        Debug.Log("TID: " + therapistID + " PID: " + patientID + " GID: " + gameID);
+        PrepareMessage("request", request);
     }
 
     public void LevelsToPlayRequest(int therapistID)
