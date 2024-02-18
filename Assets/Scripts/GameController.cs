@@ -966,6 +966,7 @@ public class GameController : MonoBehaviour
     {
       if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 2)
       {
+
         webSockets.RequestPlayAgain(therapistID);
         yield return new WaitUntil(() => webSockets.getLevelsDone);
         if(webSockets.EndGame)
@@ -1309,9 +1310,9 @@ public class GameController : MonoBehaviour
     else if (PlayerPrefs.GetInt("CONTINUEGAME") == 0)
     {
       Debug.Log("NOVO PEDIDO DE LVL");
-        yield return new WaitUntil(() => webSockets.socketIsReady);
-        webSockets.LevelsToPlayRequest(therapistID);
-        yield return new WaitUntil(() => webSockets.getLevelsDone); 
+      yield return new WaitUntil(() => webSockets.socketIsReady);
+      webSockets.LevelsToPlayRequest(therapistID);
+      yield return new WaitUntil(() => webSockets.getLevelsDone); 
     }
 
     PlayerPrefs.SetString("LEVELSELECTION", "DONE");

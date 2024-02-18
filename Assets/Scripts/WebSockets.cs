@@ -99,6 +99,7 @@ public class WebSockets : MonoBehaviour{
         };
         ws.OnMessage += (sender, e) => {
             var msg = e.Data;
+            Debug.Log("RECEBEU MSG " + msg);
 
             if (msg == "{\"msg\":\"ping\"}")
             {
@@ -294,7 +295,6 @@ public class WebSockets : MonoBehaviour{
     public void RequestPlayAgain(int therapistID)
     {
         string request = "{\"therapist\":\"" + therapistID + "\",\"patient\":\"" + patientID + "\",\"levels\":\"" + gameID + "\",\"more\":\"" + gameID + "\"}";
-        Debug.Log("TID: " + therapistID + " PID: " + patientID + " GID: " + gameID);
         PrepareMessage("request", request);
     }
 
