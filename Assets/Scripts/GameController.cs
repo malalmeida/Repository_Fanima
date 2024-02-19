@@ -268,13 +268,27 @@ public class GameController : MonoBehaviour
       RequestTherapistStatus();
       requestTherapistStatus = false;
     }
-     if(webSockets.stop)
-     {
+    if(webSockets.stop)
+    {
       webSockets.stop = false;
       //INTERROMPER JOGO
       Debug.Log("JOGO INTERROMPIDO!");
       SceneManager.LoadScene("Stop");
      }
+     if(webSockets.endGame)
+     {
+      webSockets.endGame = false;
+      StartCoroutine(EndGame());
+    }
+  }
+
+  IEnumerator EndGame()
+  {
+    confetti.Play();
+    travelFinal.Play();
+    yield return StartCoroutine(ShowFinalRewards());
+    yield return new WaitForSeconds(5.0f);
+    finalMenu.SetActive(true);
   }
 
   public void RequestTherapistStatus()
@@ -950,7 +964,7 @@ public class GameController : MonoBehaviour
   { 
     yield return new WaitUntil(() => selectionDone);
     if(PlayerPrefs.GetInt("ChaptersPlayed") == 0)
-    {
+    { 
       PlayerPrefs.SetInt("ChaptersPlayed", 1);
       travelTrip1.Play();
       yield return new WaitForSeconds(4.0f);
@@ -963,20 +977,12 @@ public class GameController : MonoBehaviour
       {
         yield return new WaitUntil(() => webSockets.socketIsReady); 
         webSockets.RequestPlayAgain(therapistID);
-        yield return new WaitUntil(() => webSockets.getLevelsDone);
-        if(webSockets.EndGame)
-        {
-          confetti.Play();
-          travelFinal.Play();
-          yield return StartCoroutine(ShowFinalRewards());
-          yield return new WaitForSeconds(5.0f);
-          finalMenu.SetActive(true);
-        }
-        else
+        yield return new WaitUntil(() => webSockets.getLevelsDone || webSockets.endGame);
+        if(webSockets.getLevelsDone)
         {
           DeleteDataMore();
           PrepareMoreLevels();
-        }
+        }       
       }
       else
       {
@@ -991,20 +997,12 @@ public class GameController : MonoBehaviour
       {
         yield return new WaitUntil(() => webSockets.socketIsReady); 
         webSockets.RequestPlayAgain(therapistID);
-        yield return new WaitUntil(() => webSockets.getLevelsDone);
-        if(webSockets.EndGame)
-        {
-          confetti.Play();
-          travelFinal.Play();
-          yield return StartCoroutine(ShowFinalRewards());
-          yield return new WaitForSeconds(5.0f);
-          finalMenu.SetActive(true);
-        }
-        else
+        yield return new WaitUntil(() => webSockets.getLevelsDone || webSockets.endGame);
+        if(webSockets.getLevelsDone)
         {
           DeleteDataMore();
           PrepareMoreLevels();
-        }
+        } 
       }
       else
       {
@@ -1020,20 +1018,12 @@ public class GameController : MonoBehaviour
       {
         yield return new WaitUntil(() => webSockets.socketIsReady); 
         webSockets.RequestPlayAgain(therapistID);
-        yield return new WaitUntil(() => webSockets.getLevelsDone);
-        if(webSockets.EndGame)
-        {
-          confetti.Play();
-          travelFinal.Play();
-          yield return StartCoroutine(ShowFinalRewards());
-          yield return new WaitForSeconds(5.0f);
-          finalMenu.SetActive(true);
-        }
-        else
+        yield return new WaitUntil(() => webSockets.getLevelsDone || webSockets.endGame);
+        if(webSockets.getLevelsDone)
         {
           DeleteDataMore();
           PrepareMoreLevels();
-        }
+        } 
       }
     }
   }

@@ -68,8 +68,9 @@ public class WebSockets : MonoBehaviour{
     public List<string> actionsChapterEx1List;
     public List<string> actionsChapterEx2List;
     public List<string> actionsChapterEx3List;
+    public bool endGame = false;
+    public jsonDataEndGame jsonDataEndGame;
 
-    public bool EndGame = false;
 
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -168,11 +169,6 @@ public class WebSockets : MonoBehaviour{
                 levelsList = jsonDataLevels.value.levels;
                 for (int i = 0; i < levelsList.Count; i++)
                 {
-                    if(levelsList[i].Contains("-1"))
-                    {
-                        Debug.Log("TERMINAR JOGO!");
-                        EndGame = true;
-                    }
                     if(levelsList[i].Contains("1"))
                     {
                         Debug.Log("LVL 1 SELECIONADO!");
@@ -183,7 +179,7 @@ public class WebSockets : MonoBehaviour{
                         Debug.Log("LVL 2 SELECIONADO!");
                         lvl2Selected = true;
                     }
-                     else if(levelsList[i].Contains("3"))
+                    else if(levelsList[i].Contains("3"))
                     {
                         Debug.Log("LVL 3 SELECIONADO!");
                         lvl3Selected = true;
@@ -227,6 +223,11 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("STOP " + msg);
                 stop = true;
+            }
+            else if(msg.Contains("end"))
+            {
+                Debug.Log("END " + msg);
+                endGame = true;
             }
             else
             {

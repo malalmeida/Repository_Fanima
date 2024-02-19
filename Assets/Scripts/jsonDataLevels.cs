@@ -18,27 +18,3 @@ public class LevelsStructure
     public List<string> actions3;
 }
 
-//[Serializable]
-//public class StructureData
-//{
-  //  public List<string> level1;
-   // public List<string> level2;
-   // public List<string> level3;
-//}
-
-/**[Serializable]
-public class ActionData
-{
-   public int id;V
-   public string action;
-    public int ordering;
-    public int levelid;
-    public string level;
-    public int sequenceid;
-    public string sequence;
-    public int repository;
-    public int time; 
-    public int word;
-}
-**/
-
