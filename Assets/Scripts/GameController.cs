@@ -948,7 +948,6 @@ public class GameController : MonoBehaviour
 
   IEnumerator PrepareNextLevel()
   { 
-    RequestTherapistStatus();   
     yield return new WaitUntil(() => selectionDone);
     if(PlayerPrefs.GetInt("ChaptersPlayed") == 0)
     {
@@ -962,6 +961,7 @@ public class GameController : MonoBehaviour
       PlayerPrefs.SetInt("ChaptersPlayed", 2);
       if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 1)
       {
+        yield return new WaitUntil(() => webSockets.socketIsReady); 
         webSockets.RequestPlayAgain(therapistID);
         yield return new WaitUntil(() => webSockets.getLevelsDone);
         if(webSockets.EndGame)
@@ -989,7 +989,7 @@ public class GameController : MonoBehaviour
     {
       if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 2)
       {
-
+        yield return new WaitUntil(() => webSockets.socketIsReady); 
         webSockets.RequestPlayAgain(therapistID);
         yield return new WaitUntil(() => webSockets.getLevelsDone);
         if(webSockets.EndGame)
@@ -1018,6 +1018,7 @@ public class GameController : MonoBehaviour
     {
        if(PlayerPrefs.GetInt("ChaptersToQuitGame") == 3)
       {
+        yield return new WaitUntil(() => webSockets.socketIsReady); 
         webSockets.RequestPlayAgain(therapistID);
         yield return new WaitUntil(() => webSockets.getLevelsDone);
         if(webSockets.EndGame)
