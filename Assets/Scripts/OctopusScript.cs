@@ -105,11 +105,17 @@ public class OctopusScript : MonoBehaviour
         Debug.Log("OBJ " + gameObjName);
 
         currentObj = GameObject.Find(gameObjName);
-        currentObj.transform.position = new Vector3(0f, -1.5f, 0);
+        if(gameObjName.Contains("Rurru"))
+        {
+            currentObj.transform.position = new Vector3(0f, -0.6f, 0);
+        }
+        else
+        {
+            currentObj.transform.position = new Vector3(0f, 1.0f, 0);
+        }
 
         rend = currentObj.GetComponent<SpriteRenderer>();
-        rend.sortingOrder = 10;
-
+        //rend.sortingOrder = 10;
         canShowImage = false;
     }
 

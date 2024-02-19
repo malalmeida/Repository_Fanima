@@ -127,29 +127,34 @@ public class WebSockets : MonoBehaviour{
                     actionsChapter3List = jsonDataRestore.value.actions3;
                     actionsChapterEx1List = jsonDataRestore.value.extra1;
                     actionsChapterEx2List = jsonDataRestore.value.extra2;
-                    for (int i = 0; i < actionsChapterEx2List.Count; i++)
-                    {
-                        Debug.Log("EXTRA ACTION " + jsonDataRestore.value.extra2);
-                    }
                     actionsChapterEx3List = jsonDataRestore.value.extra3;
-
-                    if(actionsChapter1List.Count == 14)
+                    for (int i = 0; i < levelsList.Count; i++)
                     {
-                        Debug.Log("JOGAR O CAPITULO 1 TODO");
-                        playAllChapter1 = true;
+                        if(levelsList[i].Contains("1"))
+                        { 
+                            if(restoreLevelId != 1)
+                            {
+                                Debug.Log("LVL 1 SELECIONADO!");
+                                lvl1Selected = true;
+                            } 
+                        }
+                        else if(levelsList[i].Contains("2"))
+                        {
+                            if(restoreLevelId != 2)
+                            {
+                                Debug.Log("LVL 2 SELECIONADO!");
+                                lvl2Selected = true;
+                            }
+                        }
+                        else if(levelsList[i].Contains("3"))
+                        {
+                            if(restoreLevelId != 3)
+                            {
+                                Debug.Log("LVL 3 SELECIONADO!");
+                                lvl3Selected = true;
+                            }
+                        }
                     }
-                    if(actionsChapter2List.Count == 13)
-                    {
-                        Debug.Log("JOGAR O CAPITULO 2 TODO");
-                        playAllChapter2 = true;
-                    }
-                    if(actionsChapter3List.Count == 12)
-                    {
-                        Debug.Log("JOGAR O CAPITULO 3 TODO");
-                        playAllChapter3 = true;
-                    }
-
-                    Debug.Log("levelsCount" + levelsList.Count);
                 }
                 restoreDone = true;
             }
@@ -183,33 +188,6 @@ public class WebSockets : MonoBehaviour{
                         Debug.Log("LVL 3 SELECIONADO!");
                         lvl3Selected = true;
                     }
-                }
-                //se lvl 1 selecionado verificar os fonemas escolhidos
-                if(lvl1Selected)
-                {
-                    //if(jsonDataLevels.value.actions1.Count == 14)
-                    //{
-                    Debug.Log("JOGAR O CAPITULO 1");
-                    playAllChapter1 = true;
-                    //}
-                }
-                //se lvl 2 selecionado verificar os fonemas escolhidos
-                if(lvl2Selected)
-                {
-                    //if(jsonDataLevels.value.actions2.Count == 13)
-                    //{
-                    Debug.Log("JOGAR O CAPITULO 2");
-                    playAllChapter2 = true;
-                    //}  
-                }
-                //se lvl 3 selecionado verificar os fonemas escolhidos
-                if(lvl3Selected)
-                {
-                    //if(jsonDataLevels.value.actions3.Count == 12)
-                    //{
-                    Debug.Log("JOGAR O CAPITULO 3");
-                    playAllChapter3 = true;
-                    //}
                 }
                 getLevelsDone = true;    
             }
