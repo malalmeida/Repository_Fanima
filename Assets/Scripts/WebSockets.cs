@@ -70,7 +70,7 @@ public class WebSockets : MonoBehaviour{
     public List<string> actionsChapterEx3List;
     public bool endGame = false;
     public jsonDataEndGame jsonDataEndGame;
-
+    public int actionIdStop = -1;
 
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -84,7 +84,6 @@ public class WebSockets : MonoBehaviour{
     {
         ws = new WebSocket(wsURL, null);
         jsonDataValidation jsonDataValidation = new jsonDataValidation();
-        //jsonDataLevels jsonDataLevels = new jsonDataLevels();
 
         ws.OnOpen += (sender, e) => {
             //Debug.Log("ws open");
@@ -129,6 +128,7 @@ public class WebSockets : MonoBehaviour{
                     actionsChapterEx1List = jsonDataRestore.value.extra1;
                     actionsChapterEx2List = jsonDataRestore.value.extra2;
                     actionsChapterEx3List = jsonDataRestore.value.extra3;
+                    actionIdStop = jsonDataRestore.value.actionid;
                     for (int i = 0; i < levelsList.Count; i++)
                     {
                         if(levelsList[i].Contains("1"))

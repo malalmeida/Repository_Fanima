@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
 
   string activeChapter = "";
   public List<actionClass> sequenceToPlayList;
+  public List<actionClass> restoredBonusSequenceToPlay;
   public List<actionClass> phonemeSequenceToPlayList;
   public List<string> listOfWordsToSay; 
   public string currentWord;
@@ -119,6 +120,8 @@ public class GameController : MonoBehaviour
   public bool goOctopusScene = false;
 
   public bool restoredBonusGame = false;
+
+  public int sequenceIdToStart = -1;
 
   // Start is called before the first frame update
   void Start()
@@ -346,6 +349,7 @@ public class GameController : MonoBehaviour
       currentActionID = sequenceToPlayList[i].id;
       currentWordID = sequenceToPlayList[i].word;
       currentLevelID = sequenceToPlayList[i].levelid;
+      
       PlayerPrefs.SetInt("SEQUENCEID", sequenceToPlayList[i].sequenceid);
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       FindWordNameByWordId(currentWordID);
@@ -521,8 +525,8 @@ public class GameController : MonoBehaviour
         currentActionID = sequenceToPlayList[j].id;
         currentWordID = sequenceToPlayList[j].word;
         currentSequenceID = sequenceToPlayList[j].sequenceid;
+        Debug.Log("SEQUENCEID " + currentSequenceID);
         currentLevelID = sequenceToPlayList[j].levelid;
-
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         FindWordNameByWordId(currentWordID);
         string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
@@ -595,6 +599,37 @@ public class GameController : MonoBehaviour
     }    
   }
 
+  public IEnumerator FindSequencesLeftToPlay()
+  {
+    yield return StartCoroutine(PrepareSequence());
+    yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
+    Debug.Log("TOTAL DE ACOES PARA SE JOGAR " + sequenceToPlayList.Count);
+
+    //encontrar o sequenceid da ultima action que foi jogada 
+    for(int i = 0; i < sequenceToPlayList.Count; i++)
+    { 
+      Debug.Log("ACTIONIDSTOP " + PlayerPrefs.GetInt("ACTIONIDSTOP"));
+      if(sequenceToPlayList[i].id == PlayerPrefs.GetInt("ACTIONIDSTOP"))
+      {
+        sequenceIdToStart = sequenceToPlayList[i].sequenceid;
+        Debug.Log("START AT SEQUENCE: " + sequenceIdToStart);
+      }
+    } 
+    //filtrar as action que falta ser jogadas incluindo a que foi terminada a meio
+    for (int j = 0; j < sequenceToPlayList.Count; j++)
+    {
+      Debug.Log("sequence " + sequenceToPlayList[j].sequenceid);
+      Debug.Log("sequecenceIDrestored " + sequenceIdToStart);
+
+      if(sequenceToPlayList[j].sequenceid >= sequenceIdToStart)
+      {
+        Debug.Log("ADDED " + sequenceToPlayList[j].sequenceid);
+        restoredBonusSequenceToPlay.Add(sequenceToPlayList[j]);
+      }
+    }
+    Debug.Log("ACOES QUE FALTAM JOGAR " + restoredBonusSequenceToPlay.Count);
+  }
+
   IEnumerator RestoredBonusGameLoop()
   {
     restoredBonusGame = true;
@@ -603,22 +638,35 @@ public class GameController : MonoBehaviour
     gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
     sequenceID = PlayerPrefs.GetInt("SEQUENCEID");
 
-    
-    yield return StartCoroutine(PrepareSequence());
-    yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
-    Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
+    //yield return StartCoroutine(PrepareSequence());
+    //yield return new WaitUntil(() => sequenceToPlayList.Count > 0);
+    //Debug.Log("NUMERO DE PALAVRAS " + sequenceToPlayList.Count);
+
+    //for(int i = 0; i < sequenceToPlayList.Count; i++)
+    //{ 
+      //Debug.Log("ACTIONIDSTOP " + PlayerPrefs.GetInt("ACTIONIDSTOP"));
+      //if(sequenceToPlayList[i].id == PlayerPrefs.GetInt("ACTIONIDSTOP"))
+      //{
+        //sequenceIdToStart = sequenceToPlayList[i].sequenceid;
+      //}
+    //}
+
+    //FindSequencesLeftToPlay(sequenceToPlayList, sequenceIdToStart);
+    yield return StartCoroutine(FindSequencesLeftToPlay());
+    yield return new WaitUntil(() => restoredBonusSequenceToPlay.Count > 0);
+
     AdjustIncrementAmount();
     yield return new WaitUntil(() => adjustIncrementAmountDone);
-    for(int j = 0; j < sequenceToPlayList.Count; j++)
+    for(int j = 0; j < restoredBonusSequenceToPlay.Count; j++)
     { 
-      currentActionID = sequenceToPlayList[j].id;
-      currentWordID = sequenceToPlayList[j].word;
-      currentSequenceID = sequenceToPlayList[j].sequenceid;
-      currentLevelID = sequenceToPlayList[j].levelid;
+      currentActionID = restoredBonusSequenceToPlay[j].id;
+      currentWordID = restoredBonusSequenceToPlay[j].word;
+      currentSequenceID = restoredBonusSequenceToPlay[j].sequenceid;
+      currentLevelID = restoredBonusSequenceToPlay[j].levelid;
 
       startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
       FindWordNameByWordId(currentWordID);
-      string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + sequenceToPlayList[j].sequence + "\", \"action\": \"" + sequenceToPlayList[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
+      string payload = "{\"therapist\": " + therapistID + ", \"game\": \"" + PLAYGAMEID + "\", \"execution\": \"" + gameExecutionID + "\", \"status\": " + 0 + ", \"order\": " + 0 + ", \"level\": \"" + sequenceToPlayList[j].level + "\", \"sequence\": \"" + restoredBonusSequenceToPlay[j].sequence + "\", \"action\": \"" + restoredBonusSequenceToPlay[j].id + "\", \"percent\": " + 0 + ", \"time\": " + 0 + "}";        
       webSockets.PrepareMessage("game", payload); 
      
       //Repeat the same word 3 times
@@ -653,7 +701,7 @@ public class GameController : MonoBehaviour
         {
           yield return StartCoroutine(PlayGuideVoiceForReps(l));
         }
-        timer = sequenceToPlayList[j].time;
+        timer = restoredBonusSequenceToPlay[j].time;
 
         activeHelpButton = true;
         speak = true;
@@ -702,7 +750,7 @@ public class GameController : MonoBehaviour
     {
       if(restoredBonusGame)
       {
-        monkeyScript.incrementAmount = (float)1 / (float)sequenceToPlayList.Count;
+        monkeyScript.incrementAmount = (float)1 / (float)restoredBonusSequenceToPlay.Count;
         Debug.Log("BAR INCREMENT: " + monkeyScript.incrementAmount);
       }
       else
@@ -738,7 +786,7 @@ public class GameController : MonoBehaviour
     {
       if(restoredBonusGame)
       {
-        chameleonScript.incrementAmount = (float)1 / ((float)sequenceToPlayList.Count);
+        chameleonScript.incrementAmount = (float)1 / ((float)restoredBonusSequenceToPlay.Count);
         Debug.Log("BAR INCREMENT: " + chameleonScript.incrementAmount);
       }
       else
@@ -752,7 +800,7 @@ public class GameController : MonoBehaviour
     {
       if(restoredBonusGame)
       {
-        octopusScript.incrementAmount = (float)1 / ((float)sequenceToPlayList.Count);
+        octopusScript.incrementAmount = (float)1 / ((float)restoredBonusSequenceToPlay.Count);
         Debug.Log("BAR INCREMENT: " + octopusScript.incrementAmount);
       }
       else
@@ -1753,6 +1801,7 @@ public class GameController : MonoBehaviour
             else
             {
               PlayerPrefs.SetInt("StartsAtExtraChapter", 1);
+              PlayerPrefs.SetInt("ACTIONIDSTOP", webSockets.actionIdStop);
               for (int i = 0; i < webSockets.actionsChapterEx1List.Count; i++)
               {
                 PlayerPrefs.SetInt("chapEx1actionID" + i, int.Parse(webSockets.actionsChapterEx1List[i]));
@@ -1771,6 +1820,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
+              PlayerPrefs.SetInt("ACTIONIDSTOP", webSockets.actionIdStop);
               PlayerPrefs.SetInt("StartsAtExtraChapter", 1);
               for (int i = 0; i < webSockets.actionsChapterEx2List.Count; i++)
               {
@@ -1780,7 +1830,6 @@ public class GameController : MonoBehaviour
               PlayerPrefs.SetInt("WordsChapterEx2Size", webSockets.actionsChapterEx2List.Count);
               goChameleonScene = true;
               Debug.Log("CHAMELEON SCENE " + goChameleonScene);
-              //SceneManager.LoadScene("Chameleon");
             }
           }
           else if(webSockets.restoreLevelId == 3)
@@ -1792,6 +1841,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
+              PlayerPrefs.SetInt("ACTIONIDSTOP", webSockets.actionIdStop);
               PlayerPrefs.SetInt("StartsAtExtraChapter", 1);
               for (int i = 0; i < webSockets.actionsChapterEx3List.Count; i++)
               {
@@ -1801,7 +1851,6 @@ public class GameController : MonoBehaviour
                 PlayerPrefs.SetInt("WordsChapterEx3Size", webSockets.actionsChapterEx3List.Count);
                 goOctopusScene = true;
                 Debug.Log("OCTOPUS SCENE " + goOctopusScene);
-                //SceneManager.LoadScene("Octopus");
             }
           }
           if(webSockets.levelsList.Count == 1)
@@ -2076,6 +2125,10 @@ public class GameController : MonoBehaviour
     if (PlayerPrefs.HasKey("chapEx3actionID"))
     {
       PlayerPrefs.DeleteKey("chapEx3actionID");
+    }
+    if(PlayerPrefs.HasKey("ACTIONIDSTOP"))
+    {
+      PlayerPrefs.DeleteKey("ACTIONIDSTOP");
     } 
   }
 
@@ -2204,7 +2257,11 @@ public class GameController : MonoBehaviour
     if (PlayerPrefs.HasKey("chapEx3actionID"))
     {
       PlayerPrefs.DeleteKey("chapEx3actionID");
-    } 
+    }
+    if(PlayerPrefs.HasKey("ACTIONIDSTOP"))
+    {
+      PlayerPrefs.DeleteKey("ACTIONIDSTOP");
+    }
   }
 
   public void OnApplicationQuit()
