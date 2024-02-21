@@ -15,8 +15,9 @@ public class MenuController : MonoBehaviour
     private string startTime;
     private string endTime;
     public AudioSource song;
-
     public GameStructureRequest gameStructureRequest;
+    public AudioSource buttonConfirm;
+
    
     void Awake()
     {
@@ -24,11 +25,6 @@ public class MenuController : MonoBehaviour
         StartCoroutine(gameStructureRequest.GetRepository());
         PlayerPrefs.SetInt("GAMESTARTED", 0);
     }
-    
-   // void Update()
-    //{
-      //  if(gameController.res)
-   // }
 
     void Start()
     {
@@ -43,6 +39,7 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
+        buttonConfirm.Play();
         if(gameStructureRequest.gameController.responseToRestoreDone)
         {                
             if(gameStructureRequest.gameController.requestGameExecutionID)

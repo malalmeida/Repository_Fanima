@@ -109,19 +109,17 @@ public class GameController : MonoBehaviour
   public GameObject finalReward2E;
   public GameObject finalReward3;
   public GameObject finalReward3E;
-
   public List<string> lvlsRestore; 
   public bool responseToRestoreDone = false;
   public bool requestGameExecutionID = false;
   public int repeatValue = -1;
-
   public bool goMonkeyScene = false;
   public bool goChameleonScene = false;
   public bool goOctopusScene = false;
-
   public bool restoredBonusGame = false;
-
   public int sequenceIdToStart = -1;
+  public AudioSource buttonEnd;
+  public bool stopSession = false;
 
   // Start is called before the first frame update
   void Start()
@@ -2278,9 +2276,16 @@ public class GameController : MonoBehaviour
     DeleteData();
     Application.Quit();       
   }
+
+  public void ClickQuitButton()
+  {
+    buttonEnd.Play();
+    OnApplicationQuit();       
+  }
   
   IEnumerator StopSession()
   {
+    stopSession = true;
     Debug.Log("ENTROU NA FUNCAO STOP SESSION");
     finalChapVoice.Play();
     yield return new WaitForSeconds(6.0f);

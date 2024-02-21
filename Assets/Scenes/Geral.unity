@@ -5950,7 +5950,12 @@ MonoBehaviour:
   validationDone: 0
   jsonDataLevels:
     msg: 
-    value: []
+    value:
+      patient: 0
+      levels: []
+      actions1: []
+      actions2: []
+      actions3: []
   getLevelsDone: 0
   validationValue: 0
   levelsList: []
@@ -5974,9 +5979,39 @@ MonoBehaviour:
       gameexecutionid: 0
       levels: []
       levelid: 0
+      sequenceid: 0
+      sequence: 
+      actionid: 0
+      actions1: []
+      actions2: []
+      actions3: []
+      extra1: []
+      extra2: []
+      extra3: []
   restoreLevelId: -1
   restoreGameExecutionID: -1
   continueGame: 0
+  lvl1Selected: 0
+  lvl2Selected: 0
+  lvl3Selected: 0
+  chapterOneWordIDList: 
+  chapterTwoWordIDList: 
+  chapterThreeWordIDList: 
+  playAllChapter1: 0
+  playAllChapter2: 0
+  playAllChapter3: 0
+  actionsChapter1List: []
+  actionsChapter2List: []
+  actionsChapter3List: []
+  actionsChapterEx1List: []
+  actionsChapterEx2List: []
+  actionsChapterEx3List: []
+  endGame: 0
+  jsonDataEndGame:
+    msg: 
+    value:
+      end: 
+  actionIdStop: -1
 --- !u!1 &507777526
 GameObject:
   m_ObjectHideFlags: 0
@@ -8411,6 +8446,7 @@ MonoBehaviour:
   playButton: {fileID: 12132273}
   song: {fileID: 2077320845}
   gameStructureRequest: {fileID: 1636333773}
+  buttonConfirm: {fileID: 1026584353}
 --- !u!1 &767332640
 GameObject:
   m_ObjectHideFlags: 0
@@ -10505,12 +10541,12 @@ GameObject:
   - component: {fileID: 1026584352}
   - component: {fileID: 1026584353}
   m_Layer: 0
-  m_Name: ValidationSound
+  m_Name: PlayButtonSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1026584352
 Transform:
   m_ObjectHideFlags: 0
@@ -10536,8 +10572,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9b2699575bb40404aad02eab8e9841b7, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 751068b2c3e9b45e09e0ae86de8cab7e, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -14593,6 +14629,8 @@ MonoBehaviour:
   octopusScript: {fileID: 0}
   fishScript: {fileID: 0}
   sequenceToPlayList: []
+  restoredBonusSequenceToPlay: []
+  phonemeSequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 
   currentActionID: -1
@@ -14651,6 +14689,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f035df339ea664ef6817fffb61e8a3d8, type: 3}
   - {fileID: 8300000, guid: a871486bb839445fab42213def5a6a33, type: 3}
   - {fileID: 8300000, guid: 771b8da8cde4140308d1432764b178ad, type: 3}
+  - {fileID: 8300000, guid: b6a36de7baa884248a0f82033c20b3a0, type: 3}
+  - {fileID: 8300000, guid: 751068b2c3e9b45e09e0ae86de8cab7e, type: 3}
   introChapVoice: {fileID: 1451453423}
   finalChapVoice: {fileID: 889837918}
   rewardVoice: {fileID: 256264558}
@@ -14676,6 +14716,12 @@ MonoBehaviour:
   responseToRestoreDone: 0
   requestGameExecutionID: 0
   repeatValue: -1
+  goMonkeyScene: 0
+  goChameleonScene: 0
+  goOctopusScene: 0
+  restoredBonusGame: 0
+  sequenceIdToStart: -1
+  buttonEnd: {fileID: 0}
 --- !u!4 &1403301867
 Transform:
   m_ObjectHideFlags: 0

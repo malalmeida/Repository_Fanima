@@ -76,25 +76,26 @@ public class GeralScript : MonoBehaviour
                 {
                     if(hit.collider.CompareTag("Leaf0"))
                     {
-                        ShowObj();
-                        shake = false;
-                        leavesShaking.Stop();
-                        startValidation = true;
-                        barImage.fillAmount += incrementAmount;
+                        if(shake)
+                        {
+                            shake = false;
+                            leavesShaking.Stop();
+                            ShowObj();
+                            startValidation = true;
+                        }   
                     }
-                    if(hit.collider.CompareTag("Parrot"))
-                    {
-                        barImage.fillAmount += incrementAmount;
-                        //StartCoroutine(MoveBallon());
-                        parrotClick = true;
-                    }
+                    //if(hit.collider.CompareTag("Parrot"))
+                    //{
+                        //barImage.fillAmount += incrementAmount;
+                        //parrotClick = true;
+                    //}
                 }
             }
         }
-        if(showParrot)
-        {
+        //if(showParrot)
+        //{
             //ShowParrot();
-        }
+        //}
 
         if(showWordsReward)
         {
@@ -112,6 +113,8 @@ public class GeralScript : MonoBehaviour
 
     public void ShowObj()
     {
+        barImage.fillAmount += incrementAmount;
+
         string gameObjName = currentWord + "Obj";       
         Debug.Log("OBJ " + gameObjName);
 
@@ -125,7 +128,7 @@ public class GeralScript : MonoBehaviour
         currentObject.SetActive(true);
         canShowImage = false;
     }
-
+/**
     public void ShowParrot()
     {
         //play audio "oh não apareceu um papagiao pirata consegues encontra-lo?, quando encontrares, toca nele"
@@ -137,7 +140,7 @@ public class GeralScript : MonoBehaviour
         rendParrot = currentObject.GetComponent<SpriteRenderer>();
         rendParrot.sortingOrder = 1;
     }
-
+**/
     IEnumerator MoveBallon()
     {
         ballon.starAnimation = true;

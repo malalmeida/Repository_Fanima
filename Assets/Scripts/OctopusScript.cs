@@ -107,11 +107,11 @@ public class OctopusScript : MonoBehaviour
         currentObj = GameObject.Find(gameObjName);
         if(gameObjName.Contains("Rurru"))
         {
-            currentObj.transform.position = new Vector3(0f, -0.6f, 0);
+            currentObj.transform.position = new Vector3(0f, -0.5f, 0);
         }
         else
         {
-            currentObj.transform.position = new Vector3(0f, 1.0f, 0);
+            currentObj.transform.position = new Vector3(0f, -1.4f, 0);
         }
 
         rend = currentObj.GetComponent<SpriteRenderer>();
