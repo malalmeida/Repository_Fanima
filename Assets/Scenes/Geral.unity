@@ -461,19 +461,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 12132276}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 754679393}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &12132276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14722,6 +14710,7 @@ MonoBehaviour:
   restoredBonusGame: 0
   sequenceIdToStart: -1
   buttonEnd: {fileID: 0}
+  stopSession: 0
 --- !u!4 &1403301867
 Transform:
   m_ObjectHideFlags: 0

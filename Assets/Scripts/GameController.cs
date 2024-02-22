@@ -989,6 +989,8 @@ public class GameController : MonoBehaviour
         yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "17"));
       
         yield return StartCoroutine(PlayAudioClip("finalWords"));
+        rewardVoice.Play();
+        yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("Travel");
       } 
     }
