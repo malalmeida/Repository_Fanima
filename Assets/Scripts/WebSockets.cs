@@ -133,27 +133,27 @@ public class WebSockets : MonoBehaviour{
                     {
                         if(levelsList[i].Contains("1"))
                         { 
-                            if(restoreLevelId != 1)
-                            {
-                                Debug.Log("LVL 1 SELECIONADO!");
-                                lvl1Selected = true;
-                            } 
+                            //if(restoreLevelId != 1)
+                            //{
+                            Debug.Log("LVL 1 SELECIONADO!");
+                            lvl1Selected = true;
+                            //} 
                         }
                         else if(levelsList[i].Contains("2"))
                         {
-                            if(restoreLevelId != 2)
-                            {
-                                Debug.Log("LVL 2 SELECIONADO!");
-                                lvl2Selected = true;
-                            }
+                            //if(restoreLevelId != 2)
+                            //{
+                            Debug.Log("LVL 2 SELECIONADO!");
+                            lvl2Selected = true;
+                            //}
                         }
                         else if(levelsList[i].Contains("3"))
                         {
-                            if(restoreLevelId != 3)
-                            {
-                                Debug.Log("LVL 3 SELECIONADO!");
-                                lvl3Selected = true;
-                            }
+                            //if(restoreLevelId != 3)
+                            //{
+                            Debug.Log("LVL 3 SELECIONADO!");
+                            lvl3Selected = true;
+                            //}
                         }
                     }
                 }
@@ -291,7 +291,7 @@ public class WebSockets : MonoBehaviour{
 
     public void ActionClassificationRequest(int therapistID, int wordID, int sampleID)
     {
-        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID + ",\"errors\":" + 1 + "}";
+        string request = "{\"therapist\":" + therapistID + ",\"word\":" + wordID + ",\"sample\":" + sampleID + ",\"errors\":" + 1 + ",\"multiple\":" + 1 + "}";
         PrepareMessage("request", request);
     }
 

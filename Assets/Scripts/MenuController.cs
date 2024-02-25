@@ -26,6 +26,17 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("GAMESTARTED", 0);
     }
 
+    void Update()
+    {
+        if(gameStructureRequest.gameController.newGameExecutuionIDRequest)
+        {
+            gameStructureRequest.gameController.newGameExecutuionIDRequest = false;
+            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+            PlayerPrefs.SetInt("GAMESTARTED", 1);
+
+        }
+    }
+
     void Start()
     {
         patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
@@ -33,26 +44,27 @@ public class MenuController : MonoBehaviour
         {
             playButton.SetActive(false);
         }
-
         StartCoroutine(WaitForTherapistReady());
     }
 
-    public void StartGame()
+    public void  StartGame()
     {
-        //buttonConfirm.Play();
-        if(gameStructureRequest.gameController.responseToRestoreDone)
-        {                
-            if(gameStructureRequest.gameController.requestGameExecutionID)
-            {
-                gameStructureRequest.gameController.requestGameExecutionID = false;
-                StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
-            }
-            startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
-            Time.timeScale = 1f;                
-            startMenuUI.SetActive(false);
-            PlayerPrefs.SetInt("GAMESTARTED", 1);
-            song.Stop();
+        buttonConfirm.Play();    
+        //if(gameStructureRequest.gameController.responseToRestoreDone)
+        //{            
+        Debug.Log("RESTORE DONE");        
+        if(gameStructureRequest.gameController.requestGameExecutionID)
+        {
+            Debug.Log("REQUEST DONE");        
+            gameStructureRequest.gameController.requestGameExecutionID = false;
+            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
         }
+        startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
+        Time.timeScale = 1f;                
+        startMenuUI.SetActive(false);
+        PlayerPrefs.SetInt("GAMESTARTED", 1);
+        song.Stop();
+        //}
     }
 
     IEnumerator WaitForTherapistReady()
@@ -60,6 +72,7 @@ public class MenuController : MonoBehaviour
         if(gameStructureRequest.gameController.therapistReady)
         {
             playButton.SetActive(true);
+            yield return new WaitUntil(() => gameStructureRequest.gameController.responseToRestoreDone);
             StartGame();
         }
         else
@@ -71,6 +84,7 @@ public class MenuController : MonoBehaviour
             }
             //esperar que o terapeuta esteja ready e msotra o botão jogar
             playButton.SetActive(true);
+            yield return new WaitUntil(() => gameStructureRequest.gameController.responseToRestoreDone);
             StartGame();
         }
     }

@@ -14711,6 +14711,9 @@ MonoBehaviour:
   sequenceIdToStart: -1
   buttonEnd: {fileID: 0}
   stopSession: 0
+  phoneme: 
+  bonusPhonemesList: []
+  startGame: 0
 --- !u!4 &1403301867
 Transform:
   m_ObjectHideFlags: 0
