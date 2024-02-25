@@ -1948,7 +1948,6 @@ public class GameController : MonoBehaviour
     if (SceneManager.GetActiveScene().name == "Geral")
     {
       yield return new WaitUntil(() => webSockets.restoreDone);
-      //yield return new WaitUntil(() => startGame);
       Debug.Log("RESPOSTA RESTORE: " + webSockets.restoreGameExecutionID);
 
       if(webSockets.continueGame)
@@ -2096,6 +2095,7 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetInt("CONTINUEGAME", 0);
         Debug.Log("NOVO JOGO!");
         PlayerPrefs.SetInt("RESTORE", 1);
+        responseToRestoreDone = true;
         yield return new WaitUntil(() => gameExecutionDone);
       }
     }

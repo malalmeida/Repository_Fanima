@@ -49,10 +49,9 @@ public class MenuController : MonoBehaviour
 
     public void  StartGame()
     {
-        buttonConfirm.Play();    
-        //if(gameStructureRequest.gameController.responseToRestoreDone)
-        //{            
-        Debug.Log("RESTORE DONE");        
+        buttonConfirm.Play();               
+        Debug.Log("RESTORE DONE");   
+
         if(gameStructureRequest.gameController.requestGameExecutionID)
         {
             Debug.Log("REQUEST DONE");        
@@ -64,7 +63,6 @@ public class MenuController : MonoBehaviour
         startMenuUI.SetActive(false);
         PlayerPrefs.SetInt("GAMESTARTED", 1);
         song.Stop();
-        //}
     }
 
     IEnumerator WaitForTherapistReady()
@@ -73,6 +71,11 @@ public class MenuController : MonoBehaviour
         {
             playButton.SetActive(true);
             yield return new WaitUntil(() => gameStructureRequest.gameController.responseToRestoreDone);
+            if(gameStructureRequest.gameController.webSockets.continueGame == false)
+            {
+                yield return new WaitUntil(() => gameStructureRequest.gameController.requestGameExecutionID);
+            }
+            Debug.Log("REQUEST DONE");        
             StartGame();
         }
         else
@@ -84,7 +87,12 @@ public class MenuController : MonoBehaviour
             }
             //esperar que o terapeuta esteja ready e msotra o botão jogar
             playButton.SetActive(true);
+            Debug.Log("responseToRestoreDone " + gameStructureRequest.gameController.responseToRestoreDone);
             yield return new WaitUntil(() => gameStructureRequest.gameController.responseToRestoreDone);
+            if(gameStructureRequest.gameController.webSockets.continueGame == false)
+            {
+                yield return new WaitUntil(() => gameStructureRequest.gameController.requestGameExecutionID);
+            }
             StartGame();
         }
     }
