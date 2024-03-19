@@ -1585,7 +1585,7 @@ public class GameController : MonoBehaviour
           repeatValue = -1; 
           selfHelp = false;   
         }
-        if(help)
+        else if(help)
         {
           repeatValue = 2;
           yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
@@ -1626,7 +1626,30 @@ public class GameController : MonoBehaviour
        
       if(repetition == true)
       {
-        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+        //yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+        if(selfHelp)
+        {
+          repeatValue = 3;
+          yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+          Debug.Log("SELF HELP FINAL " + repeatValue.ToString());
+          repeatValue = -1; 
+          selfHelp = false;   
+        }
+        else if(help)
+        {
+          repeatValue = 2;
+          yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+          Debug.Log("HELP FINAL " + repeatValue.ToString());
+          repeatValue = -1;
+          help = false;     
+        }
+        else
+        {
+          repeatValue = 1;
+          yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+          Debug.Log("REP FINAL " + repeatValue.ToString());
+          repeatValue = -1; 
+        } 
       }
       else
       {
@@ -1651,8 +1674,7 @@ public class GameController : MonoBehaviour
         help = false;
       }
       Debug.Log("help " + help + " selfHelp " + selfHelp);
-      //repeatValue = 2;
-      //help = true;
+
       yield return StartCoroutine(PlayAudioClip("help"));
       yield return StartCoroutine(PlayWordName(currentWord));
       Debug.Log("Repete comigo, " + currentWord);
