@@ -45,6 +45,7 @@ public class MenuController : MonoBehaviour
             playButton.SetActive(false);
         }
         StartCoroutine(WaitForTherapistReady());
+
     }
 
     public void  StartGame()

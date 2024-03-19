@@ -124,6 +124,8 @@ public class GameController : MonoBehaviour
   public List<errorClass> bonusPhonemesList;
   public bool startGame;
   public bool newGameExecutuionIDRequest = false;
+  public bool selfHelp = false;
+  public bool help = false;
 
   // Start is called before the first frame update
   void Start()
@@ -326,6 +328,7 @@ public class GameController : MonoBehaviour
       {
         Debug.Log("1 não envia pedido / 0 envia: " + PlayerPrefs.GetInt("RESTORE"));
         yield return new WaitUntil(() => therapistReady);
+        //Debug.Log("THERAPIST READY " + therapistReady);
         webSockets.RestoreRequest(therapistID);
         yield return new WaitUntil(() => webSockets.socketIsReady);
         yield return new WaitUntil(() => webSockets.restoreDone);
@@ -1574,8 +1577,29 @@ public class GameController : MonoBehaviour
        
       if(repetition == true)
       {
-        repeatValue = 1;
-        yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+        if(selfHelp)
+        {
+          repeatValue = 3;
+          yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+          Debug.Log("SELF HELP FINAL " + repeatValue.ToString());
+          repeatValue = -1; 
+          selfHelp = false;   
+        }
+        if(help)
+        {
+          repeatValue = 2;
+          yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+          Debug.Log("HELP FINAL " + repeatValue.ToString());
+          repeatValue = -1;
+          help = false;     
+        }
+        else
+        {
+          repeatValue = 1;
+          yield return StartCoroutine(webRequests.PostRepSample(currentWord, currentActionID.ToString(), gameExecutionID.ToString(), currentWordID.ToString(), repSampleID.ToString(), repeatValue.ToString()));   
+          Debug.Log("REP FINAL " + repeatValue.ToString());
+          repeatValue = -1; 
+        } 
       }
       else
       {
@@ -1620,7 +1644,15 @@ public class GameController : MonoBehaviour
     //HELP
     if(webSockets.validationValue == -2)
     {
-      repeatValue = 2;
+      help = true;
+      if(selfHelp)
+      {
+        Debug.Log("SELFHELP2");
+        help = false;
+      }
+      Debug.Log("help " + help + " selfHelp " + selfHelp);
+      //repeatValue = 2;
+      //help = true;
       yield return StartCoroutine(PlayAudioClip("help"));
       yield return StartCoroutine(PlayWordName(currentWord));
       Debug.Log("Repete comigo, " + currentWord);
@@ -2207,9 +2239,10 @@ public class GameController : MonoBehaviour
   {    
     if(activeHelpButton)
     {
-      repeatValue = 3;
+      selfHelp = true;
+      //repeatValue = 3;
       webSockets.HelpRequest(therapistID);
-      Debug.Log("AJUDA");
+      Debug.Log("SELFHELP");
     }
   }
 
