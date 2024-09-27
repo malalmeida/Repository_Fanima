@@ -6000,6 +6000,14 @@ MonoBehaviour:
     value:
       end: 
   actionIdStop: -1
+  jsonDataRequestAutoHelp:
+    msg: 
+    value:
+      therapist: 
+      patient: 
+      context: 
+      data: 0
+  activateAutoHelp: 1
 --- !u!1 &507777526
 GameObject:
   m_ObjectHideFlags: 0
@@ -14715,6 +14723,10 @@ MonoBehaviour:
   bonusPhonemesList: []
   startGame: 0
   newGameExecutuionIDRequest: 0
+  selfHelp: 0
+  helpAllowed: 1
+  helpButton: {fileID: 1725626243}
+  help: 0
 --- !u!4 &1403301867
 Transform:
   m_ObjectHideFlags: 0
@@ -19961,7 +19973,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 7f212543c8a384d389d503ba0735f3fe, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -20596,7 +20608,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 62096ae59a3d645f39f791b794f65eac, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0

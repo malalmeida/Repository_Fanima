@@ -72,6 +72,10 @@ public class WebSockets : MonoBehaviour{
     public jsonDataEndGame jsonDataEndGame;
     public int actionIdStop = -1;
 
+    //Mayra
+    public jsonDataRequestAutoHelp jsonDataRequestAutoHelp;
+    public bool activateAutoHelp = true;
+
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
         this.wsURL = url;
@@ -99,7 +103,10 @@ public class WebSockets : MonoBehaviour{
         };
         ws.OnMessage += (sender, e) => {
             var msg = e.Data;
-            Debug.Log("RECEBEU MSG " + msg);
+            if (msg != "{\"msg\":\"ping\"}")
+            {
+                Debug.Log("RECEBEU MSG " + msg);
+            }
 
             if (msg == "{\"msg\":\"ping\"}")
             {
@@ -228,6 +235,22 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("END " + msg);
                 endGame = true;
+            }
+            else if (msg.Contains("request")) //Mayra: this is for hiding and showing the auto help in the game
+            {
+                Debug.Log("REQUEST " + msg);
+                jsonDataRequestAutoHelp = JsonUtility.FromJson<jsonDataRequestAutoHelp>(msg);
+                int autoHelpData = jsonDataRequestAutoHelp.value.data;
+                if (autoHelpData == 0) // hide and deactivate auto help
+                {
+                    Debug.Log("HIDE AUTO HELP, DATA " + autoHelpData);
+                    activateAutoHelp = false;
+                }
+                else // show and activate auto help
+                {
+                    Debug.Log("SHOW AUTO HELP, DATA " + autoHelpData);
+                    activateAutoHelp = true;
+                }
             }
             else
             {

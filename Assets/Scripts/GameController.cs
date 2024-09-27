@@ -125,6 +125,8 @@ public class GameController : MonoBehaviour
   public bool startGame;
   public bool newGameExecutuionIDRequest = false;
   public bool selfHelp = false;
+  public bool helpAllowed = true; //Mayra
+  public GameObject helpButton;
   public bool help = false;
 
   // Start is called before the first frame update
@@ -287,6 +289,11 @@ public class GameController : MonoBehaviour
       webSockets.endGame = false;
       StartCoroutine(EndGame());
     }
+     if (webSockets.activateAutoHelp != helpAllowed)
+    {
+        helpAllowed = webSockets.activateAutoHelp;
+        StartCoroutine(AllowHelp());
+    }
   }
 
   IEnumerator EndGame()
@@ -408,7 +415,10 @@ public class GameController : MonoBehaviour
         speak = true;
       }
       speak = true;
-      activeHelpButton = true;
+      if(helpAllowed)
+     {
+        activeHelpButton = true;
+     }
       yield return new WaitUntil(() => startMicro);
       startMicro = false;
       RecordSound(timer);
@@ -604,7 +614,10 @@ public class GameController : MonoBehaviour
           }
           timer = sequenceToPlayList[j].time;
 
-          activeHelpButton = true;
+          if (helpAllowed)
+         {
+            activeHelpButton = true;
+         }
           speak = true;
           yield return new WaitUntil(() => startMicro);
           startMicro = false;
@@ -727,7 +740,10 @@ public class GameController : MonoBehaviour
         }
         timer = restoredBonusSequenceToPlay[j].time;
 
-        activeHelpButton = true;
+        if (helpAllowed)
+        {
+            activeHelpButton = true;
+        }
         speak = true;
         yield return new WaitUntil(() => startMicro);
         startMicro = false;
@@ -1795,16 +1811,18 @@ public class GameController : MonoBehaviour
       else if (SceneManager.GetActiveScene().name == "Chameleon")
       {
         yield return StartCoroutine(PlayAudioClip("validationMusic"));
-        if(lastBonusSample)
-        {
-          chameleonScript.newWord = true;
-          chameleonScript.randomIndex = Random.Range(0, 13);
-          yield return StartCoroutine(PlayAudioClip("findChameleon"));
-          yield return new WaitUntil(() => chameleonScript.isCaught);
-        }
+        chameleonScript.randomIndex = Random.Range(0, 13);
         chameleonScript.nextAction = true; 
         webSockets.validationValue = -3;
       
+        if(lastBonusSample)
+        {
+          chameleonScript.newWord = true;
+          //chameleonScript.randomIndex = Random.Range(0, 13);
+          yield return StartCoroutine(PlayAudioClip("findChameleon"));
+          yield return new WaitUntil(() => chameleonScript.isCaught);
+          
+        }
       }
       else if (SceneManager.GetActiveScene().name == "Fish")
       {
@@ -2535,4 +2553,24 @@ public class GameController : MonoBehaviour
     yield return new WaitForSeconds(6.0f);
     OnApplicationQuit();
   }
+
+  //if the therapist does not allow the help, then the button is deactivated until the therapist allows it
+  IEnumerator AllowHelp()
+    {
+        Debug.Log("ENTROU NA FUNCAO ALLOWHELP");
+        if (!helpAllowed)
+        {
+            Debug.Log("AUTO HELP NOT ALLOWED");
+            activeHelpButton = false;
+            helpButton.SetActive(false);
+            yield return new WaitForSeconds(1.0f);
+        }
+        else
+        {
+            Debug.Log("AUTO HELP ALLOWED");
+            activeHelpButton = true;
+            helpButton.SetActive(true);
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
 }

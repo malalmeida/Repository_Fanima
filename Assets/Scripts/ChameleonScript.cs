@@ -62,6 +62,14 @@ public class ChameleonScript : MonoBehaviour
     public SpriteRenderer rendRewardBoard;
 
     public bool showReward = false;
+
+    //Mayra
+     SpriteRenderer chameleonToFadeIn;
+     Color tmpColor; 
+    public bool chameleonVisible = false;
+    public float nextAlpha = 0.25f;
+    public float currentAlpha = 0f;
+
     // Start is called before the first frame update
     void Start()
     {  
@@ -146,7 +154,7 @@ public class ChameleonScript : MonoBehaviour
             ShowRewardBoard();
         }
 
-        if(randomIndex > -1)
+        if(randomIndex > -1 && !chameleonVisible)
         {
             ShowChameleon();
         }
@@ -340,14 +348,19 @@ public class ChameleonScript : MonoBehaviour
     }
     
     public void NextObj()
-    {   
-        if(repNumber == 0)
+    {
+        if (repNumber == 0)
         {
             Debug.Log("repNumber " + repNumber);
             //rend1.color = colorBlack; 
             //rend2.color = colored;
             hide1 = true;            
-            hide2 = false;  
+            hide2 = false;
+
+            //Mayra
+            //chameleonList[randomIndex].SetActive(true);
+            nextAlpha = 0.25f;//chameleon semi-transparent
+            StartCoroutine(FadeInChameleon(currentAlpha, nextAlpha));
         }
         else if(repNumber == 1)
         {
@@ -356,12 +369,27 @@ public class ChameleonScript : MonoBehaviour
             //rend3.color = colored;
             hide2 = true;
             hide3 = false;
+
+            //Mayra
+            currentAlpha = 0.25f;
+            nextAlpha = 0.5f;
+            StartCoroutine(FadeInChameleon(currentAlpha, nextAlpha));
         }
         else if(repNumber == 2)
         {
+
             hide3 = true;
             Debug.Log("repNumber " + repNumber);
+
             HidePreviousImage();
+
+            //Mayra
+            currentAlpha = 0.5f;
+            nextAlpha = 1f;//chameleon fully visable
+            StartCoroutine(FadeInChameleon(currentAlpha, nextAlpha));
+            randomIndex = -1;
+            chameleonVisible = false;
+            
         }
         nextAction = false;
     }
@@ -399,8 +427,29 @@ public class ChameleonScript : MonoBehaviour
     public void ShowChameleon()
     {
         chameleonList[randomIndex].SetActive(true);
-        randomIndex = -1;
-        chameleonSound.Play();
+
+        //Mayra
+        chameleonToFadeIn = chameleonList[randomIndex].GetComponent<SpriteRenderer>();
+        tmpColor = chameleonToFadeIn.material.color;
+        currentAlpha = 0f;
+        tmpColor.a = currentAlpha;//chameleon transparent
+        chameleonToFadeIn.material.color = tmpColor;
+
+        //randomIndex = -1;
+        chameleonVisible = true;
+        //chameleonSound.Play();
+    }
+
+    IEnumerator FadeInChameleon(float currentAlpha, float nextAlpha)
+    {
+        for(float i= currentAlpha; i<= nextAlpha; i+=0.05f)
+        {
+            tmpColor = chameleonToFadeIn.material.color;
+            tmpColor.a = i;
+            chameleonToFadeIn.material.color = tmpColor;
+            yield return new WaitForSeconds(0.05f);
+        }
+
     }
 
     public void ShowRewardBoard()

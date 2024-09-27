@@ -20050,6 +20050,7 @@ MonoBehaviour:
   playButton: {fileID: 0}
   song: {fileID: 0}
   gameStructureRequest: {fileID: 1489920522}
+  buttonConfirm: {fileID: 0}
 --- !u!114 &1833427992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21397,6 +21398,15 @@ MonoBehaviour:
       gameexecutionid: 0
       levels: []
       levelid: 0
+      sequenceid: 0
+      sequence: 
+      actionid: 0
+      actions1: []
+      actions2: []
+      actions3: []
+      extra1: []
+      extra2: []
+      extra3: []
   restoreLevelId: -1
   restoreGameExecutionID: -1
   continueGame: 0
@@ -21409,6 +21419,26 @@ MonoBehaviour:
   playAllChapter1: 0
   playAllChapter2: 0
   playAllChapter3: 0
+  actionsChapter1List: []
+  actionsChapter2List: []
+  actionsChapter3List: []
+  actionsChapterEx1List: []
+  actionsChapterEx2List: []
+  actionsChapterEx3List: []
+  endGame: 0
+  jsonDataEndGame:
+    msg: 
+    value:
+      end: 
+  actionIdStop: -1
+  jsonDataRequestAutoHelp:
+    msg: 
+    value:
+      therapist: 
+      patient: 
+      context: 
+      data: 0
+  activateAutoHelp: 1
 --- !u!4 &1908580100
 Transform:
   m_ObjectHideFlags: 0
@@ -22420,6 +22450,7 @@ MonoBehaviour:
   octopusScript: {fileID: 0}
   fishScript: {fileID: 913584943}
   sequenceToPlayList: []
+  restoredBonusSequenceToPlay: []
   phonemeSequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 
@@ -22493,6 +22524,21 @@ MonoBehaviour:
   responseToRestoreDone: 0
   requestGameExecutionID: 0
   repeatValue: -1
+  goMonkeyScene: 0
+  goChameleonScene: 0
+  goOctopusScene: 0
+  restoredBonusGame: 0
+  sequenceIdToStart: -1
+  buttonEnd: {fileID: 0}
+  stopSession: 0
+  phoneme: 
+  bonusPhonemesList: []
+  startGame: 0
+  newGameExecutuionIDRequest: 0
+  selfHelp: 0
+  helpAllowed: 1
+  helpButton: {fileID: 919276242}
+  help: 0
 --- !u!4 &1982993168
 Transform:
   m_ObjectHideFlags: 0

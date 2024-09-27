@@ -10691,6 +10691,9 @@ MonoBehaviour:
   rewardBoard: {fileID: 143427519}
   rendRewardBoard: {fileID: 0}
   showReward: 0
+  chameleonVisible: 0
+  nextAlpha: 50
+  currentAlpha: 0
 --- !u!4 &1196066959
 Transform:
   m_ObjectHideFlags: 0
@@ -14473,7 +14476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 809, y: 108.1}
+  m_AnchoredPosition: {x: 809, y: 108.1001}
   m_SizeDelta: {x: 295.28784, y: 256.2701}
   m_Pivot: {x: 2.7764084, y: 0.5}
 --- !u!114 &1604767640
@@ -15840,6 +15843,9 @@ MonoBehaviour:
       gameexecutionid: 0
       levels: []
       levelid: 0
+      sequenceid: 0
+      sequence: 
+      actionid: 0
       actions1: []
       actions2: []
       actions3: []
@@ -15864,6 +15870,20 @@ MonoBehaviour:
   actionsChapterEx1List: []
   actionsChapterEx2List: []
   actionsChapterEx3List: []
+  endGame: 0
+  jsonDataEndGame:
+    msg: 
+    value:
+      end: 
+  actionIdStop: -1
+  jsonDataRequestAutoHelp:
+    msg: 
+    value:
+      therapist: 
+      patient: 
+      context: 
+      data: 0
+  activateAutoHelp: 1
 --- !u!4 &1710161259
 Transform:
   m_ObjectHideFlags: 0
@@ -18021,6 +18041,7 @@ MonoBehaviour:
   octopusScript: {fileID: 0}
   fishScript: {fileID: 0}
   sequenceToPlayList: []
+  restoredBonusSequenceToPlay: []
   phonemeSequenceToPlayList: []
   listOfWordsToSay: []
   currentWord: 
@@ -18115,6 +18136,21 @@ MonoBehaviour:
   responseToRestoreDone: 0
   requestGameExecutionID: 0
   repeatValue: -1
+  goMonkeyScene: 0
+  goChameleonScene: 0
+  goOctopusScene: 0
+  restoredBonusGame: 0
+  sequenceIdToStart: -1
+  buttonEnd: {fileID: 0}
+  stopSession: 0
+  phoneme: 
+  bonusPhonemesList: []
+  startGame: 0
+  newGameExecutuionIDRequest: 0
+  selfHelp: 0
+  helpAllowed: 1
+  helpButton: {fileID: 1604767638}
+  help: 0
 --- !u!82 &1943259856
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19020,6 +19056,7 @@ MonoBehaviour:
   playButton: {fileID: 0}
   song: {fileID: 0}
   gameStructureRequest: {fileID: 1508077805}
+  buttonConfirm: {fileID: 0}
 --- !u!114 &2045954558
 MonoBehaviour:
   m_ObjectHideFlags: 0
