@@ -94,6 +94,7 @@ TagManager:
   - Bug15
   - Rock15
   - Parrot
+  - HelpButton
   layers:
   - Default
   - TransparentFX

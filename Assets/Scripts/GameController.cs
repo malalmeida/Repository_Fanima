@@ -415,10 +415,11 @@ public class GameController : MonoBehaviour
         speak = true;
       }
       speak = true;
-      if(helpAllowed)
-     {
-        activeHelpButton = true;
-     }
+      /*if(helpAllowed == false) // false- means hide help button
+          {
+            //helpAllowed = webSockets.activateAutoHelp;
+            StartCoroutine(AllowHelp());
+          }*/
       yield return new WaitUntil(() => startMicro);
       startMicro = false;
       RecordSound(timer);
@@ -614,10 +615,11 @@ public class GameController : MonoBehaviour
           }
           timer = sequenceToPlayList[j].time;
 
-          if (helpAllowed)
-         {
-            activeHelpButton = true;
-         }
+        /*if (helpAllowed == false) // false- means hide help button
+                    {
+            //helpAllowed = webSockets.activateAutoHelp;
+            StartCoroutine(AllowHelp());
+        }*/
           speak = true;
           yield return new WaitUntil(() => startMicro);
           startMicro = false;
@@ -740,10 +742,11 @@ public class GameController : MonoBehaviour
         }
         timer = restoredBonusSequenceToPlay[j].time;
 
-        if (helpAllowed)
-        {
-            activeHelpButton = true;
-        }
+       /* if (helpAllowed == false) // false- means hide help button
+                {
+            //helpAllowed = webSockets.activateAutoHelp;
+            StartCoroutine(AllowHelp());
+        }*/
         speak = true;
         yield return new WaitUntil(() => startMicro);
         startMicro = false;
@@ -1732,7 +1735,7 @@ public class GameController : MonoBehaviour
         errorDetected = true;
       }
       //desativar ajuda
-      activeHelpButton = false;
+      //activeHelpButton = false;
       if(SceneManager.GetActiveScene().name == "Geral")
       {
         if(currentWord == "caracol")

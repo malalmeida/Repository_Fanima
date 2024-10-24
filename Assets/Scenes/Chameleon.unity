@@ -14453,7 +14453,7 @@ GameObject:
   - component: {fileID: 1604767640}
   m_Layer: 5
   m_Name: HelpButton
-  m_TagString: Untagged
+  m_TagString: HelpButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
