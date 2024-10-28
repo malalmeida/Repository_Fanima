@@ -164,9 +164,27 @@ public class GameController : MonoBehaviour
 
     List<string> listOfWordsToSay = new List<string>(); 
     List<actionClass> sequenceToPlayList = new List<actionClass>(); 
-    List<errorClass> phonemeList = new List<errorClass>(); 
+    List<errorClass> phonemeList = new List<errorClass>();
 
-    if(SceneManager.GetActiveScene().name == "Geral")
+    if(DataManager.instance != null)
+    {
+        helpAllowed = DataManager.instance.helpAllowed;
+        webSockets.activateAutoHelp = helpAllowed;
+     
+        StartCoroutine(AllowHelp());
+        
+        }
+    /*else //(DataManager.instance.helpAllowed == false)
+    {
+         Debug.Log("DATAMANAGER INSTANCE: NULL");
+         Debug.Log("BEFORE CHANGE helpAllowed: " + helpAllowed);
+         helpAllowed = DataManager.instance.helpAllowed;
+            webSockets.activateAutoHelp = helpAllowed;
+            Debug.Log("AFTER CHANGE helpAllowed: " + helpAllowed);
+         StartCoroutine(AllowHelp());
+    }*/
+
+    if (SceneManager.GetActiveScene().name == "Geral")
     {
       activeChapter = "Geral"; 
       PlayerPrefs.SetString("LEVELSELECTION", "NOTDONE");  
@@ -289,10 +307,16 @@ public class GameController : MonoBehaviour
       webSockets.endGame = false;
       StartCoroutine(EndGame());
     }
-     if (webSockets.activateAutoHelp != helpAllowed)
+        //verify if the therapist has asked to hide/show the help button
+        //or if the helpAllowed in the DataManager has the same value as the helpAllowed in this class
+        if (webSockets.activateAutoHelp != helpAllowed || DataManager.instance.helpAllowed != helpAllowed)
     {
-        helpAllowed = webSockets.activateAutoHelp;
-        StartCoroutine(AllowHelp());
+            //here we save the new value for the helpAllowed, and also save it in the DataManager
+            helpAllowed = webSockets.activateAutoHelp;
+            DataManager.instance.helpAllowed = helpAllowed;
+
+            //goes to a class that will hide or show the helpButton
+            StartCoroutine(AllowHelp());
     }
   }
 
@@ -415,11 +439,7 @@ public class GameController : MonoBehaviour
         speak = true;
       }
       speak = true;
-      /*if(helpAllowed == false) // false- means hide help button
-          {
-            //helpAllowed = webSockets.activateAutoHelp;
-            StartCoroutine(AllowHelp());
-          }*/
+      
       yield return new WaitUntil(() => startMicro);
       startMicro = false;
       RecordSound(timer);
@@ -436,9 +456,17 @@ public class GameController : MonoBehaviour
       SceneManager.LoadScene("Travel"); 
     }
 
-    else if((SceneManager.GetActiveScene().name == "Frog"))
+        /*
+            webSockets.PlayBonusChapterRequest(therapistID);
+        //values below may change depending on the message
+            //webSockets.skipBonusChapter = 1 skipBonusChapter     webSockets.skipBonusChapter = -1 dont skipBonusChapter
+            yield return new WaitUntil(() => webSockets.getSkipBonusChapterDone);
+
+        */
+
+        else if ((SceneManager.GetActiveScene().name == "Frog"))
     {
-      if(errorDetected == true)
+      if(errorDetected == true /* && webSockets.skipBonusChapter != 1*/)
       {
         SceneManager.LoadScene("Monkey"); 
       }
@@ -450,8 +478,8 @@ public class GameController : MonoBehaviour
 
     else if((SceneManager.GetActiveScene().name == "Owl"))
     {
-      if(errorDetected == true)
-      {
+      if(errorDetected == true /* && webSockets.skipBonusChapter != 1*/)
+            {
         SceneManager.LoadScene("Chameleon"); 
       }
       else
@@ -462,8 +490,8 @@ public class GameController : MonoBehaviour
 
     else if((SceneManager.GetActiveScene().name == "Fish"))
     {
-      if(errorDetected == true)
-      {
+      if(errorDetected == true /* && webSockets.skipBonusChapter != 1*/)
+            {
         SceneManager.LoadScene("Octopus"); 
       }
       else
@@ -615,11 +643,6 @@ public class GameController : MonoBehaviour
           }
           timer = sequenceToPlayList[j].time;
 
-        /*if (helpAllowed == false) // false- means hide help button
-                    {
-            //helpAllowed = webSockets.activateAutoHelp;
-            StartCoroutine(AllowHelp());
-        }*/
           speak = true;
           yield return new WaitUntil(() => startMicro);
           startMicro = false;
@@ -742,11 +765,6 @@ public class GameController : MonoBehaviour
         }
         timer = restoredBonusSequenceToPlay[j].time;
 
-       /* if (helpAllowed == false) // false- means hide help button
-                {
-            //helpAllowed = webSockets.activateAutoHelp;
-            StartCoroutine(AllowHelp());
-        }*/
         speak = true;
         yield return new WaitUntil(() => startMicro);
         startMicro = false;
@@ -2566,6 +2584,7 @@ public class GameController : MonoBehaviour
             Debug.Log("AUTO HELP NOT ALLOWED");
             activeHelpButton = false;
             helpButton.SetActive(false);
+            
             yield return new WaitForSeconds(1.0f);
         }
         else
@@ -2573,6 +2592,7 @@ public class GameController : MonoBehaviour
             Debug.Log("AUTO HELP ALLOWED");
             activeHelpButton = true;
             helpButton.SetActive(true);
+          
             yield return new WaitForSeconds(1.0f);
         }
     }

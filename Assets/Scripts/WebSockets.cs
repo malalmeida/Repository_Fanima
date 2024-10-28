@@ -75,6 +75,10 @@ public class WebSockets : MonoBehaviour{
     //Mayra
     public jsonDataRequestAutoHelp jsonDataRequestAutoHelp;
     public bool activateAutoHelp = true;
+    //the 3 variables below are not used yet.
+    public jsonDataSkipBonusChapter jsonDataSkipBonusChapter;
+    public int skipBonusChapter; //give an int value to this variable
+    public bool getSkipBonusChapterDone = false;
 
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -241,6 +245,7 @@ public class WebSockets : MonoBehaviour{
                 Debug.Log("REQUEST " + msg);
                 jsonDataRequestAutoHelp = JsonUtility.FromJson<jsonDataRequestAutoHelp>(msg);
                 int autoHelpData = jsonDataRequestAutoHelp.value.data;
+
                 if (autoHelpData == 0) // hide and deactivate auto help
                 {
                     Debug.Log("HIDE AUTO HELP, DATA " + autoHelpData);
@@ -252,6 +257,13 @@ public class WebSockets : MonoBehaviour{
                     activateAutoHelp = true;
                 }
             }
+            /* else if (msg.Contains("skip"))
+             {
+                 Debug.Log("Skip Bonus Chapter " + msg);
+                 jsonDataSkipBonusChapter = JsonUtility.FromJson<jsonDataSkipBonusChapter>(msg);
+                 skipBonusChapter = int.Parse(jsonDataSkipBonusChapter.value);
+                 getSkipBonusChapterDone = true;
+             }*/
             else
             {
                 Debug.Log("MSG " + msg);
@@ -329,6 +341,12 @@ public class WebSockets : MonoBehaviour{
         string request = "{\"therapist\":\"" + therapistID + "\",\"sentences\":\"" + 1 + "\"}";
         PrepareMessage("request", request);
     }
+
+   /* public void PlayBonusChapterRequest(int therapistID)
+    {
+       // string request = "{\"therapist\":\"" + therapistID + "\",\"skipBonus\":\"" + 1 + "\"}";
+       // PrepareMessage("request", request);
+    }*/
 
     public void VerifyTherapistActivity(int therapistID)
     {
