@@ -9,9 +9,12 @@ public class DataManager : MonoBehaviour
 
     public bool helpAllowed = true;
     public bool musicAllowed = true;
-    public GameObject backgroundMusic;
+    //public GameObject backgroundMusic;
+    public Sprite maleGuide;
+    public bool characterChoosen;
+    //public bool femaleChoosen;
+    //public Sprite femaleGuide;
 
-    
     void Awake()
     {
         

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Linq;
@@ -128,6 +129,7 @@ public class GameController : MonoBehaviour
   public bool helpAllowed = true; //Mayra
   public GameObject helpButton;
   public bool help = false;
+    //public Image maleGuide;
 
   // Start is called before the first frame update
   void Start()
