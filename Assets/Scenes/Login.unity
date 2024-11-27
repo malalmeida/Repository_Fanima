@@ -749,10 +749,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355e8f81c3571b54ca0ae700f3012928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helpAllowed: 0
+  helpAllowed: 1
   musicAllowed: 1
   maleGuide: {fileID: 1018883309}
-  characterChoosen: 0
+  maleChoosen: 0
+  token: 
+  therapistID: 0
+  patientID: 0
+  playerID: 
+  contentList: []
+  structReqDone: 0
+  dataList: []
+  respositoryReqDone: 0
+  gameExecutionID: 0
+  gameExecutionDone: 0
 --- !u!4 &249529862
 Transform:
   m_ObjectHideFlags: 0

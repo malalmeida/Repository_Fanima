@@ -54,14 +54,21 @@ public class LoginRequest : MonoBehaviour
             else
             {
                 FindObjectOfType<TextMeshProUGUI>().enabled = false;
-                PlayerPrefs.SetString("PLAYERID", playerInfo.content[0]);
+                //PlayerPrefs.SetString("PLAYERID", playerInfo.content[0]);
+                
                 PlayerPrefs.SetString("PLAYERNAME", playerInfo.content[1]);
                 PlayerPrefs.SetString("TOKEN", playerInfo.content[3]);
+                DataManager.instance.token = playerInfo.content[3];
 
-                patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
-                PlayerPrefs.SetInt("PATIENTID", patientID);
+                //patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
+                patientID = Int32.Parse(playerInfo.content[0]);
+                DataManager.instance.patientID = patientID;
+
+                //PlayerPrefs.SetInt("PATIENTID", patientID);
                 therapistID = Int32.Parse(playerInfo.content[4]);
-                PlayerPrefs.SetInt("THERAPISTID", therapistID);
+                //PlayerPrefs.SetInt("THERAPISTID", therapistID);
+
+                DataManager.instance.therapistID = therapistID;
 
                 // Disable screen dimming
                 Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -76,10 +83,12 @@ public class LoginRequest : MonoBehaviour
     {
         var url = baseURL + "logout";
 
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
-
-        PlayerPrefs.DeleteKey("TOKEN");
-        PlayerPrefs.DeleteKey("PLAYERID");
+        //string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+            token = "ERROR";
+        //PlayerPrefs.DeleteKey("TOKEN");
+        //PlayerPrefs.DeleteKey("PLAYERID");
         PlayerPrefs.DeleteKey("PLAYERNAME");
 
         PlayerPrefs.Save();

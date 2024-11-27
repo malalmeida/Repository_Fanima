@@ -41,7 +41,10 @@ public class WebRequests : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        //string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+            token = "ERROR";
         www.SetRequestHeader("Authorization", token);
 
         yield return www.SendWebRequest();
@@ -79,7 +82,10 @@ public class WebRequests : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        //string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+            token = "ERROR";
         www.SetRequestHeader("Authorization", token);
 
         yield return www.SendWebRequest();
@@ -107,7 +113,10 @@ public class WebRequests : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        //string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+            token = "ERROR";
         www.SetRequestHeader("Authorization", token);
 
         yield return www.SendWebRequest();
@@ -142,7 +151,10 @@ public class WebRequests : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        //string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+            token = "ERROR";
         www.SetRequestHeader("Authorization", token);
 
         yield return www.SendWebRequest();
@@ -191,7 +203,10 @@ public class WebRequests : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        //string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+            token = "ERROR";
         www.SetRequestHeader("Authorization", token);
 
         yield return www.SendWebRequest();
@@ -216,7 +231,10 @@ public class WebRequests : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        //string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+            token = "ERROR";
         www.SetRequestHeader("Authorization", token);
 
         yield return www.SendWebRequest();

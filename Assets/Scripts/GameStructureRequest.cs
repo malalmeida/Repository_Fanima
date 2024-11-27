@@ -30,9 +30,12 @@ public class GameStructureRequest : MonoBehaviour
         else {
             Debug.Log("ANSWER GET STRUCTURE: " + www.downloadHandler.text + " END");
             jsonDataLoader jsonData = JsonUtility.FromJson<jsonDataLoader>(www.downloadHandler.text);
-            
-            gameController.contentList = jsonData.content;
-            gameController.structReqDone = true;
+
+            DataManager.instance.contentList = jsonData.content;
+            DataManager.instance.structReqDone = true;
+
+            //gameController.contentList = jsonData.content;//remove??
+            //gameController.structReqDone = true; //remove??
         }
     }   
 
@@ -53,11 +56,11 @@ public class GameStructureRequest : MonoBehaviour
             Debug.Log("ANSWER GET REPOSITORY: " + www.downloadHandler.text + " END");
             jsonDataRepository jsonDataRepository = JsonUtility.FromJson<jsonDataRepository>(www.downloadHandler.text);
             
-            //if(SceneManager.GetActiveScene().name == "Home")
-            //{
-                gameController.dataList = jsonDataRepository.content;
-                gameController.respositoryReqDone = true;
-            //}            
+            DataManager.instance.dataList = jsonDataRepository.content;
+            DataManager.instance.respositoryReqDone = true;
+
+           // gameController.dataList = jsonDataRepository.content;
+           // gameController.respositoryReqDone = true;           
         }
     }
 
@@ -72,7 +75,10 @@ public class GameStructureRequest : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequest.Post(url, parameters);
 
-        string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        //string token = PlayerPrefs.GetString("TOKEN", "ERROR");
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+            token = "ERROR";
         www.SetRequestHeader("Authorization", token);
 
         yield return www.SendWebRequest();
@@ -85,9 +91,12 @@ public class GameStructureRequest : MonoBehaviour
             
             if(SceneManager.GetActiveScene().name == "Geral")
             {
-                PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
-                gameController.gameExecutionID = int.Parse(www.downloadHandler.text);
-                gameController.gameExecutionDone = true;
+                //PlayerPrefs.SetInt("GAMEEXECUTIONID", int.Parse(www.downloadHandler.text));
+                DataManager.instance.gameExecutionID = int.Parse(www.downloadHandler.text);
+                DataManager.instance.gameExecutionDone = true;
+               // gameController.gameExecutionID = DataManager.instance.gameExecutionID;
+              //  gameController.gameExecutionID = int.Parse(www.downloadHandler.text);
+               // gameController.gameExecutionDone = true;
             }
         }
     } 
@@ -136,9 +145,10 @@ public class GameStructureRequest : MonoBehaviour
         }
         else {
             Debug.Log("ANSWER GET THERAPIST ID: " + www.downloadHandler.text + " END");
-            TherapistInfo therapistInfo = JsonUtility.FromJson<TherapistInfo>(www.downloadHandler.text);            
-            
-            PlayerPrefs.SetInt("THERAPISTID", therapistInfo.content[0].id);
+            TherapistInfo therapistInfo = JsonUtility.FromJson<TherapistInfo>(www.downloadHandler.text);
+
+            //PlayerPrefs.SetInt("THERAPISTID", therapistInfo.content[0].id);
+            DataManager.instance.therapistID = therapistInfo.content[0].id;
         }
     }
       

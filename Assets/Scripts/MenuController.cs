@@ -21,9 +21,14 @@ public class MenuController : MonoBehaviour
    
     void Awake()
     {
-        StartCoroutine(gameStructureRequest.GetStructureRequest(PLAYGAMEID));
-        StartCoroutine(gameStructureRequest.GetRepository());
-        PlayerPrefs.SetInt("GAMESTARTED", 0);
+        if (!DataManager.instance.structReqDone)
+        {
+            StartCoroutine(gameStructureRequest.GetStructureRequest(PLAYGAMEID));
+            StartCoroutine(gameStructureRequest.GetRepository());
+            PlayerPrefs.SetInt("GAMESTARTED", 0);
+
+        }
+
     }
 
     void Update()
@@ -31,7 +36,8 @@ public class MenuController : MonoBehaviour
         if(gameStructureRequest.gameController.newGameExecutuionIDRequest)
         {
             gameStructureRequest.gameController.newGameExecutuionIDRequest = false;
-            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+            if(!DataManager.instance.gameExecutionDone)
+                StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
             PlayerPrefs.SetInt("GAMESTARTED", 1);
 
         }
@@ -39,7 +45,8 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
-        patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
+        //patientID = Int32.Parse(PlayerPrefs.GetString("PLAYERID"));
+        patientID = DataManager.instance.patientID;
         if(SceneManager.GetActiveScene().name == "Geral")
         {
             playButton.SetActive(false);
@@ -57,7 +64,10 @@ public class MenuController : MonoBehaviour
         {
             Debug.Log("REQUEST DONE");        
             gameStructureRequest.gameController.requestGameExecutionID = false;
-            StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+            if (!DataManager.instance.gameExecutionDone)
+            {
+                StartCoroutine(gameStructureRequest.PostGameExecutionRequest(System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"), PLAYGAMEID.ToString(), patientID.ToString()));
+            }
         }
         startTime = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss");
         Time.timeScale = 1f;                

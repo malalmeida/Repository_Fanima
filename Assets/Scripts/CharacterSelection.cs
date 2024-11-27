@@ -21,7 +21,7 @@ public class CharacterSelection : MonoBehaviour
     public void Start()
     {
         DataManager.instance.maleGuide = character.sprite;
-        DataManager.instance.characterChoosen = false;
+        DataManager.instance.maleChoosen = false;
        // DataManager.instance.femaleChoosen = false;
 
     }
@@ -53,7 +53,7 @@ public class CharacterSelection : MonoBehaviour
         login.characterSelection.SetActive(false);
         //SceneManager.LoadScene("1");
        
-        DataManager.instance.characterChoosen = true;
+        DataManager.instance.maleChoosen = true;
         //DataManager.instance.femaleChoosen = true;
 
 
