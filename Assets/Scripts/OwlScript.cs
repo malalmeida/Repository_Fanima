@@ -62,7 +62,7 @@ public class OwlScript : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit))
             {
-                if(hit.collider != null)
+                if(hit.collider != null && !pop)
                 {           
                     if(hit.collider.CompareTag("Chameleon1"))
                     {   
@@ -188,7 +188,7 @@ public class OwlScript : MonoBehaviour
 
     public void ShowObj()
     {
-        pop = false;
+        //pop = false; //CHECK IF SHOULD UNCOMMENT
         gameObjName = currentWord + "Obj";       
         Debug.Log("OBJ " + gameObjName);
 
