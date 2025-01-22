@@ -10,10 +10,11 @@ public class DataManager : MonoBehaviour
     public bool helpAllowed = true;
     public bool musicAllowed = true;
     //public GameObject backgroundMusic;
-    public Sprite maleGuide;
-    public bool maleChoosen;
-    //public bool femaleChoosen;
-    //public Sprite femaleGuide;
+
+    //characterSelection
+    public List<actionClass> characterSelectedData; //change actionClass to something else
+    public Sprite characterGuide;
+    public bool guideChoosen; //change to characterSelected
 
     //public string gameExecutionID;
     public string token;

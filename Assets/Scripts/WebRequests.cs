@@ -267,4 +267,59 @@ public class WebRequests : MonoBehaviour
             badgesListDone = true;
         }
     }
+
+    // Post/Put character Selection request
+    public IEnumerator PostCharacterSelected(string userID, int gameID, string data )
+        { //POST/PUT /user/:id/configuration e o payload será {'gameid':XX,'data':{}}
+            var url = baseURL + "user/" + userID + "/configuration";
+
+        // List<IMultipartFormSection> parameters = new List<IMultipartFormSection>();
+        // parameters.Add(new MultipartFormDataSection("gameid",gameID));
+        // parameters.Add(new MultipartFormDataSection("data", "{}"));
+        string payload = "{\"gameid\":" + gameID + "\"data\":" + data + "}";//INCOMPLETE
+
+        //UnityWebRequest www = UnityWebRequest.Put(url, parameters);
+        UnityWebRequest www = UnityWebRequest.Put(url, payload);
+
+        string token = DataManager.instance.token;
+        if (string.IsNullOrEmpty(token))
+             token = "ERROR";
+
+        www.SetRequestHeader("Authorization", token);
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.Log("ERROR POST/PUT CHARACTER SELECTED: " + www.error + " END");
+            }
+            else
+            {
+                Debug.Log("ANSWER POST/PUT CHARACTER SELECTED: " + www.downloadHandler.text + " END");
+
+            }
+        }
+
+    //Get Character Selected 
+    public IEnumerator GetCharacterSelected(string userID)
+    { // /user/:id/configuration
+        var url = baseURL + "user/" + userID + "/configuration/";
+        UnityWebRequest www = UnityWebRequest.Get(url);
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.Log("ERROR GET CHARACTER SELECTED: " + www.error + " END");
+        }
+        else
+        {
+            Debug.Log("ANSWER GET CHARACTER SELECTED: " + www.downloadHandler.text + " END");
+            jsonDataCharacterSelection jsonDataCharacterSelection = JsonUtility.FromJson<jsonDataCharacterSelection>(www.downloadHandler.text);
+
+            //the lines below may not be correct CHANGE LATER
+           // DataManager.instance.characterSelectedData = jsonDataCharacterSelection.content;
+            DataManager.instance.guideChoosen = true;
+        }
+    }
 }

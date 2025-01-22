@@ -27,11 +27,11 @@ public class Login : MonoBehaviour
 
         buttonConfirm.Play();
 
-       // characterSelection.SetActive(true);
+        //characterSelection.SetActive(true);
 
         //wait for characterGuide to be choosen
         //TO USE IN CASE CHARACTER SELECTIOnN IS IMPLEMENTED
-        // StartCoroutine(ChooseCharacter(user, pass));
+         //StartCoroutine(ChooseCharacter(user, pass));
 
 
         /* relocate it to ChooseCharacter(), otherwise the new Coroutine would start before
@@ -43,9 +43,8 @@ public class Login : MonoBehaviour
   // TO USE IN CASE CHARACTER SELECTIOnN IS IMPLEMENTED. uncomment line in confirmLogin() to use this
     public IEnumerator ChooseCharacter(string user, string pass)
     {
-        yield return new WaitUntil(() => DataManager.instance.maleChoosen);
+        yield return new WaitUntil(() => DataManager.instance.guideChoosen);
 
-        //yield return new WaitUntil(() => DataManager.instance.femaleChoosen);
         //SceneManager.LoadScene("Chameleon"); used to test if sprite changes
 
         StartCoroutine(loginRequest.PostLoginRequest(user, pass));

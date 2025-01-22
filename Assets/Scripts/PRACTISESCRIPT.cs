@@ -17,7 +17,7 @@ public class PRACTISESCRIPT : MonoBehaviour
         if (DataManager.instance != null )
         {
             //guide.sprite = DataManager.instance.maleGuide;
-            guideSprite.sprite = DataManager.instance.maleGuide;
+            guideSprite.sprite = DataManager.instance.characterGuide;
         }
     }
 

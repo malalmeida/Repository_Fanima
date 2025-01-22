@@ -129,7 +129,6 @@ public class GameController : MonoBehaviour
   public bool helpAllowed = true; //Mayra
   public GameObject helpButton;
   public bool help = false;
-    //public Image maleGuide;
 
   public List<actionClass> contentChapter0List;
   public List<actionClass> contentChapter1List;
@@ -556,6 +555,7 @@ public class GameController : MonoBehaviour
   {
     if((SceneManager.GetActiveScene().name == "Geral"))
     {
+      geralScript.showWordsReward = true;
       geralScript.showSentencesReward = true;
     }
 
@@ -1016,6 +1016,7 @@ public class GameController : MonoBehaviour
       //PlayerPrefs.SetInt("Chap0S", 1);
       //patientID = PlayerPrefs.GetInt("PATIENTID");
       //gameExecutionID = PlayerPrefs.GetInt("GAMEEXECUTIONID");
+      yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "17"));
       yield return StartCoroutine(webRequests.PostBadge(patientID.ToString(), PLAYGAMEID.ToString(), gameExecutionID.ToString(), "18"));
       yield return new WaitForSeconds(4.0f);
     }
