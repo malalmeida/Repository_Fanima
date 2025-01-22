@@ -1,6 +1,6 @@
 # Repository_Fanima
 
-Game Current Version: 2.2.1
+Game Current Version: 2.2.3
 
 Game Version History:
 
