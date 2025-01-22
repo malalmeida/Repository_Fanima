@@ -15,3 +15,5 @@ Game Version History:
  - 2.2.1 -> commit done in 27 November 2024: Fixed some errors in the character selection and optimized the structure of the game
 
  - 2.2.2 -> commit done in 03 December 2024: Fixed a bug in Level 2 (Owl Script)
+
+ - 2.2.3 -> commit done in 22 January 2025: Added code for Character selection and fixed a bug
