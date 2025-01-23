@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 52
+  controlID: 90
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 53
+  controlID: 43
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 42
+  controlID: 44
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -299,8 +299,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -25600
-    y: -25025.6
+    x: 0
+    y: 617.60004
     width: 1275.8
     height: 157.79999
   m_ViewDataDictionary: {fileID: 0}
@@ -340,21 +340,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: fee6ffff14e7ffff44e7ffff60e8ffff82e9ffffceeaffff18eeffff32eeffff70eeffffaaefffff74f2ffffb4f3fffff2f4ffffc6f7ffff00f9ffff28fbffff1661000094610000d60c0100420d0100ac1101006c140100
+      m_ExpandedIDs: 58f6ffffa0f6ffff40f8ffff44f8ffff4ef8ffff5cf8ffff6cf8ffff7ef8ffff8cf8ffff96f8ffffacf8ffffbef8ffffd2f8ffff28fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: RewardVoice
-        m_OriginalName: RewardVoice
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 69330
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -2307,7 +2307,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 50680000
     m_LastClickedID: 26704
-    m_ExpandedIDs: 0000000040680000426800004468000046680000486800004a6800004c6800004e6800005068000000ca9a3b
+    m_ExpandedIDs: 0000000040680000426800004468000046680000486800004a6800004c6800004e68000050680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

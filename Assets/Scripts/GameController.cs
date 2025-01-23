@@ -555,7 +555,6 @@ public class GameController : MonoBehaviour
   {
     if((SceneManager.GetActiveScene().name == "Geral"))
     {
-      geralScript.showWordsReward = true;
       geralScript.showSentencesReward = true;
     }
 
