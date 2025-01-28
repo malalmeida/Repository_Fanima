@@ -69,6 +69,7 @@ public class ChameleonScript : MonoBehaviour
     public bool chameleonVisible = false;
     public float nextAlpha = 0.25f;
     public float currentAlpha = 0f;
+    public bool chameleonFullyVisible = false;
 
     // Start is called before the first frame update
     void Start()
@@ -181,7 +182,7 @@ public class ChameleonScript : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit))
             {
-                if(hit.collider != null)
+                if (hit.collider != null && chameleonFullyVisible)
                 {
                      if(hit.collider.CompareTag("Chameleon1"))
                     {
@@ -189,7 +190,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon2"))
                     {
@@ -197,7 +198,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon3"))
                     {
@@ -205,7 +206,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon4"))
                     {
@@ -213,7 +214,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
 
                     } 
                     if(hit.collider.CompareTag("Chameleon5"))
@@ -222,7 +223,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon6"))
                     {
@@ -230,7 +231,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon7"))
                     {
@@ -238,7 +239,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon8"))
                     {
@@ -246,7 +247,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon9"))
                     {
@@ -254,7 +255,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon10"))
                     {
@@ -262,7 +263,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon11"))
                     {
@@ -270,7 +271,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon12"))
                     {
@@ -278,7 +279,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     } 
                     if(hit.collider.CompareTag("Chameleon13"))
                     {
@@ -286,7 +287,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     }
                     if(hit.collider.CompareTag("Chameleon14"))
                     {
@@ -294,7 +295,7 @@ public class ChameleonScript : MonoBehaviour
                         removedChameleons ++;
                         isCaught = true;
                         barImage.fillAmount += incrementAmount;
-                        //chameleonSound.Play();
+                        chameleonSound.Play();
                     }      
                 }
             }
@@ -389,7 +390,8 @@ public class ChameleonScript : MonoBehaviour
             StartCoroutine(FadeInChameleon(currentAlpha, nextAlpha));
             randomIndex = -1;
             chameleonVisible = false;
-            
+            chameleonFullyVisible = true;
+
         }
         nextAction = false;
     }
@@ -435,9 +437,10 @@ public class ChameleonScript : MonoBehaviour
         tmpColor.a = currentAlpha;//chameleon transparent
         chameleonToFadeIn.material.color = tmpColor;
 
-        //randomIndex = -1;
         chameleonVisible = true;
-        //chameleonSound.Play();
+        chameleonFullyVisible = false;
+
+
     }
 
     IEnumerator FadeInChameleon(float currentAlpha, float nextAlpha)

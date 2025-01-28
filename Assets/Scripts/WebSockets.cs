@@ -287,12 +287,12 @@ public class WebSockets : MonoBehaviour{
     {
         try
         {
-            Debug.Log("PepareMessage: MGS: " + msg + " VALUE: " + value);
+            Debug.Log("PrepareMessage: MGS: " + msg + " VALUE: " + value);
             ws.Send("{\"id\":" + patientID + ",\"msg\":\"" + msg + "\",\"value\":" + value + "}");
         }
         catch (Exception ex) 
         {
-            Debug.Log("PepareMessage FAIL" + ex.ToString());
+            Debug.Log("PrepareMessage FAIL" + ex.ToString());
             Debug.Log("PATIENT id " + patientID);
             Debug.Log("MSG " + msg);
             Debug.Log("VALUE " + value);

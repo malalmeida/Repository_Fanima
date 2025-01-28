@@ -390,9 +390,9 @@ public class FrogScript : MonoBehaviour
       }
     }
     Vector3 v3;
-    rb.velocity = new Vector2(playerSpeed, rb.velocity.y);
+    rb.linearVelocity = new Vector2(playerSpeed, rb.linearVelocity.y);
                 
-    animator.SetFloat("yVelocity", rb.velocity.y);
+    animator.SetFloat("yVelocity", rb.linearVelocity.y);
 
     //for (int i =0; i<2 ; i++)
     //{
@@ -436,7 +436,7 @@ public class FrogScript : MonoBehaviour
         playerSpeed = playerSpeed + 0.1f;
       }
       //playerSpeed = playerSpeed - 0.1f ;
-      rb.AddForce(new Vector2(rb.velocity.x, 500));
+      rb.AddForce(new Vector2(rb.linearVelocity.x, 500));
       isJumping = true;
     } 
   }
