@@ -126,7 +126,7 @@ public class GameController : MonoBehaviour
   public bool startGame;
   public bool newGameExecutuionIDRequest = false;
   public bool selfHelp = false;
-  public bool helpAllowed = true; //Mayra
+  public bool helpAllowed = true; //determines if help button is visible or not
   public GameObject helpButton;
   public bool help = false;
 
@@ -134,7 +134,8 @@ public class GameController : MonoBehaviour
   public List<actionClass> contentChapter1List;
   public List<actionClass> contentChapter2List;
   public List<actionClass> contentChapter3List;
-  public bool contentIsSplit = false; 
+  public bool contentIsSplit = false;
+    public bool imageIsPresent = false;
 
     // Start is called before the first frame update
     void Start()
@@ -363,10 +364,16 @@ public class GameController : MonoBehaviour
             contentIsSplit = true;
         }
 
+        if(helpAllowed && imageIsPresent)
+         {
+             activeHelpButton = true;
+         }
+         
 
-  }
 
-  IEnumerator EndGame()
+    }
+
+    IEnumerator EndGame()
   {
     confetti.Play();
     travelFinal.Play();
@@ -444,7 +451,8 @@ public class GameController : MonoBehaviour
       yield return StartCoroutine(PlaySentences(currentWord));
       Debug.Log("DIZ -> " + currentWord);
       ShowImage(currentWord, i);
-      
+      imageIsPresent = true;
+
       if((SceneManager.GetActiveScene().name == "Geral"))
       {
         yield return new WaitUntil(() => geralScript.animationDone);
@@ -489,7 +497,8 @@ public class GameController : MonoBehaviour
         speak = true;
       }
       speak = true;
-      
+      if (helpAllowed)
+        activeHelpButton = true;
       yield return new WaitUntil(() => startMicro);
       startMicro = false;
       RecordSound(timer);
@@ -669,7 +678,8 @@ public class GameController : MonoBehaviour
           }
           bonusgameResult = true;
           ShowImageBonus(currentWord, l);
-          if(l == 0)
+          imageIsPresent = true;
+          if (l == 0)
           {
             if((SceneManager.GetActiveScene().name == "Chameleon"))
             {
@@ -692,7 +702,8 @@ public class GameController : MonoBehaviour
             yield return StartCoroutine(PlayGuideVoiceForReps(l));
           }
           timer = sequenceToPlayList[j].time;
-
+          if(helpAllowed)
+            activeHelpButton = true;
           speak = true;
           yield return new WaitUntil(() => startMicro);
           startMicro = false;
@@ -791,7 +802,8 @@ public class GameController : MonoBehaviour
         }
         bonusgameResult = true;
         ShowImageBonus(currentWord, l);
-        if(l == 0)
+        imageIsPresent = true;
+        if (l == 0)
         {
           if((SceneManager.GetActiveScene().name == "Chameleon"))
           {
@@ -814,7 +826,8 @@ public class GameController : MonoBehaviour
           yield return StartCoroutine(PlayGuideVoiceForReps(l));
         }
         timer = restoredBonusSequenceToPlay[j].time;
-
+        if(helpAllowed)
+            activeHelpButton = true;
         speak = true;
         yield return new WaitUntil(() => startMicro);
         startMicro = false;
@@ -1817,8 +1830,9 @@ public class GameController : MonoBehaviour
         errorDetected = true;
       }
       //desativar ajuda
-      //activeHelpButton = false;
-      if(SceneManager.GetActiveScene().name == "Geral")
+      activeHelpButton = false;
+      imageIsPresent = false;
+      if (SceneManager.GetActiveScene().name == "Geral")
       {
         if(currentWord == "caracol")
         {
@@ -1984,9 +1998,10 @@ public class GameController : MonoBehaviour
     //PlayerPrefs.SetInt("GAMEEXECUTIONID", gameExecutionID);
     DataManager.instance.gameExecutionID = gameExecutionID;
     DataManager.instance.gameExecutionDone = true;
-      
-    DataManager.instance.helpAllowed = webSockets.activateAutoHelp;
-       
+
+        
+    //DataManager.instance.helpAllowed = ;
+    
     //caso já se tenha escolhido os capitulos
     if(webSockets.restoreLevelId != 0)
     {
@@ -2134,8 +2149,19 @@ public class GameController : MonoBehaviour
           DataManager.instance.gameExecutionID = gameExecutionID;
           //PlayerPrefs.SetInt("GAMEEXECUTIONID", gameExecutionID);
           DataManager.instance.gameExecutionDone = true;
-         // Debug.Log("HELP Is ALLOWED in RESTORE?: " + DataManager.instance.helpAllowed);
-          DataManager.instance.helpAllowed = webSockets.activateAutoHelp;
+            
+          // Debug.Log("HELP Is ALLOWED in RESTORE?: " + DataManager.instance.helpAllowed);
+          Debug.Log("HELP Is ALLOWED in RESTORE?: " + webSockets.autohelp);
+          if (webSockets.autohelp == 0) // 0 hide autohelp
+          {
+            webSockets.activateAutoHelp = false;
+          }
+          else if (webSockets.autohelp == 1) // 1 show autohelp
+          {
+            webSockets.activateAutoHelp = true;
+          }
+
+          //          DataManager.instance.helpAllowed = webSockets.activateAutoHelp;
          // Debug.Log("HELP Is ALLOWED in RESTORE?: " + DataManager.instance.helpAllowed);
 
           //caso já se tenha escolhido os capitulos
@@ -2665,7 +2691,7 @@ public class GameController : MonoBehaviour
         else
         {
             Debug.Log("AUTO HELP ALLOWED");
-            activeHelpButton = true;
+           // activeHelpButton = true;
             helpButton.SetActive(true);
           
             yield return new WaitForSeconds(1.0f);

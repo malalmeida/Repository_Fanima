@@ -23,4 +23,5 @@ public class RestoreData
     public List<string> extra1;
     public List<string> extra2;
     public List<string> extra3;
+    public int autohelp;
 }

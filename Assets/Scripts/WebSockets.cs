@@ -79,6 +79,8 @@ public class WebSockets : MonoBehaviour{
     public jsonDataSkipBonusChapter jsonDataSkipBonusChapter;
     public int skipBonusChapter; //give an int value to this variable
     public bool getSkipBonusChapterDone = false;
+    public int autohelp = -1;
+    public int autoHelpData = -1;
 
     public void SetupClient(string url, int patientID, int gameId, string appName)
     {
@@ -140,6 +142,8 @@ public class WebSockets : MonoBehaviour{
                     actionsChapterEx2List = jsonDataRestore.value.extra2;
                     actionsChapterEx3List = jsonDataRestore.value.extra3;
                     actionIdStop = jsonDataRestore.value.actionid;
+                    autohelp = jsonDataRestore.value.autohelp;
+
                     for (int i = 0; i < levelsList.Count; i++)
                     {
                         if(levelsList[i].Contains("1"))
@@ -244,7 +248,7 @@ public class WebSockets : MonoBehaviour{
             {
                 Debug.Log("REQUEST " + msg);
                 jsonDataRequestAutoHelp = JsonUtility.FromJson<jsonDataRequestAutoHelp>(msg);
-                int autoHelpData = jsonDataRequestAutoHelp.value.data;
+                autoHelpData = jsonDataRequestAutoHelp.value.data;
 
                 if (autoHelpData == 0) // hide and deactivate auto help
                 {
