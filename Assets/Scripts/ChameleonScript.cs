@@ -182,7 +182,7 @@ public class ChameleonScript : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit))
             {
-                if (hit.collider != null && chameleonFullyVisible)
+                if(hit.collider != null && chameleonFullyVisible)
                 {
                      if(hit.collider.CompareTag("Chameleon1"))
                     {
@@ -391,7 +391,6 @@ public class ChameleonScript : MonoBehaviour
             randomIndex = -1;
             chameleonVisible = false;
             chameleonFullyVisible = true;
-
         }
         nextAction = false;
     }
@@ -438,7 +437,8 @@ public class ChameleonScript : MonoBehaviour
         chameleonToFadeIn.material.color = tmpColor;
 
         chameleonVisible = true;
-        chameleonFullyVisible = false;
+        chameleonFullyVisible = false; 
+
 
 
     }
