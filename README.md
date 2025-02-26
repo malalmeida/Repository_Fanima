@@ -1,6 +1,6 @@
 # Repository_Fanima
 
-Game Current Version: 2.2.4
+Game Current Version: 2.2.6
 
 Game Version History:
 
@@ -19,3 +19,7 @@ Game Version History:
  - 2.2.3 -> commit done in 22 January 2025: Added code for Character selection and fixed a bug in Level 0
 
  - 2.2.4 -> commit done in 23 January 2025: Fixed a bug in Level 0
+
+ - 2.2.5 -> commit done in 28 January 2025: Fixed some bugs and updated the unity editor version to Unity6
+
+ - 2.2.6 -> commit done in 30 January 2025: Restored to previous version of Unity Editor that worked. Fixed bug and added code so autoHelp button is saved if game is interrupted and restored
